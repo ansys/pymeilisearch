@@ -25,6 +25,25 @@ classifiers = [
 ]
 dependencies = [
     "importlib-metadata >=4.0",
+    "PyGithub >=1.58.0",
+    "jinja2 >=3.1.2",
+    "meilisearch >=0.24.0",
+]
+
+[project.optional-dependencies]
+
+tests = [
+    "pytest==7.2.2",
+    "pytest-cov==4.0.0"
+]
+doc = [
+    "ansys-sphinx-theme==0.9.5",
+    "numpydoc==1.5.0",
+    "Sphinx==5.3.0,                       
+    "sphinx-autoapi==2.0.1",
+    "meilisearch==0.24.0",   
+    "sphinx-copybutton==0.5.1",
+    "sphinx-notfound-page==0.8.3",
 ]
 
 [tool.flit.module]

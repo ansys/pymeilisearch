@@ -1,5 +1,5 @@
 ansys-tools-meilisearch
-===================
+=======================
 |python| |pypi| |GH-CI| |codecov| |MIT| |black|
 
 .. |python| image:: https://img.shields.io/pypi/pyversions/ansys-tools-meilisearch?logo=pypi
