@@ -18,6 +18,22 @@ def get_temp_file_name(ext=".txt"):
 
 class BaseScraper:
     def __init__(self, meilisearch_host_url=None, meilisearch_api_key=None):
+        """
+        Base class for scraper module.
+
+        Parameters
+        ----------
+        meilisearch_host_url : str, optional
+            Meilisearch host URL, by default None
+        meilisearch_api_key : str, optional
+            Meilisearch API key, by default None
+
+        Raises
+        ------
+        RuntimeError
+            If `meilisearch_host_url` or `meilisearch_api_key` is None and the corresponding
+            environment variable is not set
+        """
         self.meilisearch_host_url = meilisearch_host_url
         self.meilisearch_api_key = meilisearch_api_key
 
@@ -37,6 +53,40 @@ class BaseScraper:
 
 
 class Scraper(BaseScraper):
+    def __init__(self, meilisearch_host_url=None, meilisearch_api_key=None):
+        super().__init__(meilisearch_host_url, meilisearch_api_key)
+
+    def _load_and_render_template(self, url, template, index_uid):
+        temp_config_file = get_temp_file_name(".json")
+        render_template(template, url, temp_config_file, index_uid=index_uid)
+        return temp_config_file
+
+    def _scrape_url_command(self, temp_config_file):
+        result = subprocess.run(
+            ["python", "-m", "scraper", temp_config_file], stdout=subprocess.PIPE
+        )
+        output = result.stdout.decode("utf-8")
+        return output
+
+    def _parse_output(self, output):
+        if output:
+            try:
+                n_hits = int(output.strip().splitlines()[-1].split()[-1])
+            except ValueError:
+                n_hits = 0
+        else:
+            n_hits = 0
+        return n_hits
+
+    def _check_url(self, url):
+        if not url.startswith("https://"):
+            raise ValueError(
+                "\n\nURLs are expected to start with https://" f'\n\n    Instead, got "{url}"'
+            )
+        response = requests.get(url)
+        if response.status_code != 200:
+            raise RuntimeError(f'Url "{url}" returned status code {response.status_code}')
+
     def scrape_url(self, url, index_uid, template=None, verbose=False):
         """For a single given URL, scrape it using the active Meilisearch host.
 
@@ -48,41 +98,48 @@ class Scraper(BaseScraper):
             Number of hits from url.
 
         """
-        if not url.startswith("https://"):
-            raise ValueError(
-                "\n\nURLs are expected to start with https://" f'\n\n    Instead, got "{url}"'
-            )
-
-        # check URL exists
-        response = requests.get(url)
-        if response.status_code != 200:
-            raise RuntimeError(f'Url "{url}" returned status code {response.status_code}')
-
+        self._check_url(url)
         template = get_template(url) if template is None else template
-
-        # load and render the template
-        temp_config_file = get_temp_file_name(".json")
-        render_template(template, url, temp_config_file, index_uid=index_uid)
-
-        # Scrape it!
-        #
-        # this must be run as a system command as twisted will complain:
-        # twisted.internet.error.ReactorNotRestartable
-        #
-        # Plus, it generates a ton of output.
-        result = subprocess.run(
-            ["python", "-m", "scraper", temp_config_file], stdout=subprocess.PIPE
-        )
-        output = result.stdout.decode("utf-8")
-        if output:
-            try:
-                n_hits = int(output.strip().splitlines()[-1].split()[-1])
-            except ValueError:
-                n_hits = 0
-        else:
-            n_hits = 0
-
+        temp_config_file = self._load_and_render_template(url, template, index_uid)
+        output = self._scrape_url_command(temp_config_file)
+        n_hits = self._parse_output(output)
         if verbose:
             print(output)
-
         return n_hits
+
+    def scrape_from_directory(self, path, verbose=False):
+        """For a given directory of URLs, scrape them all using the active Meilisearch host.
+
+        This will generate an index_uid for each URL in the directory.
+
+        Returns
+        -------
+        dict
+            Dictionary of index_uid to number of hits for each URL.
+
+        """
+        if not os.path.isdir(path):
+            raise FileNotFoundError(f"Invalid directory {path}")
+
+        with open(os.path.join(path, "urls.txt")) as fid:
+            urls = fid.readlines()
+            urls = [line.strip() for line in urls]
+
+        template = os.path.join(path, "template")
+        index_uids = [os.path.basename(url).replace(".", "_") for url in urls]
+
+        temp_config_files = []
+        for url, index_uid in zip(urls, index_uids):
+            self._check_url(url)
+            temp_config_file = self._load_and_render_template(url, template, index_uid)
+            temp_config_files.append(temp_config_file)
+
+        results = {}
+        for temp_config_file, index_uid in zip(temp_config_files, index_uids):
+            output = self._scrape_url_command(temp_config_file)
+            n_hits = self._parse_output(output)
+            if verbose:
+                print(output)
+            results[index_uid] = n_hits
+
+        return results

@@ -4,7 +4,7 @@ Create an index for each public github page for each repo in orgs using sphinx.
 import os
 
 from get_pages import public_gh_pages
-from scrape_url import scrape_url
+from scrape_url import Scraper
 
 from ansys.tools.meilisearch.template_utils import is_sphinx
 
@@ -54,7 +54,7 @@ def scrape_gh_pages_sphinx_docs(orgs):
     for repo, url in sphinx_urls.items():
         repo = repo.replace("/", "-").lower()
         index_uid = f"{repo}-sphinx-docs"
-        scrape_url(url, index_uid, template="sphinx")
+        Scraper.scrape_url(url, index_uid, template="sphinx")
 
 
 if __name__ == "__main__":
