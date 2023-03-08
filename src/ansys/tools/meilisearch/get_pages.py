@@ -9,53 +9,68 @@ from github import Github
 import requests
 
 
-def public_gh_pages(org_name, token=None, ignore_githubio=True):
-    """Query GitHub for the public gh-pages in an organization.
+class GitHubPages:
+    def __init__(self, org_name, token=None, ignore_githubio=True):
+        """Query GitHub for the public gh-pages in an organization.
 
-    Parameters
-    ----------
-    org_name : str
-        GitHub organization name.
+        Parameters
+        ----------
+        org_name : str
+            GitHub organization name.
 
-    ignore_githubio : bool, default: True
-        Ignore any GitHub page url with github.io in it.
+        token : str, default: None
+            The GitHub API token to use for authentication.
 
-    Returns
-    -------
-    dict
-        Dictionary containing the full repository name and the public github
-        URLs.
+        ignore_githubio : bool, default: True
+            Ignore any GitHub page url with github.io in it.
+        """
+        self.org_name = org_name
+        self.token = os.environ.get("GITHUB_TOKEN") if token is None else token
+        self.ignore_githubio = ignore_githubio
 
-    """
-    if token is None:
-        token = os.environ.get("GITHUB_TOKEN")
-    if token is None:
-        raise RuntimeError('Missing "GITHUB_TOKEN" environment variable.')
+    def _connect_github_api(self):
+        """Connect to the GitHub API.
 
-    # Connect to the GitHub API
-    github = Github(login_or_token=token)
+        Returns
+        -------
+        Github
+            A Github object connected to the GitHub API.
+        """
+        return Github(login_or_token=self.token)
 
-    # Get all repos in the organization
-    repos = github.get_organization(org_name).get_repos()
+    def _get_repos(self):
+        """Get all repos in the organization.
 
-    headers = {
-        "Accept": "application/vnd.github+json",
-        "Authorization": f"Bearer {token}",
-        "X-GitHub-Api-Version": "2022-11-28",
-    }
+        Returns
+        -------
+        list of Repository
+            A list of Repository objects.
+        """
+        return self._connect_github_api().get_organization(self.org_name).get_repos()
 
-    # Iterate over the repos
-    repo_cnames = {}
-    for repo in repos:
-        # Get the Github Pages settings for the repo
+    def _verify_pages(self, repo):
+        """Verify the public pages for a given repo.
 
-        if repo.full_name.endswith("-redirect"):
-            continue
+        Parameters
+        ----------
+        repo : Repository
+            The Repository object to check.
 
-        # Check if the custom domain is set for the repo's Github Pages
+        Returns
+        -------
+        str or False
+            The URL of the public pages, or ``False`` if they do not exist or could not be verified.
+        """
         if not repo.has_pages:
-            continue
-        request_url = f"https://api.github.com/repos/{org_name}/{repo.name}/pages"
+            return False
+
+        # Get the Github Pages settings for the repo
+        headers = {
+            "Accept": "application/vnd.github+json",
+            "Authorization": f"Bearer {self.token}",
+            "X-GitHub-Api-Version": "2022-11-28",
+        }
+        request_url = f"https://api.github.com/repos/{self.org_name}/{repo.name}/pages"
         response = requests.get(request_url, headers=headers)
         out = response.json()
 
@@ -65,7 +80,7 @@ def public_gh_pages(org_name, token=None, ignore_githubio=True):
                 raise RuntimeError("Bad credentials")
 
         if not out["public"]:
-            continue
+            return False
 
         # verify
         if repo.visibility != "public":
@@ -77,17 +92,38 @@ def public_gh_pages(org_name, token=None, ignore_githubio=True):
 
         # ignore dev documentation
         if url.startswith("https://dev.") and not url.startswith("https://dev.docs"):
-            continue
-        if "github.io" in url and ignore_githubio:
-            continue
+            return False
+        if "github.io" in url and self.ignore_githubio:
+            return False
 
         try:
             code = urllib.request.urlopen(url).getcode()
             if code == 200:
-                repo_cnames[repo.full_name] = url
+                return url
             else:
                 warnings.warn(f"Received {code} for {repo.full_name} at {url}")
         except:
             warnings.warn(f"Invalid URL for {repo.full_name} at {url}")
 
-    return repo_cnames
+        return False
+
+    def get_public_pages(self):
+        """Query GitHub for the public gh-pages in an organization.
+
+        Returns
+        -------
+        dict
+            Dictionary containing the full repository name and the public github
+            URLs.
+        """
+        # Iterate over the repos
+        repo_cnames = {}
+        for repo in self._get_repos():
+            if repo.full_name.endswith("-redirect"):
+                continue
+
+            url = self._verify_pages(repo)
+            if url:
+                repo_cnames[repo.full_name] = url
+
+        return repo_cnames

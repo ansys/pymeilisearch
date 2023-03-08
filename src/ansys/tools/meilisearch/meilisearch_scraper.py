@@ -52,7 +52,7 @@ class BaseScraper:
             self.meilisearch_api_key = os.environ["MEILISEARCH_API_KEY"]
 
 
-class Scraper(BaseScraper):
+class WebScraper(BaseScraper):
     """
     A scraper class to scrape web pages and check if the response is successful or not.
     """
