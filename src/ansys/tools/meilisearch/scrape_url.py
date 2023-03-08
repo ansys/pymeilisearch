@@ -53,15 +53,57 @@ class BaseScraper:
 
 
 class Scraper(BaseScraper):
+    """
+    A scraper class to scrape web pages and check if the response is successful or not.
+    """
+
     def __init__(self, meilisearch_host_url=None, meilisearch_api_key=None):
+        """
+        Parameters
+        ----------
+        meilisearch_host_url : str or None
+            The URL of the MeiliSearch host. Default is None.
+        meilisearch_api_key : str or None
+            The API key of the MeiliSearch host. Default is None.
+        """
+
         super().__init__(meilisearch_host_url, meilisearch_api_key)
 
     def _load_and_render_template(self, url, template, index_uid):
+        """Load and render a template file with URL and index UID.
+
+        Parameters
+        ----------
+        url : str
+            The URL to scrape.
+        template : str
+            The template file to use for rendering.
+        index_uid : str
+            The unique identifier of the MeiliSearch.
+
+        Returns
+        -------
+        str
+            The name of the temporary configuration file that was created.
+        """
         temp_config_file = get_temp_file_name(".json")
         render_template(template, url, temp_config_file, index_uid=index_uid)
         return temp_config_file
 
     def _scrape_url_command(self, temp_config_file):
+        """
+        Scrape a URL by executing the `scraper`.
+
+        Parameters
+        ----------
+        temp_config_file : str
+            The URL to scrape.
+
+        Returns
+        -------
+        str
+            The output of the `scraper` command.
+        """
         result = subprocess.run(
             ["python", "-m", "scraper", temp_config_file], stdout=subprocess.PIPE
         )
@@ -69,6 +111,19 @@ class Scraper(BaseScraper):
         return output
 
     def _parse_output(self, output):
+        """
+        Parse the output of the scraper to determine the number of hits.
+
+        Parameters
+        ----------
+        output : str
+            The output of the `scraper` command.
+
+        Returns
+        -------
+        int
+            The number of hits from the URL.
+        """
         if output:
             try:
                 n_hits = int(output.strip().splitlines()[-1].split()[-1])
@@ -79,6 +134,21 @@ class Scraper(BaseScraper):
         return n_hits
 
     def _check_url(self, url):
+        """
+        Check if the URL is valid and accessible.
+
+        Parameters
+        ----------
+        url : str
+            The URL to check.
+
+        Raises
+        ------
+        ValueError
+            If the URL does not start with 'https://'.
+        RuntimeError
+            If the URL returns a non-200 status code.
+        """
         if not url.startswith("https://"):
             raise ValueError(
                 "\n\nURLs are expected to start with https://" f'\n\n    Instead, got "{url}"'
@@ -97,6 +167,21 @@ class Scraper(BaseScraper):
         int
             Number of hits from url.
 
+        Parameters
+        ----------
+        url : str
+            The URL to scrape.
+        index_uid : str
+            The unique identifier of the MeiliSearch.
+        template : str, default : None
+            The template file to use for rendering.
+        verbose : bool, default : False
+            If True, print the output of the `scraper` command.
+
+        Returns
+        -------
+        int
+            The number of hits from the URL.
         """
         self._check_url(url)
         template = get_template(url) if template is None else template
@@ -112,10 +197,22 @@ class Scraper(BaseScraper):
 
         This will generate an index_uid for each URL in the directory.
 
+        Parameters
+        ----------
+        path : str
+            The path to the directory containing the URLs to scrape.
+        verbose : bool, default : False
+            If True, print the output of the `scraper` command.
+
         Returns
         -------
         dict
             Dictionary of index_uid to number of hits for each URL.
+
+        Raises
+        ------
+        FileNotFoundError
+            If the specified path does not exist.
 
         """
         if not os.path.isdir(path):

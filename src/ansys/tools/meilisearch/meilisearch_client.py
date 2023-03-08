@@ -8,7 +8,7 @@ class MeilisearchClient:
     A base scraper class for scraping web pages and indexing the results in MeiliSearch.
 
     Parameters
-    ==========
+    ----------
     meilisearch_host_url : str
         The URL to the MeiliSearch host.
     meilisearch_api_key : str
@@ -24,7 +24,7 @@ class MeilisearchClient:
         the constructor will check for their values in environment variables.
 
         Raises
-        ======
+        ------
         RuntimeError
             If the `MEILISEARCH_HOST_URL` or `MEILISEARCH_API_KEY`
             environment variables are not set and no values are passed to the constructor.
