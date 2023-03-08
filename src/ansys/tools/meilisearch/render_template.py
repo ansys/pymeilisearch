@@ -23,7 +23,7 @@ def render_template(template, urls, path_out, index_uid=None):
     """
     template_path = os.path.join("..", "config_templates", f"{template}.json")
     if not os.path.isfile(template_path):
-        raise FileNotFoundError(f"Unable to locate sphinx template at {template_path}")
+        raise FileNotFoundError(f"Unable to locate a template at {template_path}")
     with open(template_path) as fid:
         template = Template(fid.read())
 

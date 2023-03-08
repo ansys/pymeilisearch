@@ -1,10 +1,12 @@
 """
-Create an index for each public github page for each repo in orgs.
+Create an index for each public github page for each repo in orgs using sphinx.
 """
 import os
 
 from get_pages import public_gh_pages
-from scrape_url import is_sphinx, scrape_url
+from scrape_url import scrape_url
+
+from ansys.tools.meilisearch.template_utils import is_sphinx
 
 
 def scrape_gh_pages_sphinx_docs(orgs):
