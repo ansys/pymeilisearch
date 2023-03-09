@@ -2,10 +2,10 @@ import os
 import subprocess
 import tempfile
 
-from render_template import render_template
 import requests
 
 from ansys.tools.meilisearch.template_utils import get_template
+from ansys.tools.meilisearch.templates import render_template
 
 
 def get_temp_file_name(ext=".txt"):

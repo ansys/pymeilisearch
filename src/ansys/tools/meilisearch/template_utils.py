@@ -19,7 +19,7 @@ def get_template(url):
         page was built using Sphinx or "default" otherwise.
     """
     if is_sphinx(url):
-        template = "sphinx"
+        template = "sphinx_pydata"
     else:
         template = "default"
     return template
