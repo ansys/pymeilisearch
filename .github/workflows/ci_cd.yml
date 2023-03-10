@@ -106,3 +106,14 @@ jobs:
         with:
           library-name: ${{ env.LIBRARY_NAME }}
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
+
+  build-docker:
+    name: "Pull docker image"
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Pull Docker Image
+      run: docker pull getmeili/meilisearch:latest
+    - name: Test Docker Image
+      run: docker pull getmeili/meilisearch:latest curl --version 
