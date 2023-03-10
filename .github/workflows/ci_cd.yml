@@ -116,4 +116,4 @@ jobs:
     - name: Pull Docker Image
       run: docker pull getmeili/meilisearch:latest
     - name: Test Docker Image
-      run: docker pull getmeili/meilisearch:latest curl --version 
+      run: docker run getmeili/meilisearch:latest curl --version 
