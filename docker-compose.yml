@@ -7,5 +7,6 @@ services:
       - 7700:7700
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:7700/health"]
-      interval: 10s
-      retries: 5
+      interval: 5s
+      timeout: 10s
+      retries: 3
