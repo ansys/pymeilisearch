@@ -21,15 +21,11 @@ def get_public_urls(orgs):
     token = os.environ.get("GH_PUBLIC_TOKEN")
     urls = {}
     for org in orgs:
-        print(f"\n\nQuerying for organization {org}")
         github_pages = GitHubPages(org, token=token, ignore_githubio=True)
         org_urls = github_pages.get_public_pages()
         urls.update(org_urls)
-
-        print("Public URLs with custom CNAMEs")
         for k, v in org_urls.items():
             print(f"{k:40} {v}")
-
     return urls
 
 
@@ -50,11 +46,6 @@ def get_sphinx_urls(urls):
 
     """
     sphinx_urls = {repo: url for repo, url in urls.items() if is_sphinx(url)}
-
-    print("\n\nURLs using Sphinx")
-    for repo, url in sphinx_urls.items():
-        print(f"{repo:40} {url}")
-
     return sphinx_urls
 
 

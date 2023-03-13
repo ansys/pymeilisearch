@@ -1,7 +1,9 @@
 """Provide the ``MeilisearchClient`` class"""
 import os
+from typing import List
 
 from meilisearch import Client
+import requests
 
 
 class MeilisearchClient:
@@ -50,6 +52,7 @@ class MeilisearchClient:
         self._client = Client(self._meilisearch_host_url, self._meilisearch_api_key)
         self._index_uid = None
         self._index = None
+        self.headers = {"Authorization": f"Bearer {self._meilisearch_api_key}"}
 
     def _delete_index(self):
         """Delete the current MeiliSearch index."""
@@ -73,3 +76,27 @@ class MeilisearchClient:
             self._delete_index()
         stats = self._index.get_stats()
         return stats.number_of_documents
+
+    def _fetch_documents(self, source_index_uid: str, limit: int = 20) -> List[dict]:
+        """
+        Fetch all documents from the source index and return them as a list.
+        """
+        offset = 0
+        documents = []
+        while True:
+            # Construct the API URL with the current offset and limit values
+            source_index_url = f"{self._meilisearch_host_url}/indexes/{source_index_uid}/documents?limit={limit}&offset={offset}"  # noqa: E501
+
+            # Call the API to fetch the documents
+            response = requests.get(source_index_url, headers=self.headers)
+            response_json = response.json()
+            documents += response_json["results"]
+
+            # Check if all the documents have been fetched
+            if offset + limit >= response_json["total"]:
+                break
+
+            # Update the offset value for the next iteration
+            offset += limit
+
+        return documents
