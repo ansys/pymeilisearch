@@ -91,7 +91,7 @@ class DocsAllPublic:
         response = requests.post(destination_index_url, json=documents, headers=self.api.headers)
         self._wait_task(response.json()["taskUid"])
 
-    def add_all_public_doc(self, selected_keys: List[str] = None) -> None:
+    def add_all_public_doc(self, selected_keys: List[str] = ["ansys, pyansys"]) -> None:
         """
         Add all public documents to the destination index.
 
@@ -99,13 +99,11 @@ class DocsAllPublic:
         ----------
         selected_keys : List[str], optional
             If specified, only indexes whose keys start with one of the specified
-            strings will be included in the search. Defaults to None.
+            strings will be included in the search. Defaults to ["ansys, pyansys"]
         """
         stats = self.api._client.get_all_stats()
         index_uids = [
-            key
-            for key in stats["indexes"].keys()
-            if selected_keys is None or key.startswith(tuple(selected_keys))
+            key for key in stats["indexes"].keys() if key.startswith(tuple(selected_keys))
         ]
         source_index = self.api._client.get_index(index_uids[0])
         self.create_temp_index(source_index)
