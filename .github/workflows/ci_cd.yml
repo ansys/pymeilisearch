@@ -45,7 +45,7 @@ jobs:
       - name: Start MeiliSearch container
         run: docker-compose up -d
       - name: Wait for container to start
-        run: docker-compose exec meilisearch curl --fail http://localhost:7700/health || exit 1
+        run: docker-compose ps -q meilisearch | xargs docker inspect --format='{{json .State.Health}}' | grep -q healthy
       - name: Stop MeiliSearch container
         run: docker-compose down
 
