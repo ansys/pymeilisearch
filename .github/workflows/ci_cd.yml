@@ -43,13 +43,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Start MeiliSearch container
-        run: |
-          docker pull getmeili/meilisearch
-          docker run -d -p 7700:7700 --name meilisearch getmeili/meilisearch
+        run: docker-compose up -d
       - name: Wait for container to start
-        run: sleep 5        
+        run: docker-compose exec meilisearch curl --fail http://localhost:7700/health || exit 1
       - name: Stop MeiliSearch container
-        run: docker stop meilisearch
+        run: docker-compose down
 
   doc-build:
     name: "Build documentation"
