@@ -47,8 +47,9 @@ jobs:
       - name: Wait for container to start
         run: |
           until docker-compose ps -q meilisearch | xargs docker inspect --format='{{ .State.Health.Status }}' | grep -q health
-            echo "Waiting for container to become healthy..."
-          done
+            do
+              echo "Waiting for container to become healthy..."
+            done
       - name: Stop MeiliSearch container
         run: docker-compose down
 
