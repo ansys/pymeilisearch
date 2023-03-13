@@ -41,17 +41,15 @@ jobs:
     needs: [code-style]
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Start MeiliSearch container
-        run: docker-compose up -d
-      - name: Wait for container to start
+        uses: actions/checkout@v4
+      - name: Test the meilisearch container
         run: |
+          docker-compose up -d
           until docker-compose ps -q meilisearch | xargs docker inspect --format='{{ .State.Health.Status }}' | grep -q health
             do
               echo "Waiting for container to become healthy..."
             done
-      - name: Stop MeiliSearch container
-        run: docker-compose down
+          docker-compose down
 
   doc-build:
     name: "Build documentation"
