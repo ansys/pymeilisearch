@@ -23,7 +23,7 @@ class MeilisearchUtils:
         documents = []
         while True:
             # Construct the API URL with the current offset and limit values
-            source_index_url = f"{self._api._meilisearch_host_url}/indexes/{source_index_uid}/documents?limit={limit}&offset={offset}"  # noqa: E501
+            source_index_url = f"{self._api.meilisearch_host_url}/indexes/{source_index_uid}/documents?limit={limit}&offset={offset}"  # noqa: E501
 
             # Call the API to fetch the documents
             response = requests.get(source_index_url, headers=self._headers)

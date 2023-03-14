@@ -158,7 +158,7 @@ class WebScraper(BaseClient):
             print(output)
         return n_hits
 
-    def scrape_from_directory(self, path, verbose=False):
+    def scrape_from_directory(self, path, template=None, verbose=False):
         """For a given directory of URLs, scrape them all using the active Meilisearch host.
 
         This will generate an index_uid for each URL in the directory.
@@ -188,12 +188,12 @@ class WebScraper(BaseClient):
             urls = fid.readlines()
             urls = [line.strip() for line in urls]
 
-        template = os.path.join(path, "template")
         index_uids = [os.path.basename(url).replace(".", "_") for url in urls]
 
         temp_config_files = []
         for url, index_uid in zip(urls, index_uids):
             self._check_url(url)
+            template = get_template(url) if template is None else template
             temp_config_file = self._load_and_render_template(url, template, index_uid)
             temp_config_files.append(temp_config_file)
 

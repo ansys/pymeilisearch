@@ -118,7 +118,7 @@ class DocsAllPublic:
             If specified, only indexes whose keys start with one of the specified
             strings will be included in the search. Defaults to ["ansys, pyansys"]
         """
-        stats = self._api._client.get_all_stats()
+        stats = self._api.client.get_all_stats()
         index_uids = [
             key for key in stats["indexes"].keys() if key.startswith(tuple(selected_keys))
         ]
@@ -130,7 +130,7 @@ class DocsAllPublic:
             self.add_documents_to_temp_index(index_uid)
 
         # Swap the temp index with dest index
-        self._api._client.swap_indexes(
+        self._api.client.swap_indexes(
             {"indexes": [self._temp_destination_index_uid, self._destination_index_uid]}
         )
         # Delete the dest index
