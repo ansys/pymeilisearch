@@ -1,8 +1,9 @@
+"""Provides the ``MeilisearchUtils`` class module."""
 from typing import List
 
 import requests
 
-from .client import MeilisearchClient
+from ansys.tools.meilisearch.client import MeilisearchClient
 
 
 class MeilisearchUtils:

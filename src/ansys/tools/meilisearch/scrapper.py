@@ -1,9 +1,11 @@
+"""Module containing ``WebScraper`` class to scrape web pages."""
 import os
 import subprocess
 import tempfile
 
 import requests
 
+from ansys.tools.meilisearch.client import BaseClient
 from ansys.tools.meilisearch.templates import render_template
 from ansys.tools.meilisearch.templates.utils import get_template
 
@@ -16,43 +18,7 @@ def get_temp_file_name(ext=".txt"):
     return temp_file_name + ext
 
 
-class BaseScraper:
-    def __init__(self, meilisearch_host_url=None, meilisearch_api_key=None):
-        """
-        Base class for scraper module.
-
-        Parameters
-        ----------
-        meilisearch_host_url : str, optional
-            Meilisearch host URL, by default None
-        meilisearch_api_key : str, optional
-            Meilisearch API key, by default None
-
-        Raises
-        ------
-        RuntimeError
-            If `meilisearch_host_url` or `meilisearch_api_key` is None and the corresponding
-            environment variable is not set
-        """
-        self.meilisearch_host_url = meilisearch_host_url
-        self.meilisearch_api_key = meilisearch_api_key
-
-        if self.meilisearch_host_url is None:
-            if "MEILISEARCH_HOST_URL" not in os.environ:
-                raise RuntimeError(
-                    'MEILISEARCH_HOST_URL is required as the environment variable "MEILISEARCH_HOST_URL"'  # noqa: E501
-                )
-            self.meilisearch_host_url = os.environ["MEILISEARCH_HOST_URL"]
-
-        if self.meilisearch_api_key is None:
-            if "MEILISEARCH_API_KEY" not in os.environ:
-                raise RuntimeError(
-                    'MEILISEARCH_API_KEY is required as the environment variable "MEILISEARCH_API_KEY"'  # noqa: E501
-                )
-            self.meilisearch_api_key = os.environ["MEILISEARCH_API_KEY"]
-
-
-class WebScraper(BaseScraper):
+class WebScraper(BaseClient):
     """
     A scraper class to scrape web pages and check if the response is successful or not.
     """

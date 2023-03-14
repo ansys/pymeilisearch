@@ -1,3 +1,4 @@
+"""Provides the templates utils module."""
 import re
 
 import requests
