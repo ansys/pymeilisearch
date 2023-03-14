@@ -45,8 +45,7 @@ def get_sphinx_urls(urls):
         their URLs.
 
     """
-    sphinx_urls = {repo: url for repo, url in urls.items() if is_sphinx(url)}
-    return sphinx_urls
+    return {repo: url for repo, url in urls.items() if is_sphinx(url)}
 
 
 def create_sphinx_indexes(sphinx_urls, meilisearch_host_url=None, meilisearch_api_key=None):

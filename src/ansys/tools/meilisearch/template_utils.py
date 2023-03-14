@@ -18,11 +18,7 @@ def get_template(url):
         The name of the template to use for the page, either "sphinx" if the
         page was built using Sphinx or "default" otherwise.
     """
-    if is_sphinx(url):
-        template = "sphinx_pydata"
-    else:
-        template = "default"
-    return template
+    return "sphinx_pydata" if is_sphinx(url) else "default"
 
 
 def get_redirected_url(html):

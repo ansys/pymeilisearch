@@ -25,7 +25,7 @@ class GitHubPages:
             Ignore any GitHub page url with github.io in it.
         """
         self.org_name = org_name
-        self.token = os.environ.get("GITHUB_TOKEN") if token is None else token
+        self.token = token or os.environ.get("GITHUB_TOKEN")
         self.ignore_githubio = ignore_githubio
 
     def _connect_github_api(self):
@@ -75,8 +75,7 @@ class GitHubPages:
         out = response.json()
 
         # only public pages
-        if "message" in out:
-            if "Bad credentials" == out["message"]:
+        if "message" in out and "Bad credentials" == out["message"]:
                 raise RuntimeError("Bad credentials")
 
         if not out["public"]:
