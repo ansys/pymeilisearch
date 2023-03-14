@@ -4,7 +4,9 @@ from typing import List
 
 import requests
 
-from ansys.tools.meilisearch.meilisearch_client import MeilisearchClient
+from ansys.tools.meilisearch.utils import MeilisearchUtils
+
+from .client import MeilisearchClient
 
 
 class DocsAllPublic:
@@ -12,23 +14,25 @@ class DocsAllPublic:
 
     Parameters
     ----------
-    meilisearch_host_url : str
-        Meilisearch host URL. Defaults to None.
-    meilisearch_api_key : str
-        Meilisearch API key. Defaults to None.
+    meilisearch_client : MeilisearchClient
+        Meilisearch client.
     destination_index_uid : str
         Destination index UID. Defaults to "pyansys-docs-all-public".
     """
 
     def __init__(
         self,
-        meilisearch_host_url: str = None,
-        meilisearch_api_key: str = None,
+        meilisearch_client: MeilisearchClient,
         destination_index_uid: str = "pyansys-docs-all-public",
     ):
-        self.api = MeilisearchClient(meilisearch_host_url, meilisearch_api_key)
-        self.destination_index_uid = destination_index_uid
-        self.temp_destination_index_uid = f"temp_{destination_index_uid}"
+        self._api = meilisearch_client
+        self._destination_index_uid = destination_index_uid
+        self._temp_destination_index_uid = f"temp_{destination_index_uid}"
+
+    @property
+    def destination_index_uid(self):
+        """return destination index uid."""
+        return self._destination_index_uid
 
     def _wait_task(self, task_uid: int, timeout: float = 10.0) -> None:
         """
@@ -42,11 +46,18 @@ class DocsAllPublic:
             Task UID.
         timeout : float
             Timeout value in seconds. Defaults to 10.0.
+
+        Raises
+        -----
+        TimeoutError
+            Raised when the ``timeout`` is exceed.
+        RuntimeError
+            Raised when the status of ``task`` failed.
         """
-        task_url = f"{self.api._meilisearch_host_url}/tasks/{task_uid}"
+        task_url = f"{self._api._meilisearch_host_url}/tasks/{task_uid}"
         timeout_time = time.time() + timeout
         while time.time() < timeout_time:
-            response = requests.get(task_url, headers=self.api.headers)
+            response = requests.get(task_url, headers=self._api.headers)
             jresp = response.json()
             if jresp["status"] == "failed":
                 if "error" in jresp:
@@ -64,31 +75,37 @@ class DocsAllPublic:
 
     def create_temp_index(self, source_index_uid: str) -> None:
         """
-        Create a temp index with the same primary key as the source index.
+        Create a temperory index with the same primary key as the source index.
 
         Parameters
         ----------
         source_index_uid : str
             Source index UID.
         """
-        source_index = self.api._client.get_index(source_index_uid)
+        source_index = self._api.client.get_index(source_index_uid)
         pkey = source_index.get_primary_key()
-        response = self.api._client.create_index(
-            self.temp_destination_index_uid, {"primaryKey": pkey}
+        response = self._api.client.create_index(
+            self._temp_destination_index_uid, {"primaryKey": pkey}
         )
         self._wait_task(response.task_uid)
 
     def add_documents_to_temp_index(self, source_index_uid: str) -> None:
         """
         Fetch all the documents from the source index and add them to the temp index.
+
+        parameters
+        ---------
+        source_index_uid : str
+            The index ID of document to fetch.
         """
         # Fetch all the documents from the source index and add them to the
         # temporary destination index
-        documents = self.api._fetch_documents(source_index_uid)
+        documents_utils = MeilisearchUtils(self._api)
+        documents = documents_utils.fetch_all_documents(source_index_uid)
         destination_index_url = (
-            f"{self.api._meilisearch_host_url}/indexes/{self.destination_index_uid}/documents"
+            f"{self._api._meilisearch_host_url}/indexes/{self._destination_index_uid}/documents"
         )
-        response = requests.post(destination_index_url, json=documents, headers=self.api.headers)
+        response = requests.post(destination_index_url, json=documents, headers=self._api.headers)
         self._wait_task(response.json()["taskUid"])
 
     def add_all_public_doc(self, selected_keys: List[str] = ["ansys, pyansys"]) -> None:
@@ -101,20 +118,20 @@ class DocsAllPublic:
             If specified, only indexes whose keys start with one of the specified
             strings will be included in the search. Defaults to ["ansys, pyansys"]
         """
-        stats = self.api._client.get_all_stats()
+        stats = self._api._client.get_all_stats()
         index_uids = [
             key for key in stats["indexes"].keys() if key.startswith(tuple(selected_keys))
         ]
-        source_index = self.api._client.get_index(index_uids[0])
+        source_index = self._api.client.get_index(index_uids[0])
         self.create_temp_index(source_index)
         for index_uid in index_uids:
-            if index_uid == self.destination_index_uid:
+            if index_uid == self._destination_index_uid:
                 continue
             self.add_documents_to_temp_index(index_uid)
 
         # Swap the temp index with dest index
-        self.api._client.swap_indexes(
-            {"indexes": [self.temp_destination_index_uid, self.destination_index_uid]}
+        self._api._client.swap_indexes(
+            {"indexes": [self._temp_destination_index_uid, self._destination_index_uid]}
         )
         # Delete the dest index
-        self.api._client.index(self.temp_destination_index_uid).delete()
+        self._api.client.index(self._temp_destination_index_uid).delete()

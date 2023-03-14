@@ -4,8 +4,8 @@ import tempfile
 
 import requests
 
-from ansys.tools.meilisearch.template_utils import get_template
 from ansys.tools.meilisearch.templates import render_template
+from ansys.tools.meilisearch.templates.utils import get_template
 
 
 def get_temp_file_name(ext=".txt"):

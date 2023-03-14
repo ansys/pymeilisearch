@@ -24,9 +24,14 @@ class GitHubPages:
         ignore_githubio : bool, default: True
             Ignore any GitHub page url with github.io in it.
         """
-        self.org_name = org_name
-        self.token = os.environ.get("GITHUB_TOKEN") if token is None else token
-        self.ignore_githubio = ignore_githubio
+        self._org_name = org_name
+        self._token = token or os.environ.get("GITHUB_TOKEN")
+        self._ignore_githubio = ignore_githubio
+
+    @property
+    def org_name(self):
+        """Returns the organization name."""
+        return self._org_name
 
     def _connect_github_api(self):
         """Connect to the GitHub API.
@@ -36,7 +41,7 @@ class GitHubPages:
         Github
             A Github object connected to the GitHub API.
         """
-        return Github(login_or_token=self.token)
+        return Github(login_or_token=self._token)
 
     def _get_repos(self):
         """Get all repos in the organization.
@@ -67,7 +72,7 @@ class GitHubPages:
         # Get the Github Pages settings for the repo
         headers = {
             "Accept": "application/vnd.github+json",
-            "Authorization": f"Bearer {self.token}",
+            "Authorization": f"Bearer {self._token}",
             "X-GitHub-Api-Version": "2022-11-28",
         }
         request_url = f"https://api.github.com/repos/{self.org_name}/{repo.name}/pages"
@@ -75,9 +80,8 @@ class GitHubPages:
         out = response.json()
 
         # only public pages
-        if "message" in out:
-            if "Bad credentials" == out["message"]:
-                raise RuntimeError("Bad credentials")
+        if "message" in out and "Bad credentials" == out["message"]:
+            raise RuntimeError("Bad credentials")
 
         if not out["public"]:
             return False
@@ -93,7 +97,7 @@ class GitHubPages:
         # ignore dev documentation
         if url.startswith("https://dev.") and not url.startswith("https://dev.docs"):
             return False
-        if "github.io" in url and self.ignore_githubio:
+        if "github.io" in url and self._ignore_githubio:
             return False
 
         try:
