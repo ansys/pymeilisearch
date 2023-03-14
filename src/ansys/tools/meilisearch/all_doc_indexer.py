@@ -5,9 +5,8 @@ from typing import List
 
 import requests
 
+from ansys.tools.meilisearch.client import MeilisearchClient
 from ansys.tools.meilisearch.utils import MeilisearchUtils
-
-from .client import MeilisearchClient
 
 
 class DocsAllPublic:

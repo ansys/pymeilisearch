@@ -63,6 +63,10 @@ def create_sphinx_indexes(sphinx_urls, meilisearch_host_url=None, meilisearch_ap
     sphinx_urls : dict
         A dictionary where keys are repo names that use Sphinx and values are
         their URLs.
+    meilisearch_host_url : str, optional
+        Meilisearch host URL, by default None
+    meilisearch_api_key : str, optional
+         Meilisearch API key, by default None
 
     Notes
     -----
