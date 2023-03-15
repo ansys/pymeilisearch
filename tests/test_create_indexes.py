@@ -1,8 +1,10 @@
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
+from github import Github
 import pytest
 
 from ansys.tools.meilisearch.create_indexes import create_sphinx_indexes, get_sphinx_urls
+from ansys.tools.meilisearch.get_pages import GitHubPages
 from ansys.tools.meilisearch.scrapper import WebScraper
 from ansys.tools.meilisearch.templates.utils import is_sphinx
 
@@ -10,6 +12,45 @@ from ansys.tools.meilisearch.templates.utils import is_sphinx
 @pytest.fixture(scope="module")
 def orgs():
     return ["pyansys"]
+
+
+@pytest.fixture
+def github_pages():
+    return GitHubPages("pyansys", token="my-token", ignore_githubio=True)
+
+
+def test_get_repos(github_pages):
+    with patch.object(Github, "get_organization") as mock_get_organization:
+        mock_organization = Mock()
+        mock_organization.get_repos.return_value = ["repo1", "repo2"]
+        mock_get_organization.return_value = mock_organization
+
+        repos = github_pages._get_repos()
+
+        mock_get_organization.assert_called_once_with("pyansys")
+        mock_organization.get_repos.assert_called_once()
+        assert repos == ["repo1", "repo2"]
+
+
+def test_verify_pages_missing_pages(github_pages):
+    mock_repo = Mock()
+    mock_repo.has_pages = False
+
+    url = github_pages._verify_pages(mock_repo)
+
+    assert url is False
+
+
+def test_verify_pages_bad_credentials(github_pages):
+    mock_repo = Mock()
+    mock_repo.has_pages = True
+
+    with patch("requests.get") as mock_requests_get:
+        mock_requests_get.return_value = Mock()
+        mock_requests_get.return_value.json.return_value = {"message": "Bad credentials"}
+
+        with pytest.raises(RuntimeError, match="Bad credentials"):
+            github_pages._verify_pages(mock_repo)
 
 
 @pytest.fixture(scope="module")
