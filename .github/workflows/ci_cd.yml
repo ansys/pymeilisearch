@@ -49,12 +49,19 @@ jobs:
           python-version: '3.11'
       
       - name: Test the meilisearch container
+        run: docker-compose up -d
+
+      - name: Install dependencies
         run: |
-          docker-compose up -d
           pip install .
           pip install .[tests]
-          pytest 
-          docker-compose down
+
+      - name: Run tests
+        run: pytest
+         
+      - name: Stop services
+        if: always()
+        run: docker-compose down
 
   doc-build:
     name: "Build documentation"

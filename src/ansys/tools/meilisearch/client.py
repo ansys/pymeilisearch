@@ -77,7 +77,6 @@ class MeilisearchClient(BaseClient):
         super().__init__(meilisearch_host_url, meilisearch_api_key)
         self._client = Client(self.meilisearch_host_url, self.meilisearch_api_key)
         self._index_uid = None
-        self._index = None
         self.headers = {"Authorization": f"Bearer {self.meilisearch_api_key}"}
 
     @property
@@ -91,7 +90,7 @@ class MeilisearchClient(BaseClient):
     def query_index_documents(self, index_uid, delete=False):
         """Query the specified MeiliSearch index for its statistics.
 
-          Parameters
+        Parameters
         ----------
         index_uid : str
             The uid of meilisearch to query.
@@ -103,7 +102,7 @@ class MeilisearchClient(BaseClient):
         int
             The number of documents in the MeiliSearch index."""
         self._index_uid = index_uid.replace("/", "-")
-        self._index = self.client.index(index_uid)
+        self._index = self.client.index(self._index_uid)
         stats = self._index.get_stats()
         if delete:
             self._delete_index()
