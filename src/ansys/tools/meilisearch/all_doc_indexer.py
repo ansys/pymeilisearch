@@ -31,7 +31,7 @@ class DocsAllPublic:
 
     @property
     def destination_index_uid(self):
-        """return destination index uid."""
+        """Return destination index uid."""
         return self._destination_index_uid
 
     def _wait_task(self, task_uid: int, timeout: float = 10.0) -> None:
@@ -40,7 +40,7 @@ class DocsAllPublic:
 
         If a task exceeds the timeout, raise a TimeoutError.
 
-        parameters
+        Parameters
         ----------
         task_uid : int
             Task UID.
@@ -48,7 +48,7 @@ class DocsAllPublic:
             Timeout value in seconds. Defaults to 10.0.
 
         Raises
-        -----
+        ------
         TimeoutError
             Raised when the ``timeout`` is exceed.
         RuntimeError
@@ -93,8 +93,8 @@ class DocsAllPublic:
         """
         Fetch all the documents from the source index and add them to the temp index.
 
-        parameters
-        ---------
+        Parameters
+        ----------
         source_index_uid : str
             The index ID of document to fetch.
         """
