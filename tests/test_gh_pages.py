@@ -2,47 +2,57 @@ from unittest.mock import patch
 
 import pytest
 
-from ansys.tools.meilisearch.create_indexes import (
-    create_sphinx_indexes,
-    get_public_urls,
-    get_sphinx_urls,
-)
-from ansys.tools.meilisearch.get_pages import GitHubPages
+from ansys.tools.meilisearch.create_indexes import create_sphinx_indexes, get_sphinx_urls
 from ansys.tools.meilisearch.scrapper import WebScraper
+from ansys.tools.meilisearch.templates.utils import is_sphinx
 
 
-@pytest.fixture
-def mock_github_pages():
-    with patch.object(GitHubPages, "__init__", lambda *args, **kwargs: None):
-        with patch.object(
-            GitHubPages, "get_public_pages", return_value={"repo1": "https://sphinx-docs1.org"}
-        ):
-            yield GitHubPages
+@pytest.fixture(scope="module")
+def orgs():
+    return ["pyansys"]
 
 
-@pytest.fixture
-def mock_requests():
-    with patch("ansys.tools.meilisearch.scrapper.requests") as mock:
-        mock.get.return_value.status_code = 200
-        mock.get.return_value.text = "<html><body>test</body></html>"
-        yield mock
+@pytest.fixture(scope="module")
+def scraper_mock():
+    with patch.object(WebScraper, "scrape_url") as mock_scraper:
+        yield mock_scraper
 
 
-def test_create_sphinx_indexes(mock_github_pages, mock_requests):
-    urls = get_public_urls(["org1"])
-    assert urls == {"repo1": "https://sphinx-docs1.org"}
+@pytest.fixture(scope="module")
+def public_urls():
+    return {
+        "pyansys/dev-guide ": "https://dev.docs.pyansys.com",
+        "pyansys/pyansys": "https://docs.pyansys.com",
+        "pyansys/actions": "https://actions.docs.pyansys.com",
+        "pyansys/pyseascape": "https://seascape.docs.pyansys.com",
+    }
 
-    sphinx_urls = get_sphinx_urls(urls)
-    assert sphinx_urls == {"repo1": "https://sphinx-docs1.org"}
 
-    with patch.object(WebScraper, "__init__", lambda *args, **kwargs: None), patch.object(
-        WebScraper, "scrape_url"
-    ) as mock_scrape_url:
-        create_sphinx_indexes(sphinx_urls)
-        mock_scrape_url.assert_called_once_with(
-            "https://sphinx-docs1.org",
-            "repo1-sphinx-docs",
-            template="sphinx",
-            meilisearch_host_url=None,
-            meilisearch_api_key=None,
-        )
+def test_get_sphinx_urls(public_urls):
+    assert get_sphinx_urls(public_urls) == public_urls
+
+
+@pytest.mark.parametrize(
+    "url",
+    [
+        "https://dev.docs.pyansys.com",
+        "https://docs.pyansys.com",
+        "https://actions.docs.pyansys.com",
+        "https://seascape.docs.pyansys.com",
+    ],
+)
+def test_is_sphinx(url):
+    assert is_sphinx(url)
+
+
+def test_create_sphinx_indexes(meilisearch_client, scraper_mock, public_urls):
+    scraper_mock.return_value = None
+    create_sphinx_indexes(
+        public_urls,
+        meilisearch_client.meilisearch_host_url,
+        meilisearch_client.meilisearch_host_url,
+    )
+    for repo, url in public_urls.items():
+        repo = repo.replace("/", "-").lower()
+        index_uid = f"{repo}-sphinx-docs"
+        scraper_mock.assert_any_call(url, index_uid, template="sphinx")

@@ -2,15 +2,7 @@ from unittest import mock
 
 import pytest
 
-from ansys.tools.meilisearch.scrapper import WebScraper
 from ansys.tools.meilisearch.templates.utils import get_template
-
-
-@pytest.fixture
-def scraper(meilisearch_client):
-    return WebScraper(
-        meilisearch_client.meilisearch_host_url, meilisearch_client.meilisearch_host_url
-    )
 
 
 @mock.patch("requests.get")
