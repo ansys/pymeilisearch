@@ -57,10 +57,6 @@ jobs:
       - name: Test the meilisearch container
         run: |
           docker-compose up -d
-          until docker-compose ps -q meilisearch | xargs docker inspect --format='{{ .State.Health.Status }}' | grep -q health
-            do
-              echo "Waiting for container to become healthy..."
-            done
           pip install ./docs-scraper
           pip install .
           pip install .[tests]

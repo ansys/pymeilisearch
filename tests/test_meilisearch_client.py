@@ -1,10 +1,8 @@
 from meilisearch.errors import MeiliSearchApiError
 import pytest
 
-from ansys.tools.meilisearch.client import MeilisearchClient
 
-
-def test_query_index_documents(meilisearch_client: MeilisearchClient):
+def test_query_index_documents(meilisearch_client):
     # create index and add documents
     index_uid = "test_index"
     meilisearch_client.client.create_index(index_uid, {"primaryKey": "id"})
