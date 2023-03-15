@@ -53,7 +53,7 @@ class GitHubPages:
         """
         return self._connect_github_api().get_organization(self.org_name).get_repos()
 
-    def _verify_pages(self, repo):
+    def _has_github_pages(self, repo):
         """Verify the public pages for a given repo.
 
         Parameters
@@ -126,7 +126,7 @@ class GitHubPages:
             if repo.full_name.endswith("-redirect"):
                 continue
 
-            url = self._verify_pages(repo)
+            url = self._has_github_pages(repo)
             if url:
                 repo_cnames[repo.full_name] = url
 
