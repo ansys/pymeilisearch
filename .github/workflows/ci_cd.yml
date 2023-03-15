@@ -47,20 +47,13 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.11'
-        
-      - name: Checkout tools repo
-        uses: actions/checkout@v3
-        with:
-          repository: ansys/docs-scraper
-          path: docs-scraper
       
       - name: Test the meilisearch container
         run: |
           docker-compose up -d
-          pip install ./docs-scraper
           pip install .
           pip install .[tests]
-          pytest
+          pytest 
           docker-compose down
 
   doc-build:
