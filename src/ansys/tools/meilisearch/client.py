@@ -103,8 +103,8 @@ class MeilisearchClient(BaseClient):
         int
             The number of documents in the MeiliSearch index."""
         self._index_uid = index_uid.replace("/", "-")
-        self._index = self._client.index(index_uid)
+        self._index = self.client.index(index_uid)
+        stats = self._index.get_stats()
         if delete:
             self._delete_index()
-        stats = self._index.get_stats()
         return stats.number_of_documents

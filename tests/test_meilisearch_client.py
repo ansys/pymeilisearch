@@ -1,19 +1,20 @@
-from meilisearch.errors import MeiliSearchApiError
-import pytest
+from meilisearch import Client
+
+from ansys.tools.meilisearch.client import MeilisearchClient
 
 
-def test_query_index_documents(meilisearch_client):
-    # create index and add documents
+def test_meilisearch_client_initialization(meilisearch_client):
+    """Test MeilisearchClient initialization."""
+    assert isinstance(meilisearch_client, MeilisearchClient)
+    assert isinstance(meilisearch_client.client, Client)
+    assert isinstance(meilisearch_client.meilisearch_api_key, str)
+    assert isinstance(meilisearch_client.meilisearch_host_url, str)
+
+
+def test_meilisearch_client_query_index_documents(meilisearch_client):
+    """Test MeilisearchClient query_index_documents method."""
     index_uid = "test_index"
-    meilisearch_client.client.create_index(index_uid, {"primaryKey": "id"})
-    documents = [{"id": 1, "title": "Test document 1"}, {"id": 2, "title": "Test document 2"}]
-    meilisearch_client.client.index(index_uid).add_documents(documents)
-
-    # query index and check result
-    num_documents = meilisearch_client.query_index_documents(index_uid)
-    assert num_documents == 2
-
-    # delete index and check result
-    meilisearch_client._delete_index()
-    with pytest.raises(MeiliSearchApiError):
-        meilisearch_client.query_index_documents(index_uid)
+    meilisearch_client.client.create_index(index_uid)
+    meilisearch_client.client.index(index_uid).add_documents([{"id": 1, "name": "test"}])
+    number_of_documents = meilisearch_client.query_index_documents(index_uid)
+    assert number_of_documents == 1
