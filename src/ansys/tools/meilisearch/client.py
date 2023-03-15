@@ -82,28 +82,3 @@ class MeilisearchClient(BaseClient):
     @property
     def client(self):
         return self._client
-
-    def _delete_index(self):
-        """Delete the current MeiliSearch index."""
-        self._index.delete()
-
-    def query_index_documents(self, index_uid, delete=False):
-        """Query the specified MeiliSearch index for its statistics.
-
-        Parameters
-        ----------
-        index_uid : str
-            The uid of meilisearch to query.
-        delete : bool, default : False
-            Whether to delete the index before querying.
-
-        Returns
-        -------
-        int
-            The number of documents in the MeiliSearch index."""
-        self._index_uid = index_uid.replace("/", "-")
-        self._index = self.client.index(self._index_uid)
-        stats = self._index.get_stats()
-        if delete:
-            self._delete_index()
-        return stats.number_of_documents
