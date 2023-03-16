@@ -53,8 +53,8 @@ class GitHubPages:
         """
         return self._connect_github_api().get_organization(self.org_name).get_repos()
 
-    def _has_github_pages(self, repo):
-        """Verify the public pages for a given repo.
+    def _get_gh_page_response(self, repo):
+        """Get the public pages settings for a given repo.
 
         Parameters
         ----------
@@ -63,11 +63,16 @@ class GitHubPages:
 
         Returns
         -------
-        str or False
-            The URL of the public pages, or ``False`` if they do not exist or could not be verified.
+        dict
+            A dictionary containing the public pages settings for the repository.
+
+        Raises
+        ------
+        HTTPError
+            If the repository does not have public GitHub Pages.
         """
         if not repo.has_pages:
-            return False
+            warnings.warn(f"Repo {repo.full_name} has no pages")
 
         # Get the Github Pages settings for the repo
         headers = {
@@ -76,21 +81,46 @@ class GitHubPages:
             "X-GitHub-Api-Version": "2022-11-28",
         }
         request_url = f"https://api.github.com/repos/{self.org_name}/{repo.name}/pages"
-        response = requests.get(request_url, headers=headers)
-        out = response.json()
+        try:
+            response = requests.get(request_url, headers=headers)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.HTTPError as e:
+            warnings.warn(f"Error getting public pages for {repo.full_name}: {e}")
+
+    def _has_github_pages(self, response, repo):
+        """Verify the public pages for a given repo.
+
+        Parameters
+        ----------
+        repo : Repository
+            The Repository object to check.
+        response : dict
+            A dictionary containing the public pages settings for the repository.
+
+        Returns
+        -------
+        bool
+            True if a public GitHub Pages site exists and can be verified, False otherwise.
+
+        Raises
+        ------
+        RuntimeError
+            If the response indicates that the credentials are invalid.
+        """
 
         # only public pages
-        if "message" in out and "Bad credentials" == out["message"]:
+        if "message" in response and "Bad credentials" == response["message"]:
             raise RuntimeError("Bad credentials")
 
-        if not out["public"]:
+        if not response["public"]:
             return False
 
         # verify
         if repo.visibility != "public":
             warnings.warn(f"{repo.full_name}: Public pages with {repo.visibility} repo")
 
-        url = out["cname"] if out["cname"] else out["html_url"]
+        url = response["cname"] if response["cname"] else response["html_url"]
         if not url.startswith("https"):
             url = f"https://{url}"
 
@@ -103,7 +133,7 @@ class GitHubPages:
         try:
             code = urllib.request.urlopen(url).getcode()
             if code == 200:
-                return url
+                return True
             else:
                 warnings.warn(f"Received {code} for {repo.full_name} at {url}")
         except:
@@ -123,11 +153,13 @@ class GitHubPages:
         # Iterate over the repos
         repo_cnames = {}
         for repo in self._get_repos():
-            if repo.full_name.endswith("-redirect"):
+            if repo.full_name.endswith("-redirect") or not self._has_github_pages(response, repo):
                 continue
 
-            url = self._has_github_pages(repo)
-            if url:
-                repo_cnames[repo.full_name] = url
+            response = self._get_gh_page_response(repo)
+            url = response["cname"] if response["cname"] else response["html_url"]
+            if not url.startswith("https"):
+                url = f"https://{url}"
+            repo_cnames[repo.full_name] = url
 
         return repo_cnames

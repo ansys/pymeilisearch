@@ -44,7 +44,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.11'
       
@@ -52,9 +52,7 @@ jobs:
         run: docker-compose up -d
 
       - name: Install dependencies
-        run: |
-          pip install .
-          pip install .[tests]
+        run: pip install .[tests]
 
       - name: Run tests
         run: pytest
