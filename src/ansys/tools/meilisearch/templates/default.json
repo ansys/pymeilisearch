@@ -1,0 +1,19 @@
+{
+    "index_uid": "{{ index_uid }}",
+    "start_urls": {{ start_url|safe }},
+    "stop_urls": [],
+    "selectors": {
+      "lvl0": {
+        "selector": "title",
+        "global": true,
+        "default_value": "Documentation"
+      },
+      "lvl1": "h1",
+      "lvl2": "h2",
+      "lvl3": "h3",
+      "lvl4": "h4",
+      "lvl5": "h5",
+      "lvl6": "h6",
+      "text": "p"
+    }
+  }
