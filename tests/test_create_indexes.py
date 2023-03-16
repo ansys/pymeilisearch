@@ -32,25 +32,23 @@ def test_get_repos(github_pages):
         assert repos == ["repo1", "repo2"]
 
 
-def test_has_github_pages_missing_pages(github_pages):
+def test_has_github_pages(github_pages):
     mock_repo = Mock()
-    mock_repo.has_pages = False
-
-    url = github_pages._has_github_pages(mock_repo)
-
-    assert url is False
+    response = {"public": True, "cname": "https://github.com/ansys/ansys-sphinx-theme"}
+    verify_page = github_pages._has_github_pages(response, mock_repo)
+    assert verify_page is True
 
 
 def test_has_github_pages_bad_credentials(github_pages):
     mock_repo = Mock()
     mock_repo.has_pages = True
+    response = {"message": "Bad credentials"}
 
     with patch("requests.get") as mock_requests_get:
         mock_requests_get.return_value = Mock()
-        mock_requests_get.return_value.json.return_value = {"message": "Bad credentials"}
 
         with pytest.raises(RuntimeError, match="Bad credentials"):
-            github_pages._has_github_pages(mock_repo)
+            github_pages._has_github_pages(response, mock_repo)
 
 
 @pytest.fixture(scope="module")
