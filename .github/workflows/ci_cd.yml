@@ -50,12 +50,6 @@ jobs:
       
       - name: Test the meilisearch container
         run: docker-compose up -d
-      
-      - name: Wait for container to start
-        run: |
-          docker-compose ps --filter "status=running" --services | xargs -I {} docker-compose logs --tail=10 -f {} &
-          docker-compose ps --filter "status=healthy" --services
-          kill %1
 
       - name: Install dependencies
         run: pip install .[tests]
