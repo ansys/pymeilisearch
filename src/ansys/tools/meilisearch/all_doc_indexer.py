@@ -122,8 +122,7 @@ class DocsAllPublic:
         index_uids = [
             key for key in stats["indexes"].keys() if key.startswith(tuple(selected_keys))
         ]
-        source_index = self._api.client.get_index(index_uids[0])
-        self.create_temp_index(source_index)
+        self.create_temp_index(index_uids[0])
         for index_uid in index_uids:
             if index_uid == self._destination_index_uid:
                 continue
@@ -131,7 +130,7 @@ class DocsAllPublic:
 
         # Swap the temp index with dest index
         self._api.client.swap_indexes(
-            {"indexes": [self._temp_destination_index_uid, self._destination_index_uid]}
+            [{"indexes": [self._temp_destination_index_uid, self._destination_index_uid]}]
         )
         # Delete the dest index
         self._api.client.index(self._temp_destination_index_uid).delete()
