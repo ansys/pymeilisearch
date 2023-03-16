@@ -17,10 +17,8 @@ class GitHubPages:
         ----------
         org_name : str
             GitHub organization name.
-
-        token : str, default: None
+        token : str
             The GitHub API token to use for authentication.
-
         ignore_githubio : bool, default: True
             Ignore any GitHub page url with github.io in it.
         """
@@ -38,7 +36,7 @@ class GitHubPages:
 
         Returns
         -------
-        Github
+        ~github.Github
             A Github object connected to the GitHub API.
         """
         return Github(login_or_token=self._token)
@@ -48,7 +46,7 @@ class GitHubPages:
 
         Returns
         -------
-        list of Repository
+        list
             A list of Repository objects.
         """
         return self._connect_github_api().get_organization(self.org_name).get_repos()
@@ -116,7 +114,7 @@ class GitHubPages:
         if not response["public"]:
             return False
 
-        # verify
+        # Verify repository visibility
         if repo.visibility != "public":
             warnings.warn(f"{repo.full_name}: Public pages with {repo.visibility} repo")
 
