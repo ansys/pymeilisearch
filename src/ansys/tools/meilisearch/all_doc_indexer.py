@@ -82,7 +82,7 @@ class DocsAllPublic:
         source_index_uid : str
             Source index UID.
         """
-        source_index = self._api.client.get_index(source_index_uid[0])
+        source_index = self._api.client.get_index(source_index_uid)
         pkey = source_index.get_primary_key()
         response = self._api.client.create_index(
             self._temp_destination_index_uid, {"primaryKey": pkey}

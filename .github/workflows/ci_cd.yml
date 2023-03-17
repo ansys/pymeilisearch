@@ -130,5 +130,5 @@ jobs:
       - name: upload docs to webapp service
         run: python scripts/use_tools.py
         env:
-          MEILISEARCH_HOST_URL: https://meilisearch.azurewebsites.net/
+          MEILISEARCH_HOST_URL: https://meilisearch.azurewebsites.net
           MEILISEARCH_API_KEY: ${{ secrets.MEILISEARCH_API_KEY }}
