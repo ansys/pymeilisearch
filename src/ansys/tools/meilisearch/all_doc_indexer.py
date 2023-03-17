@@ -27,7 +27,7 @@ class DocsAllPublic:
     ):
         self._api = meilisearch_client
         self._destination_index_uid = destination_index_uid
-        self._temp_destination_index_uid = f"temp_{destination_index_uid}"
+        self._temp_destination_index_uid = f"temp-{destination_index_uid}"
 
     @property
     def destination_index_uid(self):
@@ -82,7 +82,7 @@ class DocsAllPublic:
         source_index_uid : str
             Source index UID.
         """
-        source_index = self._api.client.get_index(source_index_uid)
+        source_index = self._api.client.get_index(source_index_uid[0])
         pkey = source_index.get_primary_key()
         response = self._api.client.create_index(
             self._temp_destination_index_uid, {"primaryKey": pkey}
