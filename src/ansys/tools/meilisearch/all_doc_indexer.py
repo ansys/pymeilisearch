@@ -87,7 +87,7 @@ class DocsAllPublic:
         response = self._api.client.create_index(
             self._temp_destination_index_uid, {"primaryKey": pkey}
         )
-        self._wait_task(response.task_uid)
+        self._wait_task(response["taskUid"])
 
     def add_documents_to_temp_index(self, source_index_uid: str) -> None:
         """
@@ -105,6 +105,7 @@ class DocsAllPublic:
         destination_index_url = (
             f"{self._api._meilisearch_host_url}/indexes/{self._destination_index_uid}/documents"
         )
+        print("adding docs")
         response = requests.post(destination_index_url, json=documents, headers=self._api.headers)
         self._wait_task(response.json()["taskUid"])
 
@@ -130,7 +131,7 @@ class DocsAllPublic:
 
         # Swap the temp index with dest index
         self._api.client.swap_indexes(
-            [{"indexes": [self._temp_destination_index_uid, self._destination_index_uid]}]
+            {"indexes": [self._temp_destination_index_uid, self._destination_index_uid]}
         )
         # Delete the dest index
         self._api.client.index(self._temp_destination_index_uid).delete()
