@@ -12,14 +12,14 @@ class BaseClient:
         Constructor for the base class for client module.
 
         Parameters
-        -----------
+        ----------
         meilisearch_host_url : str, optional
             Meilisearch host URL, by default None.
         meilisearch_api_key : str, optional
             Meilisearch API key, by default None.
 
         Raises
-        -------
+        ------
         RuntimeError
             If `meilisearch_host_url` or `meilisearch_api_key` is None and the corresponding
             environment variable is not set
@@ -66,14 +66,14 @@ class MeilisearchClient(BaseClient):
         Initialize a new instance of the MeilisearchClient class.
 
         Parameters
-        -----------
+        ----------
         meilisearch_host_url : str, default : None
             The URL to the MeiliSearch host.
         meilisearch_api_key : str, default : None
             The admin API key to the MeiliSearch host.
 
         Raises
-        -------
+        ------
         RuntimeError
             If the `MEILISEARCH_HOST_URL` or `MEILISEARCH_API_KEY`
             environment variables are not set and no values are passed to the constructor.
