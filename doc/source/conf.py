@@ -83,8 +83,6 @@ master_doc = "index"
 
 source_suffix = {
     ".rst": "restructuredtext",
-    ".mystnb": "jupyter_notebook",
-    ".md": "markdown",
 }
 
 # The master toctree document.
