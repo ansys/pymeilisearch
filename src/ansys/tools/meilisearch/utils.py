@@ -12,12 +12,30 @@ class MeilisearchUtils:
     """
 
     def __init__(self, meilisearch_client: MeilisearchClient):
+        """The meilisearch client initilaise.
+
+        Parameters
+        ----------
+        meilisearch_client : MeilisearchClient
+            Meilisearch client."""
         self._api = meilisearch_client
         self._headers = {"Authorization": f"Bearer {self._api._meilisearch_api_key}"}
 
     def fetch_all_documents(self, source_index_uid: str, limit: int = 20) -> List[dict]:
         """
         Fetch all documents from the source index and return them as a list.
+
+        Parameters
+        ----------
+        source_index_uid : str
+            The index ID of document to fetch.
+        limit : int
+            The limit of document in single offset.
+
+        Returns
+        -------
+        document : list
+            All the documents fetch from the source document.
         """
         offset = 0
         documents = []
@@ -28,6 +46,9 @@ class MeilisearchUtils:
             # Call the API to fetch the documents
             response = requests.get(source_index_url, headers=self._headers)
             response_json = response.json()
+
+            for document in response_json["results"]:
+                document["id"] = document["objectID"]
             documents += response_json["results"]
 
             # Check if all the documents have been fetched

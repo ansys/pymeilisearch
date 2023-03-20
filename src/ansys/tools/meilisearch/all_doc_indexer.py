@@ -27,7 +27,7 @@ class DocsAllPublic:
     ):
         self._api = meilisearch_client
         self._destination_index_uid = destination_index_uid
-        self._temp_destination_index_uid = f"temp_{destination_index_uid}"
+        self._temp_destination_index_uid = f"temp-{destination_index_uid}"
 
     @property
     def destination_index_uid(self):
@@ -73,20 +73,22 @@ class DocsAllPublic:
         if time.time() > timeout_time:
             raise TimeoutError(f"Exceeded timeout {timeout}")
 
-    def create_temp_index(self, source_index_uid: str) -> None:
+    def create_index(self, source_index_uid: str, index_uid: str = None) -> None:
         """
-        Create a temperory index with the same primary key as the source index.
+        Create an index with the same primary key as the source index.
 
         Parameters
         ----------
         source_index_uid : str
             Source index UID.
+        index_uid : str, default: None
+            The destination index name
         """
+        if index_uid is None:
+            index_uid = self._temp_destination_index_uid
         source_index = self._api.client.get_index(source_index_uid)
         pkey = source_index.get_primary_key()
-        response = self._api.client.create_index(
-            self._temp_destination_index_uid, {"primaryKey": pkey}
-        )
+        response = self._api.client.create_index(index_uid, {"primaryKey": pkey})
         self._wait_task(response.task_uid)
 
     def add_documents_to_temp_index(self, source_index_uid: str) -> None:
@@ -103,7 +105,7 @@ class DocsAllPublic:
         documents_utils = MeilisearchUtils(self._api)
         documents = documents_utils.fetch_all_documents(source_index_uid)
         destination_index_url = (
-            f"{self._api._meilisearch_host_url}/indexes/{self._destination_index_uid}/documents"
+            f"{self._api.meilisearch_host_url}/indexes/{self._temp_destination_index_uid}/documents"
         )
         response = requests.post(destination_index_url, json=documents, headers=self._api.headers)
         self._wait_task(response.json()["taskUid"])
@@ -122,16 +124,19 @@ class DocsAllPublic:
         index_uids = [
             key for key in stats["indexes"].keys() if key.startswith(tuple(selected_keys))
         ]
-        source_index = self._api.client.get_index(index_uids[0])
-        self.create_temp_index(source_index)
+        self.create_index(index_uids[0])
         for index_uid in index_uids:
             if index_uid == self._destination_index_uid:
                 continue
             self.add_documents_to_temp_index(index_uid)
 
+        # If there is no destination index, create one.
+        if self.destination_index_uid not in index_uids:
+            self.create_index(index_uids[0], self.destination_index_uid)
+
         # Swap the temp index with dest index
         self._api.client.swap_indexes(
-            {"indexes": [self._temp_destination_index_uid, self._destination_index_uid]}
+            [{"indexes": [self._temp_destination_index_uid, self._destination_index_uid]}]
         )
         # Delete the dest index
         self._api.client.index(self._temp_destination_index_uid).delete()

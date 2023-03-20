@@ -4,3 +4,9 @@
    here.
 
 .. include:: ../../README.rst
+
+.. toctree::
+   :hidden:
+   :maxdepth: 3
+
+   autoapi/index

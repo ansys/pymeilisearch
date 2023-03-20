@@ -1,20 +1,22 @@
-"""Module contains ``MeilisearchClient`` class for the scrapper"""
+"""Module contains ``MeilisearchClient`` class for the scrapper."""
 import os
 
 from meilisearch import Client
 
 
 class BaseClient:
+    """Base class for client module."""
+
     def __init__(self, meilisearch_host_url=None, meilisearch_api_key=None):
         """
-        Base class for client module.
+        Constructor for the base class for client module.
 
         Parameters
         ----------
         meilisearch_host_url : str, optional
-            Meilisearch host URL, by default None
+            Meilisearch host URL, by default None.
         meilisearch_api_key : str, optional
-            Meilisearch API key, by default None
+            Meilisearch API key, by default None.
 
         Raises
         ------
@@ -41,10 +43,12 @@ class BaseClient:
 
     @property
     def meilisearch_api_key(self):
+        """Returns the meilisearch api key."""
         return self._meilisearch_api_key
 
     @property
     def meilisearch_host_url(self):
+        """Returns the meilisearch host url."""
         return self._meilisearch_host_url
 
 
@@ -55,24 +59,24 @@ class MeilisearchClient(BaseClient):
     If no values are passed for `meilisearch_host_url` or `meilisearch_api_key`,
     the constructor will check for their values in environment variables.
 
-    Parameters
-    ----------
-    meilisearch_host_url : str, default : None
-        The URL to the MeiliSearch host.
-    meilisearch_api_key : str, default : None
-        The admin API key to the MeiliSearch host.
-
-    Raises
-    ------
-    RuntimeError
-        If the `MEILISEARCH_HOST_URL` or `MEILISEARCH_API_KEY`
-        environment variables are not set and no values are passed to the constructor.
-
     """
 
     def __init__(self, meilisearch_host_url=None, meilisearch_api_key=None):
         """
         Initialize a new instance of the MeilisearchClient class.
+
+        Parameters
+        ----------
+        meilisearch_host_url : str, default : None
+            The URL to the MeiliSearch host.
+        meilisearch_api_key : str, default : None
+            The admin API key to the MeiliSearch host.
+
+        Raises
+        ------
+        RuntimeError
+            If the `MEILISEARCH_HOST_URL` or `MEILISEARCH_API_KEY`
+            environment variables are not set and no values are passed to the constructor.
         """
         super().__init__(meilisearch_host_url, meilisearch_api_key)
         self._client = Client(self.meilisearch_host_url, self.meilisearch_api_key)
@@ -81,4 +85,5 @@ class MeilisearchClient(BaseClient):
 
     @property
     def client(self):
+        """Returns the client."""
         return self._client
