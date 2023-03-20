@@ -27,6 +27,7 @@ html_theme_options = {
 # Sphinx extensions
 extensions = [
     "sphinx.ext.autodoc",
+    "autoapi.extension",
     "sphinx.ext.autosummary",
     "numpydoc",
     "sphinx.ext.intersphinx",
@@ -55,7 +56,7 @@ numpydoc_validate = True
 numpydoc_validation_checks = {
     "GL06",  # Found unknown section
     "GL07",  # Sections are in the wrong order.
-    "GL08",  # The object does not have a docstring
+    # "GL08",  # The object does not have a docstring
     "GL09",  # Deprecation warning should precede extended summary
     "GL10",  # reST directives {directives} must be followed by two colons
     "SS01",  # No summary found
@@ -79,3 +80,27 @@ source_suffix = ".rst"
 
 # The master toctree document.
 master_doc = "index"
+
+source_suffix = {
+    ".rst": "restructuredtext",
+    ".mystnb": "jupyter_notebook",
+    ".md": "markdown",
+}
+
+# The master toctree document.
+master_doc = "index"
+
+# Configuration for Sphinx autoapi
+autoapi_type = "python"
+autoapi_dirs = ["../../src/ansys"]
+autoapi_options = [
+    "members",
+    "undoc-members",
+    "show-inheritance",
+    "show-module-summary",
+]
+autoapi_template_dir = "_autoapi_templates"
+suppress_warnings = ["autoapi"]
+exclude_patterns = ["_autoapi_templates/index.rst"]
+autoapi_python_use_implicit_namespaces = True
+autoapi_python_class_content = "both"

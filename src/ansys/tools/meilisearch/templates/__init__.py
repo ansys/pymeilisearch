@@ -1,3 +1,4 @@
+"""Provides the templates to the urls."""
 import json
 import pathlib
 from typing import Union

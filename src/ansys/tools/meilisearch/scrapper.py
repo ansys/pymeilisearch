@@ -128,11 +128,6 @@ class WebScraper(BaseClient):
 
         This will generate a single index_uid for a single url.
 
-        Returns
-        -------
-        int
-            Number of hits from url.
-
         Parameters
         ----------
         url : str

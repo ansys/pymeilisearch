@@ -1,5 +1,5 @@
 """
-meilisearch
+meilisearch tools.
 """
 
 try:
