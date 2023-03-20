@@ -116,7 +116,10 @@ jobs:
           twine-username: "__token__"
           twine-token: ${{ secrets.PYANSYS_PYPI_PRIVATE_PAT }}
 
-      - name: Release to GitHub
-        uses: pyansys/actions/release-github@v4
+      - name: Release
+        uses: softprops/action-gh-release@v1
         with:
-          library-name: ${{ env.PACKAGE_NAME }}
+          generate_release_notes: true
+          files: |
+            ./**/*.whl
+            ./**/*.tar.gz
