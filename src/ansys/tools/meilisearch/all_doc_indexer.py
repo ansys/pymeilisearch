@@ -130,7 +130,7 @@ class DocsAllPublic:
 
         # Swap the temp index with dest index
         self._api.client.swap_indexes(
-            {"indexes": [self._temp_destination_index_uid, self._destination_index_uid]}
+            [{"indexes": [self._temp_destination_index_uid, self._destination_index_uid]}]
         )
         # Delete the dest index
         self._api.client.index(self._temp_destination_index_uid).delete()
