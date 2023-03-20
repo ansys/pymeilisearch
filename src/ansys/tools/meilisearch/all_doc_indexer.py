@@ -87,7 +87,7 @@ class DocsAllPublic:
         response = self._api.client.create_index(
             self._temp_destination_index_uid, {"primaryKey": pkey}
         )
-        self._wait_task(response["taskUid"])
+        self._wait_task(response.task_uid)
 
     def add_documents_to_temp_index(self, source_index_uid: str) -> None:
         """
