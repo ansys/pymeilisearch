@@ -12,3 +12,4 @@ print(n_hits)
 # Add all docs of particular index (org) to a single index
 all_doc = DocsAllPublic(client, "testing-all")
 all_doc.add_all_public_doc(["testing"])
+client.client.index("temp-testing-all").delete()
