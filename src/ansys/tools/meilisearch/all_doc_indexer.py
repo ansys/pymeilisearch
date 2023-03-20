@@ -103,7 +103,7 @@ class DocsAllPublic:
         documents_utils = MeilisearchUtils(self._api)
         documents = documents_utils.fetch_all_documents(source_index_uid)
         destination_index_url = (
-            f"{self._api._meilisearch_host_url}/indexes/{self._destination_index_uid}/documents"
+            f"{self._api.meilisearch_host_url}/indexes/{self._temp_destination_index_uid}/documents"
         )
         response = requests.post(destination_index_url, json=documents, headers=self._api.headers)
         self._wait_task(response.json()["taskUid"])

@@ -28,6 +28,9 @@ class MeilisearchUtils:
             # Call the API to fetch the documents
             response = requests.get(source_index_url, headers=self._headers)
             response_json = response.json()
+
+            for document in response_json["results"]:
+                document["id"] = document["objectID"]
             documents += response_json["results"]
 
             # Check if all the documents have been fetched
