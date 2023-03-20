@@ -73,7 +73,7 @@ class DocsAllPublic:
         if time.time() > timeout_time:
             raise TimeoutError(f"Exceeded timeout {timeout}")
 
-    def create_temp_index(self, source_index_uid: str) -> None:
+    def create_temp_index(self, source_index_uid: str, index_uid: str = None) -> None:
         """
         Create a temperory index with the same primary key as the source index.
 
@@ -82,11 +82,11 @@ class DocsAllPublic:
         source_index_uid : str
             Source index UID.
         """
+        if index_uid is None:
+            index_uid = self._temp_destination_index_uid
         source_index = self._api.client.get_index(source_index_uid)
         pkey = source_index.get_primary_key()
-        response = self._api.client.create_index(
-            self._temp_destination_index_uid, {"primaryKey": pkey}
-        )
+        response = self._api.client.create_index(index_uid, {"primaryKey": pkey})
         self._wait_task(response.task_uid)
 
     def add_documents_to_temp_index(self, source_index_uid: str) -> None:
@@ -128,6 +128,9 @@ class DocsAllPublic:
             if index_uid == self.destination_index_uid:
                 continue
             self.add_documents_to_temp_index(index_uid)
+
+        if self.destination_index_uid not in index_uids:
+            self.create_temp_index(index_uids[0], self.destination_index_uid)
 
         # Swap the temp index with dest index
         self._api.client.swap_indexes(
