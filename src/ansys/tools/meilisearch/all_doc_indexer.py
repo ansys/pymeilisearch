@@ -125,13 +125,13 @@ class DocsAllPublic:
         ]
         self.create_temp_index(index_uids[0])
         for index_uid in index_uids:
-            if index_uid == self._destination_index_uid:
+            if index_uid == self.destination_index_uid:
                 continue
             self.add_documents_to_temp_index(index_uid)
 
         # Swap the temp index with dest index
         self._api.client.swap_indexes(
-            {"indexes": [self._temp_destination_index_uid, self._destination_index_uid]}
+            [{"indexes": [self._temp_destination_index_uid, self.destination_index_uid]}]
         )
         # Delete the dest index
         self._api.client.index(self._temp_destination_index_uid).delete()
