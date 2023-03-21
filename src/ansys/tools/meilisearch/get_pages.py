@@ -71,6 +71,7 @@ class GitHubPages:
         """
         if not repo.has_pages:
             warnings.warn(f"Repo {repo.full_name} has no pages")
+            return {}
 
         # Get the Github Pages settings for the repo
         headers = {
@@ -151,8 +152,14 @@ class GitHubPages:
         # Iterate over the repos
         repo_cnames = {}
         for repo in self._get_repos():
+            if not repo.has_pages:
+                warnings.warn(f"Repo {repo.full_name} has no pages")
+                continue
+            if repo.full_name.endswith("-redirect"):
+                continue
             response = self._get_gh_page_response(repo)
-            if repo.full_name.endswith("-redirect") or not self._has_github_pages(response, repo):
+
+            if not self._has_github_pages(response, repo):
                 continue
 
             url = response["cname"] if response["cname"] else response["html_url"]
