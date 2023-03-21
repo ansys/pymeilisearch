@@ -151,10 +151,10 @@ class GitHubPages:
         # Iterate over the repos
         repo_cnames = {}
         for repo in self._get_repos():
+            response = self._get_gh_page_response(repo)
             if repo.full_name.endswith("-redirect") or not self._has_github_pages(response, repo):
                 continue
 
-            response = self._get_gh_page_response(repo)
             url = response["cname"] if response["cname"] else response["html_url"]
             if not url.startswith("https"):
                 url = f"https://{url}"
