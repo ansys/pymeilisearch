@@ -4,8 +4,8 @@ on:
   push:
     tags:
       - "*"
-    branches:
-      - main
+    #branches:
+    #  - main
 
 env:
   MAIN_PYTHON_VERSION: '3.10'
@@ -54,6 +54,15 @@ jobs:
 
       - name: Install dependencies
         run: pip install .[tests]
+
+      - name: Checkout tools repo
+        uses: actions/checkout@v3
+        with:
+          repository: ansys/docs-scraper
+          path: docs-scraper
+
+      - name: Install the documentation scrapper
+        run: pip install ./docs-scraper
 
       - name: Run tests
         run: pytest
