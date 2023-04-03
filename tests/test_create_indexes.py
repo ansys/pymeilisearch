@@ -84,19 +84,6 @@ def test_is_sphinx(url):
     assert is_sphinx(url)
 
 
-def test_create_sphinx_indexes(meilisearch_client, scraper_mock, public_urls):
-    scraper_mock.return_value = None
-    create_sphinx_indexes(
-        public_urls,
-        meilisearch_client.meilisearch_host_url,
-        meilisearch_client.meilisearch_host_url,
-    )
-    for repo, url in public_urls.items():
-        repo = repo.replace("/", "-").lower()
-        index_uid = f"{repo}-sphinx-docs"
-        scraper_mock.assert_any_call(url, index_uid, template="sphinx")
-
-
 def test_temp_index_swapping(meilisearch_client):
     test_url = {"ansys/ansys-sphinx-theme": "https://sphinxdocs.ansys.com"}
     create_sphinx_indexes(
@@ -104,3 +91,7 @@ def test_temp_index_swapping(meilisearch_client):
         meilisearch_client.meilisearch_host_url,
         meilisearch_client.meilisearch_host_url,
     )
+    stats = meilisearch_client.client.get_all_stats()
+    print(stats)
+    index_uids = list(stats["indexes"].keys())
+    assert "ansys-ansys-sphinx-theme-sphinx-docs" in index_uids

@@ -88,6 +88,7 @@ class DocsAllPublic:
             index_uid = self._temp_destination_index_uid
         source_index = self._api.client.get_index(source_index_uid)
         pkey = source_index.get_primary_key()
+        self._api.client.index(self._temp_destination_index_uid).delete()
         response = self._api.client.create_index(index_uid, {"primaryKey": pkey})
         self._wait_task(response.task_uid)
 

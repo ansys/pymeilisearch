@@ -82,3 +82,4 @@ def create_sphinx_indexes(sphinx_urls, meilisearch_host_url=None, meilisearch_ap
         web_scraper.scrape_url(url, temp_index_uid, template="sphinx")
         client = MeilisearchClient(meilisearch_host_url, meilisearch_api_key)
         client.client.swap_indexes([{"indexes": [temp_index_uid, index_uid]}])
+        client.client.index(temp_index_uid).delete()
