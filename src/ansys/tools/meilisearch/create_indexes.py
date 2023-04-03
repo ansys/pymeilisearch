@@ -85,7 +85,7 @@ def create_sphinx_indexes(sphinx_urls, meilisearch_host_url=None, meilisearch_ap
         stats = client.client.get_all_stats()
         index_uids = list(stats["indexes"].keys())
         if not index_uid in index_uids:
-            docs = DocsAllPublic(client.client, index_uid)
+            docs = DocsAllPublic(client, index_uid)
             docs.create_index(temp_index_uid, index_uid)
         client.client.swap_indexes([{"indexes": [temp_index_uid, index_uid]}])
         client.client.index(temp_index_uid).delete()
