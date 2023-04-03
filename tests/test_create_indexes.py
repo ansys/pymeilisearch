@@ -95,3 +95,12 @@ def test_create_sphinx_indexes(meilisearch_client, scraper_mock, public_urls):
         repo = repo.replace("/", "-").lower()
         index_uid = f"{repo}-sphinx-docs"
         scraper_mock.assert_any_call(url, index_uid, template="sphinx")
+
+
+def test_temp_index_swapping(meilisearch_client):
+    test_url = {"ansys/ansys-sphinx-theme": "https://sphinxdocs.ansys.com"}
+    create_sphinx_indexes(
+        test_url,
+        meilisearch_client.meilisearch_host_url,
+        meilisearch_client.meilisearch_host_url,
+    )

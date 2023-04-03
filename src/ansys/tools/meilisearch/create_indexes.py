@@ -3,6 +3,7 @@ Create an index for each public github page for each repo in orgs using sphinx.
 """
 import os
 
+from ansys.tools.meilisearch.client import MeilisearchClient
 from ansys.tools.meilisearch.get_pages import GitHubPages
 from ansys.tools.meilisearch.scrapper import WebScraper
 from ansys.tools.meilisearch.templates.utils import is_sphinx
@@ -76,5 +77,8 @@ def create_sphinx_indexes(sphinx_urls, meilisearch_host_url=None, meilisearch_ap
     for repo, url in sphinx_urls.items():
         repo = repo.replace("/", "-").lower()
         index_uid = f"{repo}-sphinx-docs"
+        temp_index_uid = f"temp-{repo}-sphinx-docs"
         web_scraper = WebScraper(meilisearch_host_url, meilisearch_api_key)
-        web_scraper.scrape_url(url, index_uid, template="sphinx")
+        web_scraper.scrape_url(url, temp_index_uid, template="sphinx")
+        client = MeilisearchClient(meilisearch_host_url, meilisearch_api_key)
+        client.client.swap_indexes([{"indexes": [temp_index_uid, index_uid]}])
