@@ -2,10 +2,10 @@ name: GitHub CI
 on:
   pull_request:
   push:
-    #tags:
-    #  - "*"
-    #branches:
-    #  - main
+    tags:
+      - "*"
+    branches:
+      - main
 
 env:
   MAIN_PYTHON_VERSION: '3.10'
