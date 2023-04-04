@@ -9,7 +9,7 @@ def meilisearch_client():
     meilisearch_client = MeilisearchClient(
         meilisearch_host_url="http://localhost:7700", meilisearch_api_key="masterKey"
     )
-    yield meilisearch_client
+    return meilisearch_client
 
 
 @pytest.fixture(scope="function")
