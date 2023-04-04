@@ -92,6 +92,5 @@ def test_temp_index_swapping(meilisearch_client):
         meilisearch_client.meilisearch_host_url,
     )
     stats = meilisearch_client.client.get_all_stats()
-    print(stats)
     index_uids = list(stats["indexes"].keys())
     assert "ansys-ansys-sphinx-theme-sphinx-docs" in index_uids

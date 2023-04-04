@@ -59,7 +59,7 @@ jobs:
           repository: ansys/docs-scraper
           path: docs-scraper
 
-      - name: Install the documentation scrapper
+      - name: Install the documentation scraper
         run: pip install ./docs-scraper
 
       - name: Checkout code
@@ -69,8 +69,7 @@ jobs:
         run: pip install .[tests]
 
       - name: Run tests
-        working-directory: tests
-        run: pytest
+        run: pytest tests -vv
          
       - name: Stop services
         if: always()
