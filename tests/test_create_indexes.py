@@ -95,7 +95,7 @@ def test_temp_index_swapping(meilisearch_client):
     stats = meilisearch_client.client.get_all_stats()
     index_uids = list(stats["indexes"].keys())
     assert "ansys-ansys-sphinx-theme-sphinx-docs" in index_uids
-    doc = DocsAllPublic(meilisearch_client, "testing-all")
-    doc.add_all_public_doc("ansys")
+    all_doc = DocsAllPublic(meilisearch_client, "testing-all")
+    all_doc.add_all_public_doc(selected_keys=["ansys"])
     total_number_of_doc = meilisearch_client.client.index("testing-all").get_documents().total
     assert total_number_of_doc > 0
