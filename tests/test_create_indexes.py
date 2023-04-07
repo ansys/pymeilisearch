@@ -99,6 +99,6 @@ def test_temp_index_swapping(meilisearch_client):
 
 def test_all_doc_index(meilisearch_client):
     doc = DocsAllPublic(meilisearch_client, "testing-all")
-    doc.add_all_public_doc(["ansys"])
+    doc.add_all_public_doc("ansys")
     total_number_of_doc = meilisearch_client.client.index("testing-all").get_documents().total
     assert total_number_of_doc > 0
