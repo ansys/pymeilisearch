@@ -3,6 +3,7 @@ from unittest.mock import Mock, patch
 from github import Github
 import pytest
 
+from ansys.tools.meilisearch.all_docs_index import DocsAllPublic
 from ansys.tools.meilisearch.create_indexes import create_sphinx_indexes, get_sphinx_urls
 from ansys.tools.meilisearch.get_pages import GitHubPages
 from ansys.tools.meilisearch.scrapper import WebScraper
@@ -94,3 +95,10 @@ def test_temp_index_swapping(meilisearch_client):
     stats = meilisearch_client.client.get_all_stats()
     index_uids = list(stats["indexes"].keys())
     assert "ansys-ansys-sphinx-theme-sphinx-docs" in index_uids
+
+
+def test_all_doc_index(meilisearch_client):
+    doc = DocsAllPublic(meilisearch_client, "testing-all")
+    doc.add_all_public_doc(["ansys"])
+    total_number_of_doc = meilisearch_client.client.index("testing-all").get_documents().total
+    assert total_number_of_doc > 0
