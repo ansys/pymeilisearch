@@ -86,9 +86,7 @@ def create_sphinx_indexes(sphinx_urls, meilisearch_host_url=None, meilisearch_ap
         stats = client.client.get_all_stats()
         index_uids = list(stats["indexes"].keys())
         if not index_uid in index_uids:
-            source_index = client.client.get_index(index_uids[0])
-            pkey = source_index.get_primary_key()
-            response = client.client.create_index(index_uid, {"primaryKey": pkey})
+            response = client.client.create_index(index_uid, {"primaryKey": "id"})
             document_utils._wait_task(response.task_uid)
         client.client.swap_indexes([{"indexes": [temp_index_uid, index_uid]}])
         client.client.index(temp_index_uid).delete()
