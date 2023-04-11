@@ -7,6 +7,7 @@ from ansys.tools.meilisearch.client import MeilisearchClient
 from ansys.tools.meilisearch.get_pages import GitHubPages
 from ansys.tools.meilisearch.scrapper import WebScraper
 from ansys.tools.meilisearch.templates.utils import is_sphinx
+from ansys.tools.meilisearch.utils import MeilisearchUtils
 
 
 def get_public_urls(orgs):
@@ -81,9 +82,11 @@ def create_sphinx_indexes(sphinx_urls, meilisearch_host_url=None, meilisearch_ap
         web_scraper = WebScraper(meilisearch_host_url, meilisearch_api_key)
         web_scraper.scrape_url(url, temp_index_uid, template="sphinx")
         client = MeilisearchClient(meilisearch_host_url, meilisearch_api_key)
+        document_utils = MeilisearchUtils(client)
         stats = client.client.get_all_stats()
         index_uids = list(stats["indexes"].keys())
         if not index_uid in index_uids:
-            client.client.create_index(index_uid)
+            response = client.client.create_index(index_uid, {"primaryKey": "objectID"})
+            document_utils._wait_task(response.task_uid)
         client.client.swap_indexes([{"indexes": [temp_index_uid, index_uid]}])
         client.client.index(temp_index_uid).delete()
