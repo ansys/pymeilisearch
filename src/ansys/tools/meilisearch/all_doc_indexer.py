@@ -1,6 +1,4 @@
 """"Module containing ``DocsAllPublic`` Class to index all public documents in Meilisearch."""
-import json
-import time
 from typing import List
 
 import requests
@@ -28,50 +26,12 @@ class DocsAllPublic:
         self._api = meilisearch_client
         self._destination_index_uid = destination_index_uid
         self._temp_destination_index_uid = f"temp-{destination_index_uid}"
+        self.documents_utils = MeilisearchUtils(self._api)
 
     @property
     def destination_index_uid(self):
         """Return destination index uid."""
         return self._destination_index_uid
-
-    def _wait_task(self, task_uid: int, timeout: float = 10.0) -> None:
-        """
-        Wait until a task is complete.
-
-        If a task exceeds the timeout, raise a TimeoutError.
-
-        Parameters
-        ----------
-        task_uid : int
-            Task UID.
-        timeout : float
-            Timeout value in seconds. Defaults to 10.0.
-
-        Raises
-        ------
-        TimeoutError
-            Raised when the ``timeout`` is exceed.
-        RuntimeError
-            Raised when the status of ``task`` failed.
-        """
-        task_url = f"{self._api.meilisearch_host_url}/tasks/{task_uid}"
-        timeout_time = time.time() + timeout
-        while time.time() < timeout_time:
-            response = requests.get(task_url, headers=self._api.headers)
-            jresp = response.json()
-            if jresp["status"] == "failed":
-                if "error" in jresp:
-                    msg = jresp["error"]["message"]
-                    raise RuntimeError(f"Task failed:\n\n{msg}")
-                else:
-                    msg = json.dumps(jresp, indent=2)
-                    raise RuntimeError(f"Task failed:\n\n{msg}")
-            elif jresp["status"] == "succeeded":
-                break
-            else:
-                time.sleep(1)
-        if time.time() > timeout_time:
-            raise TimeoutError(f"Exceeded timeout {timeout}")
 
     def create_index(self, source_index_uid: str, index_uid: str = None) -> None:
         """
@@ -84,12 +44,13 @@ class DocsAllPublic:
         index_uid : str, default: None
             The destination index name
         """
+
         if index_uid is None:
             index_uid = self._temp_destination_index_uid
         source_index = self._api.client.get_index(source_index_uid)
         pkey = source_index.get_primary_key()
         response = self._api.client.create_index(index_uid, {"primaryKey": pkey})
-        self._wait_task(response.task_uid)
+        self.documents_utils._wait_task(response.task_uid)
 
     def add_documents_to_temp_index(self, source_index_uid: str) -> None:
         """
@@ -102,13 +63,12 @@ class DocsAllPublic:
         """
         # Fetch all the documents from the source index and add them to the
         # temporary destination index
-        documents_utils = MeilisearchUtils(self._api)
-        documents = documents_utils.fetch_all_documents(source_index_uid)
+        documents = self.documents_utils.fetch_all_documents(source_index_uid)
         destination_index_url = (
             f"{self._api.meilisearch_host_url}/indexes/{self._temp_destination_index_uid}/documents"
         )
         response = requests.post(destination_index_url, json=documents, headers=self._api.headers)
-        self._wait_task(response.json()["taskUid"])
+        self.documents_utils._wait_task(response.json()["taskUid"])
 
     def add_all_public_doc(self, selected_keys: List[str] = ["ansys, pyansys"]) -> None:
         """
