@@ -1,8 +1,8 @@
 """Module containing ``WebScraper`` class to scrape web pages."""
 import os
-import subprocess
 import tempfile
 
+import docker
 import requests
 
 from ansys.tools.meilisearch.client import BaseClient
@@ -70,10 +70,24 @@ class WebScraper(BaseClient):
         str
             The output of the `scraper` command.
         """
-        result = subprocess.run(
-            ["python", "-m", "scraper", temp_config_file], stdout=subprocess.PIPE
+        client = docker.from_env()
+        container = client.containers.run(
+            "getmeili/docs-scraper:latest",
+            f"pipenv run ./docs_scraper {temp_config_file}",
+            remove=True,
+            volumes={
+                "/path/to/config/file": {
+                    "bind": (temp_config_file),
+                    "mode": "ro",
+                }
+            },
+            environment={
+                "MEILISEARCH_HOST_URL": self.meilisearch_host_url,
+                "MEILISEARCH_API_KEY": self.meilisearch_api_key,
+            },
+            network_mode="bridge",
         )
-        output = result.stdout.decode("utf-8")
+        output = container.decode("utf-8")
         return output
 
     def _parse_output(self, output):

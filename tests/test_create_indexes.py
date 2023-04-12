@@ -3,7 +3,7 @@ from unittest.mock import Mock, patch
 from github import Github
 import pytest
 
-from ansys.tools.meilisearch.all_docs_index import DocsAllPublic
+from ansys.tools.meilisearch.all_doc_indexer import DocsAllPublic
 from ansys.tools.meilisearch.create_indexes import create_sphinx_indexes, get_sphinx_urls
 from ansys.tools.meilisearch.get_pages import GitHubPages
 from ansys.tools.meilisearch.scrapper import WebScraper
