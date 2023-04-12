@@ -80,12 +80,12 @@ class WebScraper(BaseClient):
             "-e",
             f"MEILISEARCH_API_KEY={self.meilisearch_api_key}",
             "-v",
-            f"{temp_config_file}:/docs-scraper/config.yaml",
+            f"{temp_config_file}:/docs-scraper/{temp_config_file}",
             "getmeili/docs-scraper:latest",
             "pipenv",
             "run",
             "./docs_scraper",
-            "config.yaml",
+            {temp_config_file},
         ]
         result = subprocess.run(docker_cmd, check=True)
 
