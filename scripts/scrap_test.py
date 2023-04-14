@@ -25,7 +25,7 @@ if __name__ == "__main__":
         "pyansys/pyaedt": "https://aedt.docs.pyansys.com",
     }
 
-    if args.function_name == "create_sphinx_indexes":
+    if args.function_name == "create_filtered_sphinx_indexes":
         create_filtered_sphinx_indexes(urls, client)
     else:
         raise ValueError("Invalid function name: {}".format(args.function_name))
