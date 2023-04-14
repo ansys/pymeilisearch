@@ -84,6 +84,37 @@ jobs:
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
 
+  nightly_build:
+    name: "Upload the docs"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Checkout tools repo
+        uses: actions/checkout@v3
+        with:
+          repository: ansys/docs-scraper
+          path: docs-scraper
+
+      - name: Install the documentation scrapper
+        run: pip install ./docs-scraper
+
+      - name: Install tools meilisearch
+        run: pip install .
+
+      - name: Upload non filtered docs to webapp service
+        working-directory: scripts
+        run: python scrap_test.py create_sphinx_indexes
+        env:
+          MEILISEARCH_HOST_URL: https://backend.search.pyansys.com/
+          MEILISEARCH_API_KEY: ${{ secrets.MEILISEARCH_API_KEY }}
+
   doc-deploy-dev:
     name: "Deploy development documentation"
     runs-on: ubuntu-latest
