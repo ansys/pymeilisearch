@@ -85,7 +85,9 @@ def test_is_sphinx(url):
 
 
 def test_temp_index_swapping(meilisearch_client):
-    test_url = {"ansys/ansys-sphinx-theme": "https://sphinxdocs.ansys.com"}
+    test_url = {
+        "ansys/ansys-sphinx-theme": "https://sphinxdocs.ansys.com",
+    }
     create_sphinx_indexes(
         test_url,
         meilisearch_client.meilisearch_host_url,
@@ -94,3 +96,4 @@ def test_temp_index_swapping(meilisearch_client):
     stats = meilisearch_client.client.get_all_stats()
     index_uids = list(stats["indexes"].keys())
     assert "ansys-ansys-sphinx-theme-sphinx-docs" in index_uids
+    print()
