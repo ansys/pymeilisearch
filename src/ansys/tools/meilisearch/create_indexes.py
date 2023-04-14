@@ -80,8 +80,7 @@ def create_sphinx_indexes(sphinx_urls, meilisearch_host_url=None, meilisearch_ap
         index_uid = f"{repo}-sphinx-docs"
         temp_index_uid = f"temp-{repo}-sphinx-docs"
         web_scraper = WebScraper(meilisearch_host_url, meilisearch_api_key)
-        n_hits = web_scraper.scrape_url(url, temp_index_uid, template="sphinx")
-        print(n_hits)
+        web_scraper.scrape_url(url, temp_index_uid, template="sphinx")
         client = MeilisearchClient(meilisearch_host_url, meilisearch_api_key)
         document_utils = MeilisearchUtils(client)
         stats = client.client.get_all_stats()
@@ -89,7 +88,5 @@ def create_sphinx_indexes(sphinx_urls, meilisearch_host_url=None, meilisearch_ap
         if not index_uid in index_uids:
             response = client.client.create_index(index_uid, {"primaryKey": "objectID"})
             document_utils._wait_task(response.task_uid)
-        total_number_of_doc = client.client.index(index_uid).get_documents().total
-        print(total_number_of_doc)
         client.client.swap_indexes([{"indexes": [temp_index_uid, index_uid]}])
         client.client.index(temp_index_uid).delete()

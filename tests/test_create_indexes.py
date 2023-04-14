@@ -87,6 +87,7 @@ def test_is_sphinx(url):
 def test_temp_index_swapping(meilisearch_client):
     test_url = {
         "ansys/ansys-sphinx-theme": "https://sphinxdocs.ansys.com",
+        "pyansys/pydpf-core": "https://dpf.docs.pyansys.com",
     }
     create_sphinx_indexes(
         test_url,
