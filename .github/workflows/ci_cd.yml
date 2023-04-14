@@ -84,7 +84,7 @@ jobs:
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
 
-  nightly_build:
+  build-test:
     name: "Upload the docs"
     runs-on: ubuntu-latest
 
