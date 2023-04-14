@@ -110,7 +110,7 @@ jobs:
 
       - name: Upload non filtered docs to webapp service
         working-directory: scripts
-        run: python scrap_test.py create_sphinx_indexes
+        run: python scrap_test.py create_filtered_sphinx_indexes
         env:
           MEILISEARCH_HOST_URL: https://backend.search.pyansys.com/
           MEILISEARCH_API_KEY: ${{ secrets.MEILISEARCH_API_KEY }}
