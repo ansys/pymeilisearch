@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
     client = MeilisearchClient()
     urls = {
-        "pyansys/pyaedt": "https://aedt.docs.pyansys.com",
+        "pyansys/pyaedt": "https://aedt.docs.pyansys.com/version/stable/",
     }
 
     if args.function_name == "create_filtered_sphinx_indexes":

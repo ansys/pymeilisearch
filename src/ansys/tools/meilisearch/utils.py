@@ -70,7 +70,7 @@ class MeilisearchUtils:
 
         return documents
 
-    def _wait_task(self, task_uid: int, timeout: float = 60.0) -> None:
+    def _wait_task(self, task_uid: int, timeout: float = 20.0) -> None:
         """
         Wait until a task is complete.
 
@@ -81,7 +81,7 @@ class MeilisearchUtils:
         task_uid : int
             Task UID.
         timeout : float
-            Timeout value in seconds. Defaults to 60.0.
+            Timeout value in seconds. Defaults to 20.0.
 
         Raises
         ------

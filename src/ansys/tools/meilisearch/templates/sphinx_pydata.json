@@ -1,7 +1,7 @@
 {
     "index_uid": "{{ index_uid }}",
     "start_urls": {{ start_url|safe }},
-    "stop_urls": ["/_sources", "_downloads","_static"],
+    "stop_urls": ["/_sources", "_downloads", "_static", "_images"],
     "selectors": {
         "lvl0": {
             "selector": "title",
