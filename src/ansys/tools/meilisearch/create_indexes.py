@@ -88,5 +88,6 @@ def create_sphinx_indexes(sphinx_urls, meilisearch_host_url=None, meilisearch_ap
         if not index_uid in index_uids:
             response = client.client.create_index(index_uid, {"primaryKey": "objectID"})
             document_utils._wait_task(response["taskUid"])
-        client.client.swap_indexes([{"indexes": [temp_index_uid, index_uid]}])
+        swap_response = client.client.swap_indexes([{"indexes": [temp_index_uid, index_uid]}])
+        document_utils._wait_task(swap_response["taskUid"])
         client.client.index(temp_index_uid).delete()
