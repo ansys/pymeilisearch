@@ -1,6 +1,6 @@
 {
     "index_uid": "{{ index_uid }}",
-    "start_urls": {{ start_url|safe }},
+    "start_urls": {{ start_url }},
     "stop_urls": ["/_sources", "/_downloads", "/_static", "/_images", "/.doctree"],
     "selectors": {
         "lvl0": {
