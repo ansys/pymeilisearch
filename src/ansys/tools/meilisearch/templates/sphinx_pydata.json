@@ -1,11 +1,11 @@
 {
     "index_uid": "{{ index_uid }}",
-    "start_urls": {{ start_url }},
+    "start_urls": {{ start_url|safe }},
     "stop_urls": ["/_sources", "/_downloads", "/_static", "/_images", "/.doctree"],
     "selectors": {
         "lvl0": {
-            "selector": "bd-navbar-elements navbar-nav",
-	        "global": true,
+            "selector": "navbar-nav",
+	    "global": true,
             "default_value": "Documentation"
         },
         "lvl1": ".bd-content h1",
@@ -14,6 +14,6 @@
         "lvl4": ".bd-content h4",
         "lvl5": ".bd-content h5",
         "lvl6": ".bd-content h6",
-        "text": ".bd-content p, .bd-contentt li, .bd-content td""
+        "text": "p"
     }
 }
