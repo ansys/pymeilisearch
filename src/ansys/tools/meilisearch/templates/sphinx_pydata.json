@@ -4,7 +4,7 @@
     "stop_urls": ["/_sources", "/_downloads", "/_static", "/_images", "/.doctree"],
     "selectors": {
         "lvl0": {
-            "selector": "navbar-nav",
+            "selector": "navbar-item",
 	    "global": true,
             "default_value": "Documentation"
         },
