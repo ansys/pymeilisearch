@@ -123,7 +123,7 @@ class WebScraper(BaseClient):
         if response.status_code != 200:
             raise RuntimeError(f'Url "{url}" returned status code {response.status_code}')
 
-    def scrape_url(self, url, index_uid, template=None, verbose=False):
+    def scrape_url(self, url, index_uid, template=None, verbose=False, pyaedt=False):
         """For a single given URL, scrape it using the active Meilisearch host.
 
         This will generate a single index_uid for a single url.
@@ -145,7 +145,7 @@ class WebScraper(BaseClient):
             The number of hits from the URL.
         """
         self._check_url(url)
-        template = get_template(url) if template is None else template
+        template = get_template(url, pyaedt) if template is None else template
         temp_config_file = self._load_and_render_template(url, template, index_uid)
         output = self._scrape_url_command(temp_config_file)
         n_hits = self._parse_output(output)
