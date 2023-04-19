@@ -25,7 +25,7 @@ if __name__ == "__main__":
 
     client = MeilisearchClient()
     urls = {
-        "ansys/ansys-sphinx-theme": "https://sphinxdocs.ansys.com/",
+        "pyansys/pyaedt": "https://aedt.docs.pyansys.com/",
     }
 
     if args.function_name == "create_filtered_sphinx_indexes":

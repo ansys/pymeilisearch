@@ -11,7 +11,9 @@
     "https://aedt.docs.pyansys.com/version/dev/_downloads",
     "https://aedt.docs.pyansys.com/version/dev/_static",
     "https://aedt.docs.pyansys.com/version/dev/_images",
-    "https://aedt.docs.pyansys.com/version/dev/.doctree"],
+    "https://aedt.docs.pyansys.com/version/dev/.doctree",
+    "https://aedt.docs.pyansys.com/version/stable/EDBAPI/",
+    "https://aedt.docs.pyansys.com/version/dev/EDBAPI/"],
     "selectors": {
         "lvl0": {
             "selector": "navbar-item",
