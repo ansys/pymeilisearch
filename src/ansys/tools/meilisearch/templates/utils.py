@@ -21,7 +21,7 @@ def get_template(url: str, pyaedt: bool = False) -> str:
     str
         The name of the template to use for the page.
     """
-    if not pyaedt:
+    if pyaedt:
         return "sphinx_pyaedt" if is_sphinx(url) else "default"
     return "sphinx_pydata" if is_sphinx(url) else "default"
 
