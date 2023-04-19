@@ -50,7 +50,9 @@ def get_sphinx_urls(urls):
     return {repo: url for repo, url in urls.items() if is_sphinx(url)}
 
 
-def create_sphinx_indexes(sphinx_urls, meilisearch_host_url=None, meilisearch_api_key=None):
+def create_sphinx_indexes(
+    sphinx_urls, meilisearch_host_url=None, meilisearch_api_key=None, is_pyaedt=False
+):
     """Create an index for each public GitHub page that uses Sphinx.
 
     The created ``index_uid`` will match ``<repo>-sphinx-docs`` with a ``'-'``
@@ -80,7 +82,7 @@ def create_sphinx_indexes(sphinx_urls, meilisearch_host_url=None, meilisearch_ap
         index_uid = f"{repo}-sphinx-docs"
         temp_index_uid = f"temp-{repo}-sphinx-docs"
         web_scraper = WebScraper(meilisearch_host_url, meilisearch_api_key)
-        web_scraper.scrape_url(url, temp_index_uid, template="sphinx")
+        web_scraper.scrape_url(url, temp_index_uid, pyaedt=is_pyaedt)
         client = MeilisearchClient(meilisearch_host_url, meilisearch_api_key)
         document_utils = MeilisearchUtils(client)
         stats = client.client.get_all_stats()

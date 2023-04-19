@@ -7,7 +7,10 @@ from ansys.tools.meilisearch.create_indexes import create_sphinx_indexes, get_sp
 def create_filtered_sphinx_indexes(urls, client):
     filtered_sphinx_urls = get_sphinx_urls(urls)
     create_sphinx_indexes(
-        filtered_sphinx_urls, client.meilisearch_host_url, client.meilisearch_api_key
+        filtered_sphinx_urls,
+        client.meilisearch_host_url,
+        client.meilisearch_api_key,
+        is_pyaedt=True,
     )
 
 
