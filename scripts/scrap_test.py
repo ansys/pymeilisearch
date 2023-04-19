@@ -6,10 +6,7 @@ from ansys.tools.meilisearch.create_indexes import create_sphinx_indexes
 
 def create_filtered_sphinx_indexes(urls, client):
     # filtered_sphinx_urls = get_sphinx_urls(urls)
-    filtered_sphinx_urls = "https://github.com/ansys/ansys-sphinx-theme/tree/gh-pages/version"
-    create_sphinx_indexes(
-        filtered_sphinx_urls, client.meilisearch_host_url, client.meilisearch_api_key
-    )
+    create_sphinx_indexes(urls, client.meilisearch_host_url, client.meilisearch_api_key)
 
 
 if __name__ == "__main__":
@@ -23,7 +20,7 @@ if __name__ == "__main__":
 
     client = MeilisearchClient()
     urls = {
-        "ansys/ansys-sphinx-theme": "https://sphinxdocs.ansys.com/version/",
+        "ansys/ansys-sphinx-theme": "https://github.com/ansys/ansys-sphinx-theme/tree/gh-pages/version",  # noqa: E501
     }
 
     if args.function_name == "create_filtered_sphinx_indexes":
