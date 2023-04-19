@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
     client = MeilisearchClient()
     urls = {
-        "pyansys/pyedb": "https://aedt.docs.pyansys.com/version/stable/EDBAPI/",
+        "ansys/ansys-sphinx-theme": "https://sphinxdocs.ansys.com/version/",
     }
 
     if args.function_name == "create_filtered_sphinx_indexes":
