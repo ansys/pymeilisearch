@@ -8,6 +8,7 @@ from jinja2 import Template
 # Declare the fundamental paths of the theme
 DEFAULT_TEMPLATE = pathlib.Path(__file__).parent.resolve() / "default.json"
 SPHINX_PYDATA_TEMPLATE = pathlib.Path(__file__).parent.resolve() / "sphinx_pydata.json"
+SPHINX_PYAEDT_TEMPLATE = pathlib.Path(__file__).parent.resolve() / "pyaedt_sphinx.json"
 
 
 def render_template(
@@ -41,7 +42,12 @@ def render_template(
         If any of the URLs do not start with "https://".
 
     """
-    template_path = SPHINX_PYDATA_TEMPLATE if template == "sphinx_pydata" else DEFAULT_TEMPLATE
+    if template == "sphinx_pyaedt":
+        template_path = SPHINX_PYAEDT_TEMPLATE
+    elif template == "sphinx_pydata":
+        template_path = SPHINX_PYDATA_TEMPLATE
+    else:
+        template_path = DEFAULT_TEMPLATE
 
     if not template_path.exists():
         raise FileNotFoundError(f"Unable to locate a template at {template_path}")
