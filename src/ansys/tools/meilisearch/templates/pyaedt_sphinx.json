@@ -7,7 +7,7 @@
         "https://aedt.docs.pyansys.com/version/dev/EDBAPI/"],
     "selectors": {
         "lvl0": {
-            "selector": "navbar-item",
+            "selector": "title",
 	    "global": true,
             "default_value": "Documentation"
         },
