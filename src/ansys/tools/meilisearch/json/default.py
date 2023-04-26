@@ -6,9 +6,10 @@ import hashlib
 import json
 import sys
 
+from bs4 import BeautifulSoup
 from lxml.etree import XPath
 
-from .anchor import Anchor
+from .anchor import ElementAnchor
 from .converter import Hierarchy
 
 
@@ -19,11 +20,12 @@ class DefaultStrategy:
 
     dom = None
 
-    def __init__(self, config):
+    def __init__(self, config, html):
         self.config = config
         self.levels = ["lvl0", "lvl1", "lvl2", "lvl3", "lvl4", "lvl5", "lvl6"]
         self.global_content = {}
         self.page_rank = {}
+        self.dom = str(BeautifulSoup(html, "html.parser"))
 
     def select(self, path):
         """Select an element in the current DOM using specified CSS selector"""
@@ -42,19 +44,6 @@ class DefaultStrategy:
                 record[level] = self.global_content[level]
 
         return record
-
-    def _get_used_levels(self, selectors):
-        levels = list(self.levels)
-        used_levels = []
-        for level in levels:
-            if level not in selectors:
-                break
-            used_levels.append(level)
-
-            if "content" in selectors:
-                used_levels.append("content")
-
-            return used_levels
 
     def to_json(self, my_json):
         try:
@@ -81,14 +70,11 @@ class DefaultStrategy:
         # Reset it to be able to have a clean instance when testing
         self.global_content = {}
 
-        selectors = self.config.selectors["default"]
-        levels = self._get_used_levels(selectors)
+        selectors = self.config["selectors"]
 
-        # We get a big selector that matches all relevant nodes, in order
-        # But we also keep a list of all matches for each individual level
-        nodes_per_level = self._get_nodes_per_level(selectors, levels)
-        nodes = self._get_all_matching_nodes(levels, selectors)
-        self._get_nodes_per_global_level(selectors, levels)
+        nodes_per_level = self._get_nodes_per_level(selectors, self.levels)
+        nodes = self._get_all_matching_nodes(self.levels, selectors)
+        self._get_nodes_per_global_level(selectors, self.levels)
 
         # We keep the current hierarchy and anchor state between loops
         previous_hierarchy = self._generate_empty_hierarchy()
@@ -97,20 +83,20 @@ class DefaultStrategy:
         records = []
 
         for position, node in enumerate(nodes):
-            current_level = self._get_level_of_node(node, nodes_per_level, levels)
+            current_level = self._get_level_of_node(node, nodes_per_level, self.levels)
 
             # We copy the previous hierarchy, We override the current level,
             # And set all levels after it to None
             hierarchy = previous_hierarchy.copy()
 
             # Update the hierarchy for each new header
-            current_level_int = levels.index(current_level)
+            current_level_int = self.levels.index(current_level)
 
             if current_level != "content":
                 hierarchy[current_level] = self._get_text_content_for_level(
                     node, current_level, selectors
                 )
-                anchors[current_level] = Anchor.get_anchor(node)
+                anchors[current_level] = ElementAnchor.get_anchor(node)
 
                 for index in range(current_level_int + 1, 7):
                     hierarchy[f"lvl{index}"] = None
@@ -144,7 +130,9 @@ class DefaultStrategy:
                 "anchor": self._get_closest_anchor(anchors),
                 "content": content,
                 "hierarchy": hierarchy,
-                "hierarchy_radio": Hierarchy.get_hierarchy_radio(hierarchy, current_level, levels),
+                "hierarchy_radio": Hierarchy.get_hierarchy_radio(
+                    hierarchy, current_level, self.levels
+                ),
                 "type": current_level,
                 "weight": {
                     "level": self.get_level_weight(current_level),
