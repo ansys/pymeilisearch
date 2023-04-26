@@ -4,7 +4,6 @@ Default Strategy
 
 import hashlib
 import json
-import re
 import sys
 
 from lxml.etree import XPath
@@ -57,31 +56,23 @@ class DefaultStrategy:
 
             return used_levels
 
-    def get_selectors_set_key(self, url):
-        selectors_key = "default"
-
-        if url is not None:
-            for start_url in self.config.start_urls:
-                if re.search(start_url["compiled_url"], url) is not None:
-                    selectors_key = start_url["selectors_key"]
-                    break
-
-        return selectors_key
-
-    def get_selectors_set(self, url):
-        selectors_key = self.get_selectors_set_key(url)
-
-        if selectors_key not in self.config.selectors:
-            return self.config.selectors["default"]
-
-        return self.config.selectors[selectors_key]
-
     def to_json(self, my_json):
         try:
             jsonized = json.loads(my_json)
         except ValueError:
             return None
         return jsonized
+
+    def _generate_empty_hierarchy(self):
+        return {
+            "lvl0": None,
+            "lvl1": None,
+            "lvl2": None,
+            "lvl3": None,
+            "lvl4": None,
+            "lvl5": None,
+            "lvl6": None,
+        }
 
     def get_records_from_dom(self, current_page_url=None):
         if self.dom is None:
@@ -90,7 +81,7 @@ class DefaultStrategy:
         # Reset it to be able to have a clean instance when testing
         self.global_content = {}
 
-        selectors = self.get_selectors_set(current_page_url)
+        selectors = self.config.selectors["default"]
         levels = self._get_used_levels(selectors)
 
         # We get a big selector that matches all relevant nodes, in order

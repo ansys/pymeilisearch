@@ -1,60 +1,39 @@
-class Anchor:
+class ElementAnchor:
     def __init__(self):
         pass
 
-    @staticmethod
-    def _get_anchor_string_from_element(element):
-        return element.get("name", element.get("id"))
+    def get_anchor_string(element):
+        """Return the anchor string from the given element."""
+        return element.get("name") or element.get("id")
 
-    @staticmethod
-    def get_anchor(element):
-        """
-        Return a possible anchor for that element.
-        Looks for name and id, and if not found will look in children
-        """
+    def get_anchor(cls, element):
+        """Return the first possible anchor for the given element."""
         if isinstance(element, str):
             return None
 
         # Check the name or id on the element
-        anchor = Anchor._get_anchor_string_from_element(element)
+        anchor = cls.get_anchor_string(element)
 
-        if anchor is not None and anchor != "":
+        if anchor:
             return anchor
 
-        # Check on child
+        # Check on children
         children = element.cssselect("[name],[id]")
-        if len(children) > 0:
-            return Anchor._get_anchor_string_from_element(children[-1])
+        if children:
+            return cls.get_anchor_string(children[-1])
 
-        el = element
+        # Check previous siblings
+        for sibling in element.iterprevious():
+            anchor = cls.get_anchor_string(sibling)
+            if anchor:
+                return anchor
 
-        while el is not None:
-            # go back
-            while el.getprevious() is not None:
-                el = el.getprevious()
+        # Check parent
+        parent = element.getparent()
+        if parent is not None:
+            anchor = cls.get_anchor_string(parent)
+            if anchor:
+                return anchor
 
-                if el is not None:
-                    anchor = Anchor._get_anchor_string_from_element(el)
-
-                    if anchor is not None:
-                        return anchor
-
-            # check last previous
-            if el is not None:
-                anchor = Anchor._get_anchor_string_from_element(el)
-
-                if anchor is not None:
-                    return anchor
-
-            # go up
-            el = el.getparent()
-
-            if el is not None:
-                anchor = Anchor._get_anchor_string_from_element(el)
-
-                # check parent
-                if anchor is not None:
-                    return anchor
-
-        # No more parent, we have no anchor
+        # No anchor found
         return None

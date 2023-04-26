@@ -32,14 +32,3 @@ class Hierarchy:
             hierarchy_radio[level] = None
 
         return hierarchy_radio
-
-    def _generate_empty_hierarchy():
-        return {
-            "lvl0": None,
-            "lvl1": None,
-            "lvl2": None,
-            "lvl3": None,
-            "lvl4": None,
-            "lvl5": None,
-            "lvl6": None,
-        }
