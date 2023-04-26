@@ -11,7 +11,6 @@ from lxml.etree import XPath
 
 from .anchor import Anchor
 from .converter import Hierarchy
-from .url_parser import UrlsParser
 
 
 class DefaultStrategy:
@@ -156,22 +155,13 @@ class DefaultStrategy:
                 "hierarchy": hierarchy,
                 "hierarchy_radio": Hierarchy.get_hierarchy_radio(hierarchy, current_level, levels),
                 "type": current_level,
-                "tags": UrlsParser.get_tags(current_page_url, self.config.start_urls),
                 "weight": {
-                    "page_rank": UrlsParser.get_page_rank(current_page_url, self.config.start_urls),
                     "level": self.get_level_weight(current_level),
                     "position": position,
                 },
                 "url": current_page_url,
                 "url_without_variables": current_page_url,
             }
-
-            extra_attributes = UrlsParser.get_extra_attributes(
-                current_page_url, self.config.start_urls
-            )
-
-            for key in list(extra_attributes.keys()):
-                record[key] = extra_attributes[key]
 
             record["hierarchy_camel"] = (record["hierarchy"],)
             record["hierarchy_radio_camel"] = record["hierarchy_radio"]
@@ -196,11 +186,6 @@ class DefaultStrategy:
 
             if current_page_url is not None:
                 # Add variables to the record
-                for attr, value, url_without_variables in UrlsParser.get_url_variables(
-                    current_page_url, self.config.start_urls
-                ):
-                    record["url_without_variables"] = url_without_variables
-                    record[attr] = value
 
                 record["url_without_anchor"] = record["url"]
                 record["url"] = self._get_url_with_anchor(record["url"], record["anchor"])
