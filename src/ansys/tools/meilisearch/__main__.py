@@ -1,4 +1,4 @@
-"""Allows to execute ansys-templates as a Python module."""
+"""Allows to execute ansys-tools as a Python module."""
 
 from ansys.tools.meilisearch.cli import main
 
