@@ -35,7 +35,12 @@ def upload():
     pass
 
 
-@upload.from_html()
+@upload.group()
 def from_html():
-    """upload from html."""
-    scrape_page("from-html")
+    """Upload from HTML using the specified template."""
+    pass
+
+
+@from_html.command()
+def sphinx():
+    scrap_local("sphinx-pydata")
