@@ -36,11 +36,45 @@ def upload():
 
 
 @upload.group()
-def from_html():
+def html():
     """Upload from HTML using the specified template."""
     pass
 
 
-@from_html.command()
-def sphinx():
-    scrap_local("sphinx-pydata")
+@html.command()
+@click.option("--template", default="sphinx-pydata", help="The template to use.")
+@click.option("--index", help="The index uid to use", required=True)
+@click.argument("path", type=click.Path(exists=True))
+def upload_html(template, index, path):
+    scrape_page(template, path)
+    print(f"HTML files at {path} uploaded to index {index} using template {template}.")
+
+
+@upload.group()
+def web():
+    """Upload from HTML using the specified template."""
+    pass
+
+
+@web.command()
+@click.option("--template", default="sphinx-pydata", help="The template to use.")
+@click.option("--index", help="The index uid to use", required=True)
+@click.argument("url")
+def upload_web(template, index, url):
+    scrape_page(template, url)
+    print(f"Web page at {url} uploaded to index {index} using template {template}.")
+
+
+@upload.group()
+def github():
+    """Upload from GitHub using the specified template."""
+    pass
+
+
+@github.command()
+@click.option("--template", default="sphinx-pydata", help="The template to use.")
+@click.option("--index", help="The index uid to use", required=True)
+@click.argument("repo")
+def upload_github(template, index, repo):
+    scrape_page(template, repo)
+    print(f"GitHub repository {repo} uploaded to index {index} using template {template}.")
