@@ -1,3 +1,4 @@
+"""Allows the cli module for ansys-meilisearch"""
 import click
 
 from ansys.tools.meilisearch import __version__
