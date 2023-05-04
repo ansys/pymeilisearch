@@ -10,17 +10,19 @@ def main():
 
 
 @main.command()
-@click.option('--template', required=True, help='Name of the template to use.')
-@click.option('--index', required=True, help='Name of the meilisearch index used to identify the content.')
-@click.argument('source', type=click.Choice(['html', 'url']))
-@click.argument('location')
+@click.option("--template", required=True, help="Name of the template to use.")
+@click.option(
+    "--index", required=True, help="Name of the meilisearch index used to identify the content."
+)
+@click.argument("source", type=click.Choice(["html", "url"]))
+@click.argument("location")
 def upload(template, index, source, location):
     """Upload files or a website using the specified template and index."""
 
-    if source == 'html':
+    if source == "html":
         raise NotImplementedError("The {source} argument is not implemented yet.")
 
-    elif source == 'url':
+    elif source == "url":
         raise NotImplementedError("The {source} argument is not implemented yet.")
 
     else:
@@ -31,4 +33,3 @@ def upload(template, index, source, location):
 def version():
     """Display current version."""
     print(f"ansys-tools-meilisearch {__version__}")
-
