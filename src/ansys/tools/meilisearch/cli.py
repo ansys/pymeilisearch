@@ -24,57 +24,26 @@ def main():
 
 
 @main.command()
+@click.option('--template', required=True, help='Name of the template to use.')
+@click.option('--index', required=True, help='Name of the meilisearch index used to identify the content.')
+@click.argument('source', type=click.Choice(['html', 'url']))
+@click.argument('location')
+def upload(template, index, source, location):
+    """Upload files or a website using the specified template and index."""
+    if source == 'html':
+        click.echo(f"Uploading HTML files using template '{template}' and index '{index}':")
+        click.echo(f"- Location: {location}")
+        # Add your upload code for HTML files here.
+    elif source == 'url':
+        click.echo(f"Uploading website using template '{template}' and index '{index}':")
+        click.echo(f"- URL: {location}")
+        # Add your upload code for websites here.
+    else:
+        click.echo(f"Invalid source: {source}. Must be 'html' or 'url'.")
+
+
+@main.command()
 def version():
     """Display current version."""
     print(f"ansys-tools-meilisearch {__version__}")
 
-
-@main.group()
-def upload():
-    """Create a new project from desired template."""
-    pass
-
-
-@upload.group()
-def html():
-    """Upload from HTML using the specified template."""
-    pass
-
-
-@html.command()
-@click.option("--template", default="sphinx-pydata", help="The template to use.")
-@click.option("--index", help="The index uid to use", required=True)
-@click.argument("path", type=click.Path(exists=True))
-def upload_html(template, index, path):
-    # scrape_page(template, path)
-    print(f"HTML files at {path} uploaded to index {index} using template {template}.")
-
-
-@upload.group()
-def web():
-    """Upload from web using the specified template."""
-    pass
-
-
-@web.command()
-@click.option("--template", default="sphinx-pydata", help="The template to use.")
-@click.option("--index", help="The index uid to use", required=True)
-@click.argument("url")
-def upload_web(template, index, url):
-    # scrape_page(template, url)
-    print(f"Web page at {url} uploaded to index {index} using template {template}.")
-
-
-@upload.group()
-def github():
-    """Upload from GitHub using the specified template."""
-    pass
-
-
-@github.command()
-@click.option("--template", default="sphinx-pydata", help="The template to use.")
-@click.option("--index", help="The index uid to use", required=True)
-@click.argument("repo")
-def upload_github(template, index, repo):
-    # scrape_page(template, repo)
-    print(f"GitHub repository {repo} uploaded to index {index} using template {template}.")
