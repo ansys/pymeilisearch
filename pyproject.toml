@@ -52,7 +52,7 @@ doc = [
 name = "ansys.tools.meilisearch"
 
 [project.scripts]
-ansys-meilisearch = "ansys.tools.meilisearch.cli:main"
+pymeilisearch = "ansys.tools.meilisearch.cli:main"
 
 [project.urls]
 Source = "https://github.com/ansys/ansys-tools-meilisearch"
