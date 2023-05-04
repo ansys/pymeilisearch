@@ -29,6 +29,7 @@ dependencies = [
     "jinja2 >=3.1.2",
     "meilisearch >=0.24.0",
     "click>=8",
+    "scraper @ git+https://github.com/ansys-internal/docs-scraper",
 ]
 
 [project.optional-dependencies]
