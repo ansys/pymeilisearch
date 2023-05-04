@@ -2,6 +2,7 @@
 import click
 
 from ansys.tools.meilisearch import __version__
+from ansys.tools.meilisearch.create_indexes import scrap_web_page
 
 
 @click.group()
@@ -21,7 +22,7 @@ def upload(template, index, source, location):
     """Upload files or a website using the specified template and index."""
 
     if source == "html":
-        raise NotImplementedError("The {source} argument is not implemented yet.")
+        scrap_web_page(index, location, template)
 
     elif source == "url":
         raise NotImplementedError("The {source} argument is not implemented yet.")
