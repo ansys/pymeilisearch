@@ -22,10 +22,10 @@ def upload(template, index, source, location):
     """Upload files or a website using the specified template and index."""
 
     if source == "html":
-        scrap_web_page(index, location, template)
+        raise NotImplementedError("The {source} argument is not implemented yet.")
 
     elif source == "url":
-        raise NotImplementedError("The {source} argument is not implemented yet.")
+        scrap_web_page(index, location, template)
 
     else:
         click.echo(f"Invalid source: {source}. Must be 'html' or 'url'.")
