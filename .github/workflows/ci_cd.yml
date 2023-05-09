@@ -9,10 +9,10 @@ on:
 
 env:
   MAIN_PYTHON_VERSION: '3.10'
-  DOCUMENTATION_CNAME: 'tools.docs.pyansys.com'
-  LIBRARY_NAME: 'ansys-tools-meilisearch'
+  DOCUMENTATION_CNAME: 'pymeilisearch.ansys.com'
+  LIBRARY_NAME: 'pymeilisearch'
   LIBRARY_NAMESPACE: 'ansys.tools.meilisearch'
-  PACKAGE_NAME: 'ansys-tools-meilisearch'
+  PACKAGE_NAME: 'pymeilisearch'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
