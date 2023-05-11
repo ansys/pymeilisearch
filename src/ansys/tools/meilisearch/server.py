@@ -1,18 +1,23 @@
 import http.server
+import os
 import socketserver
 
-from ansys.tools.meilisearch.create_indexes import scrap_web_page
 
-
-def local_host_scraping(index_uid, templates, directory=None):
+def local_host_scraping(index_uid, templates, directory=None, port=8000):
     if directory is None:
-        # Use the current working directory
         directory = ""
 
-    PORT = 8000
     Handler = http.server.SimpleHTTPRequestHandler
-    with socketserver.TCPServer(("", PORT), Handler) as httpd:
-        print(f"Serving at port {PORT} from {directory}")
-        httpd.serve_forever()
+    try:
+        os.chdir(directory)
+        with socketserver.TCPServer(("", port), Handler) as httpd:
+            print(f"Serving directory {directory} at port {port}")
+            httpd.serve_forever()
 
-    scrap_web_page(index_uid, "http://localhost:8000/", templates)
+            print("server stated")
+
+            # Scrape the web page
+            # scrap_web_page(index_uid, f"http://localhost:{port}", templates)
+
+    except Exception as e:
+        print(f"Error serving directory: {e}")
