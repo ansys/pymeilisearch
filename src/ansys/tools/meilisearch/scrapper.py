@@ -115,7 +115,7 @@ class WebScraper(BaseClient):
         RuntimeError
             If the URL returns a non-200 status code.
         """
-        if not url.startswith("https://") and not url.startswith("http://"):
+        if not (url.startswith("https://") or url.startswith("http://")):
             raise ValueError(
                 "\n\nURLs are expected to start with https://" f'\n\n    Instead, got "{url}"'
             )
