@@ -111,17 +111,17 @@ class WebScraper(BaseClient):
         Raises
         ------
         ValueError
-            If the URL does not start with 'https://'.
+            If the URL does not start with 'https://' or 'http://'.
         RuntimeError
             If the URL returns a non-200 status code.
         """
-        if not url.startswith("https://") or not url.startswith("http://"):
+        if not url.startswith("https://") and not url.startswith("http://"):
             raise ValueError(
                 "\n\nURLs are expected to start with https://" f'\n\n    Instead, got "{url}"'
             )
         response = requests.get(url)
         if response.status_code != 200:
-            raise RuntimeError(f'Url "{url}" returned status code {response.status_code}')
+            raise RuntimeError(f'URL "{url}" returned status code {response.status_code}')
 
     def scrape_url(self, url, index_uid, template=None, verbose=False, pyaedt=False):
         """For a single given URL, scrape it using the active Meilisearch host.

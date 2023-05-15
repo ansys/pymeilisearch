@@ -15,7 +15,7 @@ def test_check_url_starts_with_https(mock_get, scraper):
 def test_check_url_returns_non_200(mock_get, scraper):
     mock_get.return_value.status_code = 404
     with pytest.raises(RuntimeError):
-        scraper._check_url("https://dev.docs.pyansys.com/")
+        scraper._check_url("htt://dev.docs.pyansys.com/")
 
 
 def test_load_and_render_template(scraper):
