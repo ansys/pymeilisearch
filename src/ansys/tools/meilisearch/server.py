@@ -26,11 +26,15 @@ def _serve_website(directory, port):
 
 def _scrape_website(index_uid, templates, directory):
     urls = []
-    for dirs, files in os.walk(directory):
+    for root, dirs, files in os.walk(directory):
         for file in files:
             if file.endswith(".html"):
-                file_path = os.path.join(file)
-                urls.append(f"http://localhost:8000/{file_path}")
+                file_path = os.path.join(root, file)  # Use os.path.join() with root and file
+                relative_path = file_path.replace(directory, "")  # Remove the directory path
+                relative_path = relative_path.replace("\\", "/")  # Remove the directory path
+                # Append the relative path to the base URL
+                url = f"http://localhost:8001/doc/_build/html/{relative_path}"
+                urls.append(url)
 
     print(urls)
 
