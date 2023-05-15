@@ -8,14 +8,14 @@ from ansys.tools.meilisearch.templates.utils import get_template
 @mock.patch("requests.get")
 def test_check_url_starts_with_https(mock_get, scraper):
     with pytest.raises(ValueError):
-        scraper._check_url("http://dev.docs.pyansys.com/")
+        scraper._check_url("htt://dev.docs.pyansys.com/")
 
 
 @mock.patch("requests.get")
 def test_check_url_returns_non_200(mock_get, scraper):
     mock_get.return_value.status_code = 404
     with pytest.raises(RuntimeError):
-        scraper._check_url("htt://dev.docs.pyansys.com/")
+        scraper._check_url("https://some.example.com/")
 
 
 def test_load_and_render_template(scraper):
