@@ -3,7 +3,7 @@ import click
 
 from ansys.tools.meilisearch import __version__
 from ansys.tools.meilisearch.create_indexes import scrap_web_page
-from ansys.tools.meilisearch.server import _scrape_website
+from ansys.tools.meilisearch.server import local_host_scraping
 
 
 @click.group()
@@ -20,11 +20,11 @@ def main():
 @click.option("--port", required=False, help="The port in which local host has to connect.")
 @click.argument("source", type=click.Choice(["html", "url"]))
 @click.argument("location")
-def upload(template, index, source, location, port=8000):
+def upload(template, index, source, location, port=8001):
     """Upload files or a website using the specified template and index."""
 
     if source == "html":
-        _scrape_website(index, template, location)
+        local_host_scraping(index, template, location, port=8001)
 
     elif source == "url":
         scrap_web_page(index, location, template)

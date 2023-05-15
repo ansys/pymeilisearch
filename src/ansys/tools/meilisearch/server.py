@@ -8,23 +8,20 @@ from ansys.tools.meilisearch.create_indexes import scrap_web_page
 
 
 def _serve_website(directory, port):
-    class Handler(http.server.SimpleHTTPRequestHandler):
-        def __init__(self, *args, **kwargs):
-            super().__init__(*args, directory=directory, **kwargs)
+    Handler = http.server.SimpleHTTPRequestHandler
 
     try:
+        os.chdir(directory)
         # Create an HTTP server
         httpd = socketserver.TCPServer(("", port), Handler)
         print(f"Serving directory {directory} at http://localhost:{port}")
-
     except Exception as e:
         print(f"Error serving directory: {e}")
-
     webbrowser.open(f"http://localhost:{port}/")
     httpd.serve_forever()
 
 
-def _scrape_website(index_uid, templates, directory):
+def _scrape_website(index_uid, templates, directory, port):
     urls = []
     for root, dirs, files in os.walk(directory):
         for file in files:
@@ -33,7 +30,7 @@ def _scrape_website(index_uid, templates, directory):
                 relative_path = file_path.replace(directory, "")  # Remove the directory path
                 relative_path = relative_path.replace("\\", "/")  # Remove the directory path
                 # Append the relative path to the base URL
-                url = f"http://localhost:8001/doc/_build/html/{relative_path}"
+                url = f"http://localhost:{port}/{relative_path}"
                 urls.append(url)
 
     print(urls)
@@ -41,24 +38,22 @@ def _scrape_website(index_uid, templates, directory):
     scrap_web_page(index_uid, urls, templates)
 
 
-def local_host_scraping(index_uid, templates, directory=None, port=8000):
+def local_host_scraping(index_uid, templates, directory=None, port=8001):
     if directory is None:
         directory = ""
 
-    with threading.Thread(
-        target=_serve_website, args=(directory, port)
-    ) as website_thread, threading.Thread(
-        target=_scrape_website, args=(index_uid, templates, directory)
-    ) as scrape_thread:
-        website_thread.start()
-        scrape_thread.start()
+        # Start serving the website in a separate thread
+    website_thread = threading.Thread(target=_serve_website, args=(directory, port))
+    website_thread.start()
 
-        try:
-            scrape_thread.join()
-        except Exception as e:
-            print("Error occurred while scraping the website:", str(e))
-        finally:
-            website_thread.join(timeout=5)
-            if website_thread.is_alive():
-                print("The website thread is still alive. Stopping the thread...")
-                website_thread._stop()
+    # Scrape the website in a separate thread
+    scrape_thread = threading.Thread(
+        target=_scrape_website, args=(index_uid, templates, directory, port)
+    )
+    scrape_thread.start()
+
+    # Wait for the scraping to complete
+    scrape_thread.join()
+
+    # Stop serving the website
+    website_thread.join()
