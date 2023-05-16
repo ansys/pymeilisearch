@@ -111,14 +111,12 @@ class WebScraper(BaseClient):
         Raises
         ------
         ValueError
-            If the URL does not start with 'https://' or 'http://'.
+            If the URL does not start with ``https://`` or ``http://``.
         RuntimeError
             If the URL returns a non-200 status code.
         """
-        if not (url.startswith("https://") or url.startswith("http://")):
-            raise ValueError(
-                "\n\nURLs are expected to start with https://" f'\n\n    Instead, got "{url}"'
-            )
+        if not url.startswith(("https://", "http://")):
+            raise ValueError(f"\n\nURLs are expected to start with https:// or http://\n\nInstead, got \"{url}\"")
         response = requests.get(url)
         if response.status_code != 200:
             raise RuntimeError(f'URL "{url}" returned status code {response.status_code}')
@@ -147,7 +145,6 @@ class WebScraper(BaseClient):
         # self._check_url(url)
         template = get_template(url, pyaedt) if template is None else template
         temp_config_file = self._load_and_render_template(url, template, index_uid)
-        print(temp_config_file)
         output = self._scrape_url_command(temp_config_file)
         n_hits = self._parse_output(output)
         if verbose:
