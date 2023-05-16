@@ -20,11 +20,11 @@ def main():
 @click.option("--port", required=False, help="The port in which local host has to connect.")
 @click.argument("source", type=click.Choice(["html", "url"]))
 @click.argument("location")
-def upload(template, index, source, location, port=8001):
+def upload(template, index, source, location, port=8000):
     """Upload files or a website using the specified template and index."""
 
     if source == "html":
-        local_host_scraping(index, template, location, port=8001)
+        local_host_scraping(index, template, location, port)
 
     elif source == "url":
         scrap_web_page(index, location, template)

@@ -102,7 +102,6 @@ def scrap_web_page(index_uid, url, templates, meilisearch_host_url=None, meilise
     document_utils = MeilisearchUtils(client)
     stats = client.client.get_all_stats()
     index_uids = list(stats["indexes"].keys())
-    print("scrapping")
     if not index_uid in index_uids:
         response = client.client.create_index(index_uid, {"primaryKey": "objectID"})
         document_utils._wait_task(response["taskUid"])
