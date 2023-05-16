@@ -116,7 +116,9 @@ class WebScraper(BaseClient):
             If the URL returns a non-200 status code.
         """
         if not url.startswith(("https://", "http://")):
-            raise ValueError(f"\n\nURLs are expected to start with https:// or http://\n\nInstead, got \"{url}\"")
+            raise ValueError(
+                f'\n\nURLs are expected to start with https:// or http://\n\nInstead, got "{url}"'
+            )
         response = requests.get(url)
         if response.status_code != 200:
             raise RuntimeError(f'URL "{url}" returned status code {response.status_code}')
