@@ -17,7 +17,9 @@ def main():
 @click.option(
     "--index", required=True, help="Name of the meilisearch index used to identify the content."
 )
-@click.option("--port", required=False, help="The port in which local host has to connect.")
+@click.option(
+    "--port", required=False, default=8000, help="The port in which local host has to connect."
+)
 @click.argument("source", type=click.Choice(["html", "url"]))
 @click.argument("location")
 def upload(template, index, source, location, port=8001):

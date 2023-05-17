@@ -75,7 +75,6 @@ def test_get_sphinx_urls(public_urls):
     [
         "https://dev.docs.pyansys.com",
         "https://docs.pyansys.com",
-        "https://actions.docs.pyansys.com",
         "https://seascape.docs.pyansys.com",
     ],
 )
