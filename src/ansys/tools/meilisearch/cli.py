@@ -1,4 +1,6 @@
 """Allows the cli module for ansys-meilisearch"""
+import pathlib
+
 import click
 
 from ansys.tools.meilisearch import __version__
@@ -22,11 +24,12 @@ def main():
 )
 @click.argument("source", type=click.Choice(["html", "url"]))
 @click.argument("location")
-def upload(template, index, source, location, port=8001):
+def upload(template, index, source, location, port):
     """Upload files or a website using the specified template and index."""
 
     if source == "html":
-        local_host_scraping(index, template, location, port=port)
+        location = pathlib.Path.cwd() / location
+        local_host_scraping(index, template, location, port)
 
     elif source == "url":
         scrap_web_page(index, location, template)

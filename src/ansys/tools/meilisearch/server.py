@@ -25,28 +25,16 @@ def _serve_website(directory, port):
 
 
 def _scrape_website(index_uid, templates, directory, port):
-    urls = []
-    for root, dirs, files in os.walk(directory):
-        for file in files:
-            if file.endswith(".html"):
-                file_path = os.path.join(root, file)  # Use os.path.join() with root and file
-                relative_path = file_path.replace(directory, "")  # Remove the directory path
-                relative_path = relative_path.replace("\\", "/")  # Remove the directory path
-                # Append the relative path to the base URL
-                url = f"http://localhost:{port}/{relative_path}"
-                urls.append(url)
+    base_url = f"http://localhost:{port}"
+    files = directory.rglob("*.html")
+    urls = [f"{base_url}/{str(file.relative_to(directory))}" for file in files]
 
     print(urls)
 
     scrap_web_page(index_uid, urls, templates)
 
 
-def local_host_scraping(index_uid, templates, directory=None, port=None):
-    if directory is None:
-        directory = ""
-
-    print("===============================", port)
-
+def local_host_scraping(index_uid, templates, directory, port):
     # Start serving the website in a separate thread
     website_thread = threading.Thread(target=_serve_website, args=(directory, port))
     website_thread.start()
