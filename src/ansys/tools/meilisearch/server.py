@@ -9,6 +9,7 @@ from ansys.tools.meilisearch.create_indexes import scrap_web_page
 
 def _serve_website(directory, port):
     Handler = http.server.SimpleHTTPRequestHandler
+    httpd = None  # Initialize httpd to None
 
     try:
         os.chdir(directory)
@@ -17,6 +18,8 @@ def _serve_website(directory, port):
         print(f"Serving directory {directory} at http://localhost:{port}")
     except Exception as e:
         print(f"Error serving directory: {e}")
+        return  # Exit the function if an exception occurs
+
     webbrowser.open(f"http://localhost:{port}/")
     httpd.serve_forever()
 
@@ -38,11 +41,13 @@ def _scrape_website(index_uid, templates, directory, port):
     scrap_web_page(index_uid, urls, templates)
 
 
-def local_host_scraping(index_uid, templates, directory=None, port=8001):
+def local_host_scraping(index_uid, templates, directory=None, port=None):
     if directory is None:
         directory = ""
 
-        # Start serving the website in a separate thread
+    print("===============================", port)
+
+    # Start serving the website in a separate thread
     website_thread = threading.Thread(target=_serve_website, args=(directory, port))
     website_thread.start()
 
