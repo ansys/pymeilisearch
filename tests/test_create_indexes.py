@@ -62,7 +62,6 @@ def public_urls():
     return {
         "pyansys/dev-guide ": "https://dev.docs.pyansys.com",
         "pyansys/pyansys": "https://docs.pyansys.com",
-        "pyansys/actions": "https://actions.docs.pyansys.com",
         "pyansys/pyseascape": "https://seascape.docs.pyansys.com",
     }
 
