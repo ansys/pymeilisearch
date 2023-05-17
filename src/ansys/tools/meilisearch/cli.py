@@ -1,4 +1,5 @@
 """Allows the cli module for ansys-meilisearch"""
+import os
 import pathlib
 
 import click
@@ -20,15 +21,20 @@ def main():
     "--index", required=True, help="Name of the meilisearch index used to identify the content."
 )
 @click.option(
+    "--cname", required=False, default="", help="The CNAME in which the documents are hosted"
+)
+@click.option(
     "--port", required=False, default=8000, help="The port in which local host has to connect."
 )
 @click.argument("source", type=click.Choice(["html", "url"]))
 @click.argument("location")
-def upload(template, index, source, location, port):
+def upload(template, index, source, location, cname, port):
     """Upload files or a website using the specified template and index."""
 
     if source == "html":
         location = pathlib.Path.cwd() / location
+        os.environ["DOCUMENTATION_CNAME"] = cname
+        os.environ["DOCUMENTATION_PORT"] = str(port)
         local_host_scraping(index, template, location, port)
 
     elif source == "url":
