@@ -115,13 +115,16 @@ class WebScraper(BaseClient):
         RuntimeError
             If the URL returns a non-200 status code.
         """
-        if not url.startswith(("https://", "http://")):
-            raise ValueError(
-                f'\n\nURLs are expected to start with https:// or http://\n\nInstead, got "{url}"'
-            )
-        response = requests.get(url)
-        if response.status_code != 200:
-            raise RuntimeError(f'URL "{url}" returned status code {response.status_code}')
+        if isinstance(url, str):
+            urls = [url]
+        for url in urls:
+            if not url.startswith(("https://", "http://")):
+                raise ValueError(
+                    f'URLs are expected to start with "https://" or "http://". Instead, got "{url}"'
+                )
+            response = requests.get(url)
+            if response.status_code != 200:
+                raise RuntimeError(f'URL "{url}" returned status code {response.status_code}')
 
     def scrape_url(self, url, index_uid, template=None, verbose=False, pyaedt=False):
         """For a single given URL, scrape it using the active Meilisearch host.

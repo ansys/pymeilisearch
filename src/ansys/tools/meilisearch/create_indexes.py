@@ -95,13 +95,28 @@ def create_sphinx_indexes(
 
 
 def scrap_web_page(index_uid, url, templates, meilisearch_host_url=None, meilisearch_api_key=None):
+    """
+    Scrapes a web page and indexes its content in MeiliSearch.
+
+    Parameters
+    ----------
+    index_uid : str
+        The index UID for MeiliSearch.
+    url : str
+        The URL of the web page to scrape.
+    templates : list
+        List of templates.
+    meilisearch_host_url : str, default : None
+        The URL to the MeiliSearch host.
+    meilisearch_api_key : str, default : None
+        The admin API key to the MeiliSearch host.
+    """
     client = MeilisearchClient(meilisearch_host_url, meilisearch_api_key)
     web_scraper = WebScraper(meilisearch_host_url, meilisearch_api_key)
-    print("inside scrapper")
     web_scraper.scrape_url(url, index_uid, templates)
     document_utils = MeilisearchUtils(client)
     stats = client.client.get_all_stats()
     index_uids = list(stats["indexes"].keys())
-    if not index_uid in index_uids:
+    if index_uid not in index_uids:
         response = client.client.create_index(index_uid, {"primaryKey": "objectID"})
         document_utils._wait_task(response["taskUid"])
