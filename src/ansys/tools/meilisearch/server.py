@@ -2,7 +2,6 @@ import http.server
 import os
 import socketserver
 import threading
-import webbrowser
 
 from ansys.tools.meilisearch.create_indexes import scrap_web_page
 
@@ -20,8 +19,7 @@ def _serve_website(directory, port):
         print(f"Error serving directory: {e}")
         return  # Exit the function if an exception occurs
 
-    webbrowser.open(f"http://localhost:{port}/")
-    httpd.serve_forever()
+    return httpd
 
 
 def _scrape_website(index_uid, templates, directory, port):
@@ -36,7 +34,8 @@ def _scrape_website(index_uid, templates, directory, port):
 
 def local_host_scraping(index_uid, templates, directory, port):
     # Start serving the website in a separate thread
-    website_thread = threading.Thread(target=_serve_website, args=(directory, port))
+    http = _serve_website(directory, port)
+    website_thread = threading.Thread(target=http.serve_forever)
     website_thread.start()
 
     # Scrape the website in a separate thread
@@ -49,4 +48,5 @@ def local_host_scraping(index_uid, templates, directory, port):
     scrape_thread.join()
 
     # Stop serving the website
+    http.shutdown()
     website_thread.join()
