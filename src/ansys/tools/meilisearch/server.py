@@ -25,7 +25,10 @@ def _serve_website(directory, port):
 def _scrape_website(index_uid, templates, directory, port):
     base_url = f"http://localhost:{port}"
     files = directory.rglob("*.html")
-    urls = [f"{base_url}/{str(file.relative_to(directory))}" for file in files]
+    urls = []
+    for file in files:
+        relative_path = str(file.relative_to(directory)).replace("\\", "/")
+        urls.append(f"{base_url}/{relative_path}")
 
     print(urls)
 
