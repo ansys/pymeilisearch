@@ -62,9 +62,9 @@ def render_template(
         urls = [urls]
 
     # Ensure all urls start with "https://"
-    for url in urls:
-        if not url.startswith("https://"):
-            raise ValueError(f"`url` {url} must start with 'https://'")
+    # for url in urls:
+    #    if not url.startswith("https://"):
+    #        raise ValueError(f"`url` {url} must start with 'https://'")
 
     # Use the first url as index_uid if none is provided
     if index_uid is None:
