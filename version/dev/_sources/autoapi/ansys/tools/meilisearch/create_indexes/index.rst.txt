@@ -1,0 +1,172 @@
+:py:mod:`ansys.tools.meilisearch.create_indexes`
+================================================
+
+.. py:module:: ansys.tools.meilisearch.create_indexes
+
+.. autoapi-nested-parse::
+
+   Create an index for each public github page for each repo in orgs using sphinx.
+
+   ..
+       !! processed by numpydoc !!
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   ansys.tools.meilisearch.create_indexes.get_public_urls
+   ansys.tools.meilisearch.create_indexes.get_sphinx_urls
+   ansys.tools.meilisearch.create_indexes.create_sphinx_indexes
+   ansys.tools.meilisearch.create_indexes.scrap_web_page
+
+
+
+.. py:function:: get_public_urls(orgs)
+
+   
+   Get all public gh_pages for each repo in orgs.
+
+
+
+   :Returns:
+
+       :class:`python:dict`
+           A dictionary where keys are repo names and values are URLs to their
+           public GitHub pages.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:function:: get_sphinx_urls(urls)
+
+   
+   Filter URLs that use Sphinx.
+
+
+   :Parameters:
+
+       **urls** : :class:`python:dict`
+           A dictionary where keys are repo names and values are URLs to their
+           public GitHub pages.
+
+   :Returns:
+
+       :class:`python:dict`
+           A dictionary where keys are repo names that use Sphinx and values are
+           their URLs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:function:: create_sphinx_indexes(sphinx_urls, meilisearch_host_url=None, meilisearch_api_key=None, is_pyaedt=False)
+
+   
+   Create an index for each public GitHub page that uses Sphinx.
+
+   The created ``index_uid`` will match ``<repo>-sphinx-docs`` with a ``'-'``
+   instead of a ``'/'`` within the repository name. For example:
+
+   The repository ``pyansys/pymapdl`` will be ``pyansys-pymapdl-sphinx-docs``.
+
+   Index UID will also be lowercased.
+
+   :Parameters:
+
+       **sphinx_urls** : :class:`python:dict`
+           A dictionary where keys are repo names that use Sphinx and values are
+           their URLs.
+
+       **meilisearch_host_url** : :class:`python:str`, :obj:`optional`
+           Meilisearch host URL, by default None.
+
+       **meilisearch_api_key** : :class:`python:str`, :obj:`optional`
+           Meilisearch API key, by default None.
+
+
+
+
+
+
+
+
+
+   .. rubric:: Notes
+
+   Requires ``GH_PUBLIC_TOKEN`` to be a GitHub token with public access.
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:function:: scrap_web_page(index_uid, url, templates, meilisearch_host_url=None, meilisearch_api_key=None)
+
+   
+   Scrapes a web page and indexes its content in MeiliSearch.
+
+
+   :Parameters:
+
+       **index_uid** : :class:`python:str`
+           The index UID for MeiliSearch.
+
+       **url** : :class:`python:str`
+           The URL of the web page to scrape.
+
+       **templates** : :class:`python:list`
+           List of templates.
+
+       **meilisearch_host_url** : :class:`python:str`, :obj:`default` : :data:`python:None`
+           The URL to the MeiliSearch host.
+
+       **meilisearch_api_key** : :class:`python:str`, :obj:`default` : :data:`python:None`
+           The admin API key to the MeiliSearch host.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+

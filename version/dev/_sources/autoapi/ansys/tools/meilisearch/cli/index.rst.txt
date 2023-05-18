@@ -1,0 +1,97 @@
+:py:mod:`ansys.tools.meilisearch.cli`
+=====================================
+
+.. py:module:: ansys.tools.meilisearch.cli
+
+.. autoapi-nested-parse::
+
+   Allows the cli module for ansys-meilisearch
+
+   ..
+       !! processed by numpydoc !!
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   ansys.tools.meilisearch.cli.main
+   ansys.tools.meilisearch.cli.upload
+   ansys.tools.meilisearch.cli.version
+
+
+
+.. py:function:: main()
+
+   
+   Ansys tool for scraping docs to meilisearch.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:function:: upload(template, index, source, location, cname, port)
+
+   
+   Upload files or a website using the specified template and index.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:function:: version()
+
+   
+   Display current version.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+

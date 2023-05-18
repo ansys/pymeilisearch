@@ -1,0 +1,90 @@
+:py:mod:`ansys.tools.meilisearch.utils`
+=======================================
+
+.. py:module:: ansys.tools.meilisearch.utils
+
+.. autoapi-nested-parse::
+
+   Provides the ``MeilisearchUtils`` class module.
+
+   ..
+       !! processed by numpydoc !!
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   ansys.tools.meilisearch.utils.MeilisearchUtils
+
+
+
+
+.. py:class:: MeilisearchUtils(meilisearch_client: ansys.tools.meilisearch.client.MeilisearchClient)
+
+   A collection of utility functions for working with MeiliSearch.
+
+
+   The meilisearch client initilaise.
+
+
+   :Parameters:
+
+       **meilisearch_client** : :obj:`MeilisearchClient`
+           Meilisearch client.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:method:: fetch_all_documents(source_index_uid: str, limit: int = 20) -> List[dict]
+
+      
+      Fetch all documents from the source index and return them as a list.
+
+
+      :Parameters:
+
+          **source_index_uid** : :class:`python:str`
+              The index ID of document to fetch.
+
+          **limit** : :class:`python:int`
+              The limit of document in single offset.
+
+      :Returns:
+
+          **document** : :class:`python:list`
+              All the documents fetch from the source document.
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+

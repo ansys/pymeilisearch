@@ -1,0 +1,121 @@
+:py:mod:`ansys.tools.meilisearch.templates`
+===========================================
+
+.. py:module:: ansys.tools.meilisearch.templates
+
+.. autoapi-nested-parse::
+
+   
+   Provides the templates to the urls.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   utils/index.rst
+
+
+Package Contents
+----------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   ansys.tools.meilisearch.templates.render_template
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   ansys.tools.meilisearch.templates.DEFAULT_TEMPLATE
+   ansys.tools.meilisearch.templates.SPHINX_PYDATA_TEMPLATE
+   ansys.tools.meilisearch.templates.SPHINX_PYAEDT_TEMPLATE
+
+
+.. py:data:: DEFAULT_TEMPLATE
+
+   
+
+.. py:data:: SPHINX_PYDATA_TEMPLATE
+
+   
+
+.. py:data:: SPHINX_PYAEDT_TEMPLATE
+
+   
+
+.. py:function:: render_template(template: str, urls: Union[str, list[str]], path_out: str, index_uid: str = None) -> str
+
+   
+   Render a docsearch sphinx template for a given URL.
+
+   The index_uid will be the url without https:://
+
+   :Parameters:
+
+       **template** : :class:`python:str`
+           Name of the template to use. Must be a JSON file located in the same directory as this script.
+
+       **urls** : :class:`python:str` or :class:`python:list` :obj:`of` :class:`python:str`
+           URL(s) to crawl. Must start with "https://".
+
+       **path_out** : :class:`python:str`
+           Path to write the rendered template to.
+
+       **index_uid** : :class:`python:str`, default: :obj:`The` :obj:`index` :obj:`uid` :obj:`of` :obj:`first` :obj:`url` :obj:`in` :class:`python:list`
+           Custom index uid to use.
+
+   :Returns:
+
+       :class:`python:str`
+           The index_uid used.
+
+
+
+
+   :Raises:
+
+       :obj:`FileNotFoundError`
+           If the template file cannot be found.
+
+       :obj:`ValueError`
+           If any of the URLs do not start with "https://".
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+

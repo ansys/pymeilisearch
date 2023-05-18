@@ -1,0 +1,225 @@
+:py:mod:`ansys.tools.meilisearch.server`
+========================================
+
+.. py:module:: ansys.tools.meilisearch.server
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   ansys.tools.meilisearch.server.WebsiteServer
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   ansys.tools.meilisearch.server.scrape_website
+   ansys.tools.meilisearch.server.local_host_scraping
+
+
+
+.. py:class:: WebsiteServer(directory, port)
+
+   Website server that serves the specified directory on the given port.
+
+
+   Initialize the WebsiteServer.
+
+
+   :Parameters:
+
+       **directory** : :class:`python:str`
+           The directory to serve.
+
+       **port** : :class:`python:int`
+           The port number to listen on.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:method:: serve_website()
+
+      
+      Start serving the website.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: stop_serving()
+
+      
+      Stop serving the website.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: start_serving()
+
+      
+      Start serving the website in a separate thread.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: join()
+
+      
+      Wait for the server thread to complete.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:function:: scrape_website(index_uid, templates, directory, port)
+
+   
+   Scrape the website by collecting the URLs of HTML files in the specified directory.
+
+
+   :Parameters:
+
+       **index_uid** : :class:`python:str`
+           The index UID for MeiliSearch.
+
+       **templates** : :class:`python:list`
+           List of templates.
+
+       **directory** : :class:`python:str`
+           The directory containing the website.
+
+       **port** : :class:`python:int`
+           The port number the website is served on.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:function:: local_host_scraping(index_uid, templates, directory, port)
+
+   
+   Perform local host scraping by serving the directory and scraping its content.
+
+
+   :Parameters:
+
+       **index_uid** : :class:`python:str`
+           The index UID for MeiliSearch.
+
+       **templates** : :class:`python:list`
+           List of templates.
+
+       **directory** : :class:`python:str`
+           The directory to serve and scrape.
+
+       **port** : :class:`python:int`
+           The port number to listen on.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
