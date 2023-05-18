@@ -1,5 +1,6 @@
 """Sphinx documentation configuration file."""
 from datetime import datetime
+import os
 
 from ansys_sphinx_theme import pyansys_logo_black as logo
 
@@ -26,9 +27,10 @@ html_theme_options = {
 
 # Sphinx extensions
 extensions = [
-    "autoapi.extension",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
+    "sphinx_design",
+    "sphinx_jinja",
     "numpydoc",
     "sphinx.ext.intersphinx",
     "sphinx_copybutton",
@@ -88,17 +90,35 @@ source_suffix = {
 # The master toctree document.
 master_doc = "index"
 
-# Configuration for Sphinx autoapi
-autoapi_type = "python"
-autoapi_dirs = ["../../src/ansys"]
-autoapi_options = [
-    "members",
-    "undoc-members",
-    "show-inheritance",
-    "show-module-summary",
-]
-autoapi_template_dir = "_autoapi_templates"
-suppress_warnings = ["autoapi"]
+# Excluded documentation files
 exclude_patterns = ["_autoapi_templates/index.rst"]
-autoapi_python_use_implicit_namespaces = True
-autoapi_python_class_content = "both"
+
+# -- Configure Sphinx autoapi ------------------------------------------------
+BUILD_API = True if os.environ.get("BUILD_API", "false") == "true" else False
+if BUILD_API:
+    extensions.append("autoapi.extension")
+    autoapi_type = "python"
+    autoapi_dirs = ["../../src/ansys"]
+    autoapi_options = [
+        "members",
+        "undoc-members",
+        "show-inheritance",
+        "show-module-summary",
+    ]
+    autoapi_template_dir = "_autoapi_templates"
+    suppress_warnings = ["autoapi"]
+    autoapi_python_use_implicit_namespaces = True
+    autoapi_python_class_content = "both"
+
+# -- Configure the examples
+BUILD_EXAMPLES = True if os.environ.get("BUILD_EXAMPLES", "false") == "true" else False
+if not BUILD_EXAMPLES:
+    exclude_patterns.append("examples.rst")
+
+# -- Declare the Jinja context -----------------------------------------------
+jinja_contexts = {
+    "main_toctree": {
+        "build_api": BUILD_API,
+        "build_examples": BUILD_EXAMPLES,
+    },
+}
