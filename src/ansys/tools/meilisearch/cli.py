@@ -1,4 +1,4 @@
-"""Allows the cli module for ansys-meilisearch"""
+"""Allows the CLI module for pymeilisearch"""
 import os
 import pathlib
 
@@ -34,13 +34,23 @@ def main():
 @click.option(
     "--orgs",
     required=False,
-    default="",
-    help="The GitHub organization from which public URLs are scraped.",
+    default=[],
+    help="The GitHub organizations from which public URLs are scraped.",
+    multiple=True,
 )
 @click.argument("source", type=click.Choice(["html", "url", "github"]))
 @click.argument("location")
 def upload(template, index, source, location, cname, port, orgs):
-    """Upload files or a website using the specified template and index."""
+    """Upload files or a website using the specified template and index.
+
+    Notes
+    -----
+    Make sure to set the following environment variables:
+
+    - MEILISEARCH_HOST_URL: MeiliSearch hosted URL
+    - MEILISEARCH_API_KEY: MeiliSearch API key
+    - GH_PUBLIC_TOKEN: GitHub token for the organization (if running in a GitHub CI environment)
+    """
 
     if source == "html":
         location = pathlib.Path.cwd() / location
@@ -67,3 +77,7 @@ def upload(template, index, source, location, cname, port, orgs):
 def version():
     """Display current version."""
     print(f"ansys-tools-meilisearch {__version__}")
+
+
+if __name__ == "__main__":
+    main()
