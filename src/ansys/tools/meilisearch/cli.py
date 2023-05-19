@@ -1,7 +1,12 @@
 """Allows the cli module for ansys-meilisearch"""
+import os
+import pathlib
+
 import click
 
 from ansys.tools.meilisearch import __version__
+from ansys.tools.meilisearch.create_indexes import scrap_web_page
+from ansys.tools.meilisearch.server import local_host_scraping
 
 
 @click.group()
@@ -15,16 +20,25 @@ def main():
 @click.option(
     "--index", required=True, help="Name of the meilisearch index used to identify the content."
 )
+@click.option(
+    "--cname", required=False, default="", help="The CNAME in which the documents are hosted"
+)
+@click.option(
+    "--port", required=False, default=8000, help="The port in which local host has to connect."
+)
 @click.argument("source", type=click.Choice(["html", "url"]))
 @click.argument("location")
-def upload(template, index, source, location):
+def upload(template, index, source, location, cname, port):
     """Upload files or a website using the specified template and index."""
 
     if source == "html":
-        raise NotImplementedError("The {source} argument is not implemented yet.")
+        location = pathlib.Path.cwd() / location
+        os.environ["DOCUMENTATION_CNAME"] = cname
+        os.environ["DOCUMENTATION_PORT"] = str(port)
+        local_host_scraping(index, template, location, port)
 
     elif source == "url":
-        raise NotImplementedError("The {source} argument is not implemented yet.")
+        scrap_web_page(index, location, template)
 
     else:
         click.echo(f"Invalid source: {source}. Must be 'html' or 'url'.")

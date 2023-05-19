@@ -1,12 +1,57 @@
-..
-   Just reuse the root readme to avoid duplicating the documentation.
-   Provide any documentation specific to your online documentation
-   here.
+pymeilisearch documentation |version|
+#####################################
 
-.. include:: ../../README.rst
+.. grid:: 2
 
-.. toctree::
-   :hidden:
-   :maxdepth: 3
+    .. grid-item-card:: Getting started :fa:`person-running`
+        :link: getting-started/index
+        :link-type: doc
 
-   autoapi/index
+        Step by step guidelines on how to set up your environment.
+
+    .. grid-item-card:: User guide :fa:`book-open-reader`
+        :link: user-guide/index
+        :link-type: doc
+
+        Learn about the capabilities, features, and key topics of the project.
+
+.. jinja:: main_toctree
+
+    {% if build_api or build_examples %}
+    .. grid:: 2
+
+       {% if build_api %}
+       .. grid-item-card:: API reference :fa:`book-bookmark`
+           :link: autoapi/index
+           :link-type: doc
+
+           A detailed guide describing the pymeilisearch API. This guide documents all the
+           methods and properties for each one of the interfaces, classes and
+           enumerations of each one of the modules in pymeilisearch.
+        {% endif %}
+
+       {% if build_examples %}
+       .. grid-item-card:: Gallery of examples :fa:`laptop-code`
+           :link: examples
+           :link-type: doc
+
+           Learn how to use pymeilisearch for creating your own indices with
+           custom templates from an online website or local HTML files.
+        {% endif %}
+    {% endif %}
+
+
+.. jinja:: main_toctree
+
+    .. toctree::
+       :hidden:
+       :maxdepth: 3
+
+       getting-started/index
+       user-guide/index
+       {% if build_examples %}
+       examples
+       {% endif %}
+       {% if build_api %}
+       autoapi/index
+       {% endif %}
