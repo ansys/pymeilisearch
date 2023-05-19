@@ -1,0 +1,43 @@
+        <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/docs-searchbar.js@latest/dist/cdn/docs-searchbar.min.css"
+      />
+    <h2 align="center">Example Search </h2>
+
+    <div class="container">
+
+      <div class="col-md-18">
+        <input type="search" placeholder="docs-searchbar input" class="form-control" id="q" autofocus />
+      </div>
+
+      <select id="indexUidSelector" style="margin-left: 20px;" class="index-select">
+        <option value="pyansys-docs-all-public">PyAnsys</option>
+        <option value="pyansys-docs-all-public-mod">PyAnsys-Testing</option>
+        <option value="pyaedt">PyAEDT</option>
+        <option value="pymapdl">PyMAPDL</option>
+        <option value="pyaedt-test">Test</option>
+      </select>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/docs-searchbar.js@2.4.1/dist/cdn/docs-searchbar.min.js"></script>
+
+    <script>
+      let theSearchBar = docsSearchBar({
+          hostUrl: 'https://search.pyansys.com',
+          apiKey: '628a168b60e36a6cf26d9ae2ba83ce99a98f6d11cf294f2708a1d1c2b805814f',
+          indexUid: 'pyansys-docs-all-public',
+          inputSelector: '#q',
+          debug: true, // Set debug to true if you want to inspect the dropdown
+          enhancedSearchInput: true,
+          enableDarkMode: 'auto'
+      })
+
+      // Add event listener to the select element
+      document.getElementById('indexUidSelector').addEventListener('change', function() {
+          theSearchBar.indexUid = this.value;
+          theSearchBar.inputSelector = '#docs-searchbar-suggestion';
+      });
+
+      document.getElementById('docs-searchbar-suggestion').focus();
+    </script>
