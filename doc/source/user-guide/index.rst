@@ -1,11 +1,11 @@
-User Guide
+User guide
 ==========
 
 Introduction
 ------------
 
 The `pymeilisearch` CLI tool is designed to help you scrape and upload documentation files or websites to MeiliSearch.
-This user guide will walk you through the steps of using the CLI tool effectively.
+This user guide includes the steps of using the CLI tool effectively.
 
 Installation
 ------------

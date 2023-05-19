@@ -1,4 +1,4 @@
-Search Engine Integration
+Search engine integration
 =========================
 
 The MeiliSearch backend can be easily integrated into any web page using a web component.
@@ -31,7 +31,7 @@ Follow the steps below to include the search bar in your webpage:
    - Replace `indexUid` with the desired index UID.
    - Modify other options (`debug`, `enhancedSearchInput`, `enableDarkMode`) as needed.
 
-Minimum Working Example
+Minimum working example
 -----------------------
 
 Here's a minimum working example of the search bar with default CSS styling, using the `pyansys-docs-all-public`
@@ -40,7 +40,7 @@ index and the public search engine key:
 .. literalinclude:: ../_static/simple.html
    :language: html
 
-Search Bar with Customized Styling
+Search bar with customized styling
 ----------------------------------
 
 If you want to use the customized search bar shown in the example, you can use the `search.html` 

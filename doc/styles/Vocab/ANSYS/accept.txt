@@ -1,3 +1,14 @@
 ANSYS
 Ansys
 ansys
+pymeilisearch
+apiKey
+indexUid
+hostUrl
+meilisearch
+MeiliSearch
+html
+url
+_static
+CLI
+URL

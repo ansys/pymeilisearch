@@ -2,26 +2,26 @@ Using pymeilisearch CLI utility
 ===============================
 
 To use the CLI tool, open your terminal or command prompt and run the `pymeilisearch` command,
-followed by the desired subcommand and options.
+followed by the desired sub-command and options.
 
 General Syntax:
 
 .. code-block:: console
 
-    $ pymeilisearch <subcommand> [options] [arguments]
+    $ pymeilisearch <sub-command> [options] [arguments]
 
-Available Subcommands
----------------------
+Available commands
+------------------
 
-The `pymeilisearch` CLI tool provides the following subcommands:
+The `pymeilisearch` CLI tool provides the following sub-commands:
 
 1. `upload`: Upload files or a website to MeiliSearch.
 2. `version`: Display the current version of the CLI tool.
 
-Subcommand: upload
-~~~~~~~~~~~~~~~~~~
+Command: upload
+~~~~~~~~~~~~~~~~~
 
-The `upload` subcommand allows you to upload files or a website to MeiliSearch.
+The `upload` sub-command allows you to upload files or a website to MeiliSearch.
 It supports different sources and options depending on your requirements.
 
 Syntax:
@@ -63,10 +63,10 @@ Examples:
 
       $ pymeilisearch upload --template my_template --index my_index github /path/to/files --orgs ansys --orgs pyansys
 
-Subcommand: version
-~~~~~~~~~~~~~~~~~~~
+Command: version
+~~~~~~~~~~~~~~~~~
 
-The `version` subcommand displays the current version of the `pymeilisearch` CLI tool.
+The `version` sub-command displays the current version of the `pymeilisearch` CLI tool.
 
 Syntax:
 
