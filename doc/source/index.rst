@@ -1,6 +1,26 @@
 pymeilisearch documentation |version|
 #####################################
 
+Welcome to the official documentation of ``pymeilisearch``.
+
+This project provides a simple command line interface (CLI) to create new
+indices in a `meilisearch <https://www.meilisearch.com/>`_ service.
+
+Although `meilisearch provides a Python API
+<https://github.com/meilisearch/meilisearch-python>`_, its capabilities are very
+limited. As opposite to this API, pymeilisearch offers the following features:
+
+- Pre-defined templates for popular documentation themes
+- Documentation scrapping of online websites
+- Documentation scrapping of local documentation
+
+
+.. raw:: html
+    :file: _static/search.html
+
+|
+|
+
 .. grid:: 2
 
     .. grid-item-card:: Getting started :fa:`person-running`
