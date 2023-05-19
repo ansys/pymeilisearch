@@ -99,7 +99,7 @@ class WebScraper(BaseClient):
             n_hits = 0
         return n_hits
 
-    def _check_url(self, url):
+    def _check_url(self, urls):
         """
         Check if the URL is valid and accessible.
 
@@ -115,8 +115,8 @@ class WebScraper(BaseClient):
         RuntimeError
             If the URL returns a non-200 status code.
         """
-        if isinstance(url, str):
-            urls = [url]
+        if isinstance(urls, str):
+            urls = [urls]
         for url in urls:
             if not url.startswith(("https://", "http://")):
                 raise ValueError(
@@ -147,7 +147,7 @@ class WebScraper(BaseClient):
         int
             The number of hits from the URL.
         """
-        # self._check_url(url)
+        self._check_url(url)
         template = get_template(url, pyaedt) if template is None else template
         temp_config_file = self._load_and_render_template(url, template, index_uid)
         output = self._scrape_url_command(temp_config_file)
