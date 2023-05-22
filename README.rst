@@ -10,12 +10,12 @@ ansys-tools-meilisearch
    :target: https://pypi.org/project/ansys-tools-meilisearch
    :alt: PyPI
 
-.. |codecov| image:: https://codecov.io/gh/ansys/ansys-tools-meilisearch/branch/main/graph/badge.svg
-   :target: https://codecov.io/gh/pyansys/ansys-tools-meilisearch
+.. |codecov| image:: https://codecov.io/gh/ansys-internal/pymeilisearch/branch/main/graph/badge.svg
+   :target: https://codecov.io/gh/pyansys-internal/pymeilisearch
    :alt: Codecov
 
-.. |GH-CI| image:: https://github.com/ansys/ansys-tools-meilisearch/actions/workflows/ci_cd.yml/badge.svg
-   :target: https://github.com/ansys/ansys-tools-meilisearch/actions/workflows/ci_cd.yml
+.. |GH-CI| image:: https://github.com/ansys-internal/pymeilisearch/actions/workflows/ci_cd.yml/badge.svg
+   :target: https://github.com/ansys-internal/pymeilisearch/actions/workflows/ci_cd.yml
    :alt: GH-CI
 
 .. |MIT| image:: https://img.shields.io/badge/License-MIT-yellow.svg
@@ -64,7 +64,7 @@ need to follow these steps:
 
    .. code:: bash
 
-      git clone https://github.com/ansys/ansys-tools-meilisearch
+      git clone https://github.com/ansys-internal/pymeilisearch
 
 #. Create a fresh-clean Python environment and activate it:
 
