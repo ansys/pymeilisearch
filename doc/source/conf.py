@@ -5,7 +5,7 @@ import os
 from ansys_sphinx_theme import pyansys_logo_black as logo
 
 # Project information
-project = "ansys-tools-meilisearch"
+project = "pymeilisearch"
 copyright = f"(c) {datetime.now().year} ANSYS, Inc. All rights reserved"
 author = "ANSYS, Inc."
 release = version = "0.1.dev0"
@@ -13,7 +13,7 @@ release = version = "0.1.dev0"
 # Select desired logo, theme, and declare the html title
 html_logo = logo
 html_theme = "ansys_sphinx_theme"
-html_short_title = html_title = "ansys-tools-meilisearch"
+html_short_title = html_title = "pymeilisearch"
 
 # specify the location of your github repo
 html_theme_options = {
