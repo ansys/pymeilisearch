@@ -28,9 +28,7 @@ def main():
 @click.option(
     "--cname", required=False, default="", help="The CNAME in which the documents are hosted."
 )
-@click.option(
-    "--port", required=False, default=8000, help="Port number for serving the pages."
-)
+@click.option("--port", required=False, default=8000, help="Port number for serving the pages.")
 @click.option(
     "--orgs",
     required=False,
