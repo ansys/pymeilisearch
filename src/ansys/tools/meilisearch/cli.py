@@ -29,7 +29,7 @@ def main():
     "--cname", required=False, default="", help="The CNAME in which the documents are hosted."
 )
 @click.option(
-    "--port", required=False, default=8000, help="The port in which the local host has to connect."
+    "--port", required=False, default=8000, help="Port number for serving the pages."
 )
 @click.option(
     "--orgs",
@@ -47,9 +47,9 @@ def upload(template, index, source, location, cname, port, orgs):
     -----
     Make sure to set the following environment variables:
 
-    - MEILISEARCH_HOST_URL: MeiliSearch hosted URL
-    - MEILISEARCH_API_KEY: MeiliSearch API key
-    - GH_PUBLIC_TOKEN: GitHub token for the organization (if running in a GitHub CI environment)
+    - ``MEILISEARCH_HOST_URL``: MeiliSearch hosted URL
+    - ``MEILISEARCH_API_KEY``: MeiliSearch API key
+    - ``GH_PUBLIC_TOKEN``: GitHub token for the organization (if running in a GitHub CI environment)
     """
 
     if source == "html":
