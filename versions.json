@@ -2,11 +2,6 @@
   {
     "name": "dev",
     "version": "dev",
-    "url": "https://tools.docs.pyansys.com/version/dev/"
+    "url": "https://pymeilisearch.docs.ansys.com/version/dev/"
   },
-  {
-    "name": "0.1 (stable)",
-    "version": "0.1",
-    "url": "https://tools.docs.pyansys.com/version/stable/"
-  }
 ]
