@@ -18,7 +18,7 @@ Follow the steps below to include the search bar in your webpage:
       let theSearchBar = docsSearchBar({
           hostUrl: 'https://backend.search.pyansys.com',
           apiKey: 'd5271738ba1a75af83748f615aca07f8a73fc353186ff04f28925104b6f49614',
-          indexUid: 'pyansys-docs-all-public',
+          indexUid: 'ansys-pyansys-sphinx-docs',
           inputSelector: '#q',
           debug: false,
           enhancedSearchInput: false,
