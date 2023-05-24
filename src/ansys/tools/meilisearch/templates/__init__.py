@@ -62,18 +62,29 @@ def render_template(
         urls = [urls]
 
     # Ensure all urls start with "https://"
-    # for url in urls:
-    #    if not url.startswith("https://"):
-    #        raise ValueError(f"`url` {url} must start with 'https://'")
+    for url in urls:
+        if not url.startswith("https://"):
+            raise ValueError(f"`url` {url} must start with 'https://'")
 
     # Use the first url as index_uid if none is provided
     if index_uid is None:
         index_uid = urls[0].replace("https://", "")
 
+    # Add stop_urls to the last start_url
+    last_start_url = urls[-1]
+    stop_urls = [
+        last_start_url.rstrip("/") + "/_sources",
+        last_start_url.rstrip("/") + "/_downloads",
+        last_start_url.rstrip("/") + "/_static",
+        last_start_url.rstrip("/") + "/_images",
+        last_start_url.rstrip("/") + "/.doctree",
+    ]
+
     start_url = json.dumps(urls)
+    stop_url = json.dumps(stop_urls)
 
     # Render the template
-    rendered_template = template.render(index_uid=index_uid, start_url=start_url)
+    rendered_template = template.render(index_uid=index_uid, start_url=start_url, stop_url=stop_url)
 
     # Write the rendered template to a file
     with open(path_out, "w") as f:

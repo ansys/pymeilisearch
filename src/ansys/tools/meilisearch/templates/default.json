@@ -15,5 +15,27 @@
       "lvl5": "h5",
       "lvl6": "h6",
       "text": "p"
-    }
+    },
+    "strip_chars": " .,;:#",
+    "scrap_start_urls": true,
+    "custom_settings": {
+        "searchableAttributes": [
+            "*"
+        ],
+        "synonyms": {
+            "relevancy": [
+                "relevant",
+                "relevance"
+            ],
+            "relevant": [
+                "relevancy",
+                "relevance"
+            ],
+            "relevance": [
+                "relevancy",
+                "relevant"
+            ]
+        }
+    },
+    "min_indexed_level": 2
   }
