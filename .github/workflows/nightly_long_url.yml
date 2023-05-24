@@ -30,10 +30,7 @@ jobs:
           path: docs-scraper
 
       - name: Install the documentation scrapper
-        run: pip install ./docs-scraper
-
-      - name: Install scraper requirements
-        run: pip install -r py/requirements.txt
+        run: pip install .
 
       - name: Upload non filtered docs to webapp service
         working-directory: script
