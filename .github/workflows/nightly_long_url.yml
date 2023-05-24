@@ -1,7 +1,6 @@
-name: Nightly deploy of documents
+name: Nightly deploy of huge documents
 
 on:
-  push:
   schedule:  
     - cron:  '0 0 * * *'
   workflow_dispatch:
@@ -32,7 +31,7 @@ jobs:
       - name: Install the documentation scrapper
         run: pip install .
 
-      - name: Upload non filtered docs to webapp service
+      - name: Upload pymapdl, pydpf and pyfluent docs
         working-directory: script
         run: python scrap_pyansys_docs.py create_long_urls
         env:
