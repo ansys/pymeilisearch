@@ -1,0 +1,45 @@
+name: Nightly deploy of documents
+
+on:
+  push:
+  schedule:  
+    - cron:  '0 0 * * *'
+  workflow_dispatch:
+
+
+env:
+  PIP_EXTRA_INDEX_URL: 'https://${{ secrets.PYANSYS_PYPI_PRIVATE_PAT }}@pkgs.dev.azure.com/pyansys/_packaging/pyansys/pypi/simple/'
+
+jobs:
+  nightly_build:
+    name: "Upload the docs"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Checkout tools repo
+        uses: actions/checkout@v3
+        with:
+          repository: ansys/docs-scraper
+          path: docs-scraper
+
+      - name: Install the documentation scrapper
+        run: pip install ./docs-scraper
+
+      - name: Install scraper requirements
+        run: pip install -r py/requirements.txt
+
+      - name: Upload non filtered docs to webapp service
+        working-directory: script
+        run: python scrap_pyansys_docs.py create_long_urls
+        env:
+          MEILISEARCH_HOST_URL: https://backend.search.pyansys.com/
+          MEILISEARCH_API_KEY: ${{ secrets.MEILISEARCH_API_KEY }}
+          GH_PUBLIC_TOKEN: ${{ secrets.GH_PUBLIC_TOKEN }}
+
