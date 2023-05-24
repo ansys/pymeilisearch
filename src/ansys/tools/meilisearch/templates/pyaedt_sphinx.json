@@ -1,7 +1,6 @@
 {
     "index_uid": "{{ index_uid }}",
-    "start_urls": ["https://aedt.docs.pyansys.com/version/stable/",
-        "https://aedt.docs.pyansys.com/version/dev/"],
+    "start_urls": {{ start_url|safe }},
     "stop_urls": ["/_sources", "/_downloads", "/_static", "/_images", "/.doctree",
         "https://aedt.docs.pyansys.com/version/stable/EDBAPI/",
         "https://aedt.docs.pyansys.com/version/dev/EDBAPI/"],
@@ -20,25 +19,5 @@
         "text": ".bd-content p, .bd-content li, .bd-content td"
     },
     "strip_chars": " .,;:#",
-    "scrap_start_urls": true,
-    "custom_settings": {
-        "searchableAttributes": [
-            "*"
-        ],
-        "synonyms": {
-            "relevancy": [
-                "relevant",
-                "relevance"
-            ],
-            "relevant": [
-                "relevancy",
-                "relevance"
-            ],
-            "relevance": [
-                "relevancy",
-                "relevant"
-            ]
-        }
-    },
     "min_indexed_level": 2
   }
