@@ -65,14 +65,10 @@ def render_template(
     if index_uid is None:
         index_uid = urls[0].replace("https://", "")
 
-    # Add stop_urls to the last start_url
-    last_start_url = urls[-1]
+    # Add stop_urls to the url
     stop_urls = [
-        last_start_url.rstrip("/") + "/_sources",
-        last_start_url.rstrip("/") + "/_downloads",
-        last_start_url.rstrip("/") + "/_static",
-        last_start_url.rstrip("/") + "/_images",
-        last_start_url.rstrip("/") + "/.doctree",
+        f"{urls[-1].rstrip('/')}/{segment}"
+        for segment in ["_sources", "_downloads", "_static", "_images", ".doctree"]
     ]
 
     start_url = json.dumps(urls)
