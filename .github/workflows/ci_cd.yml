@@ -51,6 +51,7 @@ jobs:
           python-version: '3.11'
       
       - name: Test the meilisearch container
+        working-directory: docker
         run: docker-compose up -d
 
       - name: Checkout tools repo
@@ -73,6 +74,7 @@ jobs:
          
       - name: Stop services
         if: always()
+        working-directory: docker
         run: docker-compose down
 
   doc-build:

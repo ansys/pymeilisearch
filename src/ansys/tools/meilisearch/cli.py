@@ -74,4 +74,4 @@ def upload(template, index, source, location, cname, port, orgs):
 @main.command()
 def version():
     """Display current version."""
-    print(f"ansys-tools-meilisearch {__version__}")
+    print(f"pymeilisearch {__version__}")
