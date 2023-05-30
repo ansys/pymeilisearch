@@ -1,21 +1,21 @@
-ansys-tools-meilisearch
+pymeilisearch
 =======================
 |python| |pypi| |GH-CI| |codecov| |MIT| |black|
 
-.. |python| image:: https://img.shields.io/pypi/pyversions/ansys-tools-meilisearch?logo=pypi
-   :target: https://pypi.org/project/ansys-tools-meilisearch/
+.. |python| image:: https://img.shields.io/pypi/pyversions/pymeilisearch?logo=pypi
+   :target: https://pypi.org/project/pymeilisearch/
    :alt: Python
 
-.. |pypi| image:: https://img.shields.io/pypi/v/ansys-tools-meilisearch.svg?logo=python&logoColor=white
-   :target: https://pypi.org/project/ansys-tools-meilisearch
+.. |pypi| image:: https://img.shields.io/pypi/v/pymeilisearch.svg?logo=python&logoColor=white
+   :target: https://pypi.org/project/pymeilisearch
    :alt: PyPI
 
-.. |codecov| image:: https://codecov.io/gh/ansys/ansys-tools-meilisearch/branch/main/graph/badge.svg
-   :target: https://codecov.io/gh/pyansys/ansys-tools-meilisearch
+.. |codecov| image:: https://codecov.io/gh/ansys-internal/pymeilisearch/branch/main/graph/badge.svg
+   :target: https://codecov.io/gh/pyansys-internal/pymeilisearch
    :alt: Codecov
 
-.. |GH-CI| image:: https://github.com/ansys/ansys-tools-meilisearch/actions/workflows/ci_cd.yml/badge.svg
-   :target: https://github.com/ansys/ansys-tools-meilisearch/actions/workflows/ci_cd.yml
+.. |GH-CI| image:: https://github.com/ansys-internal/pymeilisearch/actions/workflows/ci_cd.yml/badge.svg
+   :target: https://github.com/ansys-internal/pymeilisearch/actions/workflows/ci_cd.yml
    :alt: GH-CI
 
 .. |MIT| image:: https://img.shields.io/badge/License-MIT-yellow.svg
@@ -38,7 +38,7 @@ At least two installation modes are provided: user and developer.
 For users
 ^^^^^^^^^
 
-In order to install ansys-tools-meilisearch, make sure you
+In order to install pymeilisearch, make sure you
 have the latest version of `pip`_. To do so, run:
 
 .. code:: bash
@@ -49,12 +49,12 @@ Then, you can simply execute:
 
 .. code:: bash
 
-    python -m pip install ansys-tools-meilisearch
+    python -m pip install pymeilisearch
 
 For developers
 ^^^^^^^^^^^^^^
 
-Installing ansys-tools-meilisearch in developer mode allows
+Installing pymeilisearch in developer mode allows
 you to modify the source and enhance it.
 
 Before contributing to the project, please refer to the `PyAnsys Developer's guide`_. You will 
@@ -64,7 +64,7 @@ need to follow these steps:
 
    .. code:: bash
 
-      git clone https://github.com/ansys/ansys-tools-meilisearch
+      git clone https://github.com/ansys-internal/pymeilisearch
 
 #. Create a fresh-clean Python environment and activate it:
 
@@ -96,7 +96,7 @@ need to follow these steps:
 
     .. code:: bash
     
-      python -m pip install --editable ansys-tools-meilisearch
+      python -m pip install --editable pymeilisearch
     
     #. Finally, verify your development installation by running:
 

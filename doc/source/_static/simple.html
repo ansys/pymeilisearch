@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/docs-searchbar.js@latest/dist/cdn/docs-searchbar.min.css"
+    />
+
+    <div class="container">
+      <div class="col-md-18">
+        <input
+          type="search"
+          placeholder="docs-searchbar input"
+          class="form-control"
+          id="q"
+          autofocus
+        />
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/docs-searchbar.js@2.4.1/dist/cdn/docs-searchbar.min.js"></script>
+
+    <script>
+      let theSearchBar = docsSearchBar({
+        hostUrl: "https://backend.search.pyansys.com",
+        apiKey:
+          "d5271738ba1a75af83748f615aca07f8a73fc353186ff04f28925104b6f49614",
+        indexUid: "pyansys-docs-all-public",
+        inputSelector: "#q",
+        debug: false,
+        enhancedSearchInput: false,
+        enableDarkMode: "auto",
+      });
+    </script>
+  </body>
+</html>

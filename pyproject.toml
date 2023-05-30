@@ -4,9 +4,9 @@ build-backend = "flit_core.buildapi"
 
 [project]
 # Check https://flit.readthedocs.io/en/latest/pyproject_toml.html for all available sections
-name = "ansys-tools-meilisearch"
+name = "pymeilisearch"
 version = "0.2.dev0"
-description = "A python wrapper for ansys tools meilisearch"
+description = " A Python library for effortless indexing and searching of documentation using MeiliSearch."
 readme = "README.rst"
 requires-python = ">=3.7"
 license = {file = "LICENSE"}
@@ -14,9 +14,8 @@ authors = [
     {name = "ANSYS, Inc.", email = "pyansys.core@ansys.com"},
 ]
 maintainers = [
-    {name = "PyAnsys developers", email = "pyansys.maintainers@ansys.com"},
+    {name = "PyAnsys Core Team", email = "pyansys.core@ansys.com"},
 ]
-
 classifiers = [
     "Development Status :: 4 - Beta",
     "Programming Language :: Python :: 3",
@@ -33,18 +32,19 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-
 tests = [
-    "pytest==7.2.2",
-    "pytest-cov==4.0.0"
+    "pytest==7.3.1",
+    "pytest-cov==4.1.0"
 ]
 doc = [
-    "ansys-sphinx-theme==0.9.5",
+    "ansys-sphinx-theme==0.9.9",
     "numpydoc==1.5.0",
-    "Sphinx==5.1.1",                       
-    "sphinx-autoapi==2.0.1",
-    "meilisearch==0.24.0",   
-    "sphinx-copybutton==0.5.1",
+    "Sphinx==6.2.1",                       
+    "sphinx-design==0.4.1",
+    "sphinx-jinja==2.0.2",
+    "sphinx-autoapi==2.1.0",
+    "meilisearch==0.26.0",   
+    "sphinx-copybutton==0.5.2",
     "sphinx-notfound-page==0.8.3",
 ]
 
@@ -55,9 +55,9 @@ name = "ansys.tools.meilisearch"
 pymeilisearch = "ansys.tools.meilisearch.cli:main"
 
 [project.urls]
-Source = "https://github.com/ansys/ansys-tools-meilisearch"
-Tracker = "https://github.com/ansys/ansys-tools-meilisearch/issues"
-Homepage = "https://github.com/ansys/ansys-tools-meilisearch"
+Source = "https://github.com/ansys-internal/pymeilisearch"
+Tracker = "https://github.com/ansys-internal/pymeilisearch/issues"
+Homepage = "https://github.com/ansys-internal/pymeilisearch"
 
 
 [tool.black]

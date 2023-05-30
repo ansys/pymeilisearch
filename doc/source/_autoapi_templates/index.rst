@@ -3,7 +3,7 @@
 API reference
 =============
 
-This page contains the ansys-tools-meilisearch API reference.
+This page contains the pymeilisearch API reference.
 
 .. toctree::
    :titlesonly:
