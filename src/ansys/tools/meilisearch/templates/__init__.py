@@ -1,18 +1,30 @@
-"""Provides the templates to the urls."""
 import json
 import pathlib
 from typing import Union
 
 from jinja2 import Template
 
-# Declare the fundamental paths of the theme
-DEFAULT_TEMPLATE = pathlib.Path(__file__).parent.resolve() / "default.json"
-SPHINX_PYDATA_TEMPLATE = pathlib.Path(__file__).parent.resolve() / "sphinx_pydata.json"
-SPHINX_PYAEDT_TEMPLATE = pathlib.Path(__file__).parent.resolve() / "pyaedt_sphinx.json"
+TEMPLATES = {
+    "default": "default.json",
+    "sphinx_pydata": "sphinx_pydata.json",
+}
+
+STOP_SPHINX_URLS = [
+    "_sources",
+    "_downloads",
+    "_static",
+    "_images",
+    ".doctree",
+]
+STOP_SPHINX_PYAEDT_URL = STOP_SPHINX_URLS.append("EDBAPI")
 
 
 def render_template(
-    template: str, urls: Union[str, list[str]], path_out: str, index_uid: str = None
+    template: str,
+    urls: Union[str, list[str]],
+    path_out: str,
+    index_uid: str = None,
+    stop_urls_default: str = None,
 ) -> str:
     """Render a docsearch sphinx template for a given URL.
 
@@ -21,7 +33,7 @@ def render_template(
     Parameters
     ----------
     template : str
-        Name of the template to use. Must be a JSON file located in the same directory as this script.
+        Name of the template to use. Must be a key in the TEMPLATES dictionary.
     urls : str or list of str
         URL(s) to crawl. Must start with "https://".
     path_out : str
@@ -42,19 +54,24 @@ def render_template(
         If any of the URLs do not start with "https://".
 
     """
-    if template == "sphinx_pyaedt":
-        template_path = SPHINX_PYAEDT_TEMPLATE
-    elif template == "sphinx_pydata":
-        template_path = SPHINX_PYDATA_TEMPLATE
-    else:
-        template_path = DEFAULT_TEMPLATE
+    template_path = pathlib.Path(__file__).parent.resolve() / TEMPLATES.get(
+        template, "default.json"
+    )
 
     if not template_path.exists():
         raise FileNotFoundError(f"Unable to locate a template at {template_path}")
 
-    with open(template_path) as f:
-        template_str = f.read()
+    if template == "sphinx_pydata":
+        stop_urls = [f"{urls[-1].rstrip('/')}/{segment}" for segment in STOP_SPHINX_URLS]
+        if stop_urls_default is not None:
+            stop_urls.extend(
+                f"{urls[-1].rstrip('/')}/{stop_url_default}"
+                for stop_url_default in stop_urls_default
+            )
+    else:
+        stop_urls = [stop_urls_default]
 
+    template_str = template_path.read_text()
     template = Template(template_str)
 
     # Ensure urls is a list
@@ -66,10 +83,6 @@ def render_template(
         index_uid = urls[0].replace("https://", "")
 
     # Add stop_urls to the url
-    stop_urls = [
-        f"{urls[-1].rstrip('/')}/{segment}"
-        for segment in ["_sources", "_downloads", "_static", "_images", ".doctree"]
-    ]
 
     start_url = json.dumps(urls)
     stop_url = json.dumps(stop_urls)
@@ -78,7 +91,7 @@ def render_template(
     rendered_template = template.render(index_uid=index_uid, start_url=start_url, stop_url=stop_url)
 
     # Write the rendered template to a file
-    with open(path_out, "w") as f:
-        f.write(rendered_template)
+    path_out = pathlib.Path(path_out)
+    path_out.write_text(rendered_template)
 
     return index_uid

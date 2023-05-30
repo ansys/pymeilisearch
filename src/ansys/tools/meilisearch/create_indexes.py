@@ -51,7 +51,9 @@ def get_sphinx_urls(urls):
 
 
 def create_sphinx_indexes(
-    sphinx_urls, meilisearch_host_url=None, meilisearch_api_key=None, is_pyaedt=False
+    sphinx_urls,
+    meilisearch_host_url=None,
+    meilisearch_api_key=None,
 ):
     """Create an index for each public GitHub page that uses Sphinx.
 
@@ -82,7 +84,7 @@ def create_sphinx_indexes(
         index_uid = f"{repo}-sphinx-docs"
         temp_index_uid = f"temp-{repo}-sphinx-docs"
         web_scraper = WebScraper(meilisearch_host_url, meilisearch_api_key)
-        web_scraper.scrape_url(url, temp_index_uid, pyaedt=is_pyaedt)
+        web_scraper.scrape_url(url, temp_index_uid)
         client = MeilisearchClient(meilisearch_host_url, meilisearch_api_key)
         document_utils = MeilisearchUtils(client)
         stats = client.client.get_all_stats()
@@ -115,6 +117,7 @@ def scrap_web_page(index_uid, url, templates, meilisearch_host_url=None, meilise
     web_scraper = WebScraper(meilisearch_host_url, meilisearch_api_key)
     web_scraper.scrape_url(url, index_uid, templates)
     document_utils = MeilisearchUtils(client)
+    print("======================here")
     stats = client.client.get_all_stats()
     index_uids = list(stats["indexes"].keys())
     if index_uid not in index_uids:
