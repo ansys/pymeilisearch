@@ -16,7 +16,6 @@ STOP_SPHINX_URLS = [
     "_images",
     ".doctree",
 ]
-STOP_SPHINX_PYAEDT_URL = STOP_SPHINX_URLS.append("EDBAPI")
 
 
 def render_template(
@@ -65,7 +64,7 @@ def render_template(
         stop_urls = [f"{urls[-1].rstrip('/')}/{segment}" for segment in STOP_SPHINX_URLS]
         if stop_urls_default is not None:
             stop_urls.extend(
-                f"{urls[-1].rstrip('/')}/{stop_url_default}"
+                f"{urls[-1].rstrip('/')}{stop_url_default}"
                 for stop_url_default in stop_urls_default
             )
     else:

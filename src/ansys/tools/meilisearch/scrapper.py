@@ -135,7 +135,7 @@ class WebScraper(BaseClient):
 
     def _get_edb_urls(self, urls):
         if isinstance(urls, str):
-            return [f"{urls}/EDBAPI"]
+            return [f"{urls}EDBAPI" if urls.endswith("/") else f"{urls}/EDBAPI"]
         else:
             return [url for url in urls if "EDBAPI" in url]
 
@@ -163,20 +163,21 @@ class WebScraper(BaseClient):
         self._check_url(url)
         is_pyaedt = self._check_pyaedt(url)
         template = get_template(url) if template is None else template
+
         if is_pyaedt:
             edb_url = self._get_edb_urls(url)
             temp_config_file_pyaedt = self._load_and_render_template(
-                url, template, index_uid, stop_url=edb_url
+                url, template, index_uid, stop_urls=edb_url
             )
             output = self._scrape_url_command(temp_config_file_pyaedt)
             temp_config_file_pyedb = self._load_and_render_template(
                 edb_url, template, index_uid=f"{index_uid}-pyaedb"
             )
             output = self._scrape_url_command(temp_config_file_pyedb)
+        else:
+            temp_config_file = self._load_and_render_template(url, template, index_uid)
+            output = self._scrape_url_command(temp_config_file)
 
-        temp_config_file = self._load_and_render_template(url, template, index_uid)
-        print(temp_config_file)
-        output = self._scrape_url_command(temp_config_file)
         n_hits = self._parse_output(output)
         if verbose:
             print(output)
