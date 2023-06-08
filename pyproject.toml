@@ -43,7 +43,7 @@ doc = [
     "sphinx-design==0.4.1",
     "sphinx-jinja==2.0.2",
     "sphinx-autoapi==2.1.0",
-    "meilisearch==0.27.0",   
+    "meilisearch==0.28.0",   
     "sphinx-copybutton==0.5.2",
     "sphinx-notfound-page==0.8.3",
 ]
