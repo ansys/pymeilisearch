@@ -9,7 +9,7 @@ on:
 
 env:
   MAIN_PYTHON_VERSION: '3.10'
-  DOCUMENTATION_CNAME: 'pymeilisearch.ansys.com'
+  DOCUMENTATION_CNAME: 'pymeilisearch.docs.ansys.com'
   LIBRARY_NAME: 'pymeilisearch'
   LIBRARY_NAMESPACE: 'ansys.tools.meilisearch'
   PACKAGE_NAME: 'pymeilisearch'
