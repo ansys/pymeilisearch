@@ -8,6 +8,7 @@ TEMPLATES = {
     "default": "default.json",
     "sphinx_pydata": "sphinx_pydata.json",
 }
+"""Dictionary relating the name of a template and its configuration."""
 
 STOP_SPHINX_URLS = [
     "_sources",
@@ -16,6 +17,7 @@ STOP_SPHINX_URLS = [
     "_images",
     ".doctree",
 ]
+"""List of stop points when scrapping URLs."""
 
 
 def render_template(

@@ -117,7 +117,6 @@ def scrap_web_page(index_uid, url, templates, meilisearch_host_url=None, meilise
     web_scraper = WebScraper(meilisearch_host_url, meilisearch_api_key)
     web_scraper.scrape_url(url, index_uid, templates)
     document_utils = MeilisearchUtils(client)
-    print("======================here")
     stats = client.client.get_all_stats()
     index_uids = list(stats["indexes"].keys())
     if index_uid not in index_uids:
