@@ -2,7 +2,7 @@ Installing pymeilisearch
 ########################
 
 Installing ``pymeilisearch`` is as simple as installing a Python library.
-However, users and developers need to host a `Meilisearch`_ service to upload
+However, users, and developers need to host a `Meilisearch`_ service to upload
 the desired documentation indices.
 
 .. _meilisearch: https://www.meilisearch.com/
