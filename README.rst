@@ -102,6 +102,17 @@ need to follow these steps:
         
       tox
 
+Highlights
+----------
+
+MeiliSearch is an open-source search engine designed for developers to integrate into their applications.
+It offers fast and relevant search capabilities for handling large amounts of textual data.
+MeiliSearch focuses on simplicity and ease of use while delivering high performance and accurate search results.
+
+pymeilisearch, on the other hand, is a Python client library for MeiliSearch. It provides a convenient interface for
+interacting with MeiliSearch from Python applications.
+With pymeilisearch, developers can easily integrate MeiliSearch functionality into their Python projects 
+and perform operations such as searching, indexing, updating, and deleting documents.
 
 How to testing
 --------------
