@@ -118,16 +118,17 @@ searching, updating, and deleting documents.
 Overview of Features
 --------------------
 
-#. Easy integration: PyMeilisearch CLI provides a simple and intuitive command-line interface for interacting with MeiliSearch. 
+#. *Easy integration*: PyMeilisearch CLI provides a simple and intuitive command-line interface for interacting with MeiliSearch. 
    Developers can seamlessly incorporate MeiliSearch capabilities into their workflows without writing custom code. 
    It simplifies the integration process and reduces the overhead of setting up and configuring MeiliSearch functionality.
+   (see `user_guide`_)
 
-#. High-level functionality: PyMeilisearch CLI offers high-level commands for common operations such as indexing data, 
+#. *High-level functionality*: PyMeilisearch CLI offers high-level commands for common operations such as indexing data, 
    performing searches, and managing documents in MeiliSearch. 
    These commands abstract away the complexities of the underlying API, allowing developers to focus on their search 
    requirements rather than the implementation details.
 
-#. Flexibility and customization: PyMeilisearch CLI provides options for customization, 
+#. *Flexibility and customization*: PyMeilisearch CLI provides options for customization, 
    including advanced search parameters, filtering options, and indexing configurations. 
    Developers can easily tailor the search experience and indexing process according to their specific needs, 
    ensuring accurate and relevant search results.(see `getting_started`_)
@@ -215,4 +216,5 @@ the building requirements and then executing the build module:
 .. _pytest: https://docs.pytest.org/en/stable/
 .. _Sphinx: https://www.sphinx-doc.org/en/master/
 .. _tox: https://tox.wiki/
-.. _getting_started: https://pymeilisearch.docs.ansys.com/version/dev/getting-started/index.html
+.. _getting_started: https://pymeilisearch.docs.ansys.com/version/stable/getting-started/index.html
+.. _user_guide: https://pymeilisearch.docs.ansys.com/version/dev/user-guide/index.html
