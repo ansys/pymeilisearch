@@ -17,5 +17,4 @@ Getting started
    :hidden:
 
    installing-pymeilisearch
-   installation.rst
-   meilisearch-backend.rst
+   meilisearch-backend
