@@ -1,9 +1,9 @@
 Installing pymeilisearch
 ########################
 
-Installing PySTK is as simple as installing a Python library. However, users and
-developers need to host a `Meilisearch`_ service to upload the desired
-documentation indices.
+Installing ``pymeilisearch`` is as simple as installing a Python library.
+However, users and developers need to host a `Meilisearch`_ service to upload
+the desired documentation indices.
 
 .. _meilisearch: https://www.meilisearch.com/
 
@@ -19,6 +19,13 @@ There are multiple sources for installing the latest stable version of
 
     .. tab-set::
 
+        .. tab-item:: Public PyPI
+    
+            .. code-block:: console
+    
+                python -m pip install pymeilisearch
+    
+
         .. tab-item:: Private PyPI
     
             .. code-block:: console
@@ -29,13 +36,6 @@ There are multiple sources for installing the latest stable version of
                 python -m pip install pymeilisearch
     
    
-        .. tab-item:: Public PyPI
-    
-            .. code-block:: console
-    
-                python -m pip install pymeilisearch
-    
-
         .. tab-item:: GitHub
     
             .. code-block:: console
