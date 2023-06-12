@@ -35,13 +35,6 @@ limited. As opposite to this API, pymeilisearch offers the following features:
 
         Learn about the capabilities, features, and key topics of the project.
 
-    .. grid-item-card:: Contributing :fa:`gavel`
-        :link: contributing
-        :link-type: doc
-
-        Read our specific contribution guide before collaborating to the codebase
-        or helping us in documentation.
-
 .. jinja:: main_toctree
 
     {% if build_api or build_examples %}

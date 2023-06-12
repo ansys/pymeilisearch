@@ -118,20 +118,14 @@ searching, updating, and deleting documents.
 Overview of Features
 --------------------
 
-#. *Easy integration*: PyMeilisearch CLI provides a simple and intuitive command-line interface for interacting with MeiliSearch. 
-   Developers can seamlessly incorporate MeiliSearch capabilities into their workflows without writing custom code. 
-   It simplifies the integration process and reduces the overhead of setting up and configuring MeiliSearch functionality.
+#. *Easy integration*: PyMeilisearch simplifies the integration of MeiliSearch into Python projects without custom code.
    (see `user_guide`_)
 
-#. *High-level functionality*: PyMeilisearch CLI offers high-level commands for common operations such as indexing data, 
-   performing searches, and managing documents in MeiliSearch. 
-   These commands abstract away the complexities of the underlying API, allowing developers to focus on their search 
-   requirements rather than the implementation details.
+#. *High-level functionality*: PyMeilisearch provides functions for indexing data, performing searches, 
+   and managing documents, abstracting away complexity.
 
-#. *Flexibility and customization*: PyMeilisearch CLI provides options for customization, 
-   including advanced search parameters, filtering options, and indexing configurations. 
-   Developers can easily tailor the search experience and indexing process according to their specific needs, 
-   ensuring accurate and relevant search results.(see `getting_started`_)
+#. *Flexibility and customization*: PyMeilisearch allows customization of search parameters, 
+   filtering options, and indexing configurations for tailored search experiences.(see `getting_started`_)
 
 By combining MeiliSearch's powerful search capabilities with the simplicity and convenience of PyMeilisearch, 
 developers can enhance their applications with efficient and accurate search functionality.
