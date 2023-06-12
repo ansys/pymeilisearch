@@ -27,7 +27,8 @@ pymeilisearch
    :alt: Black
 
 
-A tool to automates the deployment of documents to MeiliSearch.
+The PyMeilisearch CLI is a command-line interface utility for interacting with MeiliSearch, 
+an open-source search engine. It provides convenient commands for uploading files or websites to MeiliSearch indexes.
 
 
 How to install
@@ -64,7 +65,7 @@ need to follow these steps:
 
    .. code:: bash
 
-      git clone https://github.com/ansys-internal/pymeilisearch
+      git clone https://github.com/ansys/pymeilisearch
 
 #. Create a fresh-clean Python environment and activate it:
 
@@ -87,9 +88,6 @@ need to follow these steps:
    .. code:: bash
 
       python -m pip install -U pip flit tox
-      python -m pip install -r requirements/requirements_build.txt
-      python -m pip install -r requirements/requirements_doc.txt
-      python -m pip install -r requirements/requirements_tests.txt
 
 
 #. Install the project in editable mode:
