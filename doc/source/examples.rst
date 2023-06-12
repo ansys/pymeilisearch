@@ -32,7 +32,7 @@ following command:
 
 .. code-block:: shell
 
-   pymeilisearch upload --template <template name> --index <index name> github /path/to/files --orgs ansys --orgs ansys
+   pymeilisearch upload --template <template name> --index <index name> github /path/to/files --orgs orgA --orgs orgB
 
 Creating an index from CI/CD
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
