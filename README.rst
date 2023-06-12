@@ -56,7 +56,7 @@ Installing ``pymeilisearch`` is as easy as running:
 
 For other installation methods, please refer to the `official installation guidelines`_.
 
-.. _official installation methods: https://pymeilisearch.docs.ansys.com/version/stable/getting-started/installing-pymeilisearch.html
+.. _official installation guidelines: https://pymeilisearch.docs.ansys.com/version/stable/getting-started/installing-pymeilisearch.html
 
 
 Documentation
