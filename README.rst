@@ -27,8 +27,8 @@ pymeilisearch
    :alt: Black
 
 
-PyMeilisearch is a command-line interface (CLI) utility for interacting with MeiliSearch, 
-an open-source search engine. It provides convenient commands for uploading files or websites to MeiliSearch indexes.
+PyMeilisearch is a Python client library that simplifies integration with MeiliSearch, 
+enabling developers to enhance their applications with powerful search functionality.
 
 
 How to install
