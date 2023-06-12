@@ -1,11 +1,10 @@
 .. _ref_contributing:
 
-============
 Contributing
 ============
 
 Overall guidance on contributing to a PyAnsys library appears in the
-`Contributing <dev_guide_contributing>`_ topic
+`Contributing <dev_guide_contributing_>`_ topic
 in the *PyAnsys Developer's Guide*. Ensure that you are thoroughly familiar
 with it and all `Coding style <dev_guide_coding_style_>`_ before attempting to
 contribute to pymeilisearch.
@@ -14,7 +13,7 @@ The following contribution information is specific to pymeilisearch.
 
 
 Cloning the pymeilisearch repository
-====================================
+------------------------------------
 
 Run this code to clone and install the latest version of pymeilisearch in development mode:
 
@@ -27,7 +26,7 @@ Run this code to clone and install the latest version of pymeilisearch in develo
 
 
 Posting issues
-==============
+--------------
 
 Use the `pymeilisearch Issues <pymeilisearch_issues_>`_
 page to submit questions, report bugs, and request new features. When possible,
@@ -41,10 +40,10 @@ If your issue does not fit into one of these categories, create your own issue.
 To reach the project support team, email `Pyansys core <pyansys.core@ansys.com>`_.
 
 Viewing pymeilisearch documentation
-=============================
+-----------------------------------
 
 Documentation for the latest stable release of pymeilisearch is hosted at
-`pymeilisearch Documentation <pymeilisearch_docs>`_.
+`pymeilisearch Documentation <pymeilisearch_docs_>`_.
 
 In the upper right corner of the documentation's title bar, there is an option
 for switching from viewing the documentation for the latest stable release
@@ -53,7 +52,7 @@ released versions.
 
 
 Code style
-==========
+----------
 
 pymeilisearch follows PEP8 standard as outlined in the `PyAnsys Development Guide
 <PyAnsys Developer's guide_>`_ and implements style checking using
@@ -82,14 +81,12 @@ This way, it's not possible for you to push code that fails the style checks. Fo
   prettier.................................................................Passed
 
 
-.. _pre-commit: https://pre-commit.com/
-.. _dev_guide_contributing: https://dev.docs.pyansys.com/
-.. _dev_guide_coding: https://dev.docs.pyansys.com/
+.. _precommit: https://pre-commit.com/
+.. _dev_guide_contributing: https://dev.docs.pyansys.com/how-to/contributing.html
+.. _dev_guide_coding_style: https://dev.docs.pyansys.com/coding-style/index.html
 .. _PyAnsys Developer's guide: https://dev.docs.pyansys.com/
-.. _pytest: https://docs.pytest.org/en/stable/
-.. _Sphinx: https://www.sphinx-doc.org/en/master/
-.. _tox: https://tox.wiki/
 .. _pymeilisearch_docs: https://pymeilisearch.docs.ansys.com/version/stable/
+.. _pymeilisearch_issues: https://github.com/ansys/pymeilisearch/issues
 .. _getting_started: https://pymeilisearch.docs.ansys.com/version/stable/getting-started/index.html
 .. _user_guide: https://pymeilisearch.docs.ansys.com/version/dev/user-guide/index.html
 
