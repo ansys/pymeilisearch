@@ -1,7 +1,7 @@
 Search engine integration
 =========================
 
-The MeiliSearch backend can be easily integrated into any web page using a web component.
+The Meilisearch backend can be easily integrated into any web page using a web component.
 Follow the steps below to include the search bar in your webpage:
 
 1. Download the `docs-searchbar.js` package from a content delivery network. You can use the following script tag:

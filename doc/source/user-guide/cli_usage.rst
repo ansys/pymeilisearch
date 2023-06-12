@@ -15,13 +15,13 @@ Available commands
 
 The `pymeilisearch` CLI tool provides the following sub-commands:
 
-1. `upload`: Upload files or a website to MeiliSearch.
+1. `upload`: Upload files or a website to Meilisearch.
 2. `version`: Display the current version of the CLI tool.
 
 Command: upload
 ~~~~~~~~~~~~~~~~~
 
-The `upload` sub-command allows you to upload files or a website to MeiliSearch.
+The `upload` sub-command allows you to upload files or a website to Meilisearch.
 It supports different sources and options depending on your requirements.
 
 Syntax:
@@ -33,7 +33,7 @@ Syntax:
 Required Arguments:
 
 - `--template <template>`: Name of the template to use.
-- `--index <index>`: Name of the MeiliSearch index used to identify the content.
+- `--index <index>`: Name of the Meilisearch index used to identify the content.
 - `<source>`: Source type. Must be one of 'html', 'url', or 'github'.
 - `<location>`: Location of the files or website to upload.
 

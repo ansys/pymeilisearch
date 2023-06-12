@@ -132,4 +132,7 @@ jinja_contexts = {
         "build_api": BUILD_API,
         "build_examples": BUILD_EXAMPLES,
     },
+    "install_guide": {
+        "version": version if not version.endswith("dev0") else "main",
+    },
 }
