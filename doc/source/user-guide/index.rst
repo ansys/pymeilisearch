@@ -16,17 +16,19 @@ This user guide includes the steps of using the CLI tool effectively.
         Learn how to use PyMeilisearch from the command line. Covers the installation 
         process and examples of common commands and their usage. 
 
-    .. grid-item-card:: meilisearch backend :fas:`fa fa-server`
+    .. grid-item-card:: MeiliSearch backend :fas:`fa fa-server`
         :link: meilisearch-backend
         :link-type: doc
 
         Focuses on setting up the MeiliSearch backend. Covers through the process configuring MeiliSearch
 
-    .. grid-item-card:: search engine :fas:`fa fa-server`
-        :link: search_engine.rst
-        :link-type: doc
+.. grid:: 2
 
-       integrated of MeiliSearch into any web page using a web component.
+    .. grid-item-card:: Search engine :fas:`fa fa-server`
+        :link: search_engine
+        :link-type: doc
+        
+        integrated of MeiliSearch into any web page using a web component.
         
 
 .. toctree::
