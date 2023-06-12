@@ -17,4 +17,3 @@ Getting started
    :hidden:
 
    installing-pymeilisearch
-   meilisearch-backend
