@@ -7,7 +7,7 @@ apiKey
 indexUid
 hostUrl
 meilisearch
-MeiliSearch
+Meilisearch
 html
 url
 _static

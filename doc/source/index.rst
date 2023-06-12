@@ -75,3 +75,4 @@ limited. As opposite to this API, pymeilisearch offers the following features:
        {% if build_api %}
        autoapi/index
        {% endif %}
+       contributing.rst

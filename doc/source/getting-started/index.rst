@@ -1,15 +1,21 @@
 Getting started
 ###############
 
-Getting started with PyMeilisearch is a straightforward process that involves setting up and 
-integrating MeiliSearch into your Python project. This guide provides instructions 
-to  start and leverage the powerful search capabilities of MeiliSearch in documentation.
+.. grid:: 2
+
+    .. grid-item-card:: Installing pymeilisearch :fab:`python`
+        :link: installing-pymeilisearch
+        :link-type: doc
+
+        Learn how to download and install pymeilisearch in your development
+        environment from various official sources including PyPI and official
+        Ansys repositories.
+
 
 .. toctree::
-   :hidden:
    :maxdepth: 3
+   :hidden:
 
+   installing-pymeilisearch
    installation.rst
    meilisearch-backend.rst
-
-

@@ -1,5 +1,5 @@
 pymeilisearch
-=======================
+#############
 |python| |pypi| |GH-CI| |codecov| |MIT| |black|
 
 .. |python| image:: https://img.shields.io/pypi/pyversions/pymeilisearch?logo=pypi
@@ -10,12 +10,12 @@ pymeilisearch
    :target: https://pypi.org/project/pymeilisearch
    :alt: PyPI
 
-.. |codecov| image:: https://codecov.io/gh/ansys-internal/pymeilisearch/branch/main/graph/badge.svg
-   :target: https://codecov.io/gh/pyansys-internal/pymeilisearch
+.. |codecov| image:: https://codecov.io/gh/ansys/pymeilisearch/branch/main/graph/badge.svg
+   :target: https://codecov.io/gh/pyansys/pymeilisearch
    :alt: Codecov
 
-.. |GH-CI| image:: https://github.com/ansys-internal/pymeilisearch/actions/workflows/ci_cd.yml/badge.svg
-   :target: https://github.com/ansys-internal/pymeilisearch/actions/workflows/ci_cd.yml
+.. |GH-CI| image:: https://github.com/ansys/pymeilisearch/actions/workflows/ci_cd.yml/badge.svg
+   :target: https://github.com/ansys/pymeilisearch/actions/workflows/ci_cd.yml
    :alt: GH-CI
 
 .. |MIT| image:: https://img.shields.io/badge/License-MIT-yellow.svg
@@ -27,161 +27,98 @@ pymeilisearch
    :alt: Black
 
 
-A tool to automates the deployment of documents to MeiliSearch.
+About
+=====
+
+The ``pymeilisearch`` library is a Python command-line interface (CLI) that
+simplifies integration with `Meilisearch <https://www.meilisearch.com/>`_,
+enabling developers to enhance their applications with powerful search
+functionality by indexing desired data.
+
+Main features of ``pymeilisearch`` are:
+
+#. **Easy integration** with continuous integration workflows.
+
+#. **High-level functionality** for indexing data, performing searches, and managing documents.
+
+#. **Powerful capabilities** by enabling filtering options, and indexing
+   configurations for tailored search experience.
 
 
-How to install
---------------
+Installation
+============
 
-At least two installation modes are provided: user and developer.
+Installing ``pymeilisearch`` is as easy as running:
 
-For users
-^^^^^^^^^
-
-In order to install pymeilisearch, make sure you
-have the latest version of `pip`_. To do so, run:
-
-.. code:: bash
-
-    python -m pip install -U pip
-
-Then, you can simply execute:
-
-.. code:: bash
+.. code-block:: console
 
     python -m pip install pymeilisearch
 
-For developers
-^^^^^^^^^^^^^^
+For other installation methods, please refer to the `official installation guidelines`_.
 
-Installing pymeilisearch in developer mode allows
-you to modify the source and enhance it.
-
-Before contributing to the project, please refer to the `PyAnsys Developer's guide`_. You will 
-need to follow these steps:
-
-#. Start by cloning this repository:
-
-   .. code:: bash
-
-      git clone https://github.com/ansys-internal/pymeilisearch
-
-#. Create a fresh-clean Python environment and activate it:
-
-   .. code:: bash
-
-      # Create a virtual environment
-      python -m venv .venv
-
-      # Activate it in a POSIX system
-      source .venv/bin/activate
-
-      # Activate it in Windows CMD environment
-      .venv\Scripts\activate.bat
-
-      # Activate it in Windows Powershell
-      .venv\Scripts\Activate.ps1
-
-#. Make sure you have the latest required build system and doc, testing, and CI tools:
-
-   .. code:: bash
-
-      python -m pip install -U pip flit tox
-      python -m pip install -r requirements/requirements_build.txt
-      python -m pip install -r requirements/requirements_doc.txt
-      python -m pip install -r requirements/requirements_tests.txt
-
-
-#. Install the project in editable mode:
-
-    .. code:: bash
-    
-      python -m pip install --editable pymeilisearch
-    
-    #. Finally, verify your development installation by running:
-
-   .. code:: bash
-        
-      tox
-
-
-How to testing
---------------
-
-This project takes advantage of `tox`_. This tool allows to automate common
-development tasks (similar to Makefile) but it is oriented towards Python
-development. 
-
-Using tox
-^^^^^^^^^
-
-As Makefile has rules, `tox`_ has environments. In fact, the tool creates its
-own virtual environment so anything being tested is isolated from the project in
-order to guarantee project's integrity. The following environments commands are provided:
-
-- **tox -e style**: will check for coding style quality.
-- **tox -e py**: checks for unit tests.
-- **tox -e py-coverage**: checks for unit testing and code coverage.
-- **tox -e doc**: checs for documentation building process.
-
-
-Raw testing
-^^^^^^^^^^^
-
-If required, you can always call the style commands (`black`_, `isort`_,
-`flake8`_...) or unit testing ones (`pytest`_) from the command line. However,
-this does not guarantee that your project is being tested in an isolated
-environment, which is the reason why tools like `tox`_ exist.
-
-
-A note on pre-commit
-^^^^^^^^^^^^^^^^^^^^
-
-The style checks take advantage of `pre-commit`_. Developers are not forced but
-encouraged to install this tool via:
-
-.. code:: bash
-
-    python -m pip install pre-commit && pre-commit install
+.. _official installation guidelines: https://pymeilisearch.docs.ansys.com/version/stable/getting-started/installing-pymeilisearch.html
 
 
 Documentation
--------------
+=============
 
-For building documentation, you can either run the usual rules provided in the
-`Sphinx`_ Makefile, such us:
+The `official documentation`_ of ``pymeilisearch`` contains the following chapters:
 
-.. code:: bash
+- `Getting started`_. This section provides a brief overview and instructions on
+  how to get started with the project. It typically includes information on how
+  to install the project, set up any necessary dependencies, and run a basic
+  example or test to ensure everything is functioning correctly.
 
-    make -C doc/ html && your_browser_name doc/html/index.html
+- `User guide`_. The user guide section offers detailed documentation and
+  instructions on how to use the project. It provides comprehensive explanations
+  of the project's features, functionalities, and configuration options. The
+  user guide aims to help users understand the project's concepts, best
+  practices, and recommended workflows.
 
-However, the recommended way of checking documentation integrity is using:
+- `API reference`_. The API reference section provides detailed documentation
+  for the project's application programming interface (API). It includes
+  information about classes, functions, methods, and their parameters, return
+  values, and usage examples. This reference helps developers understand the
+  available API endpoints, their functionalities, and how to interact with them
+  programmatically.
 
-.. code:: bash
+- `Examples`_. The examples section showcases practical code examples that
+  demonstrate how to use the project in real-world scenarios. It provides sample
+  code snippets or complete scripts that illustrate different use cases or
+  demonstrate specific features of the project. Examples serve as practical
+  references for developers, helping them understand how to apply the project to
+  their own applications.
 
-    tox -e doc && your_browser_name .tox/doc_out/index.html
-
-
-Distributing
-------------
-
-If you would like to create either source or wheel files, start by installing
-the building requirements and then executing the build module:
-
-.. code:: bash
-
-    python -m pip install -r requirements/requirements_build.txt
-    python -m build
-    python -m twine check dist/*
+.. _official documentation: https://pymeilisearch.docs.ansys.com
+.. _getting started: https://pymeilisearch.docs.ansys.com/version/stable/getting-started/index.html
+.. _user guide: https://pymeilisearch.docs.ansys.com/version/stable/user-guide/index.html
+.. _api reference: https://pymeilisearch.docs.ansys.com/version/stable/autoapi/index.html
+.. _examples: https://pymeilisearch.docs.ansys.com/version/stable/examples/index.html
 
 
-.. LINKS AND REFERENCES
-.. _black: https://github.com/psf/black
-.. _flake8: https://flake8.pycqa.org/en/latest/
-.. _isort: https://github.com/PyCQA/isort
-.. _pip: https://pypi.org/project/pip/
-.. _pre-commit: https://pre-commit.com/
-.. _PyAnsys Developer's guide: https://dev.docs.pyansys.com/
-.. _pytest: https://docs.pytest.org/en/stable/
-.. _Sphinx: https://www.sphinx-doc.org/en/master/
-.. _tox: https://tox.wiki/
+Troubleshooting
+===============
+
+For troubleshooting or reporting issues, please open an issue in the project
+repository.
+
+Please follow these steps to report an issue:
+
+- Go to the project repository.
+- Click on the ``Issues`` tab.
+- Click on the ``New Issue`` button.
+- Provide a clear and detailed description of the issue you are facing.
+- Include any relevant error messages, code snippets, or screenshots.
+
+Additionally, you can refer to the `project documentation`_ for additional
+resources and troubleshooting guides.
+
+.. _project documentation: https://pymeilisearch.docs.ansys.com
+
+
+License
+=======
+
+You can find the full text of the license in the `LICENSE` file.
+
+.. _license: https://github.com/ansys/pymeilisearch/blob/main/LICENSE
