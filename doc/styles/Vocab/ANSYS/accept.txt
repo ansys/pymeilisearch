@@ -8,6 +8,9 @@ indexUid
 hostUrl
 meilisearch
 Meilisearch
+MeiliSearch
+sphinx_pydata
+json
 html
 url
 _static

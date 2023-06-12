@@ -1,14 +1,16 @@
 
 MeiliSearch backend
 ###################
-Decide whether you want to deploy MeiliSearch using a Docker image or use a cloud service. 
+Decide whether you want to deploy `Meilisearch`_ using a Docker image or use a cloud service. 
   
 * Docker image: MeiliSearch provides an official Docker image that allows you to easily run the search engine as a container. 
 
 * Cloud service: Use a cloud service provider that offers managed MeiliSearch instances.
 
-In both cases, pymeilisearch expects the backend url and key as env variable as MEILISEARCH_HOST_URL 
+In both cases, pymeilisearch expects the backend url and key as environment variable as MEILISEARCH_HOST_URL 
 and MEILISEARCH_API_KEY respectively.
+
+.. _meilisearch: https://www.meilisearch.com/
 
 Search engine configuration
 ---------------------------
@@ -19,7 +21,7 @@ and settings of your MeiliSearch instance. These templates include options such 
 indexing configurations, and filtering options. By modifying these templates according to your specific needs, 
 you can fine-tune the search experience and optimize the indexing process.
 
-Pymeilisearch provide two in-build template `sphinx_pydata` and `default`.
+PyMeilisearch provide two in-build template `sphinx_pydata` and `default`.
 
 An example for the json file is as shown below:
 
@@ -36,8 +38,10 @@ provide accurate and version-specific search results.
 
 Ansys sphinx theme: Ansys sphinx theme supports PyMeilisearch , allowing you to maintain a consistent and 
 visually appealing documentation layout as documented in 
-`Ansys sphinx theme documentation <https://sphinxdocs.ansys.com/version/stable/user_guide/options.html#use-meilisearch>`_.
+`Ansys sphinx theme documentation`_.
 By integrating the theme options with indexUid scraped with pymeilisearch, The search button is able start using meilisearch engine.
+
+.. _Ansys sphinx theme documentation: https://sphinxdocs.ansys.com/version/stable/user_guide/options.html#use-meilisearch
 
 Setting up GitHub actions for automation
 ----------------------------------------
