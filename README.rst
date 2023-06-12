@@ -37,12 +37,12 @@ functionality by indexing desired data.
 
 Main features of ``pymeilisearch`` are:
 
-#. **Easy integration** with continuous integration workflows, see see `user_guide`_
+#. **Easy integration** with continuous integration workflows.
 
 #. **High-level functionality** for indexing data, performing searches, and managing documents.
 
 #. **Powerful capabilities** by enabling filtering options, and indexing
-   configurations for tailored search experiences.(see `getting_started`_)
+   configurations for tailored search experience.
 
 
 Installation
@@ -55,6 +55,8 @@ Installing ``pymeilisearch`` is as easy as running:
     python -m pip install pymeilisearch
 
 For other installation methods, please refer to the `official installation guidelines`_.
+
+.. _official installation methods:
 
 
 Documentation
@@ -90,7 +92,7 @@ The `official documentation`_ of ``pymeilisearch`` contains the following chapte
 .. _official documentation: https://pymeilisearch.docs.ansys.com
 .. _getting started: https://pymeilisearch.docs.ansys.com/version/stable/getting-started/index.html
 .. _user guide: https://pymeilisearch.docs.ansys.com/version/stable/user-guide/index.html
-.. _api reference: https://pymeilisearch.docs.ansys.com/version/stable/api-reference/index.html
+.. _api reference: https://pymeilisearch.docs.ansys.com/version/stable/autoapi/index.html
 .. _examples: https://pymeilisearch.docs.ansys.com/version/stable/examples/index.html
 
 
