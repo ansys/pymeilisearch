@@ -49,19 +49,19 @@ Examples:
 
   .. code-block:: console
 
-      $ pymeilisearch upload --template my_template --index my_index html /path/to/files
+      $ pymeilisearch upload --template my_template --index my-index html /path/to/files
 
 - Upload a website using a URL:
 
   .. code-block:: console
 
-      $ pymeilisearch upload --template my_template --index my_index url https://example.com
+      $ pymeilisearch upload --template my_template --index my-index url https://example.com
 
 - Upload documentation from GitHub organizations:
 
   .. code-block:: console
 
-      $ pymeilisearch upload --template my_template --index my_index github /path/to/files --orgs ansys --orgs pyansys
+      $ pymeilisearch upload --template my_template --index my-index github /path/to/files --orgs ansys --orgs pyansys
 
 Command: version
 ~~~~~~~~~~~~~~~~~
