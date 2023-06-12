@@ -28,7 +28,7 @@ dependencies = [
     "jinja2 >=3.1.2",
     "meilisearch >=0.24.0",
     "click>=8",
-    "scraper @ git+https://github.com/ansys-internal/docs-scraper",
+    "pymeilisearch-scraper @ git+https://github.com/ansys/pymeilisearch-scraper",
 ]
 
 [project.optional-dependencies]
@@ -43,9 +43,10 @@ doc = [
     "sphinx-design==0.4.1",
     "sphinx-jinja==2.0.2",
     "sphinx-autoapi==2.1.0",
-    "meilisearch==0.26.0",   
+    "meilisearch==0.28.0",   
     "sphinx-copybutton==0.5.2",
     "sphinx-notfound-page==0.8.3",
+    "sphinx-jinja==2.0.2",
 ]
 
 [tool.flit.module]
@@ -55,9 +56,9 @@ name = "ansys.tools.meilisearch"
 pymeilisearch = "ansys.tools.meilisearch.cli:main"
 
 [project.urls]
-Source = "https://github.com/ansys-internal/pymeilisearch"
-Tracker = "https://github.com/ansys-internal/pymeilisearch/issues"
-Homepage = "https://github.com/ansys-internal/pymeilisearch"
+Source = "https://github.com/ansys/pymeilisearch"
+Tracker = "https://github.com/ansys/pymeilisearch/issues"
+Homepage = "https://github.com/ansys/pymeilisearch"
 
 
 [tool.black]
