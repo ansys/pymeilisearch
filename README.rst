@@ -10,12 +10,12 @@ pymeilisearch
    :target: https://pypi.org/project/pymeilisearch
    :alt: PyPI
 
-.. |codecov| image:: https://codecov.io/gh/ansys-internal/pymeilisearch/branch/main/graph/badge.svg
-   :target: https://codecov.io/gh/pyansys-internal/pymeilisearch
+.. |codecov| image:: https://codecov.io/gh/ansys/pymeilisearch/branch/main/graph/badge.svg
+   :target: https://codecov.io/gh/pyansys/pymeilisearch
    :alt: Codecov
 
-.. |GH-CI| image:: https://github.com/ansys-internal/pymeilisearch/actions/workflows/ci_cd.yml/badge.svg
-   :target: https://github.com/ansys-internal/pymeilisearch/actions/workflows/ci_cd.yml
+.. |GH-CI| image:: https://github.com/ansys/pymeilisearch/actions/workflows/ci_cd.yml/badge.svg
+   :target: https://github.com/ansys/pymeilisearch/actions/workflows/ci_cd.yml
    :alt: GH-CI
 
 .. |MIT| image:: https://img.shields.io/badge/License-MIT-yellow.svg
@@ -39,7 +39,7 @@ At least two installation modes are provided: user and developer.
 For users
 ^^^^^^^^^
 
-In order to install pymeilisearch, make sure you
+In order to install PyMeilisearch, make sure you
 have the latest version of `pip`_. To do so, run:
 
 .. code:: bash
@@ -55,7 +55,7 @@ Then, you can simply execute:
 For developers
 ^^^^^^^^^^^^^^
 
-Installing pymeilisearch in developer mode allows
+Installing PyMeilisearch in developer mode allows
 you to modify the source and enhance it.
 
 Before contributing to the project, please refer to the `PyAnsys Developer's guide`_. You will 
@@ -109,10 +109,20 @@ MeiliSearch is an open-source search engine designed for developers to integrate
 It offers fast and relevant search capabilities for handling large amounts of textual data.
 MeiliSearch focuses on simplicity and ease of use while delivering high performance and accurate search results.
 
-pymeilisearch, on the other hand, is a Python client library for MeiliSearch. It provides a convenient interface for
+PyMeilisearch, on the other hand, is a Python client library for MeiliSearch. It provides a convenient interface for
 interacting with MeiliSearch from Python applications.
-With pymeilisearch, developers can easily integrate MeiliSearch functionality into their Python projects 
+With PyMeilisearch, developers can easily integrate MeiliSearch functionality into their Python projects 
 and perform operations such as searching, indexing, updating, and deleting documents.
+
+Key features of PyMeilisearch include:
+
+#. Easy integration: PyMeilisearch provides a simple and intuitive API for interacting with MeiliSearch,allowing developers to seamlessly incorporate MeiliSearch capabilities into their Python applications.
+
+#. High-level functionality: PyMeilisearch offers high-level functions for performing common operations such as searching, indexing, and updating documents. This simplifies the process of utilizing MeiliSearch within Python applications.
+
+#. Flexibility and customization: PyMeilisearch provides options for customization, including advanced search parameters and filtering options, enabling developers to tailor the search experience according to their specific needs.
+
+By combining MeiliSearch's powerful search capabilities with the simplicity and convenience of PyMeilisearch, developers can enhance their applications with efficient and accurate search functionality.
 
 How to testing
 --------------
