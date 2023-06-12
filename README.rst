@@ -109,20 +109,31 @@ MeiliSearch is an open-source search engine designed for developers to integrate
 It offers fast and relevant search capabilities for handling large amounts of textual data.
 MeiliSearch focuses on simplicity and ease of use while delivering high performance and accurate search results.
 
-PyMeilisearch, on the other hand, is a Python client library for MeiliSearch. It provides a convenient interface for
-interacting with MeiliSearch from Python applications.
-With PyMeilisearch, developers can easily integrate MeiliSearch functionality into their Python projects 
-and perform operations such as searching, indexing, updating, and deleting documents.
+PyMeilisearch CLI is a command-line interface tool for MeiliSearch, built on top of the 
+PyMeilisearch Python client library. It provides a convenient way for developers to 
+interact with MeiliSearch from the command line, enabling them to perform operations such as indexing, 
+searching, updating, and deleting documents.
 
-Key features of PyMeilisearch include:
 
-#. Easy integration: PyMeilisearch provides a simple and intuitive API for interacting with MeiliSearch,allowing developers to seamlessly incorporate MeiliSearch capabilities into their Python applications.
+Overview of Features
+--------------------
 
-#. High-level functionality: PyMeilisearch offers high-level functions for performing common operations such as searching, indexing, and updating documents. This simplifies the process of utilizing MeiliSearch within Python applications.
+#. Easy integration: PyMeilisearch CLI provides a simple and intuitive command-line interface for interacting with MeiliSearch. 
+   Developers can seamlessly incorporate MeiliSearch capabilities into their workflows without writing custom code. 
+   It simplifies the integration process and reduces the overhead of setting up and configuring MeiliSearch functionality.
 
-#. Flexibility and customization: PyMeilisearch provides options for customization, including advanced search parameters and filtering options, enabling developers to tailor the search experience according to their specific needs.
+#. High-level functionality: PyMeilisearch CLI offers high-level commands for common operations such as indexing data, 
+   performing searches, and managing documents in MeiliSearch. 
+   These commands abstract away the complexities of the underlying API, allowing developers to focus on their search 
+   requirements rather than the implementation details.
 
-By combining MeiliSearch's powerful search capabilities with the simplicity and convenience of PyMeilisearch, developers can enhance their applications with efficient and accurate search functionality.
+#. Flexibility and customization: PyMeilisearch CLI provides options for customization, 
+   including advanced search parameters, filtering options, and indexing configurations. 
+   Developers can easily tailor the search experience and indexing process according to their specific needs, 
+   ensuring accurate and relevant search results.(see `getting_started`_)
+
+By combining MeiliSearch's powerful search capabilities with the simplicity and convenience of PyMeilisearch, 
+developers can enhance their applications with efficient and accurate search functionality.
 
 How to testing
 --------------
@@ -204,3 +215,4 @@ the building requirements and then executing the build module:
 .. _pytest: https://docs.pytest.org/en/stable/
 .. _Sphinx: https://www.sphinx-doc.org/en/master/
 .. _tox: https://tox.wiki/
+.. _getting_started: https://pymeilisearch.docs.ansys.com/version/dev/getting-started/index.html
