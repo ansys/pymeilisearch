@@ -84,7 +84,6 @@ This way, it's not possible for you to push code that fails the style checks. Fo
 .. _precommit: https://pre-commit.com/
 .. _dev_guide_contributing: https://dev.docs.pyansys.com/how-to/contributing.html
 .. _dev_guide_coding_style: https://dev.docs.pyansys.com/coding-style/index.html
-.. _PyAnsys Developer's guide: https://dev.docs.pyansys.com/
 .. _pymeilisearch_docs: https://pymeilisearch.docs.ansys.com/version/stable/
 .. _pymeilisearch_issues: https://github.com/ansys/pymeilisearch/issues
 .. _getting_started: https://pymeilisearch.docs.ansys.com/version/stable/getting-started/index.html
