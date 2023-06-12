@@ -9,7 +9,6 @@ hostUrl
 meilisearch
 MeiliSearch
 html
-Cloud
 url
 _static
 CLI

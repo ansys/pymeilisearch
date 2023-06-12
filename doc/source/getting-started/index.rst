@@ -1,14 +1,15 @@
 Getting started
 ###############
 
-Getting started with PyMeilisearch is quick and straightforward. This guide will walk you through 
-the initial steps to set up and integrate MeiliSearch into your Python project.
+Getting started with PyMeilisearch is a straightforward process that involves setting up and 
+integrating MeiliSearch into your Python project. This guide provides instructions 
+to  start and leverage the powerful search capabilities of MeiliSearch in documentation.
 
 Prerequisites
 -------------
 Before getting started, ensure that you have the following prerequisites:
 
-* Python: Make sure you have Python installed on your system. PyMeilisearch supports Python 3.6 and above.
+* Python: Make sure you have Python installed on your system. PyMeilisearch supports Python 3.7 and preceding.
 
 * MeiliSearch backend: Decide whether you want to deploy MeiliSearch using a Docker image or use a cloud service. 
   
@@ -29,26 +30,26 @@ Before getting started, ensure that you have the following prerequisites:
   indexing configurations, and filtering options. By modifying these templates according to your specific needs, 
   you can fine-tune the search experience and optimize the indexing process.
 
-Configuring Different Versions of Docs and Ansys Sphinx Theme
--------------------------------------------------------------
+Configuring different versions of documentation and ansys sphinx theme
+----------------------------------------------------------------------
 Documentation versions: PyMeilisearch allows you to scrape and index documentation from various sources, 
 including online repositories or local files. You can configure PyMeilisearch to handle multiple versions 
 of your documentation, ensuring that users can search and access documentation relevant to the version 
 they are using by multiple indexUids. By organizing your documentation into different versions, you can
 provide accurate and version-specific search results.
 
-Ansys Sphinx Theme: Ansys Sphinx theme supports PyMeilisearch , allowing you to maintain a consistent and 
+Ansys sphinx theme: Ansys sphinx theme supports PyMeilisearch , allowing you to maintain a consistent and 
 visually appealing documentation layout as documented in 
 `Ansys sphinx theme documentation <https://sphinxdocs.ansys.com/version/stable/user_guide/options.html#use-meilisearch>`_.
-By integrating the theme options with indexUid scraped with pymeilisearch, The search button will start using meilisearch engine.
+By integrating the theme options with indexUid scraped with pymeilisearch, The search button is able start using meilisearch engine.
 
-Setting Up GitHub Actions for Automation
+Setting up GitHub actions for automation
 ----------------------------------------
 GitHub Actions: GitHub Actions is a powerful workflow automation tool. You can leverage GitHub Actions to automate 
 the process of scraping and indexing your documentation with PyMeilisearch. By creating custom workflows using GitHub Actions, 
 you can define triggers, actions, and schedules to keep your MeiliSearch instance updated with the latest changes in your documentation repository.
 
-Configuration: To set up PyMeilisearch with GitHub Actions, create a workflow file (e.g., main.workflow) in your repository's 
+Configuration: To set up PyMeilisearch with GitHub Actions, create a workflow file (for example, main.workflow) in your repository's 
 .github/workflows directory. Define the desired workflow, such as triggering on a push or schedule, and 
 specify the actions to be performed, including scraping and indexing the documentation using PyMeilisearch.
 
