@@ -53,6 +53,6 @@ Configuration: To set up PyMeilisearch with GitHub Actions, create a workflow fi
 .github/workflows directory. Define the desired workflow, such as triggering on a push or schedule, and 
 specify the actions to be performed, including scraping and indexing the documentation using PyMeilisearch.
 
-Authentication and Secrets: Ensure that you store required authentication for the meilisearch 
+Authentication and secrets: Ensure that you store required authentication for the meilisearch 
 instance as environment variable of `MEILISEARCH_HOST_URL`and `MEILISEARCH_API_KEY`.
 
