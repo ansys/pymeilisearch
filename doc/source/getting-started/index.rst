@@ -1,7 +1,8 @@
 Getting started
 ###############
 
-Getting started with PyMeilisearch is quick and straightforward. This guide will walk you through the initial steps to set up and integrate MeiliSearch into your Python project.
+Getting started with PyMeilisearch is quick and straightforward. This guide will walk you through 
+the initial steps to set up and integrate MeiliSearch into your Python project.
 
 Prerequisites
 -------------
@@ -9,15 +10,16 @@ Before getting started, ensure that you have the following prerequisites:
 
 * Python: Make sure you have Python installed on your system. PyMeilisearch supports Python 3.6 and above.
 
-* MeiliSearch Backend: Decide whether you want to deploy MeiliSearch using a Docker image or use a cloud service. 
-  Docker Image: MeiliSearch provides an official Docker image that allows you to easily run the search engine as a container. 
+* MeiliSearch backend: Decide whether you want to deploy MeiliSearch using a Docker image or use a cloud service. 
+  
+  Docker image: MeiliSearch provides an official Docker image that allows you to easily run the search engine as a container. 
   You can pull the MeiliSearch image from Docker Hub and run it on your local machine or in a container orchestration
   platform like Kubernetes. Docker provides a standardized and portable environment for running MeiliSearch, 
   making it convenient for local development and deployment.
 
-  Cloud Service: Alternatively, you can use a cloud service provider that offers managed MeiliSearch instances. 
+  Cloud service: alternatively, you can use a cloud service provider that offers managed MeiliSearch instances. 
   These services take care of infrastructure setup, scaling, and maintenance, allowing you to focus on 
-  integrating MeiliSearch into your application without worrying about the backend infrastructure. 
+  integrating MeiliSearch into document without worrying about the backend infrastructure. 
   Cloud services provide a scalable and reliable solution for hosting MeiliSearch, 
   making it suitable for production environments.
 
@@ -29,13 +31,27 @@ Before getting started, ensure that you have the following prerequisites:
 
 Configuring Different Versions of Docs and Ansys Sphinx Theme
 -------------------------------------------------------------
-Documentation Versions: PyMeilisearch allows you to scrape and index documentation from various sources, 
+Documentation versions: PyMeilisearch allows you to scrape and index documentation from various sources, 
 including online repositories or local files. You can configure PyMeilisearch to handle multiple versions 
 of your documentation, ensuring that users can search and access documentation relevant to the version 
-they are using by multiple index uids. By organizing your documentation into different versions, you can
+they are using by multiple indexUids. By organizing your documentation into different versions, you can
 provide accurate and version-specific search results.
 
 Ansys Sphinx Theme: Ansys Sphinx theme supports PyMeilisearch , allowing you to maintain a consistent and 
 visually appealing documentation layout as documented in 
 `Ansys sphinx theme documentation <https://sphinxdocs.ansys.com/version/stable/user_guide/options.html#use-meilisearch>`_.
-By integarting the theme options with index-uid scraped with pymeilisearch, The search button will start using meilisearch engine.
+By integrating the theme options with indexUid scraped with pymeilisearch, The search button will start using meilisearch engine.
+
+Setting Up GitHub Actions for Automation
+----------------------------------------
+GitHub Actions: GitHub Actions is a powerful workflow automation tool. You can leverage GitHub Actions to automate 
+the process of scraping and indexing your documentation with PyMeilisearch. By creating custom workflows using GitHub Actions, 
+you can define triggers, actions, and schedules to keep your MeiliSearch instance updated with the latest changes in your documentation repository.
+
+Configuration: To set up PyMeilisearch with GitHub Actions, create a workflow file (e.g., main.workflow) in your repository's 
+.github/workflows directory. Define the desired workflow, such as triggering on a push or schedule, and 
+specify the actions to be performed, including scraping and indexing the documentation using PyMeilisearch.
+
+Authentication and Secrets: Ensure that you store required authentication for the meilisearch 
+instance as environment variable of `MEILISEARCH_HOST_URL`and `MEILISEARCH_API_KEY`.
+
