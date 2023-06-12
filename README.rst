@@ -179,19 +179,14 @@ encouraged to install this tool via:
 Documentation
 -------------
 
-For building documentation, you can either run the usual rules provided in the
-`Sphinx`_ Makefile, such us:
+Refer to the `documentation <http://pymeilisearch.docs.ansys.com/>`_ for detailed
+installation and usage details.
 
-.. code:: bash
+For general questions about the project, its applications, or about cli
+usage, please create a discussion in `pymeilisearch/discussions`_
+where the contributors can collectively address your questions.
 
-    make -C doc/ html && your_browser_name doc/html/index.html
-
-However, the recommended way of checking documentation integrity is using:
-
-.. code:: bash
-
-    tox -e doc && your_browser_name .tox/doc_out/index.html
-
+.. _pymeilisearch/discussions: https://github.com/ansys/pymeilisearch/discussions
 
 Distributing
 ------------
