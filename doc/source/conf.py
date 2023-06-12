@@ -105,7 +105,7 @@ master_doc = "index"
 exclude_patterns = ["_autoapi_templates/index.rst"]
 
 # -- Configure Sphinx autoapi ------------------------------------------------
-BUILD_API = True if os.environ.get("BUILD_API", "false") == "true" else False
+BUILD_API = True if os.environ.get("BUILD_API", "true") == "true" else False
 if BUILD_API:
     extensions.append("autoapi.extension")
     autoapi_type = "python"
@@ -122,7 +122,7 @@ if BUILD_API:
     autoapi_python_class_content = "both"
 
 # -- Configure the examples
-BUILD_EXAMPLES = True if os.environ.get("BUILD_EXAMPLES", "false") == "true" else False
+BUILD_EXAMPLES = True if os.environ.get("BUILD_EXAMPLES", "true") == "true" else False
 if not BUILD_EXAMPLES:
     exclude_patterns.append("examples.rst")
 
