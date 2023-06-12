@@ -39,7 +39,8 @@ limited. As opposite to this API, pymeilisearch offers the following features:
         :link: contributing
         :link-type: doc
 
-        Learn about the capabilities, features, and key topics of the project.
+        Read our specific contribution guide before collaborating to the codebase
+        or helping us in documentation.
 
 .. jinja:: main_toctree
 
