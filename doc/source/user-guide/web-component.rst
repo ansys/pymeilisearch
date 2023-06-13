@@ -40,7 +40,7 @@ Follow the steps below to include a search bar component in a webpage:
 
 
 The following example illustrates how to include a search bar component inside
-an HTML document and link it with a meilisearch backend.
+an html document and link it with a meilisearch backend.
 
 .. literalinclude:: ../_static/simple.html
    :language: html
@@ -49,7 +49,7 @@ an HTML document and link it with a meilisearch backend.
 Customizing the style
 =====================
 
-Since the search bar is an HTML component, it is possible to use CSS to
+Since the search bar is an html component, it is possible to use CSS to
 customize its style.
 
 .. literalinclude:: ../_static/search.html

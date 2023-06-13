@@ -5,7 +5,7 @@ Running meilisearch using the command line
 ==========================================
 
 It is possible to install and run a local instance of Meilisearch. Start by
-installling the binaries by running:
+installing the binaries by running:
 
 .. code-block:: console
 
@@ -53,5 +53,5 @@ development purposes. The following command is used to run the image:
 
     docker compose run meilisearch
 
-The application is launched in port `http://localhost:7700 <http://localhost:7700>`_
+The service launches in port `http://localhost:7700 <http://localhost:7700>`_
 of the host machine.
