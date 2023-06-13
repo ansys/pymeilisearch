@@ -1,5 +1,8 @@
 pymeilisearch
 #############
+
+**An enhanced Python API to Meilisearch**
+
 |python| |pypi| |GH-CI| |codecov| |MIT| |black|
 
 .. |python| image:: https://img.shields.io/pypi/pyversions/pymeilisearch?logo=pypi
