@@ -1,9 +1,17 @@
 Getting started
 ###############
 
+This guideline presents the different steps on how to setup the environment to
+use ``pymeilisearch``.
+
+Access to a local or remote installation of `meilisearch`_ is required before
+using ``pymeilisearch``.
+
+.. _meilisearch: https://www.meilisearch.com/
+
 .. grid:: 2
 
-    .. grid-item-card:: Building pymeilisearch images :fab:`docker`
+    .. grid-item-card:: Building meilisearch images :fab:`docker`
         :link: meilisearch-images
         :link-type: doc
 
