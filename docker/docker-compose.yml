@@ -4,7 +4,6 @@ services:
 
   meilisearch:
     image: getmeili/meilisearch
-    network_mode: host
     environment:
       - MEILI_MASTER_KEY=$MEILI_MASTER_KEY
     ports:
