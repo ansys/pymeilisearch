@@ -4,11 +4,8 @@ from typing import Union
 
 from jinja2 import Template
 
-TEMPLATES = {
-    "default": "default.json",
-    "sphinx_pydata": "sphinx_pydata.json",
-}
-"""Dictionary relating the name of a template and its configuration."""
+DEFAULT_TEMPLATE = pathlib.Path(__file__).parent.resolve() / "default.json"
+SPHINX_PYDATA_TEMPLATE = pathlib.Path(__file__).parent.resolve() / "sphinx_pydata.json"
 
 STOP_SPHINX_URLS = [
     "_sources",
@@ -33,8 +30,9 @@ def render_template(
 
     Parameters
     ----------
-    template : str
-        Name of the template to use. Must be a key in the TEMPLATES dictionary.
+    template_path : str or pathlib.Path
+        Path to the template file or the name of the template to use.
+        Must be a key in the TEMPLATES dictionary.
     urls : str or list of str
         URL(s) to crawl. Must start with "https://".
     path_out : str
@@ -55,9 +53,12 @@ def render_template(
         If any of the URLs do not start with "https://".
 
     """
-    template_path = pathlib.Path(__file__).parent.resolve() / TEMPLATES.get(
-        template, "default.json"
-    )
+    if template == "sphinx_pydata":
+        template_path = SPHINX_PYDATA_TEMPLATE
+    elif template == "default":
+        template_path = DEFAULT_TEMPLATE
+    else:
+        template_path = pathlib.Path(template)
 
     if not template_path.exists():
         raise FileNotFoundError(f"Unable to locate a template at {template_path}")
