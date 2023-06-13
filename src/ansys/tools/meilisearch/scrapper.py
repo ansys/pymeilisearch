@@ -128,17 +128,6 @@ class WebScraper(BaseClient):
             if response.status_code != 200:
                 raise RuntimeError(f'URL "{url}" returned status code {response.status_code}')
 
-    def _check_pyaedt(self, urls):
-        if isinstance(urls, str):
-            urls = [urls]
-        return any("aedt.docs.pyansys.com" in url for url in urls)
-
-    def _get_edb_urls(self, urls):
-        if isinstance(urls, str):
-            return [f"{urls}EDBAPI" if urls.endswith("/") else f"{urls}/EDBAPI"]
-        else:
-            return [url for url in urls if "EDBAPI" in url]
-
     def scrape_url(self, url, index_uid, template=None, verbose=False):
         """For a single given URL, scrape it using the active Meilisearch host.
 
@@ -161,22 +150,10 @@ class WebScraper(BaseClient):
             The number of hits from the URL.
         """
         self._check_url(url)
-        is_pyaedt = self._check_pyaedt(url)
         template = get_template(url) if template is None else template
 
-        if is_pyaedt:
-            edb_url = self._get_edb_urls(url)
-            temp_config_file_pyaedt = self._load_and_render_template(
-                url, template, index_uid, stop_urls=edb_url
-            )
-            output = self._scrape_url_command(temp_config_file_pyaedt)
-            temp_config_file_pyedb = self._load_and_render_template(
-                edb_url, template, index_uid=f"{index_uid}-pyaedb"
-            )
-            output = self._scrape_url_command(temp_config_file_pyedb)
-        else:
-            temp_config_file = self._load_and_render_template(url, template, index_uid)
-            output = self._scrape_url_command(temp_config_file)
+        temp_config_file = self._load_and_render_template(url, template, index_uid)
+        output = self._scrape_url_command(temp_config_file)
 
         n_hits = self._parse_output(output)
         if verbose:
