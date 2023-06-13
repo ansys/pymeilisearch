@@ -21,22 +21,9 @@ guide includes the steps of using the CLI tool effectively.
         Integrate Meilisearch in a website by creating a search bar
         component and linking it to a running meilisearch instance.
         
-
-.. grid:: 2
-
-
-    .. grid-item-card:: Meilisearch backend :fas:`fa fa-server`
-        :link: meilisearch-backend
-        :link-type: doc
-
-        Focuses on setting up the MeiliSearch backend. Covers through the process configuring MeiliSearch
-
-
-
 .. toctree::
    :hidden:
    :maxdepth: 3
 
    cli-usage
    web-component
-   meilisearch-backend
