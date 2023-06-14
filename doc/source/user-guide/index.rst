@@ -1,26 +1,29 @@
 User guide
 ==========
 
-Introduction
-------------
+The ``pymeilisearch`` command-line interface (CLI) is designed to help you
+scrape and upload documentation files or websites to Meilisearch. This user
+guide includes the steps of using the CLI tool effectively.
 
-The `pymeilisearch` CLI tool is designed to help you scrape and upload documentation files or websites to Meilisearch.
-This user guide includes the steps of using the CLI tool effectively.
+.. grid:: 2
 
-Installation
-------------
+    .. grid-item-card:: CLI usage :fas:`fa fa-terminal`
+        :link: cli-usage
+        :link-type: doc
 
-Before using the `pymeilisearch` CLI tool, make sure you have it installed in your Python environment.
-You can install it using `pip`:
+        Learn how to use PyMeilisearch from the command line. Covers the installation 
+        process and examples of common commands and their usage. 
 
-.. code-block:: console
-
-    $ pip install pymeilisearch
-
-
+    .. grid-item-card:: Web component :fas:`fa fa-server`
+        :link: web-component
+        :link-type: doc
+        
+        Integrate Meilisearch in a website by creating a search bar
+        component and linking it to a running meilisearch instance.
+        
 .. toctree::
    :hidden:
    :maxdepth: 3
 
-   cli_usage.rst
-   search_engine.rst
+   cli-usage
+   web-component

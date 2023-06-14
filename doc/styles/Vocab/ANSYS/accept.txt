@@ -2,11 +2,15 @@ ANSYS
 Ansys
 ansys
 pymeilisearch
+PyMeilisearch
 apiKey
 indexUid
 hostUrl
 meilisearch
 Meilisearch
+MeiliSearch
+sphinx_pydata
+json
 html
 url
 _static
@@ -14,3 +18,6 @@ CLI
 URL
 github
 GitHub
+uuidgen
+openssl
+shasum
