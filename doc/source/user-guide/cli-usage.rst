@@ -39,13 +39,13 @@ Syntax:
 
 Required arguments:
 
-- ``--template <template>`` indicates the Name of the template to use or specify the path where the template is located. 
-    Available templates are `sphinx_pydata` and `default`. The config file required to know which content you want to scrape.
-    The example config files available in `meilisearch-docs-scrapper`_.
+- ``--template <template name or path>`` indicates the Name of the template to use or specify the path where the template is located. 
+    Available templates are `sphinx_pydata` and `default`. The `config file` required to know which content you want to scrape.
+    The example `config files` available in `meilisearch-docs-scrapper`_.
 
 .. _meilisearch-docs-scrapper: https://github.com/meilisearch/docs-scraper#set-your-config-file
 
-- ``--index <index>`` indicates the name of the Meilisearch index used to identify the content.
+- ``--index <index name>`` indicates the name of the Meilisearch index used to identify the content.
 - ``<source>`` is the type source to upload. It can be ``html``, ``url``, or ``github``.
 - ``<location>`` indicates the location of the files or website to upload.
 
