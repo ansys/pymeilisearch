@@ -1,7 +1,7 @@
 {
     "index_uid": "{{ index_uid }}",
     "start_urls": {{ start_url|safe }},
-    "stop_urls": ["/_sources", "_downloads","_static"],
+    "stop_urls": {{ stop_url|safe }},
     "selectors": {
         "lvl0": {
             "selector": "title",
@@ -14,6 +14,8 @@
         "lvl4": ".bd-content h4",
         "lvl5": ".bd-content h5",
         "lvl6": ".bd-content h6",
-        "text": "p"
-    }
-}
+        "text": ".bd-content p, .bd-content li, .bd-content td"
+    },
+    "strip_chars": " .,;:#",
+    "min_indexed_level": 2
+  }

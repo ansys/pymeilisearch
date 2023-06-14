@@ -4,7 +4,7 @@ import re
 import requests
 
 
-def get_template(url: str, pyaedt: bool = False) -> str:
+def get_template(url: str) -> str:
     """
     Determine the template name for the given URL.
 
@@ -13,17 +13,11 @@ def get_template(url: str, pyaedt: bool = False) -> str:
     url : str
         The URL of the web page to check.
 
-    pyaedt : bool, optional
-        If True, the function uses the "sphinx_pydata" template for Sphinx pages,
-        otherwise it uses the "default" template. Default is False.
-
     Returns
     -------
     str
         The name of the template to use for the page.
     """
-    if pyaedt:
-        return "sphinx_pyaedt" if is_sphinx(url) else "default"
     return "sphinx_pydata" if is_sphinx(url) else "default"
 
 
