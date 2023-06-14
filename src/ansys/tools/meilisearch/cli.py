@@ -24,7 +24,7 @@ def main():
 @click.option(
     "--template",
     required=True,
-    help="Name of the template to use or specify the path where the template is located.",
+    help="Name of the template to use or specify the path where the template is located. Available templates are `sphinx_pydata` and `default`.",  # noqa: E501
 )
 @click.option(
     "--index", required=True, help="Name of the MeiliSearch index used to identify the content."
