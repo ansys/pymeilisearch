@@ -20,10 +20,18 @@ def test_check_url_returns_non_200(mock_get, scraper):
 
 def test_load_and_render_template(scraper):
     url = "https://dev.docs.pyansys.com/"
-    template = "my_template.json"
+    template = "sphinx_pydata"
     index_uid = "my_index"
     temp_file = scraper._load_and_render_template(url, template, index_uid)
     assert temp_file.endswith(".json")
+
+
+def test_load_and_render_template_with_path(scraper):
+    url = "https://dev.docs.pyansys.com/"
+    template = "my_template.json"
+    index_uid = "my_index"
+    with pytest.raises(FileNotFoundError):
+        scraper._load_and_render_template(url, template, index_uid)
 
 
 def test_parse_output_empty_output(scraper):

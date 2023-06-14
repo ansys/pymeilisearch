@@ -15,5 +15,6 @@
       "lvl5": "h5",
       "lvl6": "h6",
       "text": "p"
-    }
+    },
+    "min_indexed_level": 2
   }
