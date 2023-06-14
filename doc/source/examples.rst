@@ -13,7 +13,7 @@ To create an index from an online page, you can use the `pymeilisearch` CLI util
 
 .. code-block:: shell
 
-   pymeilisearch upload --template <template name> --index <index name> url https://example.com
+   pymeilisearch upload --template <template name or path> --index <index name> url https://example.com
 
 Creating an index from a local page
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -22,7 +22,7 @@ To create an index from a local page, run the following command:
 
 .. code-block:: shell
 
-   pymeilisearch upload --template <template name> --index <index name> html /path/to/files
+   pymeilisearch upload --template <template name or path> --index <index name> html /path/to/files
 
 Creating an index from GitHub organizations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -32,7 +32,7 @@ following command:
 
 .. code-block:: shell
 
-   pymeilisearch upload --template <template name> --index <index name> github /path/to/files --orgs orgA --orgs orgB
+   pymeilisearch upload --template <template name or path> --index <index name> github /path/to/files --orgs orgA --orgs orgB
 
 Creating an index from CI/CD
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -49,7 +49,7 @@ an example:
 
            - name: Upload to MeiliSearch
              run: |
-               pymeilisearch upload --template <template name> --index <index name> url https://example.com
+               pymeilisearch upload --template <template name or path> --index <index name> url https://example.com
 
     .. tab-item:: Local content
 
@@ -57,7 +57,7 @@ an example:
 
            - name: Upload to MeiliSearch
              run: |
-               pymeilisearch upload --template <template name> --index <index name> html /path/to/files
+               pymeilisearch upload --template <template name or path> --index <index name> html /path/to/files
 
     .. tab-item:: GitHub organization
 
@@ -65,4 +65,4 @@ an example:
 
            - name: Upload to MeiliSearch
              run: |
-               pymeilisearch upload --template <template name> --index <index name> github /path/to/files --orgs orgA --orgs orgB
+               pymeilisearch upload --template <template name or path> --index <index name> github /path/to/files --orgs orgA --orgs orgB

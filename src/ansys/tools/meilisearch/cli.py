@@ -21,7 +21,11 @@ def main():
 
 
 @main.command()
-@click.option("--template", required=True, help="Name of the template to use.")
+@click.option(
+    "--template",
+    required=True,
+    help="Name of the template to use or specify the path where the template is located.",
+)
 @click.option(
     "--index", required=True, help="Name of the MeiliSearch index used to identify the content."
 )
