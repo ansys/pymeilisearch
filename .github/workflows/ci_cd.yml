@@ -142,10 +142,10 @@ jobs:
         run: pip install -e .
 
       - name: Deploy the latest documentation
-        run: pymeilisearch upload --template sphinx_pydata --index pymeilisearch-dev-sphinx-docs  --cname pymeilisearch.docs.ansys.com/version/dev/ html documentation-html
+        run: pymeilisearch upload --template sphinx_pydata --index pymeilisearch-dev-sphinx-docs  --cname ${{ DOCUMENTATION_CNAME }}/version/dev/ html documentation-html
         env:
           MEILISEARCH_HOST_URL: https://backend.search.pyansys.com
-          MEILISEARCH_API_KEY: ${{ secrets.MEILISEARCH_API_KEY }}
+          MEILISEARCH_API_KEY: ${{ secrets.MEILISEARCH_API_KEY${{
 
   upload_docs_release:
     name: Upload release documentation
