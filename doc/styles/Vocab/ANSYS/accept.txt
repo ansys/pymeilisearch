@@ -10,6 +10,7 @@ meilisearch
 Meilisearch
 MeiliSearch
 sphinx_pydata
+config
 json
 html
 url
