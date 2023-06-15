@@ -13,6 +13,9 @@ env:
   LIBRARY_NAME: 'pymeilisearch'
   LIBRARY_NAMESPACE: 'ansys.tools.meilisearch'
   PACKAGE_NAME: 'pymeilisearch'
+  MEILISEARCH_PUBLIC_API_KEY: ${{ secrets.MEILISEARCH_PUBLIC_API_KEY }}
+  MEILISEARCH_HOST_URL: https://backend.search.pyansys.com
+  MEILISEARCH_API_KEY: ${{ secrets.MEILISEARCH_API_KEY }}
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -120,6 +123,30 @@ jobs:
           cname: ${{ env.DOCUMENTATION_CNAME }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
+  upload_dev_docs_meilisearch:
+    name: Upload dev documentation to meilisearch
+    runs-on: ubuntu-latest
+    needs: [upload_dev_docs]
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.MAIN_PYTHON_VERSION }}
+
+      - uses: actions/checkout@v3
+
+      - uses: actions/download-artifact@v3
+
+      - name: Display structure of downloaded files
+        run: ls -R
+
+      - name: Install the package requirements
+        run: pip install -e .
+
+      - name: Scrape the dev documentation to meilisearch
+        run: |
+          pymeilisearch upload --template sphinx_pydata --index pymeilisearch-dev  --cname ${{ env.DOCUMENTATION_CNAME }}/version/dev/ html documentation-html
+
   upload_docs_release:
     name: Upload release documentation
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags')
@@ -131,3 +158,29 @@ jobs:
         with:
           cname: ${{ env.DOCUMENTATION_CNAME }}
           token: ${{ secrets.GITHUB_TOKEN }}
+
+  upload_stable_docs_meilisearch:
+    name: Upload stable documentation to meilisearch
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags')
+    runs-on: ubuntu-latest
+    needs: [upload_docs_release]
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.MAIN_PYTHON_VERSION }}
+
+      - uses: actions/checkout@v3
+
+      - uses: actions/download-artifact@v3
+
+      - name: Display structure of downloaded files
+        run: ls -R
+
+      - name: Install the package requirements
+        run: pip install -e .
+
+      - name: Scrape the stable documentation to meilisearch
+        run: |
+          VERSION=$(python -c "from ansys.tools.meilisearch import __version__; print('.'.join(__version__.split('.')[:2]))")
+          pymeilisearch upload --template sphinx_pydata --index "pymeilisearch-${VERSION}" --cname "${{ env.DOCUMENTATION_CNAME }}/version/${VERSION}/" html documentation-html

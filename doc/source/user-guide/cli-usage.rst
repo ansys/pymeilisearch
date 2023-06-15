@@ -51,7 +51,7 @@ Required arguments:
 
 Options:
 
-- ``--cname <cname>`` is the CNAME in which the documents are hosted (optional).
+- ``--cname <cname>`` is the CNAME in which the documents are hosted (optional), recommended for localhost scraping.
 - ``--port <port>`` is the number for the port in which the local host has to connect. Default port is 8000.
 - ``--orgs <orgs>`` is the name for the GitHub organizations from which public GitHub pages get scraped.
 

@@ -1,5 +1,3 @@
-# Authors
-
 ## Project lead
 
 * [Revathy Venugopal](https://github.com/Revathyvenugopal162)
