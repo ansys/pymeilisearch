@@ -124,7 +124,7 @@ jobs:
   upload_meilisearch:
     name: Upload dev documentation to meilisearch
     runs-on: ubuntu-latest
-    needs: [upload_dev_docs]
+    needs: [doc-build]
     steps:
       - name: Set up Python
         uses: actions/setup-python@v4
