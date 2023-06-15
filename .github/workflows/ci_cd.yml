@@ -13,7 +13,7 @@ env:
   LIBRARY_NAME: 'pymeilisearch'
   LIBRARY_NAMESPACE: 'ansys.tools.meilisearch'
   PACKAGE_NAME: 'pymeilisearch'
-  MEILISEARCH_PUBLIC_API_KEY: ${{ secrets.MEILISEARCH_API_PUBLIC_KEY }}
+  MEILISEARCH_API_PUBLIC_KEY: ${{ secrets.MEILISEARCH_API_PUBLIC_KEY }}
   MEILISEARCH_HOST_URL: https://backend.search.pyansys.com
   MEILISEARCH_API_KEY: ${{ secrets.MEILISEARCH_API_KEY }}
 
