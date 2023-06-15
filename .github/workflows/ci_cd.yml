@@ -126,7 +126,7 @@ jobs:
   upload_dev_docs_meilisearch:
     name: Upload dev documentation to meilisearch
     runs-on: ubuntu-latest
-    needs: [upload_dev_docs]
+    needs: [doc-build]
     steps:
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -145,7 +145,7 @@ jobs:
 
       - name: Scrape the dev documentation to meilisearch
         run: |
-          pymeilisearch upload --template sphinx_pydata --index pymeilisearch-dev-sphinx-docs  --cname ${{ env.DOCUMENTATION_CNAME }}/version/dev/ html documentation-html
+          pymeilisearch upload --template sphinx_pydata --index pymeilisearch-vdev  --cname ${{ env.DOCUMENTATION_CNAME }}/version/dev/ html documentation-html
 
   upload_docs_release:
     name: Upload release documentation
