@@ -33,7 +33,7 @@ html_theme_options = {
     "use_meilisearch": {
         "api_key": os.getenv("MEILISEARCH_PUBLIC_API_KEY", ""),
         "index_uids": {
-            f"pymeilisearch-v{get_version_match(__version__)}": "PyMeilisearch",
+            f"pymeilisearch-{get_version_match(__version__)}": "PyMeilisearch",
         },
     },
 }
