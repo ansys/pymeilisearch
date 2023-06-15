@@ -22,7 +22,7 @@ To create an index from a local page, run the following command:
 
 .. code-block:: shell
 
-   pymeilisearch upload --template <template name or path> --index <index name> html /path/to/files
+   pymeilisearch upload --template <template name or path> --index <index name> --cname <cname of the document> html /path/to/files
 
 Creating an index from GitHub organizations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -57,7 +57,7 @@ an example:
 
            - name: Upload to MeiliSearch
              run: |
-               pymeilisearch upload --template <template name or path> --index <index name> html /path/to/files
+               pymeilisearch upload --template <template name or path> --index <index name> <cname of the document> html /path/to/files
 
     .. tab-item:: GitHub organization
 
