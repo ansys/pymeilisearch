@@ -14,10 +14,6 @@ release = version = __version__
 cname = os.getenv("DOCUMENTATION_CNAME", "pymeilisearch.docs.ansys.com")
 """The canonical name of the webpage hosting the documentation."""
 
-version_match = get_version_match(__version__)
-
-index_uid = "pymeilisearch-{}-sphinx-docs".format(version_match).replace(".", "-")
-
 # Select desired logo, theme, and declare the html title
 html_logo = pyansys_logo_black
 html_theme = "ansys_sphinx_theme"
@@ -31,13 +27,13 @@ html_theme_options = {
     ],
     "switcher": {
         "json_url": f"https://{cname}/versions.json",
-        "version_match": version_match,
+        "version_match": get_version_match(__version__),
     },
     "check_switcher": False,
     "use_meilisearch": {
-        "api_key": os.getenv("MEILISEARCH_API_KEY", ""),
+        "api_key": os.getenv("MEILISEARCH_PUBLIC_API_KEY", ""),
         "index_uids": {
-            index_uid: "Pymeilisearch",
+            f"pymeilisearch-v{get_version_match(__version__)}-sphinx-docs": "PyMeilisearch",
         },
     },
 }
