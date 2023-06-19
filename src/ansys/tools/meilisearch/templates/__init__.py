@@ -1,3 +1,4 @@
+"""PyMeilisearch template subpackage"""
 import json
 import pathlib
 from typing import Union
