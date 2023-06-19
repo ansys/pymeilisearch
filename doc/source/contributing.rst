@@ -19,7 +19,7 @@ Run this code to clone and install the latest version of pymeilisearch in develo
 
 .. code:: console
 
-    git clone https://github.com/pyansys/pymeilisearch
+    git clone https://github.com/ansys/pymeilisearch
     cd pymeilisearch
     pip install pip -U
     pip install -e .

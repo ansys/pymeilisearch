@@ -59,7 +59,7 @@ pymeilisearch = "ansys.tools.meilisearch.cli:main"
 Source = "https://github.com/ansys/pymeilisearch"
 Tracker = "https://github.com/ansys/pymeilisearch/issues"
 Homepage = "https://github.com/ansys/pymeilisearch"
-
+Documentation = "https://pymeilisearch.docs.ansys.com"
 
 [tool.black]
 line-length = 100
