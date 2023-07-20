@@ -68,7 +68,7 @@ on your requirements.
 
 - ``--cname <cname>``: CNAME in which the documents are hosted. While supplying a CNAME
   is optional, doing so is recommended for localhost scraping.
-- ``--port <port>``: Port on which the localhost has connectted. The default is ``8000``.
+- ``--port <port>``: Port on which the localhost has connected. The default is ``8000``.
 - ``--orgs <orgs>``: Names of the one or more GitHub organizations to scrape public
   GitHub pages from.
 

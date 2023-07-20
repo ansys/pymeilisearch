@@ -38,7 +38,7 @@ simplifies integration with `Meilisearch <https://www.meilisearch.com/>`_,
 enabling developers to enhance their applications with powerful search
 functionality by indexing desired data.
 
-PyMeilisearch provdies these key features:
+PyMeilisearch provides these key features:
 
 - **Easy integration** with continuous integration workflows.
 
