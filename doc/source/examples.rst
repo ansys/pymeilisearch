@@ -1,49 +1,44 @@
 Examples
 ========
+This section provides some usage examples for PyMeilisearch.
 
+Create an index from online files
+---------------------------------
 
-
-Using pymeilisearch CLI utility
--------------------------------
-
-Creating an index from an online page
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-To create an index from an online page, you can use the `pymeilisearch` CLI utility as follows:
+This command creates an index from online files:
 
 .. code-block:: shell
 
    pymeilisearch upload --template <template name or path> --index <index name> url https://example.com
 
-Creating an index from a local page
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Create an index from local files
+--------------------------------
 
-To create an index from a local page, run the following command:
+This command creates an index from local files:
 
 .. code-block:: shell
 
    pymeilisearch upload --template <template name or path> --index <index name> --cname <cname of the document> html /path/to/files
 
-Creating an index from GitHub organizations
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Create indexes from files in GitHub organizations
+-------------------------------------------------
 
-To create indexes for pages of repositories in a GitHub organization, run the
-following command:
+This command create indexes from files in the repositories of GitHub organizations:
 
 .. code-block:: shell
 
    pymeilisearch upload --template <template name or path> --index <index name> github /path/to/files --orgs orgA --orgs orgB
 
-Creating an index from CI/CD
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Create an index from CI/CD
+--------------------------
 
-To create an index from CI/CD, you can use the `pymeilisearch` CLI utility
-within your `Ansys Actions <https://actions.docs.ansys.com>`_ workflow. Here's
-an example:
+You can use PyMeilisearch within the `Ansys actions <https://actions.docs.ansys.com>`_ in your CI/CD. 
+The following tabs show how to use Ansys actions to create one or more indexes from online files,
+local files, and files in GitHub organizations:
 
 .. tab-set::
 
-    .. tab-item:: Online content
+    .. tab-item:: Online files
 
         .. code-block:: yaml
 
@@ -51,7 +46,7 @@ an example:
              run: |
                pymeilisearch upload --template <template name or path> --index <index name> url https://example.com
 
-    .. tab-item:: Local content
+    .. tab-item:: Local files
 
         .. code-block:: yaml
 
@@ -59,7 +54,7 @@ an example:
              run: |
                pymeilisearch upload --template <template name or path> --index <index name> <cname of the document> html /path/to/files
 
-    .. tab-item:: GitHub organization
+    .. tab-item:: Files in GitHub organizations
 
         .. code-block:: yaml
 

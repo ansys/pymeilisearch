@@ -1,18 +1,16 @@
-pymeilisearch documentation |version|
+PyMeilisearch documentation |version|
 #####################################
 
-Welcome to the official documentation of ``pymeilisearch``.
+PyMeilisearch provides a simple command line interface (CLI) to create
+indices in a `Meilisearch <https://www.meilisearch.com/>`_ service.
 
-This project provides a simple command line interface (CLI) to create new
-indices in a `meilisearch <https://www.meilisearch.com/>`_ service.
+Because the `Meilisearch Python API <https://github.com/meilisearch/meilisearch-python>`_
+provides only limited capabilities, PyMeilisearch was designed to provide more
+extensive capabilities, including these:
 
-Although `meilisearch provides a Python API
-<https://github.com/meilisearch/meilisearch-python>`_, its capabilities are very
-limited. As opposite to this API, pymeilisearch offers the following features:
-
-- Pre-defined templates for popular documentation themes
-- Documentation scrapping of online websites
-- Documentation scrapping of local documentation
+- Predefined templates for popular documentation themes
+- Scrapping of documentation on websites
+- Scrapping of local documentation
 
 
 .. raw:: html
@@ -27,13 +25,15 @@ limited. As opposite to this API, pymeilisearch offers the following features:
         :link: getting-started/index
         :link-type: doc
 
-        Step by step guidelines on how to set up your environment.
+        Learn how to install PyMeilisearch and build your own Docker image for
+        testing PyMeilisearch locally.
 
     .. grid-item-card:: User guide :fa:`book-open-reader`
         :link: user-guide/index
         :link-type: doc
 
-        Learn about the capabilities, features, and key topics of the project.
+        Learn how to use the PyMeilisearch CLI and integrate PyMeilisearch
+        in a website.
 
 .. jinja:: main_toctree
 
@@ -45,18 +45,17 @@ limited. As opposite to this API, pymeilisearch offers the following features:
            :link: autoapi/index
            :link-type: doc
 
-           A detailed guide describing the pymeilisearch API. This guide documents all the
-           methods and properties for each one of the interfaces, classes and
-           enumerations of each one of the modules in pymeilisearch.
+           Learn about PyMeilisearch API endpoints, their capabilities, and
+           how to interact with them programmatically.
         {% endif %}
 
        {% if build_examples %}
-       .. grid-item-card:: Gallery of examples :fa:`laptop-code`
+       .. grid-item-card:: Examples :fa:`laptop-code`
            :link: examples
            :link-type: doc
 
-           Learn how to use pymeilisearch for creating your own indices with
-           custom templates from an online website or local HTML files.
+           Learn how to use PyMeilisearch to create your own indices with
+           custom templates from either an online website or local HTML files.
         {% endif %}
     {% endif %}
 
@@ -69,10 +68,10 @@ limited. As opposite to this API, pymeilisearch offers the following features:
 
        getting-started/index
        user-guide/index
-       {% if build_examples %}
-       examples
-       {% endif %}
        {% if build_api %}
        autoapi/index
+       {% endif %}
+       {% if build_examples %}
+       examples
        {% endif %}
        contributing.rst
