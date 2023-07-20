@@ -48,7 +48,6 @@ extensions = [
 # Intersphinx mapping
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
-    "meilisearch": ("https://www.meilisearch.com/", None),
 }
 
 # numpydoc configuration
