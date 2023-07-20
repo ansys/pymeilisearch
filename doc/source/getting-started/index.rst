@@ -14,13 +14,12 @@ This section describes how to install and run PyMeilisearch.
 
 .. grid:: 2
 
-        .. grid-item-card:: Install PyMeilisearch :fab:`python`
+    .. grid-item-card:: Install PyMeilisearch :fab:`python`
         :link: installing-pymeilisearch
         :link-type: doc
 
         Learn how to install PyMeilisearch in either user mode
         or development mode.
-
 
     .. grid-item-card:: Run Meilisearch :fab:`docker`
         :link: meilisearch-images

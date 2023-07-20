@@ -25,6 +25,7 @@ a website as a web component (search bar).
         :link-type: doc
         
         Integrate Meilisearch into a website as a web component (search bar).
+
         
 .. toctree::
    :hidden:
