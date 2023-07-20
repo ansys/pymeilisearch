@@ -2,7 +2,7 @@
 from datetime import datetime
 import os
 
-from ansys_sphinx_theme import get_version_match, pyansys_logo_black
+from ansys_sphinx_theme import get_version_match
 
 from ansys.tools.meilisearch import __version__
 
@@ -15,16 +15,12 @@ cname = os.getenv("DOCUMENTATION_CNAME", "pymeilisearch.docs.ansys.com")
 """The canonical name of the webpage hosting the documentation."""
 
 # Select desired logo, theme, and declare the html title
-html_logo = pyansys_logo_black
 html_theme = "ansys_sphinx_theme"
 html_short_title = html_title = project
 html_theme_options = {
     "github_url": "https://github.com/ansys/pymeilisearch",
     "show_prev_next": False,
     "show_breadcrumbs": True,
-    "additional_breadcrumbs": [
-        ("PyAnsys", "https://docs.pyansys.com/"),
-    ],
     "switcher": {
         "json_url": f"https://{cname}/versions.json",
         "version_match": get_version_match(__version__),
