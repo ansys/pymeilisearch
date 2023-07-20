@@ -19,7 +19,8 @@ CLI
 URL
 github
 GitHub
-OpenSsl
+OpenSSl
 shasum
 subcommand
+subcommands
 Subcommands
