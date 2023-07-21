@@ -26,7 +26,7 @@ Once installed, run a local instance of meilisearch by running:
 
     - uuidgen
     - openssl rand
-    - shasum 
+    - shasum
 
 
 For more advanced topics on how to use meilisearch, visit the `meilisearch

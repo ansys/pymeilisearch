@@ -12,7 +12,6 @@ env:
   DOCUMENTATION_CNAME: 'pymeilisearch.docs.ansys.com'
   LIBRARY_NAME: 'pymeilisearch'
   LIBRARY_NAMESPACE: 'ansys.tools.meilisearch'
-  PACKAGE_NAME: 'pymeilisearch'
   MEILISEARCH_API_PUBLIC_KEY: ${{ secrets.MEILISEARCH_API_PUBLIC_KEY }}
   MEILISEARCH_HOST_URL: https://backend.search.pyansys.com
   MEILISEARCH_API_KEY: ${{ secrets.MEILISEARCH_API_KEY }}
@@ -47,8 +46,8 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        python-version: ['3.7', '3.8', '3.9', '3.10', '3.11']
-        should-release: 
+        python-version: ['3.8', '3.9', '3.10', '3.11']
+        should-release:
           - ${{ github.event_name == 'push' && contains(github.ref, 'refs/tags') }}
         exclude:
           - should-release: false
@@ -57,8 +56,8 @@ jobs:
       - name: "Build wheelhouse and perform smoke test"
         uses: ansys/actions/build-wheelhouse@v4
         with:
-          library-name: ${{ env.PACKAGE_NAME }}
-          library-namespace: ${{ env.PACKAGE_NAMESPACE }}
+          library-name: ${{ env.LIBRARY_NAME }}
+          library-namespace: ${{ env.LIBRARY_NAMESPACE }}
           operating-system: ${{ matrix.os }}
           python-version: ${{ matrix.python-version }}
 
@@ -75,20 +74,17 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
-      
+
       - name: Test the meilisearch container
         working-directory: docker
         run: docker-compose up -d
 
-      - name: Checkout code
-        uses: actions/checkout@v3
-        
       - name: Install the project with testing dependencies
         run: pip install .[tests]
 
       - name: Run tests
         run: pytest tests -vv
-         
+
       - name: Stop services
         if: always()
         working-directory: docker
@@ -123,21 +119,21 @@ jobs:
       - name: "Release to the private PyPI repository"
         uses: ansys/actions/release-pypi-private@v4
         with:
-          library-name: ${{ env.PACKAGE_NAME }}
+          library-name: ${{ env.LIBRARY_NAME }}
           twine-username: "__token__"
           twine-token: ${{ secrets.PYANSYS_PYPI_PRIVATE_PAT }}
 
       - name: "Release to the public PyPI repository"
         uses: ansys/actions/release-pypi-public@v4
         with:
-          library-name: ${{ env.PACKAGE_NAME }}
+          library-name: ${{ env.LIBRARY_NAME }}
           twine-username: "__token__"
           twine-token: ${{ secrets.PYPI_TOKEN }}
 
       - name: "Release to GitHub"
         uses: ansys/actions/release-github@v4
         with:
-          library-name: ${{ env.PACKAGE_NAME }}
+          library-name: ${{ env.LIBRARY_NAME }}
 
   doc-deploy-dev:
     name: "Deploy development docs"

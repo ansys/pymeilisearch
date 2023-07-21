@@ -3,7 +3,11 @@ pymeilisearch
 
 **An enhanced Python API to Meilisearch**
 
-|python| |pypi| |GH-CI| |codecov| |MIT| |black|
+|ansys| |python| |pypi| |GH-CI| |MIT| |black|
+
+.. |ansys| image:: https://img.shields.io/badge/Py-Ansys-ffc107.svg?labelColor=black&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAABDklEQVQ4jWNgoDfg5mD8vE7q/3bpVyskbW0sMRUwofHD7Dh5OBkZGBgW7/3W2tZpa2tLQEOyOzeEsfumlK2tbVpaGj4N6jIs1lpsDAwMJ278sveMY2BgCA0NFRISwqkhyQ1q/Nyd3zg4OBgYGNjZ2ePi4rB5loGBhZnhxTLJ/9ulv26Q4uVk1NXV/f///////69du4Zdg78lx//t0v+3S88rFISInD59GqIH2esIJ8G9O2/XVwhjzpw5EAam1xkkBJn/bJX+v1365hxxuCAfH9+3b9/+////48cPuNehNsS7cDEzMTAwMMzb+Q2u4dOnT2vWrMHu9ZtzxP9vl/69RVpCkBlZ3N7enoDXBwEAAA+YYitOilMVAAAAAElFTkSuQmCC
+   :target: https://actions.docs.ansys.com/
+   :alt: PyAnsys
 
 .. |python| image:: https://img.shields.io/pypi/pyversions/pymeilisearch?logo=pypi
    :target: https://pypi.org/project/pymeilisearch/
@@ -12,10 +16,6 @@ pymeilisearch
 .. |pypi| image:: https://img.shields.io/pypi/v/pymeilisearch.svg?logo=python&logoColor=white
    :target: https://pypi.org/project/pymeilisearch
    :alt: PyPI
-
-.. |codecov| image:: https://codecov.io/gh/ansys/pymeilisearch/branch/main/graph/badge.svg
-   :target: https://codecov.io/gh/pyansys/pymeilisearch
-   :alt: Codecov
 
 .. |GH-CI| image:: https://github.com/ansys/pymeilisearch/actions/workflows/ci_cd.yml/badge.svg
    :target: https://github.com/ansys/pymeilisearch/actions/workflows/ci_cd.yml
@@ -122,6 +122,6 @@ resources and troubleshooting guides.
 License
 =======
 
-You can find the full text of the license in the `LICENSE` file.
+You can find the full text of the license in the `LICENSE`_ file.
 
 .. _license: https://github.com/ansys/pymeilisearch/blob/main/LICENSE

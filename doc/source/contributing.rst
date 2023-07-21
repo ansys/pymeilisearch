@@ -8,7 +8,7 @@ Overall guidance on contributing to a PyAnsys library appears in the
 in the *PyAnsys Developer's Guide*. Ensure that you are thoroughly familiar
 with it and all `Coding style <dev_guide_coding_style_>`_ before attempting to
 contribute to pymeilisearch.
- 
+
 The following contribution information is specific to pymeilisearch.
 
 
@@ -71,12 +71,15 @@ This way, it's not possible for you to push code that fails the style checks. Fo
 
   $ pre-commit install
   $ git commit -am "FEAT: added the new feature"
+  black....................................................................Passed
   blacken-docs.............................................................Passed
   isort....................................................................Passed
   flake8...................................................................Passed
   codespell................................................................Passed
   check for merge conflicts................................................Passed
   debug statements (python)................................................Passed
+  check yaml...............................................................Passed
+  trim trailing whitespace.................................................Passed
   Validate GitHub Workflows................................................Passed
   prettier.................................................................Passed
 
