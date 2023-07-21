@@ -122,6 +122,6 @@ resources and troubleshooting guides.
 License
 =======
 
-You can find the full text of the license in the `LICENSE` file.
+You can find the full text of the license in the `LICENSE`_ file.
 
 .. _license: https://github.com/ansys/pymeilisearch/blob/main/LICENSE

@@ -39,7 +39,7 @@ Syntax:
 
 Required arguments:
 
-- ``--template <template name or path>`` indicates the Name of the template to use or specify the path where the template is located. 
+- ``--template <template name or path>`` indicates the Name of the template to use or specify the path where the template is located.
     Available templates are `sphinx_pydata` and `default`. The `config file` required to know which content you want to scrape.
     The example `config files` available in `meilisearch-docs-scrapper`_.
 
