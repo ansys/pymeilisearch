@@ -58,6 +58,8 @@ pymeilisearch = "ansys.tools.meilisearch.cli:main"
 [project.urls]
 Source = "https://github.com/ansys/pymeilisearch"
 Tracker = "https://github.com/ansys/pymeilisearch/issues"
+Discussions = "https://github.com/ansys/pymeilisearch/discussions"
+Releases = "https://github.com/ansys/pymeilisearch/releases"
 Homepage = "https://github.com/ansys/pymeilisearch"
 Documentation = "https://pymeilisearch.docs.ansys.com"
 
