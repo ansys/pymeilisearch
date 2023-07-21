@@ -79,9 +79,6 @@ jobs:
         working-directory: docker
         run: docker-compose up -d
 
-      - name: Checkout code
-        uses: actions/checkout@v3
-
       - name: Install the project with testing dependencies
         run: pip install .[tests]
 
