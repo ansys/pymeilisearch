@@ -39,11 +39,11 @@ tests = [
 doc = [
     "ansys-sphinx-theme==0.9.9",
     "numpydoc==1.5.0",
-    "Sphinx==6.2.1",                       
+    "Sphinx==6.2.1",
     "sphinx-design==0.4.1",
     "sphinx-jinja==2.0.2",
     "sphinx-autoapi==2.1.1",
-    "meilisearch==0.28.0",   
+    "meilisearch==0.28.0",
     "sphinx-copybutton==0.5.2",
     "sphinx-notfound-page==0.8.3",
     "sphinx-jinja==2.0.2",

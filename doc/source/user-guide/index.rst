@@ -11,16 +11,16 @@ guide includes the steps of using the CLI tool effectively.
         :link: cli-usage
         :link-type: doc
 
-        Learn how to use PyMeilisearch from the command line. Covers the installation 
-        process and examples of common commands and their usage. 
+        Learn how to use PyMeilisearch from the command line. Covers the installation
+        process and examples of common commands and their usage.
 
     .. grid-item-card:: Web component :fas:`fa fa-server`
         :link: web-component
         :link-type: doc
-        
+
         Integrate Meilisearch in a website by creating a search bar
         component and linking it to a running meilisearch instance.
-        
+
 .. toctree::
    :hidden:
    :maxdepth: 3

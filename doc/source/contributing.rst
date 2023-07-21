@@ -8,7 +8,7 @@ Overall guidance on contributing to a PyAnsys library appears in the
 in the *PyAnsys Developer's Guide*. Ensure that you are thoroughly familiar
 with it and all `Coding style <dev_guide_coding_style_>`_ before attempting to
 contribute to pymeilisearch.
- 
+
 The following contribution information is specific to pymeilisearch.
 
 
