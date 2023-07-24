@@ -3,7 +3,11 @@ PyMeilisearch
 
 **An enhanced Python API to Meilisearch**
 
-|python| |pypi| |GH-CI| |codecov| |MIT| |black|
+|ansys| |python| |pypi| |GH-CI| |MIT| |black|
+
+.. |ansys| image:: https://img.shields.io/badge/Py-Ansys-ffc107.svg?labelColor=black&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAABDklEQVQ4jWNgoDfg5mD8vE7q/3bpVyskbW0sMRUwofHD7Dh5OBkZGBgW7/3W2tZpa2tLQEOyOzeEsfumlK2tbVpaGj4N6jIs1lpsDAwMJ278sveMY2BgCA0NFRISwqkhyQ1q/Nyd3zg4OBgYGNjZ2ePi4rB5loGBhZnhxTLJ/9ulv26Q4uVk1NXV/f///////69du4Zdg78lx//t0v+3S88rFISInD59GqIH2esIJ8G9O2/XVwhjzpw5EAam1xkkBJn/bJX+v1365hxxuCAfH9+3b9/+////48cPuNehNsS7cDEzMTAwMMzb+Q2u4dOnT2vWrMHu9ZtzxP9vl/69RVpCkBlZ3N7enoDXBwEAAA+YYitOilMVAAAAAElFTkSuQmCC
+   :target: https://actions.docs.ansys.com/
+   :alt: PyAnsys
 
 .. |python| image:: https://img.shields.io/pypi/pyversions/pymeilisearch?logo=pypi
    :target: https://pypi.org/project/pymeilisearch/
@@ -12,10 +16,6 @@ PyMeilisearch
 .. |pypi| image:: https://img.shields.io/pypi/v/pymeilisearch.svg?logo=python&logoColor=white
    :target: https://pypi.org/project/pymeilisearch
    :alt: PyPI
-
-.. |codecov| image:: https://codecov.io/gh/ansys/pymeilisearch/branch/main/graph/badge.svg
-   :target: https://codecov.io/gh/pyansys/pymeilisearch
-   :alt: Codecov
 
 .. |GH-CI| image:: https://github.com/ansys/pymeilisearch/actions/workflows/ci_cd.yml/badge.svg
    :target: https://github.com/ansys/pymeilisearch/actions/workflows/ci_cd.yml
@@ -90,36 +90,31 @@ The `PyMeilisearch documentation`_ contains these sections:
 .. _user guide: https://pymeilisearch.docs.ansys.com/version/stable/user-guide/index.html
 .. _api reference: https://pymeilisearch.docs.ansys.com/version/stable/autoapi/index.html
 .. _examples: https://pymeilisearch.docs.ansys.com/version/stable/examples/index.html
-.. _PyMeilisearch Issues: https://github.com/ansys/pymeilisearch/issues
-.. _PyMeilisearch repository: https://github.com/ansys/pymeilisearch
 
 
-Issues
-======
+Troubleshooting
+===============
 
-On the `PyMeilisearch Issues`_ page, you can create issues to submit questions,
-report bugs, and request new features.
+For troubleshooting or reporting issues, please open an issue in the project
+repository.
 
-Here is the process for creating an issue:
+Please follow these steps to report an issue:
 
-#. Go to the `PyMeilisearch repsitory`_.
-#. Click the **Issues** tab to view the **Issues** page.
-#. On the **Issues** page, click **New Issue**.
-#. In the window that opens, provide a clear and detailed description of the issue
-   that you are facing. Include any relevant error messages, code snippets, and
-   screenshots.
+- Go to the project repository.
+- Click on the ``Issues`` tab.
+- Click on the ``New Issue`` button.
+- Provide a clear and detailed description of the issue you are facing.
+- Include any relevant error messages, code snippets, or screenshots.
 
-To reach the project support team, email `pyansys.core@ansys.com <pyansys.core@ansys.com>`_.
+Additionally, you can refer to the `project documentation`_ for additional
+resources and troubleshooting guides.
+
+.. _project documentation: https://pymeilisearch.docs.ansys.com
 
 
-License and acknowledgements
-============================
+License
+=======
 
-PyMeilisearch is licensed under the MIT license.
-
-PyMeilisearch is a Python CLI that simplifies integration with
-`Meilisearch <https://www.meilisearch.com/>`_.
-
-You can see the full text of the license in the `LICENSE` file.
+You can find the full text of the license in the `LICENSE`_ file.
 
 .. _license: https://github.com/ansys/pymeilisearch/blob/main/LICENSE

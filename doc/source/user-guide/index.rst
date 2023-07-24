@@ -17,16 +17,16 @@ a website as a web component (search bar).
         :link: cli-usage
         :link-type: doc
 
-        Learn how to use PyMeilisearch to scrape and upload files or a website
-        to Meilisearch.
+        Learn how to use PyMeilisearch from the command line. Covers the installation
+        process and examples of common commands and their usage.
 
     .. grid-item-card:: Integrate Meilisearch into a website :fas:`fa fa-server`
         :link: web-component
         :link-type: doc
-        
-        Integrate Meilisearch into a website as a web component (search bar).
 
-        
+        Integrate Meilisearch in a website by creating a search bar
+        component and linking it to a running meilisearch instance.
+
 .. toctree::
    :hidden:
    :maxdepth: 3

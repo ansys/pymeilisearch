@@ -1,30 +1,11 @@
-Run Meilisearch
-###############
+Meilisearch images
+##################
 
-You can run a local instance of Meilisearch either from the
-command line or from an image in a Docker container.
+Running meilisearch using the command line
+==========================================
 
-.. note::
-
-    Both methods of running a local instance of Meilisearch require
-    a master key. To generate a master key, you can use one of
-    these tools:
-
-    - `UUID Generator <https://uuidgen.org/v/4>`_
-    - `OpenSSL <https://www.openssl.org/docs/man1.1.1/man1/rand.html>`_
-    - `shasum <https://linux.die.net/man/1/shasum>`_
-
-
-For more information, see the `Meilisearch Quick Start`_.
-
-.. _Meilisearch Quick Start: https://www.meilisearch.com/docs/learn/getting_started/quick_start
-
-
-Run Meilisearch from the command line
-======================================
-
-On the command line, first install the Meilisearch binaries with
-this command:
+It is possible to install and run a local instance of Meilisearch. Start by
+installing the binaries by running:
 
 .. code-block:: console
 
@@ -39,19 +20,32 @@ Meilisearch with these commands:
     echo "MEILI_MASTER_KEY = $MEILI_MASTER_KEY"
     ./meilisearch --master-key="$MEILI_MASTER_KEY"
 
+.. note::
 
-Run Meilisearch from a Docker image
-===================================
+    Master keys for meilisearch can be generated using one of the following
+    tools:
 
-In the `PyMeilisearch repository`_, the ``docker/`` directory  contains a
-``docker-compose.yml`` file.
+    - uuidgen
+    - openssl rand
+    - shasum
 
-.. _PyMeilisearch repository: https://github.com/ansys/pymeilisearch
 
-You can use this YML file to run Meilisearch from this Docker image
-for development purposes.
+For more advanced topics on how to use meilisearch, visit the `meilisearch
+getting started guidelines`_.
 
-To run this Docker image, use these commands:
+.. _meilisearch getting started guidelines: https://www.meilisearch.com/docs/learn/getting_started/quick_start
+
+
+Running meilisearch using a Docker image
+========================================
+
+A ``docker-compose.yml`` file is provided inside the ``docker/`` directory in
+the `pymeilisearch repository`_.
+
+.. _pymeilisearch repository: https://github.com/ansys/pymeilisearch
+
+This ``docker-compose.yml`` allows to run a local instance of Meilisearch for
+development purposes. The following command is used to run the image:
 
 .. code-block:: console
 

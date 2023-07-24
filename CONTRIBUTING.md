@@ -1,4 +1,4 @@
-# Contributing 
+# Contributing
 
 If you are interested in contributing to our project, please make sure to review
 our contribution guidelines, which are specified in the
