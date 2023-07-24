@@ -10,9 +10,9 @@ from ansys.tools.meilisearch.scrapper import WebScraper
 
 
 @pytest.fixture(scope="session")
-def meilisearch_client(meilisearch_container):
+def meilisearch_client(meilisearch_container, meilisearch_port):
     meilisearch_client = MeilisearchClient(
-        meilisearch_host_url="http://localhost:7700", meilisearch_api_key="masterKey"
+        meilisearch_host_url=f"http://localhost:{meilisearch_port}", meilisearch_api_key="masterKey"
     )
     return meilisearch_client
 
