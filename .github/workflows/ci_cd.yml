@@ -75,20 +75,11 @@ jobs:
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
 
-      - name: Test the meilisearch container
-        working-directory: docker
-        run: docker-compose up -d
-
       - name: Install the project with testing dependencies
         run: pip install .[tests]
 
       - name: Run tests
         run: pytest tests -vv
-
-      - name: Stop services
-        if: always()
-        working-directory: docker
-        run: docker-compose down
 
   doc-build:
     name: "Build documentation"
