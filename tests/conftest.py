@@ -1,3 +1,4 @@
+import os
 import platform
 
 import docker
@@ -24,9 +25,14 @@ def scraper(meilisearch_client):
 
 
 @pytest.fixture(scope="session")
-def meilisearch_container():
+def meilisearch_port():
+    default_port = 7700
+    return int(os.environ.get("MEILISEARCH_PORT", default_port))
+
+
+@pytest.fixture(scope="session")
+def meilisearch_container(meilisearch_port):
     image_name = "getmeili/meilisearch:latest"
-    container_port = 7700
 
     if platform.system() == "Windows":
         base_url = "npipe:////./pipe/docker_engine"
@@ -37,7 +43,8 @@ def meilisearch_container():
     docker_client = docker.from_env()
 
     containers_with_port = [
-        container for container in docker_client.containers.list(filters={"expose": container_port})
+        container
+        for container in docker_client.containers.list(filters={"expose": meilisearch_port})
     ]
     existing_container = containers_with_port[0] if containers_with_port else None
 
@@ -50,13 +57,13 @@ def meilisearch_container():
     # Create and start the Meilisearch container
     container = docker_client.containers.run(
         image=image_name,
-        ports={f"{container_port}/tcp": container_port},
+        ports={f"{meilisearch_port}/tcp": meilisearch_port},
         detach=True,
         name="meilisearch-container",
     )
 
     # Wait for Meilisearch to be ready
-    url = f"http://localhost:{container_port}/health"
+    url = f"http://localhost:{meilisearch_port}/health"
     while True:
         try:
             response = requests.get(url)
