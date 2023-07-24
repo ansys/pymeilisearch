@@ -71,12 +71,15 @@ This way, it's not possible for you to push code that fails the style checks::
 
   $ pre-commit install
   $ git commit -am "FEAT: added the new feature"
+  black....................................................................Passed
   blacken-docs.............................................................Passed
   isort....................................................................Passed
   flake8...................................................................Passed
   codespell................................................................Passed
   check for merge conflicts................................................Passed
   debug statements (python)................................................Passed
+  check yaml...............................................................Passed
+  trim trailing whitespace.................................................Passed
   Validate GitHub Workflows................................................Passed
   prettier.................................................................Passed
 

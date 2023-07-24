@@ -8,7 +8,7 @@ name = "pymeilisearch"
 version = "0.2.dev0"
 description = " A Python library for effortless indexing and searching of documentation using MeiliSearch."
 readme = "README.rst"
-requires-python = ">=3.7"
+requires-python = ">=3.8,<4"
 license = {file = "LICENSE"}
 authors = [
     {name = "ANSYS, Inc.", email = "pyansys.core@ansys.com"},
@@ -33,17 +33,17 @@ dependencies = [
 
 [project.optional-dependencies]
 tests = [
-    "pytest==7.3.2",
+    "pytest==7.4.0",
     "pytest-cov==4.1.0"
 ]
 doc = [
     "ansys-sphinx-theme==0.9.9",
     "numpydoc==1.5.0",
-    "Sphinx==6.2.1",                       
+    "Sphinx==6.2.1",
     "sphinx-design==0.4.1",
     "sphinx-jinja==2.0.2",
     "sphinx-autoapi==2.1.1",
-    "meilisearch==0.28.0",   
+    "meilisearch==0.28.0",
     "sphinx-copybutton==0.5.2",
     "sphinx-notfound-page==0.8.3",
     "sphinx-jinja==2.0.2",
@@ -58,6 +58,8 @@ pymeilisearch = "ansys.tools.meilisearch.cli:main"
 [project.urls]
 Source = "https://github.com/ansys/pymeilisearch"
 Tracker = "https://github.com/ansys/pymeilisearch/issues"
+Discussions = "https://github.com/ansys/pymeilisearch/discussions"
+Releases = "https://github.com/ansys/pymeilisearch/releases"
 Homepage = "https://github.com/ansys/pymeilisearch"
 Documentation = "https://pymeilisearch.docs.ansys.com"
 
@@ -72,7 +74,7 @@ default_section = "THIRDPARTY"
 src_paths = ["doc", "src", "tests"]
 
 [tool.coverage.run]
-source = ["ansys.tools"]
+source = ["ansys.tools.meilisearch"]
 
 [tool.coverage.report]
 show_missing = true
