@@ -50,19 +50,13 @@ Here is the general syntax for the ``upload`` subcommand:
 As you can see, this command requires certain arguments and supports additional options, depending
 on your requirements.
 
-**Required arguments**
+.. _meilisearch-docs-scrapper: https://github.com/meilisearch/docs-scraper#set-your-config-file
 
-- ``--template <template>``: Name of the template or the file path where
-  the template is located. Available templates are ``sphinx_pydata`` and ``default``.
-  The configuration file for a template identifies which content to scrape.
-  For an example of a basic configuration file, see `Set your Config File
-  <https://github.com/meilisearch/docs-scraper#set-your-config-file>`_ in the README
-  for the Meilisearch ``docs-scraper`` repository.
+- ``--index <index name>`` indicates the name of the Meilisearch index used to identify the content.
+- ``<source>`` is the type source to upload. It can be ``html``, ``url``, or ``github``.
+- ``<location>`` indicates the location of the files or website to upload.
 
-- ``--index <index name>``: Name of the Meilisearch index to use to identify the content.
-- ``<source>``: Type of files to upload to Meilisearch. Options are ``html``, ``url``,
-  and ``github``.
-- ``<location>``: Directory path for the files or website to upload.
+Options:
 
 **Options**
 
