@@ -121,3 +121,4 @@ PyMeilisearch is a Python CLI that simplifies integration with
 You can see the full text of the license in the `LICENSE` file.
 
 .. _license: https://github.com/ansys/pymeilisearch/blob/main/LICENSE
+.. _PyMeilisearch repository: https://github.com/ansys/pymeilisearch
