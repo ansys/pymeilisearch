@@ -64,5 +64,7 @@ def meilisearch_container(request):
             break
         except (requests.RequestException, requests.ConnectionError):
             continue
+    yield container
 
-    return container
+    container.stop()
+    container.remove()
