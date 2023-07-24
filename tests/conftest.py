@@ -24,7 +24,7 @@ def scraper(meilisearch_client):
 
 
 @pytest.fixture(scope="session")
-def meilisearch_container(request):
+def meilisearch_container():
     image_name = "getmeili/meilisearch:latest"
     container_port = 7700
 
@@ -33,13 +33,13 @@ def meilisearch_container(request):
     else:
         base_url = "unix://var/run/docker.sock"
 
-    # Create a Docker client using docker.from_env()
+    # Create a Docker client
     docker_client = docker.from_env()
 
-    existing_container = None
-    for container in docker_client.containers.list(filters={"expose": container_port}):
-        existing_container = container
-        break  # We found a running container with the required port
+    containers_with_port = [
+        container for container in docker_client.containers.list(filters={"expose": container_port})
+    ]
+    existing_container = containers_with_port[0] if containers_with_port else None
 
     if existing_container:
         return existing_container
@@ -64,7 +64,10 @@ def meilisearch_container(request):
             break
         except (requests.RequestException, requests.ConnectionError):
             continue
+
+    # yield the container
     yield container
 
+    # Stop and remove
     container.stop()
     container.remove()
