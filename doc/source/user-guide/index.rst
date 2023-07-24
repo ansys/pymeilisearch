@@ -23,10 +23,10 @@ a website as a web component (search bar).
     .. grid-item-card:: Integrate Meilisearch into a website :fas:`fa fa-server`
         :link: web-component
         :link-type: doc
-        
+
         Integrate Meilisearch into a website as a web component (search bar).
 
-        
+
 .. toctree::
    :hidden:
    :maxdepth: 3
