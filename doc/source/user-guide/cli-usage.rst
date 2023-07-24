@@ -8,9 +8,9 @@ the format type and location of the source files.
 
 .. note::
    You must declare two environment variables before using PyMeilisearch:
-   
+
    - ``MEILISEARCH_HOST_URL``: Registry endpoint for Meilisearch
-   - ``MEILISEARCH_API_KEY``: API key for creating indexes in the search registry 
+   - ``MEILISEARCH_API_KEY``: API key for creating indexes in the search registry
 
 
 Start PyMeilisearch

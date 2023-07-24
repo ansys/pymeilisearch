@@ -24,24 +24,24 @@ private PyPI, or GitHub.
     .. tab-set::
 
         .. tab-item:: Public PyPI
-    
+
             .. code-block:: console
-    
+
                 python -m pip install pymeilisearch
-    
+
 
         .. tab-item:: Private PyPI
-    
+
             .. code-block:: console
-    
+
                 export TWINE_USERNAME="__token__"
                 export TWINE_REPOSITORY_URL="https://pkgs.dev.azure.com/pyansys/_packaging/pyansys/pypi/upload"
                 export TWINE_PASSWORD=***
                 python -m pip install pymeilisearch
-    
-   
+
+
         .. tab-item:: GitHub
-    
+
             .. code-block:: console
 
                 python -m pip install git+https://github.com/ansys/pymeilisearch.git@v{{ version }}
@@ -88,7 +88,7 @@ Move inside the project and create a new Python environment:
     .. tab-item:: Linux/UNIX
 
         .. code-block:: text
-            
+
             python -m venv <venv>
 
 Activate this newly created environment:
