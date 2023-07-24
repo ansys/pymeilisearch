@@ -100,7 +100,7 @@ repository.
 
 Please follow these steps to report an issue:
 
-#. Go to the `PyMeilisearch repsitory`_.
+#. Go to the `PyMeilisearch repository`_.
 #. Click the **Issues** tab to view the **Issues** page.
 #. On the **Issues** page, click **New Issue**.
 #. In the window that opens, provide a clear and detailed description of the issue
