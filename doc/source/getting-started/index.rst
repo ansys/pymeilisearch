@@ -35,4 +35,4 @@ This section describes how to install and run PyMeilisearch.
 
    installing-pymeilisearch
    meilisearch-images
-   
+

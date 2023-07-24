@@ -90,17 +90,15 @@ The `PyMeilisearch documentation`_ contains these sections:
 .. _user guide: https://pymeilisearch.docs.ansys.com/version/stable/user-guide/index.html
 .. _api reference: https://pymeilisearch.docs.ansys.com/version/stable/autoapi/index.html
 .. _examples: https://pymeilisearch.docs.ansys.com/version/stable/examples/index.html
-.. _PyMeilisearch Issues: https://github.com/ansys/pymeilisearch/issues
-.. _PyMeilisearch repository: https://github.com/ansys/pymeilisearch
 
 
-Issues
-======
+Troubleshooting
+===============
 
-On the `PyMeilisearch Issues`_ page, you can create issues to submit questions,
-report bugs, and request new features.
+For troubleshooting or reporting issues, please open an issue in the project
+repository.
 
-Here is the process for creating an issue:
+Please follow these steps to report an issue:
 
 #. Go to the `PyMeilisearch repsitory`_.
 #. Click the **Issues** tab to view the **Issues** page.
