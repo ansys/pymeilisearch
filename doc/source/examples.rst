@@ -1,6 +1,10 @@
 Examples
 ========
-This section provides some usage examples for PyMeilisearch.
+This section provides examples that show how to use PyMeilisearch to
+create your own indexes with custom templates from online files, local
+files, or files in the repositories of GitHub organizations. The final
+example shows how you can even use Ansys actions to create one or more
+indexes from online files, local files, and files in GitHub organizations.
 
 Create an index from online files
 ---------------------------------

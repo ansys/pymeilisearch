@@ -1,7 +1,7 @@
 .. _ref_contributing:
 
-Contributing
-============
+Contribute
+==========
 
 Overall guidance on contributing to a PyAnsys library appears in the
 `Contributing <dev_guide_contributing_>`_ topic

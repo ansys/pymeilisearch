@@ -2,7 +2,7 @@ PyMeilisearch documentation |version|
 #####################################
 
 PyMeilisearch provides a simple command line interface (CLI) to create
-indices in a `Meilisearch <https://www.meilisearch.com/>`_ service.
+indexes in a `Meilisearch <https://www.meilisearch.com/>`_ service.
 
 Because the `Meilisearch Python API <https://github.com/meilisearch/meilisearch-python>`_
 provides only limited capabilities, PyMeilisearch was designed to provide more
@@ -25,15 +25,17 @@ extensive capabilities, including these:
         :link: getting-started/index
         :link-type: doc
 
-        Learn how to install PyMeilisearch and build your own Docker image for
-        testing PyMeilisearch locally.
+        Learn how to install PyMeilisearch and start a local instance
+        either from the command line or from an image in a Docker
+        container.
 
     .. grid-item-card:: User guide :fa:`book-open-reader`
         :link: user-guide/index
         :link-type: doc
 
-        Learn how to use the PyMeilisearch CLI and integrate PyMeilisearch
-        in a website.
+        Learn how to use PyMeilisearch to scrape and upload documents
+        or a website to Meilisearch and integrate Meilisearch into a
+        website as aweb component (search bar).
 
 .. jinja:: main_toctree
 
@@ -54,8 +56,9 @@ extensive capabilities, including these:
            :link: examples
            :link-type: doc
 
-           Learn how to use PyMeilisearch to create your own indices with
-           custom templates from either an online website or local HTML files.
+           Learn how to use PyMeilisearch to create your own indexes with
+           custom templates from online files, local files, or files in the
+           repositories of GitHub organizations.
         {% endif %}
     {% endif %}
 

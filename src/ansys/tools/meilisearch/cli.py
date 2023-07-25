@@ -1,4 +1,4 @@
-"""Allows the CLI module for pymeilisearch"""
+"""PyMeilisearch CLI module."""
 import os
 import pathlib
 
@@ -16,7 +16,7 @@ from ansys.tools.meilisearch.server import local_host_scraping
 
 @click.group()
 def main():
-    """Ansys tool for scraping docs to MeiliSearch."""
+    """Provides the CLI tool for scraping documents for upload to MeiliSearch."""
     pass
 
 
@@ -24,34 +24,34 @@ def main():
 @click.option(
     "--template",
     required=True,
-    help="Name of the template to use or specify the path where the template is located. Available templates are `sphinx_pydata` and `default`.",  # noqa: E501
+    help="Name of the template to use or the path where the template is located. Available templates are ``sphinx_pydata`` and ``default``.",  # noqa: E501
 )
 @click.option(
-    "--index", required=True, help="Name of the MeiliSearch index used to identify the content."
+    "--index", required=True, help="Name of the MeiliSearch index to use to identify the content."
 )
 @click.option(
-    "--cname", required=False, default="", help="The CNAME in which the documents are hosted."
+    "--cname", required=False, default="", help="The CNAME that hosts the documents."
 )
 @click.option("--port", required=False, default=8000, help="Port number for serving the pages.")
 @click.option(
     "--orgs",
     required=False,
     default=[],
-    help="The GitHub organizations from which public URLs are scraped.",
+    help="GitHub organizations to scrape public URLs from.",
     multiple=True,
 )
 @click.argument("source", type=click.Choice(["html", "url", "github"]))
 @click.argument("location")
 def upload(template, index, source, location, cname, port, orgs):
-    """Upload files or a website using the specified template and index.
+    """Upload documents or a website using a template and index.
 
     Notes
     -----
-    Make sure to set the following environment variables:
+    Make sure to set these environment variables:
 
-    - ``MEILISEARCH_HOST_URL``: MeiliSearch hosted URL
+    - ``MEILISEARCH_HOST_URL``: MeiliSearch-hosted URL
     - ``MEILISEARCH_API_KEY``: MeiliSearch API key
-    - ``GH_PUBLIC_TOKEN``: GitHub token for the organization (if running in a GitHub CI environment)
+    - ``GH_PUBLIC_TOKEN``: GitHub token for the organization (if running in a GitHub CI/CD environment)
     """
 
     if source == "html":
@@ -77,5 +77,5 @@ def upload(template, index, source, location, cname, port, orgs):
 
 @main.command()
 def version():
-    """Display current version."""
+    """Get the version of your PyMeilisearch installation."""
     print(f"pymeilisearch {__version__}")

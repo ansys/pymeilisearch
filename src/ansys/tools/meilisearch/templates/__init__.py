@@ -1,4 +1,4 @@
-"""PyMeilisearch template subpackage"""
+"""PyMeilisearch template subpackage."""
 import json
 import pathlib
 from typing import Union
@@ -25,7 +25,7 @@ def render_template(
     index_uid: str = None,
     stop_urls_default: str = None,
 ) -> str:
-    """Render a docsearch sphinx template for a given URL.
+    """Render a docsearch Sphinx template for a given URL.
 
     The index_uid will be the url without https:://
 
@@ -33,25 +33,28 @@ def render_template(
     ----------
     template_path : str or pathlib.Path
         Path to the template file or the name of the template to use.
-        Must be a key in the TEMPLATES dictionary.
-    urls : str or list of str
-        URL(s) to crawl. Must start with "https://".
+        If a template name is specified, it must be a key in the ``TEMPLATES``
+        dictionary.
+    urls : str, list[str]
+        One or more URLs to crawl. URLs must start with ``https://``.
     path_out : str
         Path to write the rendered template to.
-    index_uid : str, default: The index uid of first url in list
-        Custom index uid to use.
+    index_uid : str
+        Unique ID for the custom index to use. This unique ID is the
+        UR without the ``https://``. The default is the unique ID of
+        the first URL specified for the ``urls`` parameter.
 
     Returns
     -------
     str
-        The index_uid used.
+        Unique ID of the custom index that is used.
 
     Raises
     ------
     FileNotFoundError
         If the template file cannot be found.
     ValueError
-        If any of the URLs do not start with "https://".
+        If any of the URLs do not start with ``https://``.
 
     """
     if template == "sphinx_pydata":

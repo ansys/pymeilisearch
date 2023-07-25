@@ -1,10 +1,10 @@
-Use PyMeilisearch to scrape and upload
-######################################
+Scrape and upload documents or a website
+########################################
 
-You use PyMeilisearch to scrape and upload files or a website to Meilisearch.
-After starting this command-line interface (CLI) tool, you supply a template
-for content scraping, a Meilisearch index for identifying the content, and
-the format type and location of the source files.
+You use PyMeilisearch to scrape and upload documents or a website to Meilisearch.
+When starting this command-line interface (CLI) tool, you supply the template
+to use for content scraping, the Meilisearch index to use for identifying content,
+and the format type and location of the source documents.
 
 .. note::
    You must declare two environment variables before using PyMeilisearch:
@@ -25,19 +25,18 @@ Here is the general syntax for the ``pymeilisearch`` command:
     $ pymeilisearch <subcommand> [options] [arguments]
 
 
-Subcommands
-~~~~~~~~~~~
+**Subcommands**
 
 The ``pymeilisearch`` command supports these subcommands:
 
-- ``upload``: Upload files or a website to Meilisearch.
+- ``upload``: Upload documents or a website to Meilisearch.
 - ``version``: Get the current version of PyMeilisearch.
 
 
-Upload files or a website
--------------------------
+Upload documents or a website
+=============================
 
-The ``upload`` subcommand uploads files or a website to Meilisearch,
+The ``upload`` subcommand uploads docouments or a website to Meilisearch,
 creating indexes on the Meilisearch instance.
 
 
@@ -52,25 +51,24 @@ on your requirements.
 
 .. _meilisearch-docs-scrapper: https://github.com/meilisearch/docs-scraper#set-your-config-file
 
-- ``--index <index name>`` indicates the name of the Meilisearch index used to identify the content.
-- ``<source>`` is the type source to upload. It can be ``html``, ``url``, or ``github``.
-- ``<location>`` indicates the location of the files or website to upload.
+- ``--index <index name>``: Name of the Meilisearch index to use to identify the content.
+- ``<source>``: Format type for the documents to upload. It can be ``html``, ``url``, or ``github``.
+- ``<location>``: Location of the documents or website to upload.
 
-Options:
 
 **Options**
 
-- ``--cname <cname>``: CNAME in which the documents are hosted. While supplying a CNAME
+- ``--cname <cname>``: CNAME that hosts the documents. While supplying a CNAME
   is optional, doing so is recommended for localhost scraping.
-- ``--port <port>``: Port on which the localhost has connected. The default is ``8000``.
-- ``--orgs <orgs>``: Names of the one or more GitHub organizations to scrape public
+- ``--port <port>``: Port the localhost is connected on. The default is ``8000``.
+- ``--orgs <orgs>``: One or more names of the GitHub organizations to scrape public
   GitHub pages from.
 
 
 Get the PyMeilisearch version
------------------------------
+=============================
 
-The ``version`` command gets the current version of the ``pymeilisearch``:
+The ``version`` command gets the version of your PyMeilisearch`` installation:
 
 .. code-block:: console
 

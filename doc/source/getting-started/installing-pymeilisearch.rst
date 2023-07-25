@@ -2,12 +2,12 @@ Install PyMeilisearch
 #####################
 
 Installing PyMeilisearch is as simple as installing any other Python library.
-However, to upload documentation indexes, `Meilisearch`_ must be running as
-a service.
+However, to scrape and upload documents or a website to `Meilisearch`_, you
+must have Meilisearch running as a service.
 
 .. _Meilisearch: https://www.meilisearch.com/
 
-You can install PyMeilisearch in either user mode or development mode.
+You can install PyMeilisearch as either a user installation or a developer installation.
 
 
 User installation
@@ -123,6 +123,6 @@ Install the project in editable mode:
 
     python -m pip install --editable .
 
- You can now make changes to the package's source code. Your changes are
- immediately reflected in your project without requiring you to reinstall
- it.
+You can now make changes to the package's source code. Your changes are
+immediately reflected in your project without requiring you to reinstall
+it.

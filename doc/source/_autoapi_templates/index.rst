@@ -3,7 +3,8 @@
 API reference
 =============
 
-This page contains the pymeilisearch API reference.
+This section describes PyMeilisearch API endpoints, their capabilities,
+and how to interact with them programmatically.
 
 .. toctree::
    :titlesonly:

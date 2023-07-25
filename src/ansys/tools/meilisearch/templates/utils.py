@@ -1,4 +1,4 @@
-"""Provides the templates utils module."""
+"""Templates utilities module."""
 import re
 
 import requests
@@ -6,35 +6,35 @@ import requests
 
 def get_template(url: str) -> str:
     """
-    Determine the template name for the given URL.
+    Get the template name for a web page.
 
     Parameters
     ----------
     url : str
-        The URL of the web page to check.
+        URL of the web page.
 
     Returns
     -------
     str
-        The name of the template to use for the page.
+        Template name for the web page.
     """
     return "sphinx_pydata" if is_sphinx(url) else "default"
 
 
 def get_redirected_url(html):
     """
-    Extract the redirected URL from the given HTML.
+    Get the URL that a web page is being redirected to.
 
     Parameters
     ----------
     html : str
-        The HTML content to search for the redirected URL.
+        Web page to search for a redirected URL.
 
     Returns
     -------
     str or None
-        The URL that the page is being redirected to, if there is one. If no
-        redirection is present, returns None.
+        URL that the page is being redirected to. If no redirection
+        is present, ``None`` is returned.
     """
     match = re.search(r'<meta http-equiv="refresh" content="0; URL=(.*?)">', html)
     if match:
@@ -51,12 +51,12 @@ def is_sphinx(url):
     Parameters
     ----------
     url : str
-        The URL of the web page to check.
+        URL of the web page.
 
     Returns
     -------
     bool
-        True if the page was built using Sphinx, False otherwise.
+        ``True`` if the page was built using Sphinx, ``False`` otherwise.
     """
     response = requests.get(url)
     html = response.text

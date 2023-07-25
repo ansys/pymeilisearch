@@ -1,5 +1,5 @@
-Web component
-#############
+Integrate web component
+#######################
 
 Meilisearch can be integrated into any website as a web component (search bar)
 that is linked to a running instance of Meilisearch.
@@ -7,17 +7,17 @@ that is linked to a running instance of Meilisearch.
 Add the search bar to a web page
 ================================
 
-Follow the steps below to include a search bar component in a webpage:
+To add a search bar on a web page, follow these steps:
 
 #. Download the ``docs-searchbar.js`` package from a content delivery network.
-   You can use the following script tag:
+   You can use this script tag:
 
    .. code-block:: html
 
        <script src="https://cdn.jsdelivr.net/npm/docs-searchbar.js@2.4.1/dist/cdn/docs-searchbar.min.js"></script>
 
 #. Initialize the search bar by calling the ``docsSearchBar`` function with the
-   desired configuration. Here's an example:
+   desired configuration. Here is an example:
 
    .. code-block:: html
 
@@ -33,15 +33,17 @@ Follow the steps below to include a search bar component in a webpage:
        })
        </script>
 
-   - Replace ``hostUrl`` with the URL where your search engine is hosted.
-   - Replace ``apiKey`` with your public API key.
-   - Replace ``indexUid`` with the unique ID for the desired index.
-   - Modify other options (``debug``, ``enhancedSearchInput``, and ``enableDarkMode``)
-     as needed.
+   - Replace the value shown for the ``hostUrl`` option with the URL where your search
+     engine is hosted.
+   - Replace the value shown for the ``apiKey``option  with your public API key.
+   - Replace the value shown for the ``indexUid`` option with the unique ID for the
+     desired index.
+   - Modify values for other options (``debug``, ``enhancedSearchInput``, and
+     ``enableDarkMode``) as needed.
 
 
-The following example shows how to include a search bar component inside
-an HTML file and link it to a Meilisearch instance.
+This example shows how to add a search bar to an HTML file and link it
+to a Meilisearch instance:
 
 .. literalinclude:: ../_static/simple.html
    :language: html

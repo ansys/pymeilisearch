@@ -95,10 +95,8 @@ The `PyMeilisearch documentation`_ contains these sections:
 Troubleshooting
 ===============
 
-For troubleshooting or reporting issues, please open an issue in the project
-repository.
-
-Please follow these steps to report an issue:
+To request troubleshooting assistance or report an issue, follow these steps to
+create an issue in the project's repository:
 
 #. Go to the `PyMeilisearch repository`_.
 #. Click the **Issues** tab to view the **Issues** page.
@@ -114,10 +112,6 @@ License and acknowledgements
 ============================
 
 PyMeilisearch is licensed under the MIT license.
-
-PyMeilisearch is a Python CLI that simplifies integration with
-`Meilisearch <https://www.meilisearch.com/>`_.
-
 You can see the full text of the license in the `LICENSE` file.
 
 .. _license: https://github.com/ansys/pymeilisearch/blob/main/LICENSE
