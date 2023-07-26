@@ -35,7 +35,7 @@ To add a search bar on a web page, follow these steps:
 
    - Replace the value shown for the ``hostUrl`` option with the URL where your search
      engine is hosted.
-   - Replace the value shown for the ``apiKey``option  with your public API key.
+   - Replace the value shown for the ``apiKey`` option  with your public API key.
    - Replace the value shown for the ``indexUid`` option with the unique ID for the
      desired index.
    - Modify values for other options (``debug``, ``enhancedSearchInput``, and

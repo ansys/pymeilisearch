@@ -38,7 +38,7 @@ The ``pymeilisearch`` command supports these subcommands:
 Upload documents or a website
 =============================
 
-The ``upload`` subcommand uploads docouments or a website to Meilisearch,
+The ``upload`` subcommand uploads documents or a website to Meilisearch,
 creating indexes on the Meilisearch instance.
 
 

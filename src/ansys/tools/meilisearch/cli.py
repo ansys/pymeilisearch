@@ -29,9 +29,7 @@ def main():
 @click.option(
     "--index", required=True, help="Name of the Meilisearch index to use to identify the content."
 )
-@click.option(
-    "--cname", required=False, default="", help="The CNAME that hosts the documents."
-)
+@click.option("--cname", required=False, default="", help="The CNAME that hosts the documents.")
 @click.option("--port", required=False, default=8000, help="Port number for serving the pages.")
 @click.option(
     "--orgs",

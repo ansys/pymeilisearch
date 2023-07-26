@@ -3,7 +3,7 @@ Run Meilisearch
 
 You can run Meilisearch by starting a local instance either from the
 command line or from an image in a Docker container. Once the local
-instance is started, yoy can test PyMeilisearch locally.
+instance is started, you can test PyMeilisearch locally.
 
 Run Meilisearch using the command line
 ======================================
@@ -37,7 +37,7 @@ This file allows you to use a Docker image to run a local instance of
 Meilisearch.
 
 To use this Docker image to start a local Meilisearch instance on the
-host machine (``http://localhost:7700``), run these comamnds:
+host machine (``http://localhost:7700``), run these commands:
 
 .. code-block:: console
 
