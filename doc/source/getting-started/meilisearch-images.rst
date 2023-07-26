@@ -37,7 +37,7 @@ This file allows you to use a Docker image to run a local instance of
 Meilisearch.
 
 To use this Docker image to start a local Meilisearch instance on the
-host machine (``http://localhost:7700``), run these comamnds:
+host machine (``http://localhost:7700``), run these commands:
 
 .. code-block:: console
 

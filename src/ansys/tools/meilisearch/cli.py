@@ -29,9 +29,7 @@ def main():
 @click.option(
     "--index", required=True, help="Name of the MeiliSearch index to use to identify the content."
 )
-@click.option(
-    "--cname", required=False, default="", help="The CNAME that hosts the documents."
-)
+@click.option("--cname", required=False, default="", help="The CNAME that hosts the documents.")
 @click.option("--port", required=False, default=8000, help="Port number for serving the pages.")
 @click.option(
     "--orgs",
@@ -51,7 +49,8 @@ def upload(template, index, source, location, cname, port, orgs):
 
     - ``MEILISEARCH_HOST_URL``: MeiliSearch-hosted URL
     - ``MEILISEARCH_API_KEY``: MeiliSearch API key
-    - ``GH_PUBLIC_TOKEN``: GitHub token for the organization (if running in a GitHub CI/CD environment)
+    - ``GH_PUBLIC_TOKEN``: GitHub token for the organization (if running in
+        a GitHub CI/CD environment)
     """
 
     if source == "html":
