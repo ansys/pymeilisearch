@@ -14,8 +14,8 @@ class DocsAllPublic:
     ----------
     meilisearch_client : MeilisearchClient
         Meilisearch client.
-    destination_index_uid : str
-        Unquie ID of the destination index. The default is ``"pyansys-docs-all-public"``.
+    destination_index_uid : str, default: ``"pyansys-docs-all-public"``
+        Unique ID of the destination index.
     """
 
     def __init__(
@@ -42,7 +42,7 @@ class DocsAllPublic:
         source_index_uid : str
             Unique ID of the source index.
         index_uid : str, default: None
-            Name of the destination index. The default is ``None``.
+            Name of the destination index.
         """
 
         if index_uid is None:
@@ -76,9 +76,9 @@ class DocsAllPublic:
 
         Parameters
         ----------
-        selected_keys : List[str], optional
+        selected_keys : List[str], default: ``["ansys, pyansys"]``
             Include only indexes whose keys start with a specified string in the
-            search. The default is ``["ansys, pyansys"]``.
+            search.
         """
         stats = self._api.client.get_all_stats()
         index_uids = [

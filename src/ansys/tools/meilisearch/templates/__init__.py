@@ -1,4 +1,4 @@
-"""PyMeilisearch template subpackage."""
+"""PyMeilisearch templates subpackage."""
 import json
 import pathlib
 from typing import Union
@@ -25,24 +25,24 @@ def render_template(
     index_uid: str = None,
     stop_urls_default: str = None,
 ) -> str:
-    """Render a docsearch Sphinx template for a given URL.
-
-    The index_uid will be the url without https:://
+    """Render a docsearch Sphinx template for a URL.
 
     Parameters
     ----------
-    template_path : str or pathlib.Path
+    template : str or pathlib.Path
         Path to the template file or the name of the template to use.
-        If a template name is specified, it must be a key in the ``TEMPLATES``
+        If a name is specified, it must be a key in the ``TEMPLATES``
         dictionary.
     urls : str, list[str]
         One or more URLs to crawl. URLs must start with ``https://``.
     path_out : str
         Path to write the rendered template to.
-    index_uid : str
+    index_uid : str, default: None
         Unique ID for the custom index to use. This unique ID is the
-        UR without the ``https://``. The default is the unique ID of
-        the first URL specified for the ``urls`` parameter.
+        UR without the ``https://``. The default is ``None``, in which
+        case the unique ID of the first URL specified for the ``urls``
+        parameter is used.
+    stop_urls_default : str, optional
 
     Returns
     -------
@@ -54,7 +54,8 @@ def render_template(
     FileNotFoundError
         If the template file cannot be found.
     ValueError
-        If any of the URLs do not start with ``https://``.
+        If any of the URLs specifed for the ``urls`` parameter do not
+        start with ``https://``.
 
     """
     if template == "sphinx_pydata":
@@ -65,7 +66,7 @@ def render_template(
         template_path = pathlib.Path(template)
 
     if not template_path.exists():
-        raise FileNotFoundError(f"Unable to locate a template at {template_path}")
+        raise FileNotFoundError(f"Unable to locate a template at {template_path}.")
 
     if template == "sphinx_pydata":
         stop_urls = [f"{urls[-1].rstrip('/')}/{segment}" for segment in STOP_SPHINX_URLS]

@@ -2,10 +2,11 @@ Install PyMeilisearch
 #####################
 
 Installing PyMeilisearch is as simple as installing any other Python library.
-However, to scrape and upload documents or a website to `Meilisearch`_, you
-must have Meilisearch running as a service.
-
-.. _Meilisearch: https://www.meilisearch.com/
+However, to scrape and upload documents or a website to Meilisearch, you
+must have Meilisearch running as a service. For more information,
+see `Installation and operating systems
+<https://www.meilisearch.com/docs/learn/getting_started/installation>`_
+in the Meilisearch documentation.
 
 You can install PyMeilisearch as either a user installation or a developer installation.
 

@@ -32,10 +32,13 @@ Use the `PyMeilisearch Issues <pymeilisearch_issues_>`_
 page to submit questions, report bugs, and request new features. When possible,
 use these issue templates:
 
-* Bug report template
-* Feature request template
+* Bug, problem, error: For filing a bug report
+* Documentation error: For requesting modifications to the docuementation
+* Adding an example: For proposing a new example
+* New feature: For requsesting enhancements to the code
 
-If your issue does not fit into one of these template categories, create your own issue.
+If your issue does not fit into one of these template categories, you can click
+the link for opening a blank issue.
 
 To reach the project support team, email `pyansys.core@ansys.com <pyansys.core@ansys.com>`_.
 
@@ -54,8 +57,8 @@ released versions.
 Adhere to code style
 --------------------
 
-PyMeilisearch follows the PEP8 standard as outlined in the `PyAnsys Developer's Guide
-<PyAnsys Developer's Guide_>`_ and implements style checking using
+PyMeilisearch follows the PEP8 standard as outlined in :ref:`pep8` in
+the *PyAnsys Developer's Guide* and implements style checking using
 `pre-commit <precommit_>`_.
 
 To ensure your code meets minimum code styling standards, run these commands::

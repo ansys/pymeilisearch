@@ -16,7 +16,7 @@ from ansys.tools.meilisearch.server import local_host_scraping
 
 @click.group()
 def main():
-    """Provides the CLI tool for scraping documents for upload to MeiliSearch."""
+    """Provides the CLI tool for scraping documents for uploading to Meilisearch."""
     pass
 
 
@@ -27,7 +27,7 @@ def main():
     help="Name of the template to use or the path where the template is located. Available templates are ``sphinx_pydata`` and ``default``.",  # noqa: E501
 )
 @click.option(
-    "--index", required=True, help="Name of the MeiliSearch index to use to identify the content."
+    "--index", required=True, help="Name of the Meilisearch index to use to identify the content."
 )
 @click.option(
     "--cname", required=False, default="", help="The CNAME that hosts the documents."
@@ -47,11 +47,12 @@ def upload(template, index, source, location, cname, port, orgs):
 
     Notes
     -----
-    Make sure to set these environment variables:
+    Ensure that these environment variables are set:
 
-    - ``MEILISEARCH_HOST_URL``: MeiliSearch-hosted URL
-    - ``MEILISEARCH_API_KEY``: MeiliSearch API key
-    - ``GH_PUBLIC_TOKEN``: GitHub token for the organization (if running in a GitHub CI/CD environment)
+    - ``MEILISEARCH_HOST_URL``: URL for the Meilisearch host
+    - ``MEILISEARCH_API_KEY``: API key (admin) for the Meilisearch host
+    - ``GH_PUBLIC_TOKEN``: GitHub token for the organization
+      (if running in a GitHub CI/CD environment)
     """
 
     if source == "html":
@@ -78,4 +79,4 @@ def upload(template, index, source, location, cname, port, orgs):
 @main.command()
 def version():
     """Get the version of your PyMeilisearch installation."""
-    print(f"pymeilisearch {__version__}")
+    print(f"PyMeilisearch {__version__}")

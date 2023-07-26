@@ -1,4 +1,4 @@
-"""Provides the ``MeilisearchUtils`` class module."""
+"""Provides utilities for Meilisearch."""
 import json
 import time
 from typing import List
@@ -10,11 +10,11 @@ from ansys.tools.meilisearch.client import MeilisearchClient
 
 class MeilisearchUtils:
     """
-    A collection of utility functions for working with MeiliSearch.
+    Provides utility functions for working with Meilisearch.
     """
 
     def __init__(self, meilisearch_client: MeilisearchClient):
-        """The meilisearch client initilaise.
+        """Initialize the Meilisearch client.
 
         Parameters
         ----------
@@ -25,19 +25,19 @@ class MeilisearchUtils:
 
     def fetch_all_documents(self, source_index_uid: str, limit: int = 20) -> List[dict]:
         """
-        Fetch all documents from the source index and return them as a list.
+        Fetch all documents from a source index and return them as a list.
 
         Parameters
         ----------
         source_index_uid : str
-            The index ID of document to fetch.
-        limit : int
-            The limit of document in single offset.
+            Unique ID of the index to fetch documents from.
+        limit : int, default: 20
+            Limit of document in single offset.
 
         Returns
         -------
-        document : list
-            All the documents fetch from the source document.
+        list
+            List of all documents fetched from the source index.
         """
         offset = 0
         documents = []
@@ -66,21 +66,20 @@ class MeilisearchUtils:
         """
         Wait until a task is complete.
 
-        If a task exceeds the timeout, raise a TimeoutError.
-
         Parameters
         ----------
         task_uid : int
-            Task UID.
-        timeout : float
-            Timeout value in seconds. Defaults to 20.0.
+            Unique ID of the task.
+        timeout : float, default: 20.0
+            Timeout value in seconds for the task. If a task exceeds this
+            timeout value, an error is raised.
 
         Raises
         ------
         TimeoutError
-            Raised when the ``timeout`` is exceed.
+            Raised when the timeout value for the task is exceeded.
         RuntimeError
-            Raised when the status of ``task`` failed.
+            Raised when the task fails.
         """
         task_url = f"{self._api.meilisearch_host_url}/tasks/{task_uid}"
         timeout_time = time.time() + timeout

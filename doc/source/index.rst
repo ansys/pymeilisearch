@@ -35,7 +35,7 @@ extensive capabilities, including these:
 
         Learn how to use PyMeilisearch to scrape and upload documents
         or a website to Meilisearch and integrate Meilisearch into a
-        website as aweb component (search bar).
+        website as a web component (search bar).
 
 .. jinja:: main_toctree
 

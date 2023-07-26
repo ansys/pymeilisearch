@@ -8,19 +8,19 @@ from ansys.tools.meilisearch.create_indexes import scrap_web_page
 
 class WebsiteServer:
     """
-    Website server that serves the specified directory on the given port.
+    Provides the website server that serves the specified directory on the given port.
     """
 
     def __init__(self, directory, port):
         """
-        Initialize the WebsiteServer.
+        Initialize a ``WebsiteServer`` instance.
 
         Parameters
         ----------
         directory : str
-            The directory to serve.
+            Directory to serve.
         port : int
-            The port number to listen on.
+            Port number to listen on.
         """
         self.directory = directory
         self.port = port
@@ -67,18 +67,19 @@ class WebsiteServer:
 
 def scrape_website(index_uid, templates, directory, port):
     """
-    Scrape the website by collecting the URLs of HTML files in the specified directory.
+    Scrape the website by collecting the URLs of web pages (HTML files) in the specified directory.
 
     Parameters
     ----------
     index_uid : str
-        The index UID for MeiliSearch.
+        Unique ID to give to the Meilisearch index.
     templates : list
-        List of templates.
+        List of the one or more templates to use. Available templates
+        are ``sphinx_pydata`` and ``default``.
     directory : str
-        The directory containing the website.
+        Drectory containing the website.
     port : int
-        The port number the website is served on.
+        Port number the website is served on.
     """
     base_url = f"http://localhost:{port}"
     files = directory.rglob("*.html")
@@ -94,13 +95,14 @@ def local_host_scraping(index_uid, templates, directory, port):
     Parameters
     ----------
     index_uid : str
-        The index UID for MeiliSearch.
+        Unique ID to give to the Meilisearch index.
     templates : list
-        List of templates.
+        List of the one or more templates to use. Available templates
+        are ``sphinx_pydata`` and ``default``.
     directory : str
-        The directory to serve and scrape.
+        Directory to serve and scrape.
     port : int
-        The port number to listen on.
+        Port number to listen on.
     """
     # Start serving the website in a separate thread
     website_server = WebsiteServer(directory, port)

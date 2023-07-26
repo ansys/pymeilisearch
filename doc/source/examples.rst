@@ -6,6 +6,12 @@ files, or files in the repositories of GitHub organizations. The final
 example shows how you can even use Ansys actions to create one or more
 indexes from online files, local files, and files in GitHub organizations.
 
+.. note::
+   PyMeilisearch commands require certain arguments and support additional
+   options. The commands in the following examples show the general syntax for
+   the ``pymeilisearch upload`` command. For information on required arguments
+   and supported options for the ``upload`` subcommand, see :ref:`cli-usage`.
+
 Create an index from online files
 ---------------------------------
 
@@ -36,7 +42,7 @@ This command create indexes from files in the repositories of GitHub organizatio
 Create an index from CI/CD
 --------------------------
 
-You can use PyMeilisearch within the `Ansys actions <https://actions.docs.ansys.com>`_ in your CI/CD.
+You can use PyMeilisearch within `Ansys actions <https://actions.docs.ansys.com>`_ in your CI/CD.
 The following tabs show how to use Ansys actions to create one or more indexes from online files,
 local files, and files in GitHub organizations:
 
