@@ -54,7 +54,7 @@ def render_template(
     FileNotFoundError
         If the template file cannot be found.
     ValueError
-        If any of the URLs specifed for the ``urls`` parameter do not
+        If any of the URLs specified for the ``urls`` parameter do not
         start with ``https://``.
 
     """
