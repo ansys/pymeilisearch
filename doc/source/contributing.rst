@@ -57,7 +57,8 @@ released versions.
 Adhere to code style
 --------------------
 
-PyMeilisearch follows the PEP8 standard as outlined in :ref:`pep8` in
+PyMeilisearch follows the PEP8 standard as outlined in
+`PEP 8 <https://dev.docs.pyansys.com/coding-style/pep8.html>`_ in
 the *PyAnsys Developer's Guide* and implements style checking using
 `pre-commit <precommit_>`_.
 

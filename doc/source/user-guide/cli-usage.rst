@@ -1,4 +1,4 @@
-
+.. _cli_usage:
 
 Scrape and upload documents or a website
 ########################################
