@@ -10,7 +10,7 @@ indexes from online files, local files, and files in GitHub organizations.
    PyMeilisearch commands require certain arguments and support additional
    options. The commands in the following examples show the general syntax for
    the ``pymeilisearch upload`` command. For information on required arguments
-   and supported options for the ``upload`` subcommand, see :ref:`cli-usage`.
+   and supported options for the ``upload`` subcommand, see :ref:`cli_usage`.
 
 Create an index from online files
 ---------------------------------
