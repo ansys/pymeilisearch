@@ -33,9 +33,9 @@ page to submit questions, report bugs, and request new features. When possible,
 use these issue templates:
 
 * Bug, problem, error: For filing a bug report
-* Documentation error: For requesting modifications to the docuementation
+* Documentation error: For requesting modifications to the documentation
 * Adding an example: For proposing a new example
-* New feature: For requsesting enhancements to the code
+* New feature: For requesting enhancements to the code
 
 If your issue does not fit into one of these template categories, you can click
 the link for opening a blank issue.
