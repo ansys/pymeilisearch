@@ -17,7 +17,7 @@ and the format type and location of the source documents.
 
 Start PyMeilisearch
 ===================
-To start PyMeilisearch, open your terminal or command prompt and run the
+To start PyMeilisearch, open a command prompt or your terminal and run the
 ``pymeilisearch`` command followed by the desired subcommand and options.
 
 Here is the general syntax for the ``pymeilisearch`` command:
@@ -56,11 +56,11 @@ on your requirements.
 
 - ``--template <template>``: Name of the template to use or the path to where the
   template file is located. Available templates are ``sphinx_pydata`` and ``default``.
-  The Meilisearch scrapper tool, `docs-scraper <https://github.com/meilisearch/docs-scraper>`_
+  The Meilisearch scrapper tool, `docs-scraper <https://github.com/meilisearch/docs-scraper>`_,
   requires a configuration file to know what content to scrape. For an example of a
   configuration file, see `Set your Config File <https://github.com/meilisearch/docs-scraper#set-your-config-file>`_
-  in the README for this scrapper tool.
-- ``--index <index name>``: Name of the Meilisearch index to use to identify the content.
+  in the README for this tool's GitHub repository.
+- ``--index <index name>``: Name of the Meilisearch index to use to identify content.
 - ``<source>``: Format type for the documents to upload. It can be ``html``, ``url``, or ``github``.
 - ``<location>``: Location of the documents or website to upload.
 
@@ -68,7 +68,7 @@ on your requirements.
 **Options**
 
 - ``--cname <cname>``: CNAME that hosts the documents. While supplying a CNAME
-  is optional, doing so is recommended for localhost scraping.
+  is optional, doing so is recommended for scraping documents on the localhost.
 - ``--port <port>``: Port that the localhost is connected on. The default is ``8000``.
 - ``--orgs <orgs>``: One or more GitHub organizations to scrape public GitHub pages from.
 

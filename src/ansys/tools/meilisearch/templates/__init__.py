@@ -39,10 +39,10 @@ def render_template(
         Path to write the rendered template to.
     index_uid : str, default: None
         Unique ID for the custom index to use. This unique ID is the
-        UR without the ``https://``. The default is ``None``, in which
+        URL without the ``https://``. The default is ``None``, in which
         case the unique ID of the first URL specified for the ``urls``
         parameter is used.
-    stop_urls_default : str, optional
+    stop_urls_default : str, default: None
 
     Returns
     -------

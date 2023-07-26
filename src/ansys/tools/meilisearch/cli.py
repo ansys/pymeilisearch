@@ -16,7 +16,7 @@ from ansys.tools.meilisearch.server import local_host_scraping
 
 @click.group()
 def main():
-    """Provides the CLI tool for scraping documents for uploading to Meilisearch."""
+    """Provides the CLI tool for scraping documents or a website for uploading to Meilisearch."""
     pass
 
 
@@ -42,6 +42,27 @@ def main():
 @click.argument("location")
 def upload(template, index, source, location, cname, port, orgs):
     """Upload documents or a website using a template and index.
+
+    Parameters
+    ----------
+    template : str
+        Name of the template to use or the path to where the template
+        file is located. Available templates are ``sphinx_pydata`` and ``default``.
+    index : str
+        Name of the Meilisearch index to use to identify the content.
+    source : str
+        Format type for the documents to upload. Options are ``html``, ``url``,
+        and ``github``.
+    location : str
+        Location of the documents or website to upload.
+    cname : str
+        CNAME that hosts the documents. While supplying a CNAME
+        is optional, doing so is recommended for scraping documents
+        on the local host.
+    port : int
+        Port that the localhost is connected on.
+    orgs : str or list[str]
+        One or more GitHub organizations to scrape public GitHub pages from.
 
     Notes
     -----

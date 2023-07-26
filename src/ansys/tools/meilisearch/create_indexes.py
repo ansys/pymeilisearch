@@ -14,6 +14,11 @@ from ansys.tools.meilisearch.utils import MeilisearchUtils
 def get_public_urls(orgs):
     """Get all public GitHub pages (gh_pages) for each repository in one or more organizations.
 
+    Parameters
+    ----------
+    orgs : str or list[str]
+        One or more GitHub organizations to get public GitHub pages from.
+
     Returns
     -------
     dict
@@ -63,7 +68,7 @@ def create_sphinx_indexes(
     ID created for the ``pyansys/pymapdl`` repository has ``pyansys-pymapdl-sphinx-docs``
     as its unique ID.
 
-    The unique ID for an index UID is always lowercase.
+    The unique ID for an index is always lowercase.
 
     Parameters
     ----------
@@ -108,9 +113,9 @@ def scrap_web_page(index_uid, url, templates, meilisearch_host_url=None, meilise
         Unique ID to give to the Meilisearch index.
     url : str
         URL of the web page to scrape.
-    templates : list
-        List of the one or more templates to use to know what content
-        to scrape. Available templates are ``sphinx_pydata`` and ``default``.
+    templates : str or list[str]
+        One or more templates to use to know what content is to
+        be scraped. Available templates are ``sphinx_pydata`` and ``default``.
     meilisearch_host_url : str, default: None
         URL for the Meilisarch host.
     meilisearch_api_key : str, default: None

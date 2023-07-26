@@ -8,12 +8,12 @@ from ansys.tools.meilisearch.create_indexes import scrap_web_page
 
 class WebsiteServer:
     """
-    Provides the website server that serves the specified directory on the given port.
+    Provides the website server for the specified directory on the given port.
     """
 
     def __init__(self, directory, port):
         """
-        Initialize a ``WebsiteServer`` instance.
+        Initialize an instance of the website server.
 
         Parameters
         ----------
@@ -67,19 +67,19 @@ class WebsiteServer:
 
 def scrape_website(index_uid, templates, directory, port):
     """
-    Scrape the website by collecting the URLs of web pages (HTML files) in the specified directory.
+    Scrape the website by collecting the URLs of web pages in the specified directory.
 
     Parameters
     ----------
     index_uid : str
-        Unique ID to give to the Meilisearch index.
-    templates : list
-        List of the one or more templates to use. Available templates
-        are ``sphinx_pydata`` and ``default``.
+        Unique ID to assign to the Meilisearch index.
+    templates : str, list[str]
+        One or more templates to use. Available templates are ``sphinx_pydata``
+        and ``default``.
     directory : str
-        Drectory containing the website.
+        Directory containing the website.
     port : int
-        Port number the website is served on.
+        Port number to serve the website on.
     """
     base_url = f"http://localhost:{port}"
     files = directory.rglob("*.html")
@@ -90,15 +90,15 @@ def scrape_website(index_uid, templates, directory, port):
 
 def local_host_scraping(index_uid, templates, directory, port):
     """
-    Perform local host scraping by serving the directory and scraping its content.
+    Perform localhost scraping by serving the directory and scraping its content.
 
     Parameters
     ----------
     index_uid : str
         Unique ID to give to the Meilisearch index.
-    templates : list
-        List of the one or more templates to use. Available templates
-        are ``sphinx_pydata`` and ``default``.
+    templates : str, list[str]
+        One or more templates to use. Available templates are ``sphinx_pydata``
+        and ``default``.
     directory : str
         Directory to serve and scrape.
     port : int

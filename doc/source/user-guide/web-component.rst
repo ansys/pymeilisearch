@@ -1,13 +1,13 @@
-Integrate web component
-#######################
+Integrate Meilisearch into a website
+####################################
 
 Meilisearch can be integrated into any website as a web component (search bar)
-that is linked to a running instance of Meilisearch.
+that is linked to a running Meilisearch instance.
 
 Add the search bar to a web page
 ================================
 
-To add a search bar on a web page, follow these steps:
+To add a search bar to a web page, follow these steps:
 
 #. Download the ``docs-searchbar.js`` package from a content delivery network.
    You can use this script tag:
@@ -42,18 +42,18 @@ To add a search bar on a web page, follow these steps:
      ``enableDarkMode``) as needed.
 
 
-This example shows how to add a search bar to an HTML file and link it
+This example shows how to add a search bar to a web page and link it
 to a Meilisearch instance:
 
 .. literalinclude:: ../_static/simple.html
    :language: html
 
 
-Customize the search bar style
-==============================
+Customize the style of the search bar
+=====================================
 
 Because the search bar is an HTML component, you can use CSS to
-customize its style:
+customize its style. Here is an example:
 
 .. literalinclude:: ../_static/search.html
    :language: html

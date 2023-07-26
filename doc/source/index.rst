@@ -8,9 +8,9 @@ Because the `Meilisearch Python API <https://github.com/meilisearch/meilisearch-
 provides only limited capabilities, PyMeilisearch was designed to provide more
 extensive capabilities, including these:
 
-- Predefined templates for popular documentation themes
-- Scrapping of documentation on websites
-- Scrapping of local documentation
+- Using predefined templates for popular documentation themes
+- Scrapping local documents
+- Scrapping documents on websites
 
 
 .. raw:: html
@@ -34,8 +34,8 @@ extensive capabilities, including these:
         :link-type: doc
 
         Learn how to use PyMeilisearch to scrape and upload documents
-        or a website to Meilisearch and integrate Meilisearch into a
-        website as a web component (search bar).
+        or a website to Meilisearch and then integrate Meilisearch into
+        a website as a web component (search bar).
 
 .. jinja:: main_toctree
 

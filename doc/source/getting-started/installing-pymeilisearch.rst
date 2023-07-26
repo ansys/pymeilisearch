@@ -118,7 +118,7 @@ Activate this newly created environment:
 
             source <venv>/bin/activate
 
-Install the project in editable mode:
+Install the project in editable mode with this command:
 
 .. code-block::
 

@@ -5,7 +5,7 @@ from meilisearch import Client
 
 
 class BaseClient:
-    """Provides the base class for the Meilisearch client module."""
+    """Provides the base class for the Meilisearch client."""
 
     def __init__(self, meilisearch_host_url=None, meilisearch_api_key=None):
         """
