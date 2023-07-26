@@ -1,4 +1,4 @@
-"""Allows you to execute PyMeilisearch, a simple CLI, as a Python module."""
+"""Allows you to execute PyMeilisearch, a simple CLI tool, as a Python module."""
 
 from ansys.tools.meilisearch.cli import main
 

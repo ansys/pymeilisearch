@@ -36,7 +36,7 @@ class WebScraper(BaseClient):
         super().__init__(meilisearch_host_url, meilisearch_api_key)
 
     def _load_and_render_template(self, url, template, index_uid, stop_urls=None):
-        """Load and render a template file for a URL and unique identifer.
+        """Load and render a template file for a URL and unique identifier.
 
         Parameters
         ----------
@@ -122,7 +122,7 @@ class WebScraper(BaseClient):
         for url in urls:
             if not url.startswith(("https://", "http://")):
                 raise ValueError(
-                    f'URLs are expected to start with "https://" or "http://". Instead, "{url}" was returned.'
+                    f'URLs must start with "https://" or "http://". Instead, "{url}" was returned.'
                 )
             response = requests.get(url)
             if response.status_code != 200:
@@ -163,7 +163,7 @@ class WebScraper(BaseClient):
     def scrape_from_directory(self, path, template=None, verbose=False):
         """Scrape the URLs for all web pages in a directory using the active Meilisearch host.
 
-        This method generates a unique index identifer for each URL in the directory.
+        This method generates a unique index identifier for each URL in the directory.
 
         Parameters
         ----------
