@@ -197,5 +197,6 @@ jobs:
 
       - name: Scrape the stable documentation to meilisearch
         run: |
-          VERSION=$(python -c "from ansys.tools.meilisearch import __version__; print('-'.join(__version__.split('.')[:2]))")
-          pymeilisearch upload --template sphinx_pydata --index "pymeilisearch-v${VERSION}" --cname "${{ env.DOCUMENTATION_CNAME }}/version/${VERSION}/" html documentation-html
+          VERSION=$(python -c "from ansys.tools.meilisearch import __version__; print('.'.join(__version__.split('.')[:2]))")
+          VERSION_MEILI=$(python -c "from ansys.tools.meilisearch import __version__; print('-'.join(__version__.split('.')[:2]))")
+          pymeilisearch upload --template sphinx_pydata --index "pymeilisearch-v${VERSION_MEILI}" --cname "${{ env.DOCUMENTATION_CNAME }}/version/${VERSION}/" html documentation-html
