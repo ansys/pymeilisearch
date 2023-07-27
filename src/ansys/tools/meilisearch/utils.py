@@ -30,9 +30,11 @@ class MeilisearchUtils:
         Parameters
         ----------
         source_index_uid : str
-            Unique ID of the index to fetch documents from.
+            Unique name of the index to fetch documents from.
         limit : int, default: 20
-            Limit of document in single offset.
+            The maximum number of documents to fetch in a single offset or query.
+            This parameter determines how many documents are included in each response
+            when fetching data. The default value is 20.
 
         Returns
         -------
@@ -69,7 +71,7 @@ class MeilisearchUtils:
         Parameters
         ----------
         task_uid : int
-            Unique ID of the task.
+            Unique name of the task.
         timeout : float, default: 20.0
             Timeout value in seconds for the task. If a task exceeds this
             timeout value, an error is raised.

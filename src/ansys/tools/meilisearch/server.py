@@ -72,7 +72,7 @@ def scrape_website(index_uid, templates, directory, port):
     Parameters
     ----------
     index_uid : str
-        Unique ID to assign to the Meilisearch index.
+        Unique name to assign to the Meilisearch index.
     templates : str, list[str]
         One or more templates to use. Available templates are ``sphinx_pydata``
         and ``default``.
@@ -95,7 +95,7 @@ def local_host_scraping(index_uid, templates, directory, port):
     Parameters
     ----------
     index_uid : str
-        Unique ID to give to the Meilisearch index.
+        Unique name to give to the Meilisearch index.
     templates : str, list[str]
         One or more templates to use. Available templates are ``sphinx_pydata``
         and ``default``.

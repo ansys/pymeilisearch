@@ -15,7 +15,7 @@ class DocsAllPublic:
     meilisearch_client : MeilisearchClient
         Meilisearch client.
     destination_index_uid : str, default: ``"pyansys-docs-all-public"``
-        Unique ID of the destination index.
+        Unique name of the destination index.
     """
 
     def __init__(
@@ -30,7 +30,7 @@ class DocsAllPublic:
 
     @property
     def destination_index_uid(self):
-        """Unique ID of the destination index."""
+        """Unique name of the destination index."""
         return self._destination_index_uid
 
     def create_index(self, source_index_uid: str, index_uid: str = None) -> None:
@@ -40,9 +40,11 @@ class DocsAllPublic:
         Parameters
         ----------
         source_index_uid : str
-            Unique ID of the source index.
-        index_uid : str, default: None
-            Name of the destination index.
+            Name of the source index from which the primary key will be copied.
+        index_uid : str
+            Name of the destination index to be created. The index will be created with
+            the same primary key as the source index, ensuring unique identification of
+            documents within the destination index
         """
 
         if index_uid is None:
@@ -59,7 +61,7 @@ class DocsAllPublic:
         Parameters
         ----------
         source_index_uid : str
-            Unique ID of the source index.
+            Name of the source index from which the documents will be fetched.
         """
         # Fetch all documents from the source index and add them to the
         # temporary destination index

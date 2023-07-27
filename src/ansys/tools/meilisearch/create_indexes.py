@@ -63,12 +63,12 @@ def create_sphinx_indexes(
 ):
     """Create an index for each public GitHub page that was generated using Sphinx.
 
-    The unique ID created for the index (``index_uid``) matches ``<repo>-sphinx-docs``,
+    The unique name created for the index (``index_uid``) matches ``<repo>-sphinx-docs``,
     with a ``'-'`` instead of a ``'/'`` in the repository name. For example, the unique
     ID created for the ``pyansys/pymapdl`` repository has ``pyansys-pymapdl-sphinx-docs``
-    as its unique ID.
+    as its unique name.
 
-    The unique ID for an index is always lowercase.
+    The unique name for an index is always lowercase.
 
     Parameters
     ----------
@@ -110,7 +110,7 @@ def scrap_web_page(index_uid, url, templates, meilisearch_host_url=None, meilise
     Parameters
     ----------
     index_uid : str
-        Unique ID to give to the Meilisearch index.
+        Unique name to give to the Meilisearch index.
     url : str
         URL of the web page to scrape.
     templates : str or list[str]

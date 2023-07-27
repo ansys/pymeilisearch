@@ -36,7 +36,7 @@ class WebScraper(BaseClient):
         super().__init__(meilisearch_host_url, meilisearch_api_key)
 
     def _load_and_render_template(self, url, template, index_uid, stop_urls=None):
-        """Load and render a template file for a URL and unique identifier.
+        """Load and render a template file for a URL and unique name.
 
         Parameters
         ----------
@@ -45,7 +45,7 @@ class WebScraper(BaseClient):
         template : str
             Template file for rendering.
         index_uid : str
-            Unique identifier of the Meilisearch index.
+            Unique name of the Meilisearch index.
 
         Returns
         -------
@@ -131,14 +131,14 @@ class WebScraper(BaseClient):
     def scrape_url(self, url, index_uid, template=None, verbose=False):
         """Scrape a URL for a web page using the active Meilisearch host.
 
-        This method generates a single unique identifier for a single URL.
+        This method generates a single unique name for a single URL.
 
         Parameters
         ----------
         url : str
             URL for the web page to scrape.
         index_uid : str
-            Unique identifier of the MeiliSearch index.
+            Unique name of the MeiliSearch index.
         template : str, default: None
             Template file for rendering.
         verbose : bool, default: False

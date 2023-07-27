@@ -38,16 +38,19 @@ def render_template(
     path_out : str
         Path to write the rendered template to.
     index_uid : str, default: None
-        Unique ID for the custom index to use. This unique ID is the
+        Unique name for the custom index to use. This unique name is the
         URL without the ``https://``. The default is ``None``, in which
-        case the unique ID of the first URL specified for the ``urls``
+        case the unique name of the first URL specified for the ``urls``
         parameter is used.
-    stop_urls_default : str, default: None
+    stop_urls_default : list[str], default: ['_sources', '_downloads', '_static', '_images', '.doctree']
+        A list of stop points when scraping URLs. If specified, crawling
+        will stop when encountering any URL containing any of the strings
+        in this list. The default is ['_sources', '_downloads', '_static', '_images', '.doctree'].
 
     Returns
     -------
     str
-        Unique ID of the custom index that is used.
+        Unique name of the custom index that is used.
 
     Raises
     ------
