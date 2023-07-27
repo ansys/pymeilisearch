@@ -1,36 +1,38 @@
 Getting started
 ###############
 
-This guideline presents the different steps on how to setup the environment to
-use ``pymeilisearch``.
+This section describes how to install and run PyMeilisearch.
 
-Access to a local or remote installation of `meilisearch`_ is required before
-using ``pymeilisearch``.
+.. note::
+   Before you can run PyMeilisearch, you must have access to a local
+   or remote installation of `Meilisearch`_. For more information, see
+   `Installation and operating systems
+   <https://www.meilisearch.com/docs/learn/getting_started/installation>`_
+   in the Meilisearch documentation.
 
-.. _meilisearch: https://www.meilisearch.com/
+.. _Meilisearch: https://www.meilisearch.com/
 
 .. grid:: 2
 
-    .. grid-item-card:: Building meilisearch images :fab:`docker`
-        :link: meilisearch-images
-        :link-type: doc
-
-        Step by step guidelines on how to build your own Docker image for
-        meilisearch to test pymeilisearch locally.
-
-
-    .. grid-item-card:: Installing pymeilisearch :fab:`python`
+    .. grid-item-card:: Install PyMeilisearch :fab:`python`
         :link: installing-pymeilisearch
         :link-type: doc
 
-        Learn how to download and install pymeilisearch in your development
-        environment from various official sources including PyPI and official
-        Ansys repositories.
+        Learn how to install PyMeilisearch in either user mode
+        or development mode.
+
+    .. grid-item-card:: Run Meilisearch :fab:`docker`
+        :link: meilisearch-images
+        :link-type: doc
+
+        Learn how to run Meilisearch by starting a local instance either
+        from the command line or from an image in a Docker container.
 
 
 .. toctree::
    :maxdepth: 3
    :hidden:
 
-   meilisearch-images
    installing-pymeilisearch
+   meilisearch-images
+

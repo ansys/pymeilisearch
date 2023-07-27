@@ -1,18 +1,23 @@
-Installing pymeilisearch
-########################
+Install PyMeilisearch
+#####################
 
-Installing ``pymeilisearch`` is as simple as installing a Python library.
-However, users, and developers need to host a `Meilisearch`_ service to upload
-the desired documentation indices.
+Installing PyMeilisearch is as simple as installing any other Python library.
+However, to scrape and upload documents or a website to Meilisearch, you
+must have Meilisearch running as a service. For more information,
+see `Installation and operating systems
+<https://www.meilisearch.com/docs/learn/getting_started/installation>`_
+in the Meilisearch documentation.
 
-.. _meilisearch: https://www.meilisearch.com/
+You can install PyMeilisearch as either a user installation or a developer installation.
 
 
 User installation
 =================
 
-There are multiple sources for installing the latest stable version of
-``pymeilisearch``. These include ``pip`` and ``GitHub``.
+For a user installation, you can install the latest stable version of PyMeilisearch
+from many different sources. Click the following tabs to see the one or more commands
+for installing PyMeilisearch from the public PyPI (Python Package Index), Ansys
+private PyPI, or GitHub.
 
 
 .. jinja:: install_guide
@@ -54,7 +59,7 @@ of technical expertise and familiarity with the project's codebase, rendering it
 most suitable for individuals actively engaged in its continuous development and
 maintenance.
 
-Start by cloning the repository
+Start by cloning the repository:
 
 .. code-block::
 
@@ -87,7 +92,7 @@ Move inside the project and create a new Python environment:
 
             python -m venv <venv>
 
-Activate previous environment:
+Activate this newly created environment:
 
 .. tab-set::
 
@@ -113,10 +118,12 @@ Activate previous environment:
 
             source <venv>/bin/activate
 
-Install the project in editable mode. This means that any changes you make to
-the package's source code immediately reflect in your project without requiring
-to reinstalling it.
+Install the project in editable mode with this command:
 
 .. code-block::
 
     python -m pip install --editable .
+
+You can now make changes to the package's source code. Your changes are
+immediately reflected in your project without requiring you to reinstall
+it.

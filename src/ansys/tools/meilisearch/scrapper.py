@@ -1,4 +1,4 @@
-"""Module containing ``WebScraper`` class to scrape web pages."""
+"""Module for scaping web pages."""
 import os
 import subprocess
 import tempfile
@@ -11,7 +11,7 @@ from ansys.tools.meilisearch.templates.utils import get_template
 
 
 def get_temp_file_name(ext=".txt"):
-    """Return a temporary file name."""
+    """Get the name of the temporary file, which has a ``.txt`` extension."""
     temp_file = tempfile.NamedTemporaryFile(delete=True)
     temp_file_name = temp_file.name
     temp_file.close()
@@ -20,37 +20,37 @@ def get_temp_file_name(ext=".txt"):
 
 class WebScraper(BaseClient):
     """
-    A scraper class to scrape web pages and check if the response is successful or not.
+    Provides for scraping web pages and checking if responses are successful.
     """
 
     def __init__(self, meilisearch_host_url=None, meilisearch_api_key=None):
         """
         Parameters
         ----------
-        meilisearch_host_url : str or None
-            The URL of the MeiliSearch host. Default is None.
-        meilisearch_api_key : str or None
-            The API key of the MeiliSearch host. Default is None.
+        meilisearch_host_url : str or None, default: None
+            URL of the Meilisearch host.
+        meilisearch_api_key : str or None, default: None
+            API key (admin) of the Meilisearch host.
         """
 
         super().__init__(meilisearch_host_url, meilisearch_api_key)
 
     def _load_and_render_template(self, url, template, index_uid, stop_urls=None):
-        """Load and render a template file with URL and index UID.
+        """Load and render a template file for a URL and unique name.
 
         Parameters
         ----------
         url : str
-            The URL to scrape.
+            URL for the web page to scrape.
         template : str
-            The template file to use for rendering.
+            Template file for rendering.
         index_uid : str
-            The unique identifier of the MeiliSearch.
+            Unique name of the Meilisearch index.
 
         Returns
         -------
         str
-            The name of the temporary configuration file that was created.
+            Name of the temporary configuration file that was created.
         """
         temp_config_file = get_temp_file_name(".json")
         render_template(
@@ -60,17 +60,17 @@ class WebScraper(BaseClient):
 
     def _scrape_url_command(self, temp_config_file):
         """
-        Scrape a URL by executing the `scraper`.
+        Scrape the URL for a web page.
 
         Parameters
         ----------
         temp_config_file : str
-            The URL to scrape.
+            URL for the web page.
 
         Returns
         -------
         str
-            The output of the `scraper` command.
+            Output of scraping the URL for the web page.
         """
         result = subprocess.run(
             ["python", "-m", "scraper", temp_config_file], stdout=subprocess.PIPE
@@ -85,12 +85,12 @@ class WebScraper(BaseClient):
         Parameters
         ----------
         output : str
-            The output of the `scraper` command.
+            Output of scraping the URL for the web page.
 
         Returns
         -------
         int
-            The number of hits from the URL.
+            Number of hits from the URL.
         """
         if output:
             try:
@@ -103,12 +103,12 @@ class WebScraper(BaseClient):
 
     def _check_url(self, urls):
         """
-        Check if the URL is valid and accessible.
+        Check if the URL for a web page is valid and accessible.
 
         Parameters
         ----------
         url : str
-            The URL to check.
+            URL for the web page.
 
         Raises
         ------
@@ -122,32 +122,32 @@ class WebScraper(BaseClient):
         for url in urls:
             if not url.startswith(("https://", "http://")):
                 raise ValueError(
-                    f'URLs are expected to start with "https://" or "http://". Instead, got "{url}"'
+                    f'URLs must start with "https://" or "http://". Instead, "{url}" was returned.'
                 )
             response = requests.get(url)
             if response.status_code != 200:
                 raise RuntimeError(f'URL "{url}" returned status code {response.status_code}')
 
     def scrape_url(self, url, index_uid, template=None, verbose=False):
-        """For a single given URL, scrape it using the active Meilisearch host.
+        """Scrape a URL for a web page using the active Meilisearch host.
 
-        This will generate a single index_uid for a single url.
+        This method generates a single unique name for a single URL.
 
         Parameters
         ----------
         url : str
-            The URL to scrape.
+            URL for the web page to scrape.
         index_uid : str
-            The unique identifier of the MeiliSearch.
-        template : str, default : None
-            The template file to use for rendering.
-        verbose : bool, default : False
-            If True, print the output of the `scraper` command.
+            Unique name of the MeiliSearch index.
+        template : str, default: None
+            Template file for rendering.
+        verbose : bool, default: False
+            Whether to print the output from scraping the URL.
 
         Returns
         -------
         int
-            The number of hits from the URL.
+            Number of hits from the URL for the web page.
         """
         self._check_url(url)
         template = get_template(url) if template is None else template
@@ -161,21 +161,22 @@ class WebScraper(BaseClient):
         return n_hits
 
     def scrape_from_directory(self, path, template=None, verbose=False):
-        """For a given directory of URLs, scrape them all using the active Meilisearch host.
+        """Scrape the URLs for all web pages in a directory using the active Meilisearch host.
 
-        This will generate an index_uid for each URL in the directory.
+        This method generates a unique index identifier for each URL in the directory.
 
         Parameters
         ----------
         path : str
-            The path to the directory containing the URLs to scrape.
-        verbose : bool, default : False
-            If True, print the output of the `scraper` command.
+            Path to the directory containing the URLs to scrape.
+        verbose : bool, default: False
+            Whether to print the output of scraping the URLs.
 
         Returns
         -------
         dict
-            Dictionary of index_uid to number of hits for each URL.
+            Dictionary where keys are unique IDs of indexes and values are the
+            number of hits for each URL.
 
         Raises
         ------

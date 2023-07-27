@@ -1,17 +1,22 @@
-Meilisearch images
-##################
+Run Meilisearch
+###############
 
-Running meilisearch using the command line
-==========================================
+You can run Meilisearch by starting a local instance either from the
+command line or from an image in a Docker container. Once the local
+instance is started, you can test PyMeilisearch locally.
 
-It is possible to install and run a local instance of Meilisearch. Start by
-installing the binaries by running:
+Run Meilisearch using the command line
+======================================
+
+Before you can run a local instance of Meilisearch, you must install
+Meilisearch binaries with this command:
 
 .. code-block:: console
 
     curl -L https://install.meilisearch.com | sh
 
-Once installed, run a local instance of meilisearch by running:
+Once the binaries are installed, start a local Meilisearch instance
+with these commands:
 
 .. code-block:: console
 
@@ -19,32 +24,20 @@ Once installed, run a local instance of meilisearch by running:
     echo "MEILI_MASTER_KEY = $MEILI_MASTER_KEY"
     ./meilisearch --master-key="$MEILI_MASTER_KEY"
 
-.. note::
 
-    Master keys for meilisearch can be generated using one of the following
-    tools:
+Run Meilisearch using a Docker image
+====================================
 
-    - uuidgen
-    - openssl rand
-    - shasum
+In the `PyMeilisearch repository`_, the ``docker/`` directory contains the
+``docker-compose.yml`` file.
 
+.. _PyMeilisearch repository: https://github.com/ansys/pymeilisearch
 
-For more advanced topics on how to use meilisearch, visit the `meilisearch
-getting started guidelines`_.
+This file allows you to use a Docker image to run a local instance of
+Meilisearch.
 
-.. _meilisearch getting started guidelines: https://www.meilisearch.com/docs/learn/getting_started/quick_start
-
-
-Running meilisearch using a Docker image
-========================================
-
-A ``docker-compose.yml`` file is provided inside the ``docker/`` directory in
-the `pymeilisearch repository`_.
-
-.. _pymeilisearch repository: https://github.com/ansys/pymeilisearch
-
-This ``docker-compose.yml`` allows to run a local instance of Meilisearch for
-development purposes. The following command is used to run the image:
+To use this Docker image to start a local Meilisearch instance on the
+host machine (``http://localhost:7700``), run these commands:
 
 .. code-block:: console
 
@@ -53,5 +46,3 @@ development purposes. The following command is used to run the image:
 
     docker compose run meilisearch
 
-The service launches in port `http://localhost:7700 <http://localhost:7700>`_
-of the host machine.

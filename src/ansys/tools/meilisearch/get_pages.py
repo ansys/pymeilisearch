@@ -1,5 +1,5 @@
 """
-Query for public github pages.
+Query for public GitHub pages.
 """
 import os
 import urllib.request
@@ -16,11 +16,12 @@ class GitHubPages:
         Parameters
         ----------
         org_name : str
-            GitHub organization name.
-        token : str
-            The GitHub API token to use for authentication.
+            Name of the the GitHub organization.
+        token : str, default: None
+            GitHub API token to use for authentication.
         ignore_githubio : bool, default: True
-            Ignore any GitHub page url with github.io in it.
+            Whether to ignore any URL for a GitHub page with ``github.io``
+            in it.
         """
         self._org_name = org_name
         self._token = token or os.environ.get("GITHUB_TOKEN")
@@ -28,7 +29,7 @@ class GitHubPages:
 
     @property
     def org_name(self):
-        """Returns the organization name."""
+        """Name of the GitHub organization."""
         return self._org_name
 
     def _connect_github_api(self):
@@ -37,37 +38,37 @@ class GitHubPages:
         Returns
         -------
         ~github.Github
-            A Github object connected to the GitHub API.
+            GitHub object connected to the GitHub API.
         """
         return Github(login_or_token=self._token)
 
     def _get_repos(self):
-        """Get all repos in the organization.
+        """Get all repositories in the GitHub organization.
 
         Returns
         -------
         list
-            A list of Repository objects.
+            List of repositories in the GitHub organization.
         """
         return self._connect_github_api().get_organization(self.org_name).get_repos()
 
     def _get_gh_page_response(self, repo):
-        """Get the public pages settings for a given repo.
+        """Get the settings for public pages for a repository.
 
         Parameters
         ----------
         repo : Repository
-            The Repository object to check.
+            Repository to get public page settings for.
 
         Returns
         -------
         dict
-            A dictionary containing the public pages settings for the repository.
+            Dictionary containing the repository's public page settings.
 
         Raises
         ------
         HTTPError
-            If the repository does not have public GitHub Pages.
+            If the repository does not have public GitHub pages.
         """
         if not repo.has_pages:
             warnings.warn(f"Repo {repo.full_name} has no pages")
@@ -88,19 +89,20 @@ class GitHubPages:
             warnings.warn(f"Error getting public pages for {repo.full_name}: {e}")
 
     def _has_github_pages(self, response, repo):
-        """Verify the public pages for a given repo.
+        """Verify the public pages for a repository.
 
         Parameters
         ----------
         repo : Repository
-            The Repository object to check.
+            Repository to verify public pages for.
         response : dict
-            A dictionary containing the public pages settings for the repository.
+            Dictionary containing the repository's public page settings.
 
         Returns
         -------
         bool
-            True if a public GitHub Pages site exists and can be verified, False otherwise.
+            ``True`` if a public GitHub pages for the repository exist and can be
+            verified, ``False`` otherwise.
 
         Raises
         ------
@@ -141,13 +143,13 @@ class GitHubPages:
         return False
 
     def get_public_pages(self):
-        """Query GitHub for the public gh-pages in an organization.
+        """Get the public pages in the repositories in a GitHub organization.
 
         Returns
         -------
         dict
-            Dictionary containing the full repository name and the public github
-            URLs.
+            Dictionary containing full repository names and public GitHub URLs
+            for the GitHub organization.
         """
         # Iterate over the repos
         repo_cnames = {}

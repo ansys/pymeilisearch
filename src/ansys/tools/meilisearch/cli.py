@@ -1,4 +1,4 @@
-"""Allows the CLI module for pymeilisearch"""
+"""PyMeilisearch CLI module."""
 import os
 import pathlib
 
@@ -16,7 +16,7 @@ from ansys.tools.meilisearch.server import local_host_scraping
 
 @click.group()
 def main():
-    """Ansys tool for scraping docs to MeiliSearch."""
+    """Provides the CLI tool for scraping documents or a website for uploading to Meilisearch."""
     pass
 
 
@@ -24,34 +24,54 @@ def main():
 @click.option(
     "--template",
     required=True,
-    help="Name of the template to use or specify the path where the template is located. Available templates are `sphinx_pydata` and `default`.",  # noqa: E501
+    help="Name of the template to use or the path where the template is located. Available templates are ``sphinx_pydata`` and ``default``.",  # noqa: E501
 )
 @click.option(
-    "--index", required=True, help="Name of the MeiliSearch index used to identify the content."
+    "--index", required=True, help="Name of the Meilisearch index to use to identify the content."
 )
-@click.option(
-    "--cname", required=False, default="", help="The CNAME in which the documents are hosted."
-)
+@click.option("--cname", required=False, default="", help="The CNAME that hosts the documents.")
 @click.option("--port", required=False, default=8000, help="Port number for serving the pages.")
 @click.option(
     "--orgs",
     required=False,
     default=[],
-    help="The GitHub organizations from which public URLs are scraped.",
+    help="GitHub organizations to scrape public URLs from.",
     multiple=True,
 )
 @click.argument("source", type=click.Choice(["html", "url", "github"]))
 @click.argument("location")
 def upload(template, index, source, location, cname, port, orgs):
-    """Upload files or a website using the specified template and index.
+    """Upload documents or a website using a template and index.
+
+    Parameters
+    ----------
+    template : str
+        Name of the template to use or the path to where the template
+        file is located. Available templates are ``sphinx_pydata`` and ``default``.
+    index : str
+        Name of the Meilisearch index to use to identify the content.
+    source : str
+        Format type for the documents to upload. Options are ``html``, ``url``,
+        and ``github``.
+    location : str
+        Location of the documents or website to upload.
+    cname : str
+        CNAME that hosts the documents. While supplying a CNAME
+        is optional, doing so is recommended for scraping documents
+        on the local host.
+    port : int
+        Port that the localhost is connected on.
+    orgs : str or list[str]
+        One or more GitHub organizations to scrape public GitHub pages from.
 
     Notes
     -----
-    Make sure to set the following environment variables:
+    Ensure that these environment variables are set:
 
-    - ``MEILISEARCH_HOST_URL``: MeiliSearch hosted URL
-    - ``MEILISEARCH_API_KEY``: MeiliSearch API key
-    - ``GH_PUBLIC_TOKEN``: GitHub token for the organization (if running in a GitHub CI environment)
+    - ``MEILISEARCH_HOST_URL``: URL for the Meilisearch host
+    - ``MEILISEARCH_API_KEY``: API key (admin) for the Meilisearch host
+    - ``GH_PUBLIC_TOKEN``: GitHub token for the organization
+      (if running in a GitHub CI/CD environment)
     """
 
     if source == "html":
@@ -77,5 +97,5 @@ def upload(template, index, source, location, cname, port, orgs):
 
 @main.command()
 def version():
-    """Display current version."""
-    print(f"pymeilisearch {__version__}")
+    """Get the version of your PyMeilisearch installation."""
+    print(f"PyMeilisearch {__version__}")
