@@ -1,4 +1,4 @@
-""""Module containing ``DocsAllPublic`` Class to index all public documents in Meilisearch."""
+"""Module for indexing all public documents in Meilisearch."""
 from typing import List
 
 import requests
@@ -8,14 +8,14 @@ from ansys.tools.meilisearch.utils import MeilisearchUtils
 
 
 class DocsAllPublic:
-    """Class to index all public documents in Meilisearch.
+    """Provides for indexing all public documents in Meilisearch.
 
     Parameters
     ----------
     meilisearch_client : MeilisearchClient
         Meilisearch client.
-    destination_index_uid : str
-        Destination index UID. Defaults to "pyansys-docs-all-public".
+    destination_index_uid : str, default: ``"pyansys-docs-all-public"``
+        Unique name of the destination index.
     """
 
     def __init__(
@@ -30,7 +30,7 @@ class DocsAllPublic:
 
     @property
     def destination_index_uid(self):
-        """Return destination index uid."""
+        """Unique name of the destination index."""
         return self._destination_index_uid
 
     def create_index(self, source_index_uid: str, index_uid: str = None) -> None:
@@ -40,9 +40,11 @@ class DocsAllPublic:
         Parameters
         ----------
         source_index_uid : str
-            Source index UID.
-        index_uid : str, default: None
-            The destination index name
+            Name of the source index from which the primary key will be copied.
+        index_uid : str
+            Name of the destination index to be created. The index will be created with
+            the same primary key as the source index, ensuring unique identification of
+            documents within the destination index
         """
 
         if index_uid is None:
@@ -54,14 +56,14 @@ class DocsAllPublic:
 
     def add_documents_to_temp_index(self, source_index_uid: str) -> None:
         """
-        Fetch all the documents from the source index and add them to the temp index.
+        Fetch all documents from the source index and add them to the destination index.
 
         Parameters
         ----------
         source_index_uid : str
-            The index ID of document to fetch.
+            Name of the source index from which the documents will be fetched.
         """
-        # Fetch all the documents from the source index and add them to the
+        # Fetch all documents from the source index and add them to the
         # temporary destination index
         documents = self.documents_utils.fetch_all_documents(source_index_uid)
         destination_index_url = (
@@ -76,9 +78,9 @@ class DocsAllPublic:
 
         Parameters
         ----------
-        selected_keys : List[str], optional
-            If specified, only indexes whose keys start with one of the specified
-            strings will be included in the search. Defaults to ["ansys, pyansys"]
+        selected_keys : List[str], default: ``["ansys, pyansys"]``
+            Include only indexes whose keys start with a specified string in the
+            search.
         """
         stats = self._api.client.get_all_stats()
         index_uids = [

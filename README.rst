@@ -1,4 +1,4 @@
-pymeilisearch
+PyMeilisearch
 #############
 
 **An enhanced Python API to Meilisearch**
@@ -33,66 +33,59 @@ pymeilisearch
 About
 =====
 
-The ``pymeilisearch`` library is a Python command-line interface (CLI) that
+PyMeilisearch is a Python command-line interface (CLI) that
 simplifies integration with `Meilisearch <https://www.meilisearch.com/>`_,
 enabling developers to enhance their applications with powerful search
 functionality by indexing desired data.
 
-Main features of ``pymeilisearch`` are:
+PyMeilisearch provides these key features:
 
-#. **Easy integration** with continuous integration workflows.
+- **Easy integration** with continuous integration workflows.
 
-#. **High-level functionality** for indexing data, performing searches, and managing documents.
+- **High-level functionality** for indexing data, performing searches, and managing documents.
 
-#. **Powerful capabilities** by enabling filtering options, and indexing
-   configurations for tailored search experience.
+- **Powerful capabilities** for enabling filtering options and indexing
+  configurations for tailored search experiences.
 
 
 Installation
 ============
 
-Installing ``pymeilisearch`` is as easy as running:
+Installing  the ``pymeilisearch`` package is as easy as running this command:
 
 .. code-block:: console
 
     python -m pip install pymeilisearch
 
-For other installation methods, please refer to the `official installation guidelines`_.
-
-.. _official installation guidelines: https://pymeilisearch.docs.ansys.com/version/stable/getting-started/installing-pymeilisearch.html
+For other installation methods, refer to `PyMeilisearch installation
+<https://pymeilisearch.docs.ansys.com/version/stable/getting-started/installing-pymeilisearch.html>`_
+in the PyMeilisearch documentation.
 
 
 Documentation
 =============
 
-The `official documentation`_ of ``pymeilisearch`` contains the following chapters:
+The `PyMeilisearch documentation`_ contains these sections:
 
-- `Getting started`_. This section provides a brief overview and instructions on
-  how to get started with the project. It typically includes information on how
-  to install the project, set up any necessary dependencies, and run a basic
-  example or test to ensure everything is functioning correctly.
+- `Getting started`_: Describes how to install PyMeilisearch
+  and build your own Docker image for testing PyMeilisearch locally.
 
-- `User guide`_. The user guide section offers detailed documentation and
-  instructions on how to use the project. It provides comprehensive explanations
-  of the project's features, functionalities, and configuration options. The
-  user guide aims to help users understand the project's concepts, best
-  practices, and recommended workflows.
+- `User guide`_: Describes how to use the PyMeilisearch CLI and
+  integrate PyMeilisearch in a website.
 
-- `API reference`_. The API reference section provides detailed documentation
-  for the project's application programming interface (API). It includes
-  information about classes, functions, methods, and their parameters, return
-  values, and usage examples. This reference helps developers understand the
-  available API endpoints, their functionalities, and how to interact with them
+- `API reference`_: Describes the PyMeilisearch API. For each
+  subpackage and submodule, it provides information about classes, functions,
+  methods, parameters, and return values. This reference helps you understand the
+  available API endpoints, their capabilities, and how to interact with them
   programmatically.
 
-- `Examples`_. The examples section showcases practical code examples that
-  demonstrate how to use the project in real-world scenarios. It provides sample
-  code snippets or complete scripts that illustrate different use cases or
-  demonstrate specific features of the project. Examples serve as practical
-  references for developers, helping them understand how to apply the project to
-  their own applications.
+- `Examples`_: Provides code examples that show how to use PyMeilisearch
+  in real-world scenarios. Sample code snippets and complete scripts
+  demonstrate different use cases or specific features to help you
+  understand how to use PyMeilisearch in your own projects.
 
-.. _official documentation: https://pymeilisearch.docs.ansys.com
+.. _PyMeilisearch Installation documentation: https://pymeilisearch.docs.ansys.com/version/stable/getting-started/installing-pymeilisearch.html
+.. _PyMeilisearch documentation: https://pymeilisearch.docs.ansys.com
 .. _getting started: https://pymeilisearch.docs.ansys.com/version/stable/getting-started/index.html
 .. _user guide: https://pymeilisearch.docs.ansys.com/version/stable/user-guide/index.html
 .. _api reference: https://pymeilisearch.docs.ansys.com/version/stable/autoapi/index.html
@@ -102,26 +95,24 @@ The `official documentation`_ of ``pymeilisearch`` contains the following chapte
 Troubleshooting
 ===============
 
-For troubleshooting or reporting issues, please open an issue in the project
-repository.
+To request troubleshooting assistance or report an issue, follow these steps to
+create an issue in the project's repository:
 
-Please follow these steps to report an issue:
+#. Go to the `PyMeilisearch repository`_.
+#. Click the **Issues** tab to view the **Issues** page.
+#. On the **Issues** page, click **New Issue**.
+#. In the window that opens, provide a clear and detailed description of the issue
+   that you are facing. Include any relevant error messages, code snippets, and
+   screenshots.
 
-- Go to the project repository.
-- Click on the ``Issues`` tab.
-- Click on the ``New Issue`` button.
-- Provide a clear and detailed description of the issue you are facing.
-- Include any relevant error messages, code snippets, or screenshots.
-
-Additionally, you can refer to the `project documentation`_ for additional
-resources and troubleshooting guides.
-
-.. _project documentation: https://pymeilisearch.docs.ansys.com
+To reach the project support team, email `pyansys.core@ansys.com <pyansys.core@ansys.com>`_.
 
 
-License
-=======
+License and acknowledgements
+============================
 
-You can find the full text of the license in the `LICENSE`_ file.
+PyMeilisearch is licensed under the MIT license.
+You can see the full text of the license in the `LICENSE` file.
 
 .. _license: https://github.com/ansys/pymeilisearch/blob/main/LICENSE
+.. _PyMeilisearch repository: https://github.com/ansys/pymeilisearch

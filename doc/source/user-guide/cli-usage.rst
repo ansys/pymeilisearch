@@ -1,67 +1,82 @@
-Using pymeilisearch CLI utility
-###############################
+.. _cli_usage:
 
-To use the CLI tool, open your terminal or command prompt and run the
-`pymeilisearch` command, followed by the desired sub-command and options.
+Scrape and upload documents or a website
+########################################
 
-General syntax:
+You use PyMeilisearch to scrape and upload documents or a website to Meilisearch.
+When starting this command-line interface (CLI) tool, you supply the template
+to use for content scraping, the Meilisearch index to use for identifying content,
+and the format type and location of the source documents.
+
+.. note::
+   You must declare two environment variables before using PyMeilisearch:
+
+   - ``MEILISEARCH_HOST_URL``: Registry endpoint for Meilisearch
+   - ``MEILISEARCH_API_KEY``: API key (admin) for creating indexes in the search registry
+
+
+Start PyMeilisearch
+===================
+To start PyMeilisearch, open a command prompt or your terminal and run the
+``pymeilisearch`` command followed by the desired subcommand and options.
+
+Here is the general syntax for the ``pymeilisearch`` command:
 
 .. code-block:: console
 
-    $ pymeilisearch <sub-command> [options] [arguments]
-
-Previous command expects two environment variables to be declared:
-
-- ``MEILISEARCH_HOST_URL`` is used to indicate the registry endpoint
-- ``MEILISEARCH_API_KEY`` is used to create new indices into the search registry
+    $ pymeilisearch <subcommand> [options] [arguments]
 
 
-Available commands
-==================
+**Subcommands**
 
-The ``pymeilisearch`` command provides the following sub-commands:
+The ``pymeilisearch`` command supports these subcommands:
 
-- ``upload`` is used to create new indices on a ``meilisearch`` instance
-- ``version`` is used to return the current version of ``pymeilisearch``
+- ``upload``: Upload documents or a website to Meilisearch.
+- ``version``: Get the current version of PyMeilisearch.
 
 
-The ``upload`` command
-----------------------
+Upload documents or a website
+=============================
 
-The ``upload`` sub-command allows you to upload files or a website to Meilisearch.
-It supports different sources and options depending on your requirements.
+The ``upload`` subcommand uploads documents or a website to Meilisearch,
+creating indexes on the Meilisearch instance.
 
-Syntax:
+
+Here is the general syntax for the ``upload`` subcommand:
 
 .. code-block:: console
 
     $ pymeilisearch upload --template <template> --index <index> <source> <location> [options]
 
-Required arguments:
-
-- ``--template <template name or path>`` indicates the Name of the template to use or specify the path where the template is located.
-    Available templates are `sphinx_pydata` and `default`. The `config file` required to know which content you want to scrape.
-    The example `config files` available in `meilisearch-docs-scrapper`_.
-
-.. _meilisearch-docs-scrapper: https://github.com/meilisearch/docs-scraper#set-your-config-file
-
-- ``--index <index name>`` indicates the name of the Meilisearch index used to identify the content.
-- ``<source>`` is the type source to upload. It can be ``html``, ``url``, or ``github``.
-- ``<location>`` indicates the location of the files or website to upload.
-
-Options:
-
-- ``--cname <cname>`` is the CNAME in which the documents are hosted (optional), recommended for localhost scraping.
-- ``--port <port>`` is the number for the port in which the local host has to connect. Default port is 8000.
-- ``--orgs <orgs>`` is the name for the GitHub organizations from which public GitHub pages get scraped.
+As you can see, this command requires certain arguments and supports additional options, depending
+on your requirements.
 
 
-The ``version`` command
------------------------
+**Required arguments**
 
-The ``version`` command displays the current version of the ``pymeilisearch``:
+- ``--template <template>``: Name of the template to use or the path to where the
+  template file is located. Available templates are ``sphinx_pydata`` and ``default``.
+  The Meilisearch scrapper tool, `docs-scraper <https://github.com/meilisearch/docs-scraper>`_,
+  requires a configuration file to know what content to scrape. For an example of a
+  configuration file, see `Set your Config File <https://github.com/meilisearch/docs-scraper#set-your-config-file>`_
+  in the README for this tool's GitHub repository.
+- ``--index <index name>``: Name of the Meilisearch index to use to identify content.
+- ``<source>``: Format type for the documents to upload. It can be ``html``, ``url``, or ``github``.
+- ``<location>``: Location of the documents or website to upload.
 
-Syntax:
+
+**Options**
+
+- ``--cname <cname>``: CNAME that hosts the documents. While supplying a CNAME
+  is optional, doing so is recommended for scraping documents on the localhost.
+- ``--port <port>``: Port that the localhost is connected on. The default is ``8000``.
+- ``--orgs <orgs>``: One or more GitHub organizations to scrape public GitHub pages from.
+
+
+Get the PyMeilisearch version
+=============================
+
+The ``version`` command gets the version of your PyMeilisearch installation:
 
 .. code-block:: console
 

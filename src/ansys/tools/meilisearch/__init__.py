@@ -1,4 +1,4 @@
-"""PyMeilisearch is an enhanced Python API to Meilisearch"""
+"""PyMeilisearch provides an enhanced Python API for Meilisearch."""
 
 try:
     import importlib.metadata as importlib_metadata

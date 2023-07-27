@@ -1,4 +1,4 @@
-"""PyMeilisearch template subpackage"""
+"""PyMeilisearch templates subpackage."""
 import json
 import pathlib
 from typing import Union
@@ -25,33 +25,40 @@ def render_template(
     index_uid: str = None,
     stop_urls_default: str = None,
 ) -> str:
-    """Render a docsearch sphinx template for a given URL.
-
-    The index_uid will be the url without https:://
+    """Render a docsearch Sphinx template for a URL.
 
     Parameters
     ----------
-    template_path : str or pathlib.Path
+    template : str or pathlib.Path
         Path to the template file or the name of the template to use.
-        Must be a key in the TEMPLATES dictionary.
-    urls : str or list of str
-        URL(s) to crawl. Must start with "https://".
+        If a name is specified, it must be a key in the ``TEMPLATES``
+        dictionary.
+    urls : str, list[str]
+        One or more URLs to crawl. URLs must start with ``https://``.
     path_out : str
         Path to write the rendered template to.
-    index_uid : str, default: The index uid of first url in list
-        Custom index uid to use.
+    index_uid : str, default: None
+        Unique name for the custom index to use. This unique name is the
+        URL without the ``https://``. The default is ``None``, in which
+        case the unique name of the first URL specified for the ``urls``
+        parameter is used.
+    stop_urls_default : list[str], default: ['_sources', '_downloads', '_static', '_images', '.doctree']
+        A list of stop points when scraping URLs. If specified, crawling
+        will stop when encountering any URL containing any of the strings
+        in this list. The default is ['_sources', '_downloads', '_static', '_images', '.doctree'].
 
     Returns
     -------
     str
-        The index_uid used.
+        Unique name of the custom index that is used.
 
     Raises
     ------
     FileNotFoundError
         If the template file cannot be found.
     ValueError
-        If any of the URLs do not start with "https://".
+        If any of the URLs specified for the ``urls`` parameter do not
+        start with ``https://``.
 
     """
     if template == "sphinx_pydata":
@@ -62,7 +69,7 @@ def render_template(
         template_path = pathlib.Path(template)
 
     if not template_path.exists():
-        raise FileNotFoundError(f"Unable to locate a template at {template_path}")
+        raise FileNotFoundError(f"Unable to locate a template at {template_path}.")
 
     if template == "sphinx_pydata":
         stop_urls = [f"{urls[-1].rstrip('/')}/{segment}" for segment in STOP_SPHINX_URLS]

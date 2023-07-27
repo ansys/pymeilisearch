@@ -1,5 +1,6 @@
 """
-Create an index for each public github page for each repo in orgs using sphinx.
+Create an index for each public GitHub page for each repository in
+one or more organizations using Sphinx.
 """
 import os
 
@@ -11,12 +12,17 @@ from ansys.tools.meilisearch.utils import MeilisearchUtils
 
 
 def get_public_urls(orgs):
-    """Get all public gh_pages for each repo in orgs.
+    """Get all public GitHub pages (gh_pages) for each repository in one or more organizations.
+
+    Parameters
+    ----------
+    orgs : str or list[str]
+        One or more GitHub organizations to get public GitHub pages from.
 
     Returns
     -------
     dict
-        A dictionary where keys are repo names and values are URLs to their
+        Dictionary where keys are repository names and values are URLs to their
         public GitHub pages.
 
     """
@@ -32,19 +38,19 @@ def get_public_urls(orgs):
 
 
 def get_sphinx_urls(urls):
-    """Filter URLs that use Sphinx.
+    """Get URLs for pages that were generated using Sphinx.
 
     Parameters
     ----------
     urls : dict
-        A dictionary where keys are repo names and values are URLs to their
+        Dictionary where keys are repository names and values are URLs to their
         public GitHub pages.
 
     Returns
     -------
     dict
-        A dictionary where keys are repo names that use Sphinx and values are
-        their URLs.
+        Dictionary where keys are repository names that use Sphinx and
+        values are their URLs.
 
     """
     return {repo: url for repo, url in urls.items() if is_sphinx(url)}
@@ -55,28 +61,29 @@ def create_sphinx_indexes(
     meilisearch_host_url=None,
     meilisearch_api_key=None,
 ):
-    """Create an index for each public GitHub page that uses Sphinx.
+    """Create an index for each public GitHub page that was generated using Sphinx.
 
-    The created ``index_uid`` will match ``<repo>-sphinx-docs`` with a ``'-'``
-    instead of a ``'/'`` within the repository name. For example:
+    The unique name created for the index (``index_uid``) matches ``<repo>-sphinx-docs``,
+    with a ``'-'`` instead of a ``'/'`` in the repository name. For example, the unique
+    ID created for the ``pyansys/pymapdl`` repository has ``pyansys-pymapdl-sphinx-docs``
+    as its unique name.
 
-    The repository ``pyansys/pymapdl`` will be ``pyansys-pymapdl-sphinx-docs``.
-
-    Index UID will also be lowercased.
+    The unique name for an index is always lowercase.
 
     Parameters
     ----------
     sphinx_urls : dict
-        A dictionary where keys are repo names that use Sphinx and values are
+        Dictionary where keys are repository names that use Sphinx and values are
         their URLs.
-    meilisearch_host_url : str, optional
-        Meilisearch host URL, by default None.
-    meilisearch_api_key : str, optional
-         Meilisearch API key, by default None.
+    meilisearch_host_url : str, default: None
+        URL for the Meilisarch host.
+    meilisearch_api_key : str, default: None
+        API key (admin) for the Meilisearch host.
 
     Notes
     -----
-    Requires ``GH_PUBLIC_TOKEN`` to be a GitHub token with public access.
+    This method requires that the ``GH_PUBLIC_TOKEN`` environment variable
+    be a GitHub token with public access.
 
     """
     for repo, url in sphinx_urls.items():
@@ -98,20 +105,21 @@ def create_sphinx_indexes(
 
 def scrap_web_page(index_uid, url, templates, meilisearch_host_url=None, meilisearch_api_key=None):
     """
-    Scrapes a web page and indexes its content in MeiliSearch.
+    Scrape a web page and index its content in Meilisearch.
 
     Parameters
     ----------
     index_uid : str
-        The index UID for MeiliSearch.
+        Unique name to give to the Meilisearch index.
     url : str
-        The URL of the web page to scrape.
-    templates : list
-        List of templates.
-    meilisearch_host_url : str, default : None
-        The URL to the MeiliSearch host.
-    meilisearch_api_key : str, default : None
-        The admin API key to the MeiliSearch host.
+        URL of the web page to scrape.
+    templates : str or list[str]
+        One or more templates to use to know what content is to
+        be scraped. Available templates are ``sphinx_pydata`` and ``default``.
+    meilisearch_host_url : str, default: None
+        URL for the Meilisarch host.
+    meilisearch_api_key : str, default: None
+        API key (admin) for the Meilisearch host.
     """
     client = MeilisearchClient(meilisearch_host_url, meilisearch_api_key)
     web_scraper = WebScraper(meilisearch_host_url, meilisearch_api_key)

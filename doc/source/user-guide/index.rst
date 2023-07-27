@@ -1,25 +1,32 @@
 User guide
 ==========
 
-The ``pymeilisearch`` command-line interface (CLI) is designed to help you
-scrape and upload documentation files or websites to Meilisearch. This user
-guide includes the steps of using the CLI tool effectively.
+Meilisearch stores data in the form of discrete records called *documents*.
+It then groups these documents into collections called *indexes*. In an
+index's settings, you can customize the search behavior for this index.
+The settings for one index do not impact other indexes. For more information,
+see the `Meilisearch documentation <https://www.meilisearch.com/docs>`_.
+
+You use PyMeilisearch to scrape and upload documents or a website to Meilisearch.
+This section describes how to use this command-line interface (CLI) tool
+to do the scraping and uploading. It then describes how to integrate Meilisearch into
+a website as a web component (search bar).
 
 .. grid:: 2
 
-    .. grid-item-card:: CLI usage :fas:`fa fa-terminal`
+    .. grid-item-card:: Use PyMeilisearch to scrape and upload :fas:`fa fa-terminal`
         :link: cli-usage
         :link-type: doc
 
-        Learn how to use PyMeilisearch from the command line. Covers the installation
-        process and examples of common commands and their usage.
+        Learn how to use PyMeilisearch to scrape and upload documents or a website
+        to Meilisearch.
 
-    .. grid-item-card:: Web component :fas:`fa fa-server`
+    .. grid-item-card:: Integrate Meilisearch into a website :fas:`fa fa-server`
         :link: web-component
         :link-type: doc
 
-        Integrate Meilisearch in a website by creating a search bar
-        component and linking it to a running meilisearch instance.
+        Integrate Meilisearch into a website as a web component (search bar).
+
 
 .. toctree::
    :hidden:
