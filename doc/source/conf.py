@@ -2,7 +2,7 @@
 from datetime import datetime
 import os
 
-from ansys_sphinx_theme import get_version_match
+from ansys_sphinx_theme import convert_version_to_pymeilisearch, get_version_match
 
 from ansys.tools.meilisearch import __version__
 
@@ -29,7 +29,7 @@ html_theme_options = {
     "use_meilisearch": {
         "api_key": os.getenv("MEILISEARCH_API_PUBLIC_KEY", ""),
         "index_uids": {
-            f"pymeilisearch-{get_version_match(__version__)}": "PyMeilisearch",
+            f"pymeilisearch-v{convert_version_to_pymeilisearch(__version__)}": "PyMeilisearch",
         },
     },
 }
