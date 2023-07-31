@@ -74,7 +74,6 @@ def upload(template, index, source, location, cname, port, orgs, stop_urls):
         A list of stop points when scraping URLs. If specified, crawling
         will stop when encountering any URL containing any of the strings
         in this list.
-        The default is ['_sources', '_downloads', '_static', '_images', '.doctree'].
 
     Notes
     -----
