@@ -58,7 +58,7 @@ on your requirements.
   template file is located. Available templates are ``sphinx_pydata`` and ``default``.
   The Meilisearch scrapper tool, `docs-scraper <https://github.com/meilisearch/docs-scraper>`_,
   requires a configuration file to know what content to scrape. For an example of a
-  configuration file, see `Set your Config File <https://github.com/meilisearch/docs-scraper#set-your-config-file/>`_
+  configuration file, see `Set your Config File <https://github.com/meilisearch/docs-scraper#set-your-config-file>`_
   in the README for this tool's GitHub repository.
 - ``--index <index name>``: Name of the Meilisearch index to use to identify content.
 - ``<source>``: Format type for the documents to upload. It can be ``html``, ``url``, or ``github``.
