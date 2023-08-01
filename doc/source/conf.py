@@ -130,3 +130,7 @@ jinja_contexts = {
         "version": version if not version.endswith("dev0") else "main",
     },
 }
+
+linkcheck_ignore = [
+    "https://github.com/meilisearch/docs-scraper#set-your-config-file",
+]
