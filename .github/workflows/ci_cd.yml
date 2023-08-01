@@ -180,23 +180,17 @@ jobs:
     runs-on: ubuntu-latest
     needs: doc-deploy-stable
     steps:
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ env.MAIN_PYTHON_VERSION }}
-
-      - uses: actions/checkout@v3
-
-      - uses: actions/download-artifact@v3
-
-      - name: Display structure of downloaded files
-        run: ls -R
-
-      - name: Install the package requirements
-        run: pip install -e .
-
-      - name: Scrape the stable documentation to meilisearch
+      - name: Scrape the stable documentation to PyMeilisearch
         run: |
           VERSION=$(python -c "from ansys.tools.meilisearch import __version__; print('.'.join(__version__.split('.')[:2]))")
           VERSION_MEILI=$(python -c "from ansys.tools.meilisearch import __version__; print('-'.join(__version__.split('.')[:2]))")
-          pymeilisearch upload --template sphinx_pydata --index "pymeilisearch-v${VERSION_MEILI}" --cname "${{ env.DOCUMENTATION_CNAME }}/version/${VERSION}/" html documentation-html
+          echo "Calculated VERSION: $VERSION"
+          echo "Calculated VERSION_MEILI: $VERSION_MEILI"
+
+      - name: "Deploy the latest documentation index"
+        uses: ansys/actions/doc-deploy-index@v4.1
+        with:
+          cname: "$DOCUMENTATION_CNAME/version/$VERSION"
+          index-name: "<index-name>v$VERSION_MEILI"
+          host-url: ${{ env.MEILISEARCH_HOST_URL }}
+          api-key: ${{ env.MEILISEARCH_API_KEY }}
