@@ -71,30 +71,42 @@ def render_template(
     if not template_path.exists():
         raise FileNotFoundError(f"Unable to locate a template at {template_path}.")
 
-    if isinstance(stop_urls_default, str):
-        stop_urls_default = [stop_urls_default]
-    if template == "sphinx_pydata":
-        stop_urls = [f"{urls[-1].rstrip('/')}/{segment}" for segment in STOP_SPHINX_URLS]
-        if stop_urls_default is not None:
-            stop_urls.extend(
-                f"{urls[-1].rstrip('/')}{stop_url_default}"
-                for stop_url_default in stop_urls_default
-            )
-    template_str = template_path.read_text()
-    template = Template(template_str)
-
-    # Ensure urls is a list
     if isinstance(urls, str):
         urls = [urls]
+
+    if isinstance(stop_urls_default, str):
+        stop_urls_default = [stop_urls_default]
+
+    if template == "sphinx_pydata":
+        # Check if the first URL contains "localhost"
+        if "localhost" in urls[0]:
+            stop_base_url = urls[0].rsplit("/", 1)[0]
+        else:
+            stop_base_url = urls[-1].rstrip("/")
+
+        # Generate stop_urls without using urljoin
+        stop_urls = [f"{stop_base_url}/{segment}" for segment in STOP_SPHINX_URLS]
+
+        # Check if stop_urls_default is not None and generate stop_urls_default_list
+        if stop_urls_default is not None:
+            stop_urls_default_list = [
+                f"{stop_base_url}/{stop_url_default}" for stop_url_default in stop_urls_default
+            ]
+
+    combined_stop_urls = stop_urls + stop_urls_default_list
+    template_str = template_path.read_text()
+    template = Template(template_str)
 
     # Use the first url as index_uid if none is provided
     if index_uid is None:
         index_uid = urls[0].replace("https://", "")
 
     # Add stop_urls to the url
-
-    start_url = json.dumps(urls)
-    stop_url = json.dumps(stop_urls)
+    start_urls = [
+        url for url in urls if not any(url.startswith(stop_url) for stop_url in combined_stop_urls)
+    ]
+    start_url = json.dumps(start_urls)
+    stop_url = json.dumps(combined_stop_urls)
 
     # Render the template
     rendered_template = template.render(index_uid=index_uid, start_url=start_url, stop_url=stop_url)

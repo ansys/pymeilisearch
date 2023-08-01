@@ -96,7 +96,7 @@ def upload(template, index, source, location, cname, port, orgs, stop_urls):
 
     elif source == "github":
         public_gh_pages_urls = get_public_urls(orgs)
-        if template == "sphinx-pydata":
+        if template == "sphinx_pydata":
             urls = get_sphinx_urls(public_gh_pages_urls)
             create_sphinx_indexes(urls, stop_urls)
         else:

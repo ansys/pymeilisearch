@@ -60,6 +60,7 @@ class WebScraper(BaseClient):
         render_template(
             template, url, temp_config_file, index_uid=index_uid, stop_urls_default=stop_urls
         )
+        print(temp_config_file)
         return temp_config_file
 
     def _scrape_url_command(self, temp_config_file):
@@ -132,7 +133,7 @@ class WebScraper(BaseClient):
             if response.status_code != 200:
                 raise RuntimeError(f'URL "{url}" returned status code {response.status_code}')
 
-    def scrape_url(self, url, index_uid, stop_urls=None, template=None, verbose=False):
+    def scrape_url(self, url, index_uid, template=None, stop_urls=None, verbose=False):
         """Scrape a URL for a web page using the active Meilisearch host.
 
         This method generates a single unique name for a single URL.
