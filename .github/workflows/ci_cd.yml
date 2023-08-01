@@ -145,6 +145,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: doc-deploy-dev
     steps:
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.MAIN_PYTHON_VERSION }}
+
+      - name: Install the package requirements
+        run: pip install -e .
+
       - name: Scrape the stable documentation to PyMeilisearch
         run: |
           VERSION=$(python -c "from ansys.tools.meilisearch import __version__; print('.'.join(__version__.split('.')[:2]))")
@@ -178,6 +186,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: doc-deploy-stable
     steps:
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.MAIN_PYTHON_VERSION }}
+
+      - name: Install the package requirements
+        run: pip install -e .
+
       - name: Scrape the stable documentation to PyMeilisearch
         run: |
           VERSION=$(python -c "from ansys.tools.meilisearch import __version__; print('.'.join(__version__.split('.')[:2]))")
