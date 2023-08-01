@@ -141,9 +141,9 @@ jobs:
 
   doc-index-dev:
     name: "Deploy dev index docs"
-    #if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    needs: [build-library]
+    needs: doc-deploy-dev
     steps:
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -155,20 +155,11 @@ jobs:
       - name: Install the package requirements
         run: pip install -e .
 
-      - name: Scrape the stable documentation to PyMeilisearch
-        run: |
-          VERSION=$(python -c "from ansys.tools.meilisearch import __version__; print('.'.join(__version__.split('.')[:2]))")
-          VERSION_MEILI=$(python -c "from ansys.tools.meilisearch import __version__; print('-'.join(__version__.split('.')[:2]))")
-          echo "Calculated VERSION: $VERSION"
-          echo "Calculated VERSION_MEILI: $VERSION_MEILI"
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
-          echo "VERSION_MEILI=$VERSION_MEILI" >> $GITHUB_ENV
-
       - name: "Deploy the latest documentation index"
         uses: ansys/actions/doc-deploy-index@v4.1
         with:
-          cname: "$DOCUMENTATION_CNAME/version/$VERSION"
-          index-name: "pymeilisearch-v$VERSION_MEILI"
+          cname: "$DOCUMENTATION_CNAME/version/dev"
+          index-name: "pymeilisearch-vdev"
           host-url: ${{ env.MEILISEARCH_HOST_URL }}
           api-key: ${{ env.MEILISEARCH_API_KEY }}
 
@@ -205,6 +196,8 @@ jobs:
           VERSION_MEILI=$(python -c "from ansys.tools.meilisearch import __version__; print('-'.join(__version__.split('.')[:2]))")
           echo "Calculated VERSION: $VERSION"
           echo "Calculated VERSION_MEILI: $VERSION_MEILI"
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "VERSION_MEILI=$VERSION_MEILI" >> $GITHUB_ENV
 
       - name: "Deploy the latest documentation index"
         uses: ansys/actions/doc-deploy-index@v4.1
