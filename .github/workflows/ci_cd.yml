@@ -141,14 +141,16 @@ jobs:
 
   doc-index-dev:
     name: "Deploy dev index docs"
-    if: github.ref == 'refs/heads/main'
+    #if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    needs: doc-deploy-dev
+    #needs: doc-deploy-dev
     steps:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ env.MAIN_PYTHON_VERSION }}
+          python-version: ${{ env.MAIN_PYTHON_VERSION
+
+      - uses: actions/checkout@v3
 
       - name: Install the package requirements
         run: pip install -e .
@@ -189,11 +191,12 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ env.MAIN_PYTHON_VERSION }}
+          python-version: ${{ env.MAIN_PYTHON_VERSION
+
+      - uses: actions/checkout@v3
 
       - name: Install the package requirements
         run: pip install -e .
-
       - name: Scrape the stable documentation to PyMeilisearch
         run: |
           VERSION=$(python -c "from ansys.tools.meilisearch import __version__; print('.'.join(__version__.split('.')[:2]))")
