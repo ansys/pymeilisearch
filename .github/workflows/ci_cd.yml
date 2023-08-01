@@ -192,6 +192,6 @@ jobs:
         uses: ansys/actions/doc-deploy-index@v4.1
         with:
           cname: "$DOCUMENTATION_CNAME/version/$VERSION"
-          index-name: "<index-name>v$VERSION_MEILI"
+          index-name: "pymeilisearch-v$VERSION_MEILI"
           host-url: ${{ env.MEILISEARCH_HOST_URL }}
           api-key: ${{ env.MEILISEARCH_API_KEY }}
