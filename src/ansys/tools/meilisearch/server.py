@@ -65,7 +65,7 @@ class WebsiteServer:
             self.server_thread.join()
 
 
-def scrape_website(index_uid, templates, directory, port):
+def scrape_website(index_uid, templates, directory, port, stop_urls):
     """
     Scrape the website by collecting the URLs of web pages in the specified directory.
 
@@ -80,15 +80,19 @@ def scrape_website(index_uid, templates, directory, port):
         Directory containing the website.
     port : int
         Port number to serve the website on.
+    stop_urls : str or list[str], default: None
+        A list of stop points when scraping URLs. If specified, crawling
+        will stop when encountering any URL containing any of the strings
+        in this list.
     """
     base_url = f"http://localhost:{port}"
     files = directory.rglob("*.html")
     urls = [f"{base_url}/{file.relative_to(directory).as_posix()}" for file in files]
 
-    scrap_web_page(index_uid, urls, templates)
+    scrap_web_page(index_uid, urls, templates, stop_urls)
 
 
-def local_host_scraping(index_uid, templates, directory, port):
+def local_host_scraping(index_uid, templates, directory, port, stop_urls):
     """
     Perform localhost scraping by serving the directory and scraping its content.
 
@@ -103,13 +107,17 @@ def local_host_scraping(index_uid, templates, directory, port):
         Directory to serve and scrape.
     port : int
         Port number to listen on.
+    stop_urls : str or list[str], default: None
+        A list of stop points when scraping URLs. If specified, crawling
+        will stop when encountering any URL containing any of the strings
+        in this list.
     """
     # Start serving the website in a separate thread
     website_server = WebsiteServer(directory, port)
     website_server.start_serving()
 
     # Scrape the website
-    scrape_website(index_uid, templates, directory, port)
+    scrape_website(index_uid, templates, directory, port, stop_urls)
 
     # Stop serving the website
     website_server.stop_serving()

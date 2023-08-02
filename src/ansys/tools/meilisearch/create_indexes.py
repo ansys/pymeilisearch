@@ -58,6 +58,7 @@ def get_sphinx_urls(urls):
 
 def create_sphinx_indexes(
     sphinx_urls,
+    stop_urls=None,
     meilisearch_host_url=None,
     meilisearch_api_key=None,
 ):
@@ -75,6 +76,10 @@ def create_sphinx_indexes(
     sphinx_urls : dict
         Dictionary where keys are repository names that use Sphinx and values are
         their URLs.
+    stop_urls : str or list[str], default: None
+        A list of stop points when scraping URLs. If specified, crawling
+        will stop when encountering any URL containing any of the strings
+        in this list.
     meilisearch_host_url : str, default: None
         URL for the Meilisarch host.
     meilisearch_api_key : str, default: None
@@ -103,7 +108,9 @@ def create_sphinx_indexes(
         client.client.index(temp_index_uid).delete()
 
 
-def scrap_web_page(index_uid, url, templates, meilisearch_host_url=None, meilisearch_api_key=None):
+def scrap_web_page(
+    index_uid, url, templates, stop_urls=None, meilisearch_host_url=None, meilisearch_api_key=None
+):
     """
     Scrape a web page and index its content in Meilisearch.
 
@@ -116,6 +123,10 @@ def scrap_web_page(index_uid, url, templates, meilisearch_host_url=None, meilise
     templates : str or list[str]
         One or more templates to use to know what content is to
         be scraped. Available templates are ``sphinx_pydata`` and ``default``.
+    stop_urls : str or list[str], default: None
+        A list of stop points when scraping URLs. If specified, crawling
+        will stop when encountering any URL containing any of the strings
+        in this list.
     meilisearch_host_url : str, default: None
         URL for the Meilisarch host.
     meilisearch_api_key : str, default: None
@@ -123,7 +134,7 @@ def scrap_web_page(index_uid, url, templates, meilisearch_host_url=None, meilise
     """
     client = MeilisearchClient(meilisearch_host_url, meilisearch_api_key)
     web_scraper = WebScraper(meilisearch_host_url, meilisearch_api_key)
-    web_scraper.scrape_url(url, index_uid, templates)
+    web_scraper.scrape_url(url, index_uid, templates, stop_urls)
     document_utils = MeilisearchUtils(client)
     stats = client.client.get_all_stats()
     index_uids = list(stats["indexes"].keys())
