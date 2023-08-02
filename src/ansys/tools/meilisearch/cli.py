@@ -38,9 +38,16 @@ def main():
     help="GitHub organizations to scrape public URLs from.",
     multiple=True,
 )
+@click.option(
+    "--stop_urls",
+    required=False,
+    default=[],
+    help="The stop urls to stop scraping.",
+    multiple=True,
+)
 @click.argument("source", type=click.Choice(["html", "url", "github"]))
 @click.argument("location")
-def upload(template, index, source, location, cname, port, orgs):
+def upload(template, index, source, location, cname, port, orgs, stop_urls):
     """Upload documents or a website using a template and index.
 
     Parameters
@@ -63,6 +70,10 @@ def upload(template, index, source, location, cname, port, orgs):
         Port that the localhost is connected on.
     orgs : str or list[str]
         One or more GitHub organizations to scrape public GitHub pages from.
+    stop_urls : str or list[str], default: None
+        A list of stop points when scraping URLs. If specified, crawling
+        will stop when encountering any URL containing any of the strings
+        in this list.
 
     Notes
     -----
@@ -78,18 +89,18 @@ def upload(template, index, source, location, cname, port, orgs):
         location = pathlib.Path.cwd() / location
         os.environ["DOCUMENTATION_CNAME"] = cname
         os.environ["DOCUMENTATION_PORT"] = str(port)
-        local_host_scraping(index, template, location, port)
+        local_host_scraping(index, template, location, port, stop_urls)
 
     elif source == "url":
-        scrap_web_page(index, location, template)
+        scrap_web_page(index, location, template, stop_urls)
 
     elif source == "github":
         public_gh_pages_urls = get_public_urls(orgs)
-        if template == "sphinx-pydata":
+        if template == "sphinx_pydata":
             urls = get_sphinx_urls(public_gh_pages_urls)
-            create_sphinx_indexes(urls)
+            create_sphinx_indexes(urls, stop_urls)
         else:
-            create_sphinx_indexes(public_gh_pages_urls)
+            create_sphinx_indexes(public_gh_pages_urls, stop_urls)
 
     else:
         click.echo(f"Invalid source: {source}. Must be 'html', 'url', or 'github'.")

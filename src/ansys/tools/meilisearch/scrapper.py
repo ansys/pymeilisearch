@@ -46,6 +46,10 @@ class WebScraper(BaseClient):
             Template file for rendering.
         index_uid : str
             Unique name of the Meilisearch index.
+        stop_urls : str or list[str], default: None
+            A list of stop points when scraping URLs. If specified, crawling
+            will stop when encountering any URL containing any of the strings
+            in this list.
 
         Returns
         -------
@@ -56,6 +60,7 @@ class WebScraper(BaseClient):
         render_template(
             template, url, temp_config_file, index_uid=index_uid, stop_urls_default=stop_urls
         )
+        print(temp_config_file)
         return temp_config_file
 
     def _scrape_url_command(self, temp_config_file):
@@ -128,7 +133,7 @@ class WebScraper(BaseClient):
             if response.status_code != 200:
                 raise RuntimeError(f'URL "{url}" returned status code {response.status_code}')
 
-    def scrape_url(self, url, index_uid, template=None, verbose=False):
+    def scrape_url(self, url, index_uid, template=None, stop_urls=None, verbose=False):
         """Scrape a URL for a web page using the active Meilisearch host.
 
         This method generates a single unique name for a single URL.
@@ -152,7 +157,7 @@ class WebScraper(BaseClient):
         self._check_url(url)
         template = get_template(url) if template is None else template
 
-        temp_config_file = self._load_and_render_template(url, template, index_uid)
+        temp_config_file = self._load_and_render_template(url, template, index_uid, stop_urls)
         output = self._scrape_url_command(temp_config_file)
 
         n_hits = self._parse_output(output)
