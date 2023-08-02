@@ -74,9 +74,6 @@ def render_template(
     if isinstance(urls, str):
         urls = [urls]
 
-    if isinstance(stop_urls_default, str):
-        stop_urls_default = [stop_urls_default]
-
     if template == "sphinx_pydata":
         # Check if the first URL contains "localhost"
         if "localhost" in urls[0]:
@@ -89,11 +86,13 @@ def render_template(
 
         # Check if stop_urls_default is not None and generate stop_urls_default_list
         if stop_urls_default is not None:
-            stop_urls_default_list = [
-                f"{stop_base_url}/{stop_url_default}" for stop_url_default in stop_urls_default
-            ]
+            if isinstance(stop_urls_default, str):
+                stop_urls_default = [stop_urls_default]
 
-    combined_stop_urls = stop_urls + stop_urls_default_list
+            stop_urls.extend(
+                [f"{stop_base_url}/{stop_url_default}" for stop_url_default in stop_urls_default]
+            )
+
     template_str = template_path.read_text()
     template = Template(template_str)
 
@@ -103,10 +102,10 @@ def render_template(
 
     # Add stop_urls to the url
     start_urls = [
-        url for url in urls if not any(url.startswith(stop_url) for stop_url in combined_stop_urls)
+        url for url in urls if not any(url.startswith(stop_url) for stop_url in stop_urls)
     ]
     start_url = json.dumps(start_urls)
-    stop_url = json.dumps(combined_stop_urls)
+    stop_url = json.dumps(stop_urls)
 
     # Render the template
     rendered_template = template.render(index_uid=index_uid, start_url=start_url, stop_url=stop_url)
