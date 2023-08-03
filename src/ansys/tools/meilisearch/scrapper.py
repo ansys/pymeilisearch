@@ -60,7 +60,6 @@ class WebScraper(BaseClient):
         render_template(
             template, url, temp_config_file, index_uid=index_uid, stop_urls_default=stop_urls
         )
-        print(temp_config_file)
         return temp_config_file
 
     def _scrape_url_command(self, temp_config_file):
