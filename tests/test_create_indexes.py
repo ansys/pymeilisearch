@@ -87,7 +87,7 @@ def test_temp_index_swapping(meilisearch_client):
     create_sphinx_indexes(
         test_url,
         meilisearch_client.meilisearch_host_url,
-        meilisearch_client.meilisearch_host_url,
+        meilisearch_client.meilisearch_api_key,
     )
     stats = meilisearch_client.client.get_all_stats()
     index_uids = list(stats["indexes"].keys())
