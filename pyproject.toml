@@ -33,7 +33,7 @@ dependencies = [
 
 [project.optional-dependencies]
 tests = [
-    "pytest==7.4.0",
+    "pytest==7.4.1",
     "pytest-cov==4.1.0",
     "docker==6.1.3",
 ]
