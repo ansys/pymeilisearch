@@ -141,15 +141,15 @@ jobs:
 
   doc-index-dev:
     name: "Deploy dev index docs"
-    #if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    needs: doc-build
+    needs: doc-deploy-dev
     steps:
       - name: "Deploy the latest documentation index"
         uses: ansys/actions/doc-deploy-index@v4
         with:
           cname: ${{ env.DOCUMENTATION_CNAME }}/version/dev
-          index-name: "pymeilisearch-vdev"
+          index-name: pymeilisearch-vdev
           host-url: ${{ env.MEILISEARCH_HOST_URL }}
           api-key: ${{ env.MEILISEARCH_API_KEY }}
 
@@ -192,7 +192,7 @@ jobs:
       - name: "Deploy the latest documentation index"
         uses: ansys/actions/doc-deploy-index@v4.1
         with:
-          cname: "$DOCUMENTATION_CNAME/version/$VERSION"
-          index-name: "pymeilisearch-v$VERSION_MEILI"
+          cname: ${{ env.DOCUMENTATION_CNAME }}/version/${{ env.VERSION }}
+          index-name: pymeilisearch-${{ env.VERSION_MEILI }}
           host-url: ${{ env.MEILISEARCH_HOST_URL }}
           api-key: ${{ env.MEILISEARCH_API_KEY }}
