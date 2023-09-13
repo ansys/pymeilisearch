@@ -13,7 +13,7 @@ env:
   LIBRARY_NAME: 'pymeilisearch'
   LIBRARY_NAMESPACE: 'ansys.tools.meilisearch'
   MEILISEARCH_API_PUBLIC_KEY: ${{ secrets.MEILISEARCH_API_PUBLIC_KEY }}
-  MEILISEARCH_HOST_URL: https://backend.search.pyansys.com
+  MEILISEARCH_HOST_URL: "https://backend.search.pyansys.com"
   MEILISEARCH_API_KEY: ${{ secrets.MEILISEARCH_API_KEY }}
 
 concurrency:
@@ -129,7 +129,7 @@ jobs:
 
   doc-deploy-dev:
     name: "Deploy development docs"
-    if: github.ref == 'refs/heads/main'
+    #if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     needs: [build-library]
     steps:
@@ -141,24 +141,14 @@ jobs:
 
   doc-index-dev:
     name: "Deploy dev index docs"
-    if: github.ref == 'refs/heads/main'
+    #if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     needs: doc-deploy-dev
     steps:
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ env.MAIN_PYTHON_VERSION }}
-
-      - uses: actions/checkout@v3
-
-      - name: Install the package requirements
-        run: pip install -e .
-
       - name: "Deploy the latest documentation index"
-        uses: ansys/actions/doc-deploy-index@v4.1
+        uses: ansys/actions/doc-deploy-index@v4
         with:
-          cname: "$DOCUMENTATION_CNAME/version/dev"
+          cname: "${{ DOCUMENTATION_CNAME }}/version/dev"
           index-name: "pymeilisearch-vdev"
           host-url: ${{ env.MEILISEARCH_HOST_URL }}
           api-key: ${{ env.MEILISEARCH_API_KEY }}
