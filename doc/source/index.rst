@@ -9,8 +9,8 @@ provides only limited capabilities, PyMeilisearch was designed to provide more
 extensive capabilities, including these:
 
 - Using predefined templates for popular documentation themes
-- Scrapping local documents
-- Scrapping documents on websites
+- Scraping local documents
+- Scraping documents on websites
 
 
 .. raw:: html
