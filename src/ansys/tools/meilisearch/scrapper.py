@@ -76,10 +76,19 @@ class WebScraper(BaseClient):
         str
             Output of scraping the URL for the web page.
         """
-        result = subprocess.run(
-            ["python", "-m", "scraper", temp_config_file], stdout=subprocess.PIPE
-        )
-        output = result.stdout.decode("utf-8")
+        try:
+            result = subprocess.run(
+                ["python", "-m", "scraper", temp_config_file],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+            )
+            result.check_returncode()
+            output = result.stdout.decode("utf-8")
+        except subprocess.CalledProcessError as e:
+            error_message = e.stderr.decode("utf-8")
+            raise Exception(f"Subprocess error: {error_message}")
+        except Exception as e:
+            raise Exception(f"An error occurred: {str(e)}")
         return output
 
     def _parse_output(self, output):
