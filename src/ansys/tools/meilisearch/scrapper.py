@@ -18,6 +18,13 @@ def get_temp_file_name(ext=".txt"):
     return temp_file_name + ext
 
 
+class SubprocessExecutionError(Exception):
+    """Custom exception class for subprocess execution errors."""
+
+    def __init__(self, message):
+        super().__init__(message)
+
+
 class WebScraper(BaseClient):
     """
     Provides for scraping web pages and checking if responses are successful.
@@ -75,6 +82,11 @@ class WebScraper(BaseClient):
         -------
         str
             Output of scraping the URL for the web page.
+
+        Raises
+        ------
+        SubprocessExecutionError
+            If any error occurs during the subprocess execution.
         """
         try:
             result = subprocess.run(
@@ -84,11 +96,11 @@ class WebScraper(BaseClient):
             )
             result.check_returncode()
             output = result.stdout.decode("utf-8")
-        except subprocess.CalledProcessError as e:
-            error_message = e.stderr.decode("utf-8")
-            raise Exception(f"Subprocess error: {error_message}")
-        except Exception as e:
-            raise Exception(f"An error occurred: {str(e)}")
+        except (subprocess.CalledProcessError, Exception) as e:
+            error_message = (
+                e.stderr.decode("utf-8") if isinstance(e, subprocess.CalledProcessError) else str(e)
+            )
+            raise SubprocessExecutionError(f"An error occurred: {error_message}")
         return output
 
     def _parse_output(self, output):
