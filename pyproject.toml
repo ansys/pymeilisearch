@@ -28,7 +28,7 @@ dependencies = [
     "jinja2>=3.1.2",
     "meilisearch>=0.24.0",
     "click>=8",
-    "pymeilisearch-scraper==0.2.0",
+    "pymeilisearch-scraper==0.2.1",
 ]
 
 [project.optional-dependencies]
