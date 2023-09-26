@@ -81,8 +81,6 @@ jobs:
 
       - name: Run tests
         run: pytest tests -vv
-        env:
-          DOCUMENTATION_CNAME: ''
 
   doc-build:
     name: "Build documentation"
