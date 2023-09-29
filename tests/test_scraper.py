@@ -1,19 +1,14 @@
-from unittest import mock
+import os
 
 import pytest
 
-from ansys.tools.meilisearch.templates.utils import get_template
 
-
-@mock.patch("requests.get")
-def test_check_url_starts_with_https(mock_get, scraper):
+def test_check_url_starts_with_https(scraper):
     with pytest.raises(ValueError):
         scraper._check_url("htt://dev.docs.pyansys.com/")
 
 
-@mock.patch("requests.get")
-def test_check_url_returns_non_200(mock_get, scraper):
-    mock_get.return_value.status_code = 404
+def test_check_url_returns_non_200(scraper):
     with pytest.raises(RuntimeError):
         scraper._check_url("https://some.example.com/")
 
@@ -23,10 +18,11 @@ def test_load_and_render_template(scraper):
     template = "sphinx_pydata"
     index_uid = "my_index"
     temp_file = scraper._load_and_render_template(url, template, index_uid)
-    assert temp_file.endswith(".json")
+    assert os.path.exists(temp_file)
+    os.remove(temp_file)
 
 
-def test_load_and_render_template_with_path(scraper):
+def test_load_and_render_template_with_invalid_path(scraper):
     url = "https://dev.docs.pyansys.com/"
     template = "my_template.json"
     index_uid = "my_index"
@@ -46,31 +42,27 @@ def test_parse_output_valid_output(scraper):
     assert n_hits == 10
 
 
-@mock.patch("subprocess.run")
-def test_scrape_url_command(mock_run, scraper):
-    mock_run.return_value.stdout = b"Scraping https://dev.docs.pyansys.com/ ...\nFound 10"
-    temp_file = "temp_file.json"
-    output = scraper._scrape_url_command(temp_file)
-    assert output.strip() == "Scraping https://dev.docs.pyansys.com/ ...\nFound 10"
+def test_scrape_url_command(scraper):
+    url = "https://dev.docs.pyansys.com/"
+    template = "sphinx_pydata"
+    index_uid = "my-index"
+    temp_config_file = scraper._load_and_render_template(url, template, index_uid)
+    output = scraper._scrape_url_command(temp_config_file)
+    assert "Scraping https://dev.docs.pyansys.com/" in output
+    assert "Found" in output
+    os.remove(temp_config_file)
 
 
 def test_scrape_url_valid_url(scraper):
     url = "https://dev.docs.pyansys.com/"
     index_uid = "my_index"
-    with mock.patch("subprocess.run") as mock_run:
-        mock_run.return_value.stdout = b"Scraping https://dev.docs.pyansys.com/ ...\nFound 10"
-        n_hits = scraper.scrape_url(url, index_uid)
-        assert n_hits == 10
+    n_hits = scraper.scrape_url(url, index_uid, verbose=True)
+    assert isinstance(n_hits, int)
 
 
 def test_scrape_from_directory(scraper, tmpdir):
     urls_file = tmpdir.join("urls.txt")
     urls_file.write("https://dev.docs.pyansys.com/\nhttps://sphinxdocs.ansys.com/version/stable/")
-    scraper._check_url("https://dev.docs.pyansys.com/")
-    template = get_template("https://dev.docs.pyansys.com/")
-    assert template == "sphinx_pydata"
-    with mock.patch("subprocess.run") as mock_run:
-        mock_run.return_value.stdout = b"Scraping https://dev.docs.pyansys.com/ ...\nFound 10"
-        results = scraper.scrape_from_directory(tmpdir)
-    assert len(results) == 1
+    results = scraper.scrape_from_directory(str(tmpdir), verbose=True)
+    assert len(results) == 2
     assert all(isinstance(n_hits, int) for n_hits in results.values())

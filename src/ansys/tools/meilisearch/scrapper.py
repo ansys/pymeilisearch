@@ -4,6 +4,7 @@ import subprocess
 import tempfile
 
 import requests
+from scraper.src.index import run_config
 
 from ansys.tools.meilisearch.client import BaseClient
 from ansys.tools.meilisearch.templates import render_template
@@ -88,14 +89,32 @@ class WebScraper(BaseClient):
         SubprocessExecutionError
             If any error occurs during the subprocess execution.
         """
-        try:
-            result = subprocess.run(
-                ["python", "-m", "scraper", temp_config_file],
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
+        if self.meilisearch_host_url is not None:
+            os.environ["MEILISEARCH_HOST_URL"] = self.meilisearch_host_url
+        if self.meilisearch_api_key is not None:
+            os.environ["MEILISEARCH_API_KEY"] = self.meilisearch_api_key
+
+        if "MEILISEARCH_HOST_URL" not in os.environ:
+            raise RuntimeError(
+                "\n\nMEILISEARCH_HOST_URL is required either the command line argument:"
+                "\n\n    --meilisearch-host-url <URL>\n\n"
+                'or as the environment variable "MEILISEARCH_HOST_URL"'
             )
-            result.check_returncode()
-            output = result.stdout.decode("utf-8")
+
+        if "MEILISEARCH_API_KEY" not in os.environ:
+            raise RuntimeError(
+                "\n\nMEILISEARCH_API_KEY is required either the command line argument:"
+                "\n\n    --meilisearch-api-key <URL>\n\n"
+                'or as the environment variable "MEILISEARCH_API_KEY"'
+            )
+        try:
+            # result = subprocess.run(
+            #    ["python", "-m", "scraper", temp_config_file],
+            #    stdout=subprocess.PIPE,
+            #    stderr=subprocess.PIPE,
+            # )
+
+            output = run_config(temp_config_file)
         except (subprocess.CalledProcessError, Exception) as e:
             error_message = (
                 e.stderr.decode("utf-8") if isinstance(e, subprocess.CalledProcessError) else str(e)
