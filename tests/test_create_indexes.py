@@ -3,7 +3,7 @@ from unittest.mock import Mock, patch
 from github import Github
 import pytest
 
-from ansys.tools.meilisearch.create_indexes import get_sphinx_urls
+from ansys.tools.meilisearch.create_indexes import create_sphinx_indexes, get_sphinx_urls
 from ansys.tools.meilisearch.get_pages import GitHubPages
 from ansys.tools.meilisearch.scrapper import WebScraper
 from ansys.tools.meilisearch.templates.utils import is_sphinx
@@ -80,3 +80,15 @@ def test_get_sphinx_urls(public_urls):
 )
 def test_is_sphinx(url):
     assert is_sphinx(url)
+
+
+def test_temp_index_swapping(meilisearch_client):
+    test_url = {"ansys/ansys-sphinx-theme": "https://sphinxdocs.ansys.com/version/stable"}
+    create_sphinx_indexes(
+        test_url,
+        meilisearch_host_url=meilisearch_client.meilisearch_host_url,
+        meilisearch_api_key=meilisearch_client.meilisearch_api_key,
+    )
+    stats = meilisearch_client.client.get_all_stats()
+    index_uids = list(stats["indexes"].keys())
+    assert "ansys-ansys-sphinx-theme-sphinx-docs" in index_uids
