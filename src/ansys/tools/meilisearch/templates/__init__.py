@@ -15,7 +15,7 @@ STOP_SPHINX_URLS = [
     "_images",
     ".doctree",
 ]
-"""List of stop points when scrapping URLs."""
+"""List of stop points when scraping URLs."""
 
 
 def render_template(
