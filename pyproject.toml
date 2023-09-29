@@ -28,7 +28,7 @@ dependencies = [
     "jinja2>=3.1.2",
     "meilisearch>=0.24.0",
     "click>=8",
-    "pymeilisearch-scraper==0.2.1",
+    "pymeilisearch-scraper==0.2.2",
 ]
 
 [project.optional-dependencies]
@@ -39,12 +39,11 @@ tests = [
 ]
 doc = [
     "ansys-sphinx-theme==0.11.2",
-    "numpydoc==1.5.0",
+    "numpydoc==1.6.0",
     "Sphinx==6.2.1",
     "sphinx-design==0.5.0",
     "sphinx-jinja==2.0.2",
-    "sphinx-autoapi==2.1.1",
-    "meilisearch==0.28.2",
+    "sphinx-autoapi==3.0.0",
     "sphinx-copybutton==0.5.2",
     "sphinx-notfound-page==1.0.0",
     "sphinx-jinja==2.0.2",
