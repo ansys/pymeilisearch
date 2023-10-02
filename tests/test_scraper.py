@@ -36,10 +36,10 @@ def test_parse_output_empty_output(scraper):
     assert n_hits == 0
 
 
-# def test_parse_output_valid_output(scraper):
-#    output = "Scraping https://dev.docs.pyansys.com/ ...\nFound 10"
-#    n_hits = scraper._parse_output(output)
-#    assert n_hits == 10
+def test_parse_output_valid_output(scraper):
+    output = "Scraping https://dev.docs.pyansys.com/ ...\nFound 10"
+    n_hits = scraper._parse_output(output)
+    assert n_hits == 10
 
 
 # def test_scrape_url_command(scraper):

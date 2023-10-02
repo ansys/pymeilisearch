@@ -1,6 +1,7 @@
 """Module for scaping web pages."""
+import contextlib
+import io
 import os
-import subprocess
 import tempfile
 
 import requests
@@ -17,13 +18,6 @@ def get_temp_file_name(ext=".txt"):
     temp_file_name = temp_file.name
     temp_file.close()
     return temp_file_name + ext
-
-
-class SubprocessExecutionError(Exception):
-    """Custom exception class for subprocess execution errors."""
-
-    def __init__(self, message):
-        super().__init__(message)
 
 
 class WebScraper(BaseClient):
@@ -107,20 +101,21 @@ class WebScraper(BaseClient):
                 "\n\n    --meilisearch-api-key <URL>\n\n"
                 'or as the environment variable "MEILISEARCH_API_KEY"'
             )
-        try:
-            # result = subprocess.run(
-            #    ["python", "-m", "scraper", temp_config_file],
-            #    stdout=subprocess.PIPE,
-            #    stderr=subprocess.PIPE,
-            # )
 
-            output = run_config(temp_config_file)
-        except (subprocess.CalledProcessError, Exception) as e:
-            error_message = (
-                e.stderr.decode("utf-8") if isinstance(e, subprocess.CalledProcessError) else str(e)
-            )
-            raise SubprocessExecutionError(f"An error occurred: {error_message}")
-        return output
+        try:
+            # Create a string buffer to capture the output
+            output_buffer = io.StringIO()
+
+            # Redirect sys.stdout to the string buffer using a context manager
+            with contextlib.redirect_stdout(output_buffer):
+                run_config(temp_config_file)
+
+            # Get the captured output as a string
+            output_result = output_buffer.getvalue()
+
+        except Exception as e:
+            raise RuntimeError(f"An error occurred: {str(e)}")
+        return output_result
 
     def _parse_output(self, output):
         """
