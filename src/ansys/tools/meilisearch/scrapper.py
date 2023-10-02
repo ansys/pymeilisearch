@@ -234,8 +234,9 @@ class WebScraper(BaseClient):
         with open(os.path.join(path, "urls.txt")) as fid:
             urls = fid.readlines()
             urls = [line.strip() for line in urls]
+            print(urls)
 
-        index_uids = [os.path.basename(url).replace(".", "_") for url in urls]
+        index_uids = [os.path.basename(url).replace(".", "-") for url in urls]
 
         temp_config_files = []
         for url, index_uid in zip(urls, index_uids):
