@@ -63,7 +63,7 @@ def test_parse_output_empty_output(scraper):
 
 def test_scrape_from_directory(scraper, tmpdir):
     urls_file = tmpdir.join("urls.txt")
-    urls_file.write("https://dev.docs.pyansys.com/\nhttps://sphinxdocs.ansys.com")
+    urls_file.write("https://dev.docs.pyansys.com\nhttps://sphinxdocs.ansys.com")
     results = scraper.scrape_from_directory(str(tmpdir), verbose=True)
     assert len(results) == 2
     assert all(isinstance(n_hits, int) for n_hits in results.values())

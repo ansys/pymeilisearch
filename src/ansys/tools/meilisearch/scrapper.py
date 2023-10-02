@@ -236,7 +236,7 @@ class WebScraper(BaseClient):
             urls = [line.strip() for line in urls]
             print(urls)
 
-        index_uids = [os.path.basename(url).replace(".", "-") for url in urls]
+        index_uids = [os.path.basename(url).replace(".", "-").replace("/", ".") for url in urls]
 
         temp_config_files = []
         for url, index_uid in zip(urls, index_uids):
