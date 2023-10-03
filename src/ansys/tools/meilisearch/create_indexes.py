@@ -6,7 +6,7 @@ import os
 
 from ansys.tools.meilisearch.client import MeilisearchClient
 from ansys.tools.meilisearch.get_pages import GitHubPages
-from ansys.tools.meilisearch.scrapper import WebScraper
+from ansys.tools.meilisearch.scraper import WebScraper
 from ansys.tools.meilisearch.templates.utils import is_sphinx
 from ansys.tools.meilisearch.utils import MeilisearchUtils
 

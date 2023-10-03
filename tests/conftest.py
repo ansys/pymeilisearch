@@ -6,7 +6,7 @@ import pytest
 import requests
 
 from ansys.tools.meilisearch.client import MeilisearchClient
-from ansys.tools.meilisearch.scrapper import WebScraper
+from ansys.tools.meilisearch.scraper import WebScraper
 
 
 @pytest.fixture(scope="session")
@@ -73,7 +73,7 @@ def meilisearch_container(meilisearch_port):
             continue
 
     # yield the container
-    yield container
+    return container
 
     # Stop and remove
     container.stop()
