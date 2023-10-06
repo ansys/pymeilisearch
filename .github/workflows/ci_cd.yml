@@ -129,7 +129,7 @@ jobs:
 
   doc-deploy-dev:
     name: "Deploy development docs"
-    if: github.ref == 'refs/heads/main'
+    #if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     needs: [build-library]
     steps:
@@ -141,7 +141,7 @@ jobs:
 
   doc-index-dev:
     name: "Deploy dev index docs"
-    if: github.ref == 'refs/heads/main'
+    #if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     needs: doc-deploy-dev
     steps:
