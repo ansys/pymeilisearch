@@ -145,13 +145,22 @@ jobs:
     runs-on: ubuntu-latest
     needs: doc-deploy-dev
     steps:
-      - name: "Deploy the latest documentation index"
-        uses: ansys/actions/doc-deploy-index@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          cname: ${{ env.DOCUMENTATION_CNAME }}/version/dev
-          index-name: pymeilisearch-vdev
-          host-url: ${{ env.MEILISEARCH_HOST_URL }}
-          api-key: ${{ env.MEILISEARCH_API_KEY }}
+          python-version: ${{ env.MAIN_PYTHON_VERSION }}
+
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v3
+
+      - name: Display structure of downloaded files
+        run: ls -R
+
+      - name: Install the package requirements
+        run: pip install -e .
+
+      - name: "Deploy the latest documentation index"
+        run: pymeilisearch upload --template sphinx_pydata --index "pymeilisearch-vdev" html documentation-html
 
   doc-deploy-stable:
     name: "Deploy stable docs"
