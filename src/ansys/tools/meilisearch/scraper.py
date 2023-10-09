@@ -229,7 +229,6 @@ class WebScraper(BaseClient):
         with open(os.path.join(path, "urls.txt")) as fid:
             urls = fid.readlines()
             urls = [line.strip() for line in urls]
-            print(urls)
 
         index_uids = [os.path.basename(url).replace(".", "-").replace("/", ".") for url in urls]
 

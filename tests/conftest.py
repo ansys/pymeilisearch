@@ -73,7 +73,7 @@ def meilisearch_container(meilisearch_port):
             continue
 
     # yield the container
-    return container
+    yield container
 
     # Stop and remove
     container.stop()
