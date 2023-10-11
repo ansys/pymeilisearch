@@ -160,7 +160,7 @@ jobs:
         run: pip install -e .
 
       - name: "Deploy the latest documentation index"
-        run: pymeilisearch upload --template sphinx_pydata --index "pymeilisearch-vdev" html documentation-html
+        run: pymeilisearch upload --template sphinx_pydata --index "pymeilisearch-vdev" html documentation-html --cname ${{ env.DOCUMENTATION_CNAME }}/version/dev
 
   doc-deploy-stable:
     name: "Deploy stable docs"
@@ -189,6 +189,7 @@ jobs:
 
       - name: Install the package requirements
         run: pip install -e .
+
       - name: Scrape the stable documentation to PyMeilisearch
         run: |
           VERSION=$(python -c "from ansys.tools.meilisearch import __version__; print('.'.join(__version__.split('.')[:2]))")
