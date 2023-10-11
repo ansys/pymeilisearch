@@ -29,6 +29,8 @@ dependencies = [
     "meilisearch>=0.24.0",
     "click>=8",
     "pymeilisearch-scraper>=0.2.3",
+    "pyOpenSSL>=23.2.0",
+    "cryptography>=41.0.4",
 ]
 
 [project.optional-dependencies]
