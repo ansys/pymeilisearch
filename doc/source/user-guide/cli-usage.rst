@@ -56,7 +56,7 @@ on your requirements.
 
 - ``--template <template>``: Name of the template to use or the path to where the
   template file is located. Available templates are ``sphinx_pydata`` and ``default``.
-  The Meilisearch scrapper tool, `docs-scraper <https://github.com/meilisearch/docs-scraper>`_,
+  The Meilisearch scraper tool, `docs-scraper <https://github.com/meilisearch/docs-scraper>`_,
   requires a configuration file to know what content to scrape. For an example of a
   configuration file, see `Set your Config File <https://github.com/meilisearch/docs-scraper#set-your-config-file>`_
   in the README for this tool's GitHub repository.
