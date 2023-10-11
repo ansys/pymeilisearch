@@ -1,9 +1,11 @@
 """Module for scaping web pages."""
+import contextlib
+import io
 import os
-import subprocess
 import tempfile
 
 import requests
+from scraper.src.index import run_config
 
 from ansys.tools.meilisearch.client import BaseClient
 from ansys.tools.meilisearch.templates import render_template
@@ -75,12 +77,45 @@ class WebScraper(BaseClient):
         -------
         str
             Output of scraping the URL for the web page.
+
+        Raises
+        ------
+        SubprocessExecutionError
+            If any error occurs during the subprocess execution.
         """
-        result = subprocess.run(
-            ["python", "-m", "scraper", temp_config_file], stdout=subprocess.PIPE
-        )
-        output = result.stdout.decode("utf-8")
-        return output
+        if self.meilisearch_host_url is not None:
+            os.environ["MEILISEARCH_HOST_URL"] = self.meilisearch_host_url
+        if self.meilisearch_api_key is not None:
+            os.environ["MEILISEARCH_API_KEY"] = self.meilisearch_api_key
+
+        if "MEILISEARCH_HOST_URL" not in os.environ:
+            raise RuntimeError(
+                "\n\nMEILISEARCH_HOST_URL is required either the command line argument:"
+                "\n\n    --meilisearch-host-url <URL>\n\n"
+                'or as the environment variable "MEILISEARCH_HOST_URL"'
+            )
+
+        if "MEILISEARCH_API_KEY" not in os.environ:
+            raise RuntimeError(
+                "\n\nMEILISEARCH_API_KEY is required either the command line argument:"
+                "\n\n    --meilisearch-api-key <URL>\n\n"
+                'or as the environment variable "MEILISEARCH_API_KEY"'
+            )
+
+        try:
+            # Create a string buffer to capture the output
+            output_buffer = io.StringIO()
+
+            # Redirect sys.stdout to the string buffer using a context manager
+            with contextlib.redirect_stdout(output_buffer):
+                run_config(temp_config_file)
+
+            # Get the captured output as a string
+            output_result = output_buffer.getvalue()
+
+        except Exception as e:
+            raise RuntimeError(f"An error occurred: {str(e)}")
+        return output_result
 
     def _parse_output(self, output):
         """
@@ -195,7 +230,7 @@ class WebScraper(BaseClient):
             urls = fid.readlines()
             urls = [line.strip() for line in urls]
 
-        index_uids = [os.path.basename(url).replace(".", "_") for url in urls]
+        index_uids = [os.path.basename(url).replace(".", "-").replace("/", ".") for url in urls]
 
         temp_config_files = []
         for url, index_uid in zip(urls, index_uids):

@@ -5,7 +5,7 @@ import os
 import urllib.request
 import warnings
 
-from github import Github
+from github import Auth, Github
 import requests
 
 
@@ -40,7 +40,7 @@ class GitHubPages:
         ~github.Github
             GitHub object connected to the GitHub API.
         """
-        return Github(login_or_token=self._token)
+        return Github(auth=Auth.Token(self._token))
 
     def _get_repos(self):
         """Get all repositories in the GitHub organization.

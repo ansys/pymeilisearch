@@ -87,8 +87,8 @@ def upload(template, index, source, location, cname, port, orgs, stop_urls):
 
     if source == "html":
         location = pathlib.Path.cwd() / location
-        os.environ["DOCUMENTATION_CNAME"] = cname
-        os.environ["DOCUMENTATION_PORT"] = str(port)
+        os.environ["SCRAPER_DOCUMENTATION_CNAME"] = cname
+        os.environ["SCRAPER_DOCUMENTATION_PORT"] = str(port)
         local_host_scraping(index, template, location, port, stop_urls)
 
     elif source == "url":

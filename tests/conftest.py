@@ -6,7 +6,7 @@ import pytest
 import requests
 
 from ansys.tools.meilisearch.client import MeilisearchClient
-from ansys.tools.meilisearch.scrapper import WebScraper
+from ansys.tools.meilisearch.scraper import WebScraper
 
 
 @pytest.fixture(scope="session")
@@ -18,9 +18,9 @@ def meilisearch_client(meilisearch_container, meilisearch_port):
 
 
 @pytest.fixture(scope="function")
-def scraper(meilisearch_client):
+def scraper(meilisearch_client, meilisearch_port):
     return WebScraper(
-        meilisearch_client.meilisearch_host_url, meilisearch_client.meilisearch_host_url
+        meilisearch_host_url=f"http://localhost:{meilisearch_port}", meilisearch_api_key="masterKey"
     )
 
 
