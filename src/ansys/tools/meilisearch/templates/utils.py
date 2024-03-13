@@ -1,4 +1,5 @@
 """Templates utilities module."""
+
 import re
 
 import requests
