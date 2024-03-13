@@ -1,4 +1,5 @@
 """PyMeilisearch CLI module."""
+
 import os
 import pathlib
 

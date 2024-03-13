@@ -1,4 +1,5 @@
 """Module providing the Meilisearch client."""
+
 import os
 
 from meilisearch import Client

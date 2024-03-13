@@ -2,6 +2,7 @@
 Create an index for each public GitHub page for each repository in
 one or more organizations using Sphinx.
 """
+
 import os
 
 from ansys.tools.meilisearch.client import MeilisearchClient
