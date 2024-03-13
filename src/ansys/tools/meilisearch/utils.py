@@ -1,4 +1,5 @@
 """Provides utilities for Meilisearch."""
+
 import json
 import time
 from typing import List
