@@ -1,0 +1,12 @@
+:orphan:
+
+API reference
+=============
+
+This page contains the ansys-tools-meilisearch API reference.
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   /autoapi/ansys/tools/meilisearch/index
