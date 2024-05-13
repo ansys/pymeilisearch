@@ -99,6 +99,7 @@ master_doc = "index"
 # Excluded documentation files
 exclude_patterns = ["_autoapi_templates/index.rst"]
 
+
 def prepare_jinja_env(jinja_env) -> None:
     """
     Customize the jinja env.
@@ -108,6 +109,7 @@ def prepare_jinja_env(jinja_env) -> None:
     See https://jinja.palletsprojects.com/en/3.0.x/api/#jinja2.Environment
     """
     jinja_env.globals["project_name"] = project
+
 
 # -- Configure Sphinx autoapi ------------------------------------------------
 BUILD_API = True if os.environ.get("BUILD_API", "true") == "true" else False
@@ -126,7 +128,7 @@ if BUILD_API:
     autoapi_python_use_implicit_namespaces = True
     autoapi_python_class_content = "both"
     autoapi_prepare_jinja_env = prepare_jinja_env
-    
+
 # -- Configure the examples
 BUILD_EXAMPLES = True if os.environ.get("BUILD_EXAMPLES", "true") == "true" else False
 if not BUILD_EXAMPLES:
