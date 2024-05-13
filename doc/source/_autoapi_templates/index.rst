@@ -3,7 +3,7 @@
 API reference
 =============
 
-This section describes PyMeilisearch API endpoints, their capabilities,
+This section describes {{ project_name }} API endpoints, their capabilities,
 and how to interact with them programmatically.
 
 .. toctree::
