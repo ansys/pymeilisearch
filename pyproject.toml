@@ -37,7 +37,7 @@ dependencies = [
 tests = [
     "pytest==8.2.1",
     "pytest-cov==5.0.0",
-    "docker==7.0.0",
+    "docker==7.1.0",
 ]
 doc = [
     "ansys-sphinx-theme==0.16.2",
