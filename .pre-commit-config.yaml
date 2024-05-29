@@ -1,28 +1,28 @@
 repos:
 
 - repo: https://github.com/psf/black
-  rev: 23.7.0  # IF VERSION CHANGES --> MODIFY "blacken-docs" MANUALLY AS WELL!!
+  rev: 24.2.0  # IF VERSION CHANGES --> MODIFY "blacken-docs" MANUALLY AS WELL!!
   hooks:
   - id: black
 
 - repo: https://github.com/adamchainz/blacken-docs
-  rev: 1.15.0
+  rev: 1.16.0
   hooks:
   - id: blacken-docs
-    additional_dependencies: [black==23.7.0]
+    additional_dependencies: [black==24.2.0]
 
 - repo: https://github.com/pycqa/isort
-  rev: 5.12.0
+  rev: 5.13.2
   hooks:
   - id: isort
 
 - repo: https://github.com/PyCQA/flake8
-  rev: 6.0.0
+  rev: 7.0.0
   hooks:
   - id: flake8
 
 - repo: https://github.com/codespell-project/codespell
-  rev: v2.2.5
+  rev: v2.2.6
   hooks:
   - id: codespell
 
@@ -36,7 +36,7 @@ repos:
 #     exclude: "tests/"
 
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v4.4.0
+  rev: v4.5.0
   hooks:
   - id: check-merge-conflict
   - id: debug-statements
@@ -45,12 +45,12 @@ repos:
 
 # this validates our github workflow files
 - repo: https://github.com/python-jsonschema/check-jsonschema
-  rev: 0.23.3
+  rev: 0.28.0
   hooks:
     - id: check-github-workflows
 
 - repo: https://github.com/pre-commit/mirrors-prettier
-  rev: 'v3.0.0'
+  rev: 'v4.0.0-alpha.8'
   hooks:
   - id: prettier
     types_or: [css, javascript, html]

@@ -160,3 +160,7 @@ cython_debug/
 
 # VSCode settings
 .vscode
+
+
+!vocabularies
+!vocabularies/**

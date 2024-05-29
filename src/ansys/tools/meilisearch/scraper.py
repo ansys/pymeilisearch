@@ -1,4 +1,5 @@
 """Module for scaping web pages."""
+
 import contextlib
 import io
 import os

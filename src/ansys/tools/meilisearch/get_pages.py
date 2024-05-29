@@ -1,6 +1,7 @@
 """
 Query for public GitHub pages.
 """
+
 import os
 import urllib.request
 import warnings

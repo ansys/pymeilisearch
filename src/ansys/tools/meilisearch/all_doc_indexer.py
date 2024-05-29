@@ -1,4 +1,5 @@
 """Module for indexing all public documents in Meilisearch."""
+
 from typing import List
 
 import requests
