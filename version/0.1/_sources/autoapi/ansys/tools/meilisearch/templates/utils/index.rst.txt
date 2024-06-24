@@ -1,0 +1,126 @@
+:py:mod:`ansys.tools.meilisearch.templates.utils`
+=================================================
+
+.. py:module:: ansys.tools.meilisearch.templates.utils
+
+.. autoapi-nested-parse::
+
+   Provides the templates utils module.
+
+   ..
+       !! processed by numpydoc !!
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   ansys.tools.meilisearch.templates.utils.get_template
+   ansys.tools.meilisearch.templates.utils.get_redirected_url
+   ansys.tools.meilisearch.templates.utils.is_sphinx
+
+
+
+.. py:function:: get_template(url: str, pyaedt: bool = False) -> str
+
+   
+   Determine the template name for the given URL.
+
+
+   :Parameters:
+
+       **url** : :class:`python:str`
+           The URL of the web page to check.
+
+       **pyaedt** : :ref:`bool <python:bltin-boolean-values>`, :obj:`optional`
+           If True, the function uses the "sphinx_pydata" template for Sphinx pages,
+           otherwise it uses the "default" template. Default is False.
+
+   :Returns:
+
+       :class:`python:str`
+           The name of the template to use for the page.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:function:: get_redirected_url(html)
+
+   
+   Extract the redirected URL from the given HTML.
+
+
+   :Parameters:
+
+       **html** : :class:`python:str`
+           The HTML content to search for the redirected URL.
+
+   :Returns:
+
+       :class:`python:str` or :data:`python:None`
+           The URL that the page is being redirected to, if there is one. If no
+           redirection is present, returns None.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:function:: is_sphinx(url)
+
+   
+   Determine if a web page was built using Sphinx.
+
+
+   :Parameters:
+
+       **url** : :class:`python:str`
+           The URL of the web page to check.
+
+   :Returns:
+
+       :ref:`bool <python:bltin-boolean-values>`
+           True if the page was built using Sphinx, False otherwise.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+

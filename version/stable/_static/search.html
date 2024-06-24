@@ -1,0 +1,47 @@
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/docs-searchbar.js@latest/dist/cdn/docs-searchbar.min.css"
+/>
+<h2 align="center">Example Search</h2>
+
+<div class="container">
+  <div class="col-md-18">
+    <input
+      type="search"
+      placeholder="docs-searchbar input"
+      class="form-control"
+      id="q"
+      autofocus
+    />
+  </div>
+
+  <select id="indexUidSelector" style="margin-left: 20px" class="index-select">
+    <option value="ansys-sphinx-theme-vdev">Ansys Sphinx theme</option>
+    <option value="pyansys-pyaedt-sphinx-docs">PyAEDT</option>
+    <option value="pymeilisearch-vdev">PyMeilisearch</option>
+  </select>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/docs-searchbar.js@2.4.1/dist/cdn/docs-searchbar.min.js"></script>
+
+<script>
+  let Search = docsSearchBar({
+    hostUrl: "https://backend.search.pyansys.com",
+    apiKey: "9c4013dc2ebd88143f99c5de25adbf1552c1dd7108266d3039be1fcffcf76fa8",
+    indexUid: "ansys-sphinx-theme-vdev",
+    inputSelector: "#q",
+    debug: false,
+    enhancedSearchInput: false,
+    enableDarkMode: "auto",
+  });
+
+  // Add event listener to the select element
+  document
+    .getElementById("indexUidSelector")
+    .addEventListener("change", function () {
+      Search.indexUid = this.value;
+      Search.inputSelector = "#docs-searchbar-suggestion";
+    });
+
+  document.getElementById("docs-searchbar-suggestion").focus();
+</script>

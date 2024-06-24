@@ -1,0 +1,112 @@
+:py:mod:`ansys.tools.meilisearch.get_pages`
+===========================================
+
+.. py:module:: ansys.tools.meilisearch.get_pages
+
+.. autoapi-nested-parse::
+
+   Query for public github pages.
+
+   ..
+       !! processed by numpydoc !!
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   ansys.tools.meilisearch.get_pages.GitHubPages
+
+
+
+
+.. py:class:: GitHubPages(org_name, token=None, ignore_githubio=True)
+
+   
+
+   Query GitHub for the public gh-pages in an organization.
+
+
+   :Parameters:
+
+       **org_name** : :class:`python:str`
+           GitHub organization name.
+
+       **token** : :class:`python:str`
+           The GitHub API token to use for authentication.
+
+       **ignore_githubio** : :ref:`bool <python:bltin-boolean-values>`, default: :data:`python:True`
+           Ignore any GitHub page url with github.io in it.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:property:: org_name
+
+      
+      Returns the organization name.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: get_public_pages()
+
+      
+      Query GitHub for the public gh-pages in an organization.
+
+
+
+      :Returns:
+
+          :class:`python:dict`
+              Dictionary containing the full repository name and the public github
+              URLs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+

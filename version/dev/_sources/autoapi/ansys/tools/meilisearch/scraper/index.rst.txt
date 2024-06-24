@@ -1,0 +1,174 @@
+ansys.tools.meilisearch.scraper
+===============================
+
+.. py:module:: ansys.tools.meilisearch.scraper
+
+.. autoapi-nested-parse::
+
+   Module for scaping web pages.
+
+   ..
+       !! processed by numpydoc !!
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   ansys.tools.meilisearch.scraper.WebScraper
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   ansys.tools.meilisearch.scraper.get_temp_file_name
+
+
+Module Contents
+---------------
+
+.. py:function:: get_temp_file_name(ext='.txt')
+
+   
+   Get the name of the temporary file, which has a ``.txt`` extension.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:class:: WebScraper(meilisearch_host_url=None, meilisearch_api_key=None)
+
+   Bases: :py:obj:`ansys.tools.meilisearch.client.BaseClient`
+
+
+   Provides for scraping web pages and checking if responses are successful.
+
+
+
+
+
+   :Parameters:
+
+       **meilisearch_host_url** : :class:`python:str` or :data:`python:None`, default: :data:`python:None`
+           URL of the Meilisearch host.
+
+       **meilisearch_api_key** : :class:`python:str` or :data:`python:None`, default: :data:`python:None`
+           API key (admin) of the Meilisearch host.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+   .. py:method:: scrape_url(url, index_uid, template=None, stop_urls=None, verbose=False)
+
+      
+      Scrape a URL for a web page using the active Meilisearch host.
+
+      This method generates a single unique name for a single URL.
+
+      :Parameters:
+
+          **url** : :class:`python:str`
+              URL for the web page to scrape.
+
+          **index_uid** : :class:`python:str`
+              Unique name of the MeiliSearch index.
+
+          **template** : :class:`python:str`, default: :data:`python:None`
+              Template file for rendering.
+
+          **verbose** : :ref:`bool <python:bltin-boolean-values>`, default: :data:`python:False`
+              Whether to print the output from scraping the URL.
+
+      :Returns:
+
+          :class:`python:int`
+              Number of hits from the URL for the web page.
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: scrape_from_directory(path, template=None, verbose=False)
+
+      
+      Scrape the URLs for all web pages in a directory using the active Meilisearch host.
+
+      This method generates a unique index identifier for each URL in the directory.
+
+      :Parameters:
+
+          **path** : :class:`python:str`
+              Path to the directory containing the URLs to scrape.
+
+          **verbose** : :ref:`bool <python:bltin-boolean-values>`, default: :data:`python:False`
+              Whether to print the output of scraping the URLs.
+
+      :Returns:
+
+          :class:`python:dict`
+              Dictionary where keys are unique IDs of indexes and values are the
+              number of hits for each URL.
+
+
+
+
+      :Raises:
+
+          :obj:`FileNotFoundError`
+              If the specified path does not exist.
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
