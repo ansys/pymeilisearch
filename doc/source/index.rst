@@ -79,16 +79,3 @@ extensive capabilities, including these:
        {% endif %}
        contributing.rst
 
-
-.. warning::
-
-    The test for warning  admonition
-
-    .. code:: python
-
-        import meilisearch
-
-        client = meilisearch.Client("http://")
-
-    The HTML files are expected to be contained in ``doc/_build`` and the
-    PDF file is copied in ``doc/_build/html/_static/assets/download``.
