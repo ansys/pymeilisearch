@@ -46,7 +46,3 @@ host machine (``http://localhost:7700``), run these commands:
 
     docker compose run meilisearch
 
-
-.. warning::
-
-    This is to test the pdf generation of the documentation. 
