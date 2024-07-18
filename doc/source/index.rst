@@ -78,3 +78,8 @@ extensive capabilities, including these:
        examples
        {% endif %}
        contributing.rst
+
+
+.. warning::
+
+    The test for warning  admonition
