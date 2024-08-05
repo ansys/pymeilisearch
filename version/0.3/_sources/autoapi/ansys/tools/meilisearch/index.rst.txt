@@ -1,0 +1,54 @@
+ansys.tools.meilisearch
+=======================
+
+.. py:module:: ansys.tools.meilisearch
+
+.. autoapi-nested-parse::
+
+   
+   PyMeilisearch provides an enhanced Python API for Meilisearch.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/ansys/tools/meilisearch/templates/index
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/ansys/tools/meilisearch/all_doc_indexer/index
+   /autoapi/ansys/tools/meilisearch/cli/index
+   /autoapi/ansys/tools/meilisearch/client/index
+   /autoapi/ansys/tools/meilisearch/create_indexes/index
+   /autoapi/ansys/tools/meilisearch/get_pages/index
+   /autoapi/ansys/tools/meilisearch/scraper/index
+   /autoapi/ansys/tools/meilisearch/server/index
+   /autoapi/ansys/tools/meilisearch/utils/index
+
+

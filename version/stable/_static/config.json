@@ -1,0 +1,19 @@
+{
+    "index_uid": "example-index",
+    "start_urls": "https://examples.com",
+    "stop_urls": ["/_sources", "_downloads","_static"],
+    "selectors": {
+        "lvl0": {
+            "selector": "title",
+	    "global": true,
+            "default_value": "Documentation"
+        },
+        "lvl1": ".bd-content h1",
+        "lvl2": ".bd-content h2",
+        "lvl3": ".bd-content h3",
+        "lvl4": ".bd-content h4",
+        "lvl5": ".bd-content h5",
+        "lvl6": ".bd-content h6",
+        "text": "p"
+    }
+}
