@@ -40,7 +40,7 @@ tests = [
     "docker==7.1.0",
 ]
 doc = [
-    "ansys-sphinx-theme==0.16.6",
+    "ansys-sphinx-theme==1.0.7",
     "numpydoc==1.8.0",
     "Sphinx==8.0.2",
     "sphinx-design==0.6.1",
