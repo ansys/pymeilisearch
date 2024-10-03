@@ -1,0 +1,15 @@
+:orphan:
+
+:py:mod:`ansys.tools.meilisearch.__main__`
+==========================================
+
+.. py:module:: ansys.tools.meilisearch.__main__
+
+.. autoapi-nested-parse::
+
+   Allows you to execute PyMeilisearch, a simple CLI tool, as a Python module.
+
+   ..
+       !! processed by numpydoc !!
+
+

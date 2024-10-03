@@ -1,0 +1,181 @@
+ansys.tools.meilisearch.client
+==============================
+
+.. py:module:: ansys.tools.meilisearch.client
+
+.. autoapi-nested-parse::
+
+   Module providing the Meilisearch client.
+
+   ..
+       !! processed by numpydoc !!
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   ansys.tools.meilisearch.client.BaseClient
+   ansys.tools.meilisearch.client.MeilisearchClient
+
+
+Module Contents
+---------------
+
+.. py:class:: BaseClient(meilisearch_host_url=None, meilisearch_api_key=None)
+
+   Provides the base class for the Meilisearch client.
+
+
+   Initialize the Meilisearch client.
+
+
+   :Parameters:
+
+       **meilisearch_host_url** : :class:`python:str`, default: :data:`python:None`
+           URL for the Meilisearch host.
+
+       **meilisearch_api_key** : :class:`python:str`, default: :data:`python:None`
+           API key (admin) for the Meilisearch host.
+
+
+
+
+
+
+
+   :Raises:
+
+       :obj:`RuntimeError`
+           If the ``meilisearch_host_url`` or ``meilisearch_api_key`` parameter
+           is ``None`` and the corresponding environment variable is not set.
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+   .. py:property:: meilisearch_api_key
+      
+      Meilisearch API key.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:property:: meilisearch_host_url
+      
+      Meilisearch host URL.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:class:: MeilisearchClient(meilisearch_host_url=None, meilisearch_api_key=None)
+
+   Bases: :py:obj:`BaseClient`
+
+
+   Provides for scraping documents and indexing content in Meilisearch.
+
+   If no values are passed for the ``meilisearch_host_url`` or ``meilisearch_api_key``
+   parameters, the constructor checks for their values in environment variables.
+
+
+
+   Initialize a new instance of the ``MeilisearchClient`` class.
+
+
+   :Parameters:
+
+       **meilisearch_host_url** : :class:`python:str`, default: :data:`python:None`
+           URL for the Meilisarch host.
+
+       **meilisearch_api_key** : :class:`python:str`, default: :data:`python:None`
+           API key (admin) for the Meilisearch host.
+
+
+
+
+
+
+
+   :Raises:
+
+       :obj:`RuntimeError`
+           If the ``MEILISEARCH_HOST_URL`` or ``MEILISEARCH_API_KEY``
+           environment variables are not set and no values are passed to the constructor
+           for initializing a new instance of the ``MeilisearchClient`` class.
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+   .. py:attribute:: headers
+
+
+   .. py:property:: client
+      
+      Meilisearch client.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+

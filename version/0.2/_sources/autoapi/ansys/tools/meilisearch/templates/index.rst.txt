@@ -1,0 +1,151 @@
+:py:mod:`ansys.tools.meilisearch.templates`
+===========================================
+
+.. py:module:: ansys.tools.meilisearch.templates
+
+.. autoapi-nested-parse::
+
+   
+   PyMeilisearch templates subpackage.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   utils/index.rst
+
+
+Package Contents
+----------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   ansys.tools.meilisearch.templates.render_template
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   ansys.tools.meilisearch.templates.DEFAULT_TEMPLATE
+   ansys.tools.meilisearch.templates.SPHINX_PYDATA_TEMPLATE
+   ansys.tools.meilisearch.templates.STOP_SPHINX_URLS
+
+
+.. py:data:: DEFAULT_TEMPLATE
+
+   
+
+.. py:data:: SPHINX_PYDATA_TEMPLATE
+
+   
+
+.. py:data:: STOP_SPHINX_URLS
+   :value: ['_sources', '_downloads', '_static', '_images', '.doctree']
+
+   
+   List of stop points when scraping URLs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:function:: render_template(template: str, urls: Union[str, list[str]], path_out: str, index_uid: str = None, stop_urls_default: str = None) -> str
+
+   
+   Render a docsearch Sphinx template for a URL.
+
+
+   :Parameters:
+
+       **template** : :class:`python:str` or :obj:`pathlib.Path`
+           Path to the template file or the name of the template to use.
+           If a name is specified, it must be a key in the ``TEMPLATES``
+           dictionary.
+
+       **urls** : :class:`python:str`, :class:`python:list`\[:class:`python:str`]
+           One or more URLs to crawl. URLs must start with ``https://``.
+
+       **path_out** : :class:`python:str`
+           Path to write the rendered template to.
+
+       **index_uid** : :class:`python:str`, default: :data:`python:None`
+           Unique name for the custom index to use. This unique name is the
+           URL without the ``https://``. The default is ``None``, in which
+           case the unique name of the first URL specified for the ``urls``
+           parameter is used.
+
+       **stop_urls_default** : :class:`python:str` or :class:`python:list`\[:class:`python:str`], default: ['_sources', '_downloads', '_static', '_images', '.doctree']
+           A list of stop points when scraping URLs. If specified, crawling
+           will stop when encountering any URL containing any of the strings
+           in this list. The default is ['_sources', '_downloads', '_static', '_images', '.doctree'].
+
+   :Returns:
+
+       :class:`python:str`
+           Unique name of the custom index that is used.
+
+
+
+
+   :Raises:
+
+       :obj:`FileNotFoundError`
+           If the template file cannot be found.
+
+       :obj:`ValueError`
+           If any of the URLs specified for the ``urls`` parameter do not
+           start with ``https://``.
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+

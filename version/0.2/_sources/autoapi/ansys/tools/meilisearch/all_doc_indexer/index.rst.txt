@@ -1,0 +1,167 @@
+:py:mod:`ansys.tools.meilisearch.all_doc_indexer`
+=================================================
+
+.. py:module:: ansys.tools.meilisearch.all_doc_indexer
+
+.. autoapi-nested-parse::
+
+   Module for indexing all public documents in Meilisearch.
+
+   ..
+       !! processed by numpydoc !!
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   ansys.tools.meilisearch.all_doc_indexer.DocsAllPublic
+
+
+
+
+.. py:class:: DocsAllPublic(meilisearch_client: ansys.tools.meilisearch.client.MeilisearchClient, destination_index_uid: str = 'pyansys-docs-all-public')
+
+
+   
+   Provides for indexing all public documents in Meilisearch.
+
+
+   :Parameters:
+
+       **meilisearch_client** : :obj:`MeilisearchClient`
+           Meilisearch client.
+
+       **destination_index_uid** : :class:`python:str`, default: ``"pyansys-docs-all-public"``
+           Unique name of the destination index.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:property:: destination_index_uid
+
+      
+      Unique name of the destination index.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: create_index(source_index_uid: str, index_uid: str = None) -> None
+
+      
+      Create an index with the same primary key as the source index.
+
+
+      :Parameters:
+
+          **source_index_uid** : :class:`python:str`
+              Name of the source index from which the primary key will be copied.
+
+          **index_uid** : :class:`python:str`
+              Name of the destination index to be created. The index will be created with
+              the same primary key as the source index, ensuring unique identification of
+              documents within the destination index
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: add_documents_to_temp_index(source_index_uid: str) -> None
+
+      
+      Fetch all documents from the source index and add them to the destination index.
+
+
+      :Parameters:
+
+          **source_index_uid** : :class:`python:str`
+              Name of the source index from which the documents will be fetched.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: add_all_public_doc(selected_keys: List[str] = ['ansys, pyansys']) -> None
+
+      
+      Add all public documents to the destination index.
+
+
+      :Parameters:
+
+          **selected_keys** : :obj:`List`\[:class:`python:str`], default: ``["ansys, pyansys"]``
+              Include only indexes whose keys start with a specified string in the
+              search.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+

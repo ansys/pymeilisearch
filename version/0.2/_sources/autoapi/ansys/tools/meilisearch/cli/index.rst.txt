@@ -1,0 +1,136 @@
+:py:mod:`ansys.tools.meilisearch.cli`
+=====================================
+
+.. py:module:: ansys.tools.meilisearch.cli
+
+.. autoapi-nested-parse::
+
+   PyMeilisearch CLI module.
+
+   ..
+       !! processed by numpydoc !!
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   ansys.tools.meilisearch.cli.main
+   ansys.tools.meilisearch.cli.upload
+   ansys.tools.meilisearch.cli.version
+
+
+
+.. py:function:: main()
+
+   
+   Provides the CLI tool for scraping documents or a website for uploading to Meilisearch.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:function:: upload(template, index, source, location, cname, port, orgs, stop_urls)
+
+   
+   Upload documents or a website using a template and index.
+
+
+   :Parameters:
+
+       **template** : :class:`python:str`
+           Name of the template to use or the path to where the template
+           file is located. Available templates are ``sphinx_pydata`` and ``default``.
+
+       **index** : :class:`python:str`
+           Name of the Meilisearch index to use to identify the content.
+
+       **source** : :class:`python:str`
+           Format type for the documents to upload. Options are ``html``, ``url``,
+           and ``github``.
+
+       **location** : :class:`python:str`
+           Location of the documents or website to upload.
+
+       **cname** : :class:`python:str`
+           CNAME that hosts the documents. While supplying a CNAME
+           is optional, doing so is recommended for scraping documents
+           on the local host.
+
+       **port** : :class:`python:int`
+           Port that the localhost is connected on.
+
+       **orgs** : :class:`python:str` or :class:`python:list`\[:class:`python:str`]
+           One or more GitHub organizations to scrape public GitHub pages from.
+
+       **stop_urls** : :class:`python:str` or :class:`python:list`\[:class:`python:str`], default: :data:`python:None`
+           A list of stop points when scraping URLs. If specified, crawling
+           will stop when encountering any URL containing any of the strings
+           in this list.
+
+
+
+
+
+
+
+
+
+   .. rubric:: Notes
+
+   Ensure that these environment variables are set:
+
+   - ``MEILISEARCH_HOST_URL``: URL for the Meilisearch host
+   - ``MEILISEARCH_API_KEY``: API key (admin) for the Meilisearch host
+   - ``GH_PUBLIC_TOKEN``: GitHub token for the organization
+     (if running in a GitHub CI/CD environment)
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:function:: version()
+
+   
+   Get the version of your PyMeilisearch installation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+

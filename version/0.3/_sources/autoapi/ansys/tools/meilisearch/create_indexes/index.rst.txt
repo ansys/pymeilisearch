@@ -1,0 +1,187 @@
+ansys.tools.meilisearch.create_indexes
+======================================
+
+.. py:module:: ansys.tools.meilisearch.create_indexes
+
+.. autoapi-nested-parse::
+
+   Create an index for each public GitHub page for each repository in
+   one or more organizations using Sphinx.
+
+   ..
+       !! processed by numpydoc !!
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   ansys.tools.meilisearch.create_indexes.get_public_urls
+   ansys.tools.meilisearch.create_indexes.get_sphinx_urls
+   ansys.tools.meilisearch.create_indexes.create_sphinx_indexes
+   ansys.tools.meilisearch.create_indexes.scrap_web_page
+
+
+Module Contents
+---------------
+
+.. py:function:: get_public_urls(orgs)
+
+   
+   Get all public GitHub pages (gh_pages) for each repository in one or more organizations.
+
+
+   :Parameters:
+
+       **orgs** : :class:`python:str` or :class:`python:list`\[:class:`python:str`]
+           One or more GitHub organizations to get public GitHub pages from.
+
+   :Returns:
+
+       :class:`python:dict`
+           Dictionary where keys are repository names and values are URLs to their
+           public GitHub pages.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:function:: get_sphinx_urls(urls)
+
+   
+   Get URLs for pages that were generated using Sphinx.
+
+
+   :Parameters:
+
+       **urls** : :class:`python:dict`
+           Dictionary where keys are repository names and values are URLs to their
+           public GitHub pages.
+
+   :Returns:
+
+       :class:`python:dict`
+           Dictionary where keys are repository names that use Sphinx and
+           values are their URLs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:function:: create_sphinx_indexes(sphinx_urls, stop_urls=None, meilisearch_host_url=None, meilisearch_api_key=None)
+
+   
+   Create an index for each public GitHub page that was generated using Sphinx.
+
+   The unique name created for the index (``index_uid``) matches ``<repo>-sphinx-docs``,
+   with a ``'-'`` instead of a ``'/'`` in the repository name. For example, the unique
+   ID created for the ``pyansys/pymapdl`` repository has ``pyansys-pymapdl-sphinx-docs``
+   as its unique name.
+
+   The unique name for an index is always lowercase.
+
+   :Parameters:
+
+       **sphinx_urls** : :class:`python:dict`
+           Dictionary where keys are repository names that use Sphinx and values are
+           their URLs.
+
+       **stop_urls** : :class:`python:str` or :class:`python:list`\[:class:`python:str`], default: :data:`python:None`
+           A list of stop points when scraping URLs. If specified, crawling
+           will stop when encountering any URL containing any of the strings
+           in this list.
+
+       **meilisearch_host_url** : :class:`python:str`, default: :data:`python:None`
+           URL for the Meilisarch host.
+
+       **meilisearch_api_key** : :class:`python:str`, default: :data:`python:None`
+           API key (admin) for the Meilisearch host.
+
+
+
+
+
+
+
+
+
+   .. rubric:: Notes
+
+   This method requires that the ``GH_PUBLIC_TOKEN`` environment variable
+   be a GitHub token with public access.
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:function:: scrap_web_page(index_uid, url, templates, stop_urls=None, meilisearch_host_url=None, meilisearch_api_key=None)
+
+   
+   Scrape a web page and index its content in Meilisearch.
+
+
+   :Parameters:
+
+       **index_uid** : :class:`python:str`
+           Unique name to give to the Meilisearch index.
+
+       **url** : :class:`python:str`
+           URL of the web page to scrape.
+
+       **templates** : :class:`python:str` or :class:`python:list`\[:class:`python:str`]
+           One or more templates to use to know what content is to
+           be scraped. Available templates are ``sphinx_pydata`` and ``default``.
+
+       **stop_urls** : :class:`python:str` or :class:`python:list`\[:class:`python:str`], default: :data:`python:None`
+           A list of stop points when scraping URLs. If specified, crawling
+           will stop when encountering any URL containing any of the strings
+           in this list.
+
+       **meilisearch_host_url** : :class:`python:str`, default: :data:`python:None`
+           URL for the Meilisarch host.
+
+       **meilisearch_api_key** : :class:`python:str`, default: :data:`python:None`
+           API key (admin) for the Meilisearch host.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+

@@ -1,0 +1,13 @@
+:orphan:
+
+API reference
+=============
+
+This section describes PyMeilisearch API endpoints, their capabilities,
+and how to interact with them programmatically.
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   /autoapi/ansys/tools/meilisearch/index

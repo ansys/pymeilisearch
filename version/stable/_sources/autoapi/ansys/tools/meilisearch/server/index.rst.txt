@@ -1,0 +1,239 @@
+ansys.tools.meilisearch.server
+==============================
+
+.. py:module:: ansys.tools.meilisearch.server
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   ansys.tools.meilisearch.server.WebsiteServer
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   ansys.tools.meilisearch.server.scrape_website
+   ansys.tools.meilisearch.server.local_host_scraping
+
+
+Module Contents
+---------------
+
+.. py:class:: WebsiteServer(directory, port)
+
+   Provides the website server for the specified directory on the given port.
+
+
+   Initialize an instance of the website server.
+
+
+   :Parameters:
+
+       **directory** : :class:`python:str`
+           Directory to serve.
+
+       **port** : :class:`python:int`
+           Port number to listen on.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+   .. py:method:: serve_website()
+
+      
+      Start serving the website.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: stop_serving()
+
+      
+      Stop serving the website.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: start_serving()
+
+      
+      Start serving the website in a separate thread.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. py:method:: join()
+
+      
+      Wait for the server thread to complete.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:function:: scrape_website(index_uid, templates, directory, port, stop_urls)
+
+   
+   Scrape the website by collecting the URLs of web pages in the specified directory.
+
+
+   :Parameters:
+
+       **index_uid** : :class:`python:str`
+           Unique name to assign to the Meilisearch index.
+
+       **templates** : :class:`python:str`, :class:`python:list`\[:class:`python:str`]
+           One or more templates to use. Available templates are ``sphinx_pydata``
+           and ``default``.
+
+       **directory** : :class:`python:str`
+           Directory containing the website.
+
+       **port** : :class:`python:int`
+           Port number to serve the website on.
+
+       **stop_urls** : :class:`python:str` or :class:`python:list`\[:class:`python:str`], default: :data:`python:None`
+           A list of stop points when scraping URLs. If specified, crawling
+           will stop when encountering any URL containing any of the strings
+           in this list.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:function:: local_host_scraping(index_uid, templates, directory, port, stop_urls)
+
+   
+   Perform localhost scraping by serving the directory and scraping its content.
+
+
+   :Parameters:
+
+       **index_uid** : :class:`python:str`
+           Unique name to give to the Meilisearch index.
+
+       **templates** : :class:`python:str`, :class:`python:list`\[:class:`python:str`]
+           One or more templates to use. Available templates are ``sphinx_pydata``
+           and ``default``.
+
+       **directory** : :class:`python:str`
+           Directory to serve and scrape.
+
+       **port** : :class:`python:int`
+           Port number to listen on.
+
+       **stop_urls** : :class:`python:str` or :class:`python:list`\[:class:`python:str`], default: :data:`python:None`
+           A list of stop points when scraping URLs. If specified, crawling
+           will stop when encountering any URL containing any of the strings
+           in this list.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
